@@ -1,0 +1,38 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+// Variables
+@import 'variables';
+@import 'style';
+@import 'bootstrap.min';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+//@import "~admin-lte/build/scss/AdminLTE.scss";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~@fortawesome/fontawesome-free/css/brands.css";
+@import "~@fortawesome/fontawesome-free/css/regular.css";
+@import "~@fortawesome/fontawesome-free/css/solid.css";
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.dataTables_filter {
+    float: right;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.far {
+    font-size: 16px;
+}
+
+.fa-trash-alt {
+    color: red !important;
+}
+
+.far-eye {
+    color: #2dd42d;
+}

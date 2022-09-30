@@ -1,0 +1,11 @@
+<<<<<<< Updated upstream
+node_modules/
+vendor/
+.env
+=======
+node_modules
+vendor
+.env
+.env
+.env
+>>>>>>> Stashed changes
