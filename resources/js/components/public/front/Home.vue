@@ -1,10 +1,12 @@
 <template>
   <div id="home">
     <main-header></main-header>
-    <div class='multi-action'>
-      <a href="/online-registration" target="_blank" class='action-button'><i class="fas fa-hand-pointer"></i>&nbsp; Online Registration</a>
+    <div class="multi-action">
+      <a href="/online-registration" target="_blank" class="action-button"
+        ><i class="fas fa-hand-pointer"></i>&nbsp; Online Registration</a
+      >
     </div>
-    
+
     <header class="masthead text-center text-white">
       <div class="masthead-content">
         <div class="container">
@@ -17,19 +19,28 @@
           </h1>
         </div>
       </div>
-      
+
       <div class="masthead-content" id="form-container">
         <div class="container">
           <form>
             <div class="form-group row">
-              <div class="col-sm-4 pr-0">
-                <input
-                  type="text"
-                  placeholder="Skills, Designation, Companies"
-                  class="form-control"
-                  id="keyword"
-                  v-model="keyword"
-                  @focus="filterStatus = true"
+              <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
+                <vue-tags-input
+                  :placeholder="placeholder"
+                  v-model="tag"
+                  :separators="[';', ',']"
+                  :add-on-key="[13, ',', ';']"
+                  :tags="tags"
+                  v-on:keyup="
+                    () => {
+                      placeholder = ' ';
+                    }
+                  "
+                  @tags-changed="
+                    (newTags) => {
+                      tags = newTags;
+                    }
+                  "
                 />
                 <i
                   class="fa fa-pencil-alt search-icons"
@@ -71,7 +82,11 @@
 
               <div class="col-sm-2">
                 <div class="">
-                  <select id="experience" class="form-control rounded-0" v-model="experience">
+                  <select
+                    id="experience"
+                    class="form-control rounded-0"
+                    v-model="experience"
+                  >
                     <option disabled value="">Experience</option>
                     <option
                       :value="index"
@@ -89,7 +104,11 @@
 
               <div class="col-sm-2">
                 <div class="">
-                  <select id="jobtype" class="form-control rounded-0" v-model="jobtype">
+                  <select
+                    id="jobtype"
+                    class="form-control rounded-0"
+                    v-model="jobtype"
+                  >
                     <option disabled value="">Job Type</option>
                     <option
                       v-for="jobtype in allDesignation"
@@ -104,17 +123,20 @@
               </div>
 
               <div class="col-sm-2">
-                <router-link :to ="{path :'/browsejob',
-               query: {
-                 keyword:this.keyword,
-                location: this.location,
-                experience: this.experience,
-                jobtype:this.jobtype
-                
-                }
-                }"><button class="btn search-btn">
-                  <i class="fa fa-search mr-2" aria-hidden="true"></i>Search
-                </button></router-link >
+                <router-link
+                  :to="{
+                    path: '/browsejob',
+                    query: {
+                      keyword: this.keyword,
+                      location: this.location,
+                      experience: this.experience,
+                      jobtype: this.jobtype,
+                    },
+                  }"
+                  ><button class="btn search-btn">
+                    <i class="fa fa-search mr-2" aria-hidden="true"></i>Search
+                  </button></router-link
+                >
               </div>
             </div>
             <!-- session user ='' -->
@@ -334,7 +356,11 @@
           >
             <div class="card-body">
               <div class="form-group row">
-                <div class="col-sm-4 mb-2" v-for="(res, index) in videoResumes" :key="res.id">
+                <div
+                  class="col-sm-4 mb-2"
+                  v-for="(res, index) in videoResumes"
+                  :key="res.id"
+                >
                   <video-embed
                     css="embed-responsive-4by3"
                     :src="res.resume_video_link"
@@ -351,49 +377,54 @@
     <!-- Business Clients -->
     <div class="col-11 col-md-10 mx-auto mar-5rem business_clients">
       <h3 class="custom heading mb-4">Our Business Clients</h3>
-        <carousel :autoplay="true" :nav="false" :items="5" :dots="true" :margin="15" :responsive="{0:{items:3},600:{items:4},1000:{items:5}}">
-
-          <img :src="'client_logo/logo1.png'" />
-          <img :src="'client_logo/logo3.png'" />
-          <img :src="'client_logo/logo4.png'" />
-          <img :src="'client_logo/logo5.png'" />
-          <img :src="'client_logo/logo8.png'" />
-          <img :src="'client_logo/logo9.png'" />
-          <img :src="'client_logo/logo10.png'" />
-          <img :src="'client_logo/logo11.png'" />
-          <img :src="'client_logo/logo12.png'" />
-          <img :src="'client_logo/logo13.png'" />
-          <img :src="'client_logo/logo14.png'" />
-          <img :src="'client_logo/logo15.png'" />
-          <img :src="'client_logo/logo16.png'" />
-          <img :src="'client_logo/logo17.png'" />
-          <img :src="'client_logo/logo18.png'" />
-          <img :src="'client_logo/logo20.png'" />
-          <img :src="'client_logo/logo23.png'" />
-          <img :src="'client_logo/logo24.png'" />
-          <img :src="'client_logo/logo25.png'" />
-          <img :src="'client_logo/logo26.png'" />
-          <img :src="'client_logo/logo27.png'" />
-          <img :src="'client_logo/logo28.png'" />
-          <img :src="'client_logo/logo29.png'" />
-          <img :src="'client_logo/logo31.png'" />
-          <img :src="'client_logo/logo32.png'" />
-          <img :src="'client_logo/logo33.png'" />
-          <img :src="'client_logo/logo34.png'" />
-          <img :src="'client_logo/logo35.png'" />
-          <img :src="'client_logo/logo36.png'" />
-          <img :src="'client_logo/logo37.png'" />
-          <img :src="'client_logo/logo38.png'" />
-          <img :src="'client_logo/logo40.png'" />
-          <img :src="'client_logo/logo41.png'" />
-          <img :src="'client_logo/logo42.png'" />
-          <img :src="'client_logo/logo43.png'" />
-          <img :src="'client_logo/logo44.png'" />
-          <img :src="'client_logo/logo45.png'" />
-          <img :src="'client_logo/logo46.png'" />
-          <img :src="'client_logo/logo47.png'" />
-          
-        </carousel>
+      <carousel
+        :autoplay="true"
+        :nav="false"
+        :items="5"
+        :dots="true"
+        :margin="15"
+        :responsive="{ 0: { items: 3 }, 600: { items: 4 }, 1000: { items: 5 } }"
+      >
+        <img :src="'client_logo/logo1.png'" />
+        <img :src="'client_logo/logo3.png'" />
+        <img :src="'client_logo/logo4.png'" />
+        <img :src="'client_logo/logo5.png'" />
+        <img :src="'client_logo/logo8.png'" />
+        <img :src="'client_logo/logo9.png'" />
+        <img :src="'client_logo/logo10.png'" />
+        <img :src="'client_logo/logo11.png'" />
+        <img :src="'client_logo/logo12.png'" />
+        <img :src="'client_logo/logo13.png'" />
+        <img :src="'client_logo/logo14.png'" />
+        <img :src="'client_logo/logo15.png'" />
+        <img :src="'client_logo/logo16.png'" />
+        <img :src="'client_logo/logo17.png'" />
+        <img :src="'client_logo/logo18.png'" />
+        <img :src="'client_logo/logo20.png'" />
+        <img :src="'client_logo/logo23.png'" />
+        <img :src="'client_logo/logo24.png'" />
+        <img :src="'client_logo/logo25.png'" />
+        <img :src="'client_logo/logo26.png'" />
+        <img :src="'client_logo/logo27.png'" />
+        <img :src="'client_logo/logo28.png'" />
+        <img :src="'client_logo/logo29.png'" />
+        <img :src="'client_logo/logo31.png'" />
+        <img :src="'client_logo/logo32.png'" />
+        <img :src="'client_logo/logo33.png'" />
+        <img :src="'client_logo/logo34.png'" />
+        <img :src="'client_logo/logo35.png'" />
+        <img :src="'client_logo/logo36.png'" />
+        <img :src="'client_logo/logo37.png'" />
+        <img :src="'client_logo/logo38.png'" />
+        <img :src="'client_logo/logo40.png'" />
+        <img :src="'client_logo/logo41.png'" />
+        <img :src="'client_logo/logo42.png'" />
+        <img :src="'client_logo/logo43.png'" />
+        <img :src="'client_logo/logo44.png'" />
+        <img :src="'client_logo/logo45.png'" />
+        <img :src="'client_logo/logo46.png'" />
+        <img :src="'client_logo/logo47.png'" />
+      </carousel>
     </div>
     <!-- End Business Clients -->
 
@@ -429,18 +460,26 @@
 
 <script>
 import moment from "moment";
-import carousel from 'vue-owl-carousel';
+import carousel from "vue-owl-carousel";
+import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
 export default {
   components: { carousel },
 
   name: "Home",
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
+      tag: "",
+      tags: [],
+      placeholder: "Skills, Designation, Companies",
       keyword: "",
-      location:'',
-      experience:'',
-      jobtype:'',
-      resume_per_page:'',
+      location: "",
+      experience: "",
+      jobtype: "",
+      resume_per_page: "",
       keywords: [],
       filteredKeywords: [],
       filterStatus: false,
@@ -451,7 +490,9 @@ export default {
       sec: [],
       videoResumes: [],
       moment: moment,
-      experiences: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17],
+      experiences: [
+        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+      ],
     };
   },
   mounted() {
@@ -531,14 +572,11 @@ export default {
     },
 
     getVideoResume() {
-      axios
-        .get("/get-video-resume")
-        .then((response) => {
-          this.videoResumes = response.data.data;
-          console.log(this.videoResumes);
-        });
+      axios.get("/get-video-resume").then((response) => {
+        this.videoResumes = response.data.data;
+        console.log(this.videoResumes);
+      });
     },
-
   },
 
   watch: {
@@ -567,16 +605,19 @@ export default {
 </script>
 
 <style scoped>
+.tag-input-con {
+  height: 46px;
+}
 .filter-keyword {
-list-style-type: none;
-    padding: 0;
-    text-align: left;
-    z-index: 999;
-    position: absolute;
-    background-color: #fff;
-    width: 100%;
-    overflow-y: scroll;
-    height: auto;
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  z-index: 999;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  overflow-y: scroll;
+  height: auto;
 }
 .filter-keyword li {
   color: gray;
@@ -602,56 +643,85 @@ list-style-type: none;
   display: inline-block;
   position: absolute;
   bottom: 20%;
-  right:0px;
+  right: 0px;
   z-index: 100;
   /* margin: 300px 0 0 -28px; */
 }
-.action-button{
+.action-button {
   border: 0;
   outline: 0;
   /* background: #5b36a9bd; */
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
+  background-size: 400% 400%;
   animation: gradient 1s ease infinite;
-  font-size: 20px;    
-  color: white!important;
+  font-size: 20px;
+  color: white !important;
   padding: 5px 10px;
   z-index: 2;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  transition: all .3s;
+  transition: all 0.3s;
 }
-.action-button:hover{
+.action-button:hover {
   background: #5200ff;
 }
 .nav-tabs .nav-link {
   font-weight: 600;
 }
-.custom-table td{
+.custom-table td {
   font-weight: bold;
 }
-.custom-sub-heading{
+.custom-sub-heading {
   font-weight: bold;
 }
-.mar-5rem{
+.mar-5rem {
   margin: 5rem 0px;
 }
-@media (max-width: 700px){
-  .video_resume .custom.heading, .business_clients  .custom.heading {
+@media (max-width: 700px) {
+  .video_resume .custom.heading,
+  .business_clients .custom.heading {
     font-size: 25px;
   }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.vue-tags-input {
+  width: 700px !important;
+  max-width: 100% !important;
+  max-height: 40px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.vue-tags-input .ti-tag:after {
+  transition: transform 0.2s;
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 108%;
+  left: -4%;
+  top: calc(50% - 1px);
+  background-color: #000;
+  transform: scaleX(0);
+}
+.vue-tags-input .ti-deletion-mark:after {
+  transform: scaleX(1);
 }
 
+.ti-input {
+  border: none !important;
+}
 
+ul {
+  display: block;
+  flex-wrap: nowrap !important;
+}
 </style>
