@@ -26,21 +26,24 @@
             <div class="form-group row">
               <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
                 <vue-tags-input
+                  class="input-tag"
                   :placeholder="placeholder"
                   v-model="tag"
-                  :separators="[';', ',']"
-                  :add-on-key="[13, ',', ';']"
-                  :tags="tags"
-                  v-on:keyup="
+                  @keyup="
                     () => {
                       placeholder = ' ';
                     }
                   "
+                  :separators="[';', ',']"
+                  :add-on-key="[13, ',', ';']"
+                  :tags="tags"
                   @tags-changed="
                     (newTags) => {
                       tags = newTags;
                     }
                   "
+                  @before-adding-tag="checkTag"
+                  @before-deleting-tag="deltag"
                 />
                 <i
                   class="fa fa-pencil-alt search-icons"
@@ -127,7 +130,7 @@
                   :to="{
                     path: '/browsejob',
                     query: {
-                      keyword: this.keyword,
+                      keyword: this.handlers.toString(),
                       location: this.location,
                       experience: this.experience,
                       jobtype: this.jobtype,
@@ -472,8 +475,10 @@ export default {
   },
   data() {
     return {
+      tagt: [],
       tag: "",
       tags: [],
+      handlers: [],
       placeholder: "Skills, Designation, Companies",
       keyword: "",
       location: "",
@@ -519,18 +524,34 @@ export default {
   },
 
   methods: {
+    deltag(obj) {
+      this.handlers.pop();
+      obj.deleteTag();
+    },
+    checkTag(obj) {
+      // obj.addTag();
+      if (this.handlers.indexOf(obj.tag.text) === -1) {
+        this.handlers.push(obj.tag.text);
+        obj.addTag();
+      } else {
+        this.tag = "";
+      }
+    },
+    isDuplicate(tags, tag) {
+      return tags.map((t) => t.text).indexOf(tag.text) !== -1;
+    },
     getFilteredKeyword() {
       if (this.keyword.length == 0) {
         this.filteredKeywords = this.keywords;
       }
-
+      console.log(filteredKeywords);
       this.filteredKeywords = this.keywords.filter((el) => {
         return el.toLowerCase().startsWith(this.keyword.toLowerCase());
       });
     },
 
     setkeyword(keyword) {
-      this.keyword = keyword;
+      this.keyword = "keyword";
       this.filterStatus = false;
     },
 
@@ -606,7 +627,7 @@ export default {
 
 <style scoped>
 .tag-input-con {
-  height: 46px;
+  height: 45px;
 }
 .filter-keyword {
   list-style-type: none;
@@ -697,10 +718,11 @@ export default {
 .vue-tags-input {
   width: 700px !important;
   max-width: 100% !important;
-  max-height: 40px;
+  max-height: 39px;
   overflow-y: hidden;
   overflow-x: auto;
 }
+
 .vue-tags-input .ti-tag:after {
   transition: transform 0.2s;
   position: absolute;
@@ -723,5 +745,27 @@ export default {
 ul {
   display: block;
   flex-wrap: nowrap !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  height: 0.1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.2px rgba(128, 128, 128, 0);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0, 0);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b3000000;
 }
 </style>
