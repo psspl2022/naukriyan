@@ -482,7 +482,7 @@ class JobmanagerController extends Controller
 
     public function browsejob(Request $request)
     {   //keyword within browsejob
-        $searchTerm = request('searchkeyword');
+        $searchTerm = explode(',', request('searchkeyword'));
         //keyword in home page
         $keywordhome = request('keyword');
         $location = str_replace("Jobs-in-", "", request('location'));
@@ -532,14 +532,18 @@ class JobmanagerController extends Controller
         //search keyword within Browse jobs start
         if (isset($searchTerm) && $searchTerm !== '') {
             $dataFilter->where(function ($query) use ($searchTerm) {
-                $query->where('jobmanagers.title', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.responsibility', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.job_keywords', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.job_skills', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.job_preference', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.job_exp', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.job_for', 'like', "%$searchTerm%")
-                    ->orWhere('jobmanagers.main_exp', 'like', "%$searchTerm%");
+                foreach ($searchTerm as $item) {
+                    $query->orWhere(function ($query) use ($item) {
+                        $query->where('jobmanagers.title', 'like', "%$item%")
+                            ->orWhere('jobmanagers.responsibility', 'like', "%$item%")
+                            ->orWhere('jobmanagers.job_keywords', 'like', "%$item%")
+                            ->orWhere('jobmanagers.job_skills', 'like', "%$item%")
+                            ->orWhere('jobmanagers.job_preference', 'like', "%$item%")
+                            ->orWhere('jobmanagers.job_exp', 'like', "%$item%")
+                            ->orWhere('jobmanagers.job_for', 'like', "%$item%")
+                            ->orWhere('jobmanagers.main_exp', 'like', "%$item%");
+                    });
+                }
             });
         }
         //search keyword within Browse jobs end
