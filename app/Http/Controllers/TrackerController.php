@@ -96,10 +96,10 @@ class TrackerController extends Controller
 
 
         $trackerList = $data->paginate(50);
-        $trackerList2 = $data->toSql();
+        // $trackerList2 = $data->toSql();
 
 
-        return response()->json(['data' => $trackerList, 'data2' => $trackerList2], 200);
+        return response()->json(['data' => $trackerList, 'data2' => $trackerList], 200);
     }
 
     public function store(Request $request)

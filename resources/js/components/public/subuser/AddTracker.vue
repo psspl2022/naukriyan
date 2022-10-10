@@ -175,7 +175,15 @@
                               Comma(,))
                             </label>
                             <div class="input password">
-                              <input
+                              <vue-tags-input
+                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
+                                v-model="tag"
+                                :separators="[';', ',']"
+                                :add-on-key="[13, ',', ';']"
+                                :tags="tags"
+                                @tags-changed="(newTags) => (tags = newTags)"
+                              />
+                              <!-- <input
                                 type="text"
                                 id="password"
                                 class="form-control"
@@ -184,7 +192,7 @@
                                 :class="{
                                   'is-invalid': form.errors.has('skills'),
                                 }"
-                              />
+                              /> -->
                             </div>
                           </div>
                           <has-error :form="form" field="password"></has-error>
@@ -591,11 +599,17 @@
 
 <script>
 import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
+
 export default {
   name: "AddTracker",
-
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
+      tag: "",
+      tags: [],
       checked: false,
       form: new Form({
         name: "",
@@ -652,7 +666,9 @@ export default {
     addTracker() {
       this.registerStatus = true;
       let formData = new FormData();
-
+      this.form.skills = [];
+      this.form.skills = [];
+      this.tags.map((item) => this.form.skills.push(item.text));
       formData.append("resume", this.resume);
       formData.append("name", this.form.name);
       formData.append("email", this.form.email);
@@ -787,5 +803,23 @@ export default {
 
 .filter-keyword li:first-child {
   background-color: #ebebeb;
+}
+.vue-tags-input {
+  width: 700px !important;
+  max-width: 100% !important;
+}
+.vue-tags-input .ti-tag:after {
+  transition: transform 0.2s;
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 108%;
+  left: -4%;
+  top: calc(50% - 1px);
+  background-color: #000;
+  transform: scaleX(0);
+}
+.vue-tags-input .ti-deletion-mark:after {
+  transform: scaleX(1);
 }
 </style>

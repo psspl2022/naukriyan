@@ -10,7 +10,8 @@
     <meta name="description"
         content="Naukriyan is one of the best job portal and consultants for Delhi NCR, India, hiring leaders for the leading companies. Call us ☎ (+91) 117-962-6411" />
     <meta name="author" content="" />
-    <meta name="keywords" content="Best job consultants for Delhi NCR, Best job portals in India,Best job search portal,Best Job Search Websites,find jobs,Job sites in india,Job portal website" />
+    <meta name="keywords"
+        content="Best job consultants for Delhi NCR, Best job portals in India,Best job search portal,Best Job Search Websites,find jobs,Job sites in india,Job portal website" />
     <meta name="p:domain_verify" content="7522282dd009799dae68035a9525761d" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!--google font -->
@@ -19,27 +20,45 @@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-8H3RWJ7S3Z"></script>-->
-    <!--<script>-->
-    <!--    window.dataLayer = window.dataLayer || [];-->
+    <!--<script>
+        -- >
+        <
+        !--window.dataLayer = window.dataLayer || [];
+        -- >
 
-    <!--    function gtag() {-->
-    <!--        dataLayer.push(arguments);-->
-    <!--    }-->
-    <!--    gtag('js', new Date());-->
+        <
+        !-- function gtag() {
+            -- >
+            <
+            !--dataLayer.push(arguments);
+            -- >
+            <
+            !--
+        }-- >
+        <
+        !--gtag('js', new Date());
+        -- >
 
-    <!--    gtag('config', 'G-8H3RWJ7S3Z');-->
-    <!--</script>-->
-    
+        <
+        !--gtag('config', 'G-8H3RWJ7S3Z');
+        -- >
+        <
+        !--
+    </script>-->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJC301FV42"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-XJC301FV42');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XJC301FV42');
     </script>
-    
+
     <!-- Ahref Tag -->
     <meta name="ahrefs-site-verification" content="e8fe8e0fc914efde2cd867ecb77af34eef367616ce4aa20129400e966d2de239">
 
@@ -97,6 +116,13 @@
             visibility: visible;
         }
 
+        .input-tag .ti-tags {
+            flex-wrap: nowrap !important;
+        }
+
+        .input-tag .ti-input {
+            border: none !important;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -109,12 +135,12 @@
             }
         });
     </script>
-
+    <script src="https://unpkg.com/@johmun/vue-tags-input/dist/vue-tags-input.js"></script>
     <script>
         var msg = '{{ Session::get('
-        alert ') }}';
+                                                        alert ') }}';
         var exist = '{{ Session::has('
-        alert ') }}';
+                                                        alert ') }}';
         if (exist) {
             alert(msg);
         }
@@ -133,7 +159,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Login to Naukriyan</h5>
-                            <button type="button" id="clb" class="close" data-dismiss="modal" aria-hidden="true">
+                            <button type="button" id="clb" class="close" data-dismiss="modal"
+                                aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -184,7 +211,8 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" id="loginSubmit" class="btn btn-block btn-lg btn-primary">
+                                        <button type="submit" id="loginSubmit"
+                                            class="btn btn-block btn-lg btn-primary">
                                             Login
                                         </button>
                                     </div>
@@ -220,7 +248,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbjob" class="close" data-dismiss="modal" aria-hidden="true">
+                            <button type="button" id="clbjob" class="close" data-dismiss="modal"
+                                aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -231,7 +260,8 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control" required="">
+                                            <select name="user_type" id="user_type" class="form-control"
+                                                required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Jobseeker">Jobseeker</option>
                                             </select>
@@ -307,7 +337,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbemp" class="close" data-dismiss="modal" aria-hidden="true">
+                            <button type="button" id="clbemp" class="close" data-dismiss="modal"
+                                aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -318,7 +349,8 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control" required="">
+                                            <select name="user_type" id="user_type" class="form-control"
+                                                required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Employer">Employer</option>
                                             </select>
@@ -402,7 +434,8 @@
                             @if (session('message'))
                                 <div class="alert alert-success alert-dismissable custom-success-box"
                                     style="margin: 15px;">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <a href="#" class="close" data-dismiss="alert"
+                                        aria-label="close">&times;</a>
                                     <strong> {{ session('message') }} </strong>
                                 </div>
                             @endif
@@ -432,14 +465,16 @@
                                             <input type="hidden" name="user_type" value="Jobseeker">
                                             <div class="col-sm-6">
                                                 <label>First Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="fname" id="j_fname"
-                                                        class="form-control" placeholder="Enter First Name" /></div>
+                                                <div class="input text"><input type="text" name="fname"
+                                                        id="j_fname" class="form-control"
+                                                        placeholder="Enter First Name" /></div>
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="lname" id="j_lname"
-                                                        class="form-control" placeholder="Enter Last Name" /></div>
+                                                <div class="input text"><input type="text" name="lname"
+                                                        id="j_lname" class="form-control"
+                                                        placeholder="Enter Last Name" /></div>
 
                                             </div>
                                         </div>
@@ -453,8 +488,8 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Email<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="email" name="email" id="j_email"
-                                                        class="form-control" placeholder="Enter Email"
+                                                <div class="input text"><input type="email" name="email"
+                                                        id="j_email" class="form-control" placeholder="Enter Email"
                                                         autocomplete="off" /></div>
 
                                             </div>
@@ -466,7 +501,8 @@
 
                                                     <div class="tooltip-pass"><i class="fas fa-info-circle"
                                                             style="position:inherit !important;font-size:16px !important;"></i>
-                                                        <span class="tooltiptext">Password contain atleast 8 characters.
+                                                        <span class="tooltiptext">Password contain atleast 8
+                                                            characters.
                                                             Password should be match all criteria given below:<br>
                                                             <ol>
                                                                 <li>English uppercase characters (A – Z)</li>
@@ -508,7 +544,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>Designation<span style="color: red">  </span></label>
+                                                <label>Designation<span style="color: red"> </span></label>
                                                 <div class="input password">
                                                     <input type="text" name="designation" id="j_designation"
                                                         class="form-control" placeholder="Enter Designation">
@@ -520,8 +556,8 @@
                                             <div class="col-sm-12">
                                                 <label>Resume<span style="color: red"> * </span></label>
                                                 <div class="input password">
-                                                    <input type="file" name="resume" id="j_resume" class="form-control"
-                                                        accept="application/pdf">
+                                                    <input type="file" name="resume" id="j_resume"
+                                                        class="form-control" accept="application/pdf">
                                                 </div>
                                             </div>
 
@@ -545,8 +581,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" name="submit" class="btn btn-block btn-lg btn-primary"
-                                                id="submitJobseekerRegBtn">
+                                            <button type="submit" name="submit"
+                                                class="btn btn-block btn-lg btn-primary" id="submitJobseekerRegBtn">
                                                 Signup
                                             </button>
                                         </div>
@@ -610,8 +646,8 @@
                                                         </ol>
                                                     </span>
                                                 </div>
-                                                <div class="input password"><input type="password" name="emp_password"
-                                                        id="emp_password" class="form-control"
+                                                <div class="input password"><input type="password"
+                                                        name="emp_password" id="emp_password" class="form-control"
                                                         placeholder="Enter Password" /></div>
 
 
@@ -672,8 +708,8 @@
                                             <div class="col-sm-6" id="other">
                                                 <label>Input Company </label>
                                                 <div class="input text">
-                                                    <input type="text" name="other" id="other_comp" class="form-control"
-                                                        placeholder="Enter Company Name" />
+                                                    <input type="text" name="other" id="other_comp"
+                                                        class="form-control" placeholder="Enter Company Name" />
                                                 </div>
                                             </div>
 
@@ -710,8 +746,8 @@
                             </div>
                             <div class="signText text-center">
                                 <p class="mb-0 fs-16">You have already account?
-                                    <a href="" data-toggle="modal" data-target="#myModal" data-dismiss="modal"
-                                        class="fw-700">Login</a>
+                                    <a href="" data-toggle="modal" data-target="#myModal"
+                                        data-dismiss="modal" class="fw-700">Login</a>
                                 </p>
                             </div>
                         </div>
