@@ -15,10 +15,10 @@ header('Access-Control-Allow-Origin:  *');
 // header('Access-Control-Allow-Origin:  http://127.0.0.1:8000');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
-Route::get('becil-data','GetBecilJobsDataController@getBecilData');
-
-Route::post('file-upload','JobseekerController@testUpload');
- Route::post('file-upload/profile','JobseekerController@testUploadImage');
+Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
+Route::get('get-allskills/{key}', 'getAllskills@index');
+Route::post('file-upload', 'JobseekerController@testUpload');
+Route::post('file-upload/profile', 'JobseekerController@testUploadImage');
 
 Route::get('/get-jobseeker-info/{id}', 'JobseekerController@getJobseekerInfo');
 
@@ -227,7 +227,6 @@ Route::group(['middleware' => 'jobseeker'], function () {
 
     Route::get('/assign-ratings-company', 'RatingController@assignRatings');
     Route::get('/get-ratings', 'RatingController@getRatings');
-    
 });
 
 //employer route
@@ -396,12 +395,12 @@ Route::group(['middleware' => 'employer'], function () {
     //tracker
     //dashboard counter
     Route::get('get-subuser-activity', 'DashboardController@CountSubuserActivity');
-    Route::get('emp/tracker-list','EmpTrackerDetailsController@index');
-    Route::get('emp/unique-source/tracker','EmpTrackerDetailsController@getUniqueSourceEmployer');
+    Route::get('emp/tracker-list', 'EmpTrackerDetailsController@index');
+    Route::get('emp/unique-source/tracker', 'EmpTrackerDetailsController@getUniqueSourceEmployer');
     Route::get('emp/export/tracker', 'EmpTrackerDetailsController@exportTrackerDataEmployer');
     Route::get('emp/export/tracker-checked/{id}', 'EmpTrackerDetailsController@ExportTrackerCheckedDataEmployer');
     //empProfileCheck
-    Route::get('/check/empProfile/complete','DashboardController@CheckEmpProfileComplete');
+    Route::get('/check/empProfile/complete', 'DashboardController@CheckEmpProfileComplete');
     //client section start
     Route::post('/add-client', 'ClientNameController@store');
     Route::get('/client', 'ClientNameController@index');
@@ -412,19 +411,18 @@ Route::group(['middleware' => 'employer'], function () {
 
     Route::get('/client-list', 'ClientNameController@clientList');
     //client section End
-     Route::post('/post/job/update-employer', 'UserprofileController@UpdateEmployerPostJob');
-     Route::get('/get-resumedata/{id}', 'EmpTrackerDetailsController@getsingleResume');
-     //designation Searh Tracker Start
-    Route::get('/get/emp/designation','DesignationListController@getTrackerDesignation');
+    Route::post('/post/job/update-employer', 'UserprofileController@UpdateEmployerPostJob');
+    Route::get('/get-resumedata/{id}', 'EmpTrackerDetailsController@getsingleResume');
+    //designation Searh Tracker Start
+    Route::get('/get/emp/designation', 'DesignationListController@getTrackerDesignation');
     //designation Search Tracker End
 
     //consolidateData
-    Route::get('/bulk-data1','ConsolidateDataController@index');
-    Route::post('/import-consolidate1','ConsolidateDataController@store');
-    Route::get('/getUniqueSource1','ConsolidateDataController@getUniqueSource');
+    Route::get('/bulk-data1', 'ConsolidateDataController@index');
+    Route::post('/import-consolidate1', 'ConsolidateDataController@store');
+    Route::get('/getUniqueSource1', 'ConsolidateDataController@getUniqueSource');
     Route::get('/export-data1', 'ConsolidateDataController@exportBulkData');
     Route::get('/export-data-checked1/{id}', 'ConsolidateDataController@ExportBulkCheckedData');
-
 });
 
 //consultant
@@ -486,26 +484,24 @@ Route::post('/subuser-login', 'SubuserController@loginSubuser');
 Route::group(['middleware' => 'subuser'], function () {
     //tracker
     Route::get('/get-subuser-profile', 'SubuserController@getSubuserData');
-    Route::post('add-tracker','TrackerController@store');
-    Route::get('get-designation','DesignationListController@index');
-    Route::get('tracker-list','TrackerController@index');
-    Route::get('tracker-details/{id}','TrackerController@edit');
-    Route::post('update-tracker','TrackerController@update');
+    Route::post('add-tracker', 'TrackerController@store');
+    Route::get('get-designation', 'DesignationListController@index');
+    Route::get('tracker-list', 'TrackerController@index');
+    Route::get('tracker-details/{id}', 'TrackerController@edit');
+    Route::post('update-tracker', 'TrackerController@update');
 
-    Route::get('unique-source/tracker','TrackerController@getUniqueSourceEmployer');
+    Route::get('unique-source/tracker', 'TrackerController@getUniqueSourceEmployer');
     Route::get('/export/tracker', 'TrackerController@exportTrackerDataEmployer');
     Route::get('/export/tracker-checked/{id}', 'TrackerController@ExportTrackerCheckedDataEmployer');
-    Route::post('update-tracker/resume','TrackerController@uploadResume');
+    Route::post('update-tracker/resume', 'TrackerController@uploadResume');
     Route::post('/update/password/subuser', 'SubuserController@updatePassword');
     Route::post('update/subuser/profileimage', 'SubuserController@updateSubUserProfileImage');
     Route::get('/get/dashboard-data', 'SubUserDashboardController@dashboard');
     Route::post('/update/subuser/profile', 'SubuserController@updateHimself');
     Route::get('/checkemail-tracker/{email}', 'TrackerController@checkEmailTracker');
     //reference
-    Route::get('reference-list','ReferenceController@index');
-    Route::post('/add-reference','ReferenceController@store');
-    
-    
+    Route::get('reference-list', 'ReferenceController@index');
+    Route::post('/add-reference', 'ReferenceController@store');
 });
 
 Auth::routes();
@@ -847,16 +843,16 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/assign-percent-consultant', 'ConsultantController@assignPercentageConsultant');
     Route::get('/update-remarks', 'ConsultantProfileController@UpdateRemarks');
     //consolidateData
-    Route::get('/bulk-data','ConsolidateDataController@index');
-    Route::post('/import-consolidate','ConsolidateDataController@store');
-    Route::get('/getUniqueSource','ConsolidateDataController@getUniqueSource');
+    Route::get('/bulk-data', 'ConsolidateDataController@index');
+    Route::post('/import-consolidate', 'ConsolidateDataController@store');
+    Route::get('/getUniqueSource', 'ConsolidateDataController@getUniqueSource');
     Route::get('/export-data', 'ConsolidateDataController@exportBulkData');
     Route::get('/export-data-checked/{id}', 'ConsolidateDataController@ExportBulkCheckedData');
 
     Route::get('get/all/applied/candidate/{id}', 'JobmanagerController@getAllAppliedCandidateList');
     //tracker
     Route::get('/get/data/tracker', 'TrackerController@showAdmin');
-    Route::get('/getUniqueSource/tracker','TrackerController@getUniqueSource');
+    Route::get('/getUniqueSource/tracker', 'TrackerController@getUniqueSource');
     Route::get('/export-tracker', 'TrackerController@exportBulkData');
     Route::get('/export-tracker-checked/{id}', 'TrackerController@ExportBulkCheckedData');
     Route::get('/delete-tracker-checked/{id}', 'TrackerController@DeleteCheckedData');
@@ -865,9 +861,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/admin/client', 'ClientNameController@AdminClientList');
     Route::get('/admin/active-client/{id}', 'ClientNameController@Adminactive');
     Route::get('/admin/deactive-client/{id}', 'ClientNameController@Admindeactive');
-    
+
     Route::get('/get-jobsdata/{id}', 'JobmanagerController@getsingleJobsDetails');
-    Route::get('/getClientList','JobmanagerController@getClientList');
+    Route::get('/getClientList', 'JobmanagerController@getClientList');
 
     //Self-Registration
     Route::get('candidate_self_registration_list', 'SelfRegisterController@candidateSelfRegistrationList');
@@ -908,14 +904,14 @@ Route::prefix('admin')->group(function () {
 });
 
 //Self Register
-Route::get('/online-registration', 'SelfRegisterController@candidateSelfRegistration' )->name('online-registration');
-Route::get('/candidate-self-registration', 'SelfRegisterController@candidateSelfRegistrationRedirect' )->name('candidate-self-registration');
+Route::get('/online-registration', 'SelfRegisterController@candidateSelfRegistration')->name('online-registration');
+Route::get('/candidate-self-registration', 'SelfRegisterController@candidateSelfRegistrationRedirect')->name('candidate-self-registration');
 
-Route::post('/post_candidate_self_registration', 'SelfRegisterController@postCandidateSelfRegistration' )->name('post_candidate_self_registration');
-Route::post('/edit_candidate_self_registration', 'SelfRegisterController@editCandidateSelfRegistration' )->name('edit_candidate_self_registration');
-Route::post('/update_candidate_self_registration', 'SelfRegisterController@updateCandidateSelfRegistration' )->name('update_candidate_self_registration');
+Route::post('/post_candidate_self_registration', 'SelfRegisterController@postCandidateSelfRegistration')->name('post_candidate_self_registration');
+Route::post('/edit_candidate_self_registration', 'SelfRegisterController@editCandidateSelfRegistration')->name('edit_candidate_self_registration');
+Route::post('/update_candidate_self_registration', 'SelfRegisterController@updateCandidateSelfRegistration')->name('update_candidate_self_registration');
 
-Route::get('/candidate_self_registration_details/{id}', 'SelfRegisterController@candidateSelfRegistrationDetails' )->name('candidate_self_registration_details');
+Route::get('/candidate_self_registration_details/{id}', 'SelfRegisterController@candidateSelfRegistrationDetails')->name('candidate_self_registration_details');
 
 //Fetch District
 Route::post('fetch_district', 'SelfRegisterController@fetchDistrict');
@@ -928,4 +924,3 @@ Route::get('/get-video-resume', 'ProfileCompleteController@getVideoResume');
 //Becil-Jobs Users Data
 Route::get('get-all-becil-user-detail', 'BecilUserProfileController@getAlluserDetail');
 // Route::get('/testb','BecilUserProfileController@testing');
-

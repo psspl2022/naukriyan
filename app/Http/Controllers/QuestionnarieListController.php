@@ -62,10 +62,10 @@ class QuestionnarieListController extends Controller
             ->leftjoin('questions', 'questions.id', '=', 'questionnarie_questions.question_id')
             ->leftjoin('questionnarie_names', 'questionnarie_names.id', '=', 'questionnarie_questions.questionnarie_id')
             ->select('questionnarie_names.*', 'questions.*', 'questionnarie_questions.*')
-            ->where('questionnarie_questions.add_by', $admin_id)//for admin
+            ->where('questionnarie_questions.add_by', $admin_id) //for admin
             ->get();
         return response()->json(['data' =>
-            $data], 200);
+        $data], 200);
     }
 
     public function searchquestionnarie($questionnarie_id)
@@ -75,11 +75,11 @@ class QuestionnarieListController extends Controller
             ->leftjoin('questions', 'questions.id', '=', 'questionnarie_questions.question_id')
             ->leftjoin('questionnarie_names', 'questionnarie_names.id', '=', 'questionnarie_questions.questionnarie_id')
             ->select('questionnarie_names.*', 'questions.*', 'questionnarie_questions.*')
-            ->where('questionnarie_questions.add_by', $admin_id)//for admin
+            ->where('questionnarie_questions.add_by', $admin_id) //for admin
             ->where('questionnarie_questions.questionnarie_id', $questionnarie_id)
             ->get();
         return response()->json(['data' =>
-            $data], 200);
+        $data], 200);
     }
 
     // For Employer start
@@ -130,10 +130,10 @@ class QuestionnarieListController extends Controller
             ->leftjoin('questions', 'questions.id', '=', 'questionnarie_questions.question_id')
             ->leftjoin('questionnarie_names', 'questionnarie_names.id', '=', 'questionnarie_questions.questionnarie_id')
             ->select('questionnarie_questions.id as questionnarie_questions_id', 'questionnarie_names.*', 'questions.*', 'questionnarie_questions.*')
-            ->where('questionnarie_questions.user_id', $uid)//for admin
+            ->where('questionnarie_questions.user_id', $uid) //for admin
             ->get();
         return response()->json(['data' =>
-            $data], 200);
+        $data], 200);
     }
 
     public function searchquestionnarie_emp($questionnarie_id)
@@ -144,10 +144,10 @@ class QuestionnarieListController extends Controller
             ->leftjoin('questions', 'questions.id', '=', 'questionnarie_questions.question_id')
             ->leftjoin('questionnarie_names', 'questionnarie_names.id', '=', 'questionnarie_questions.questionnarie_id')
             ->select('questionnarie_names.*', 'questions.*', 'questionnarie_questions.*')
-            ->where('questionnarie_questions.user_id', $uid)//for admin
+            ->where('questionnarie_questions.user_id', $uid) //for admin
             ->where('questionnarie_questions.questionnarie_id', $questionnarie_id)
             ->get();
-        return response()->json(['data' =>$data], 200);
+        return response()->json(['data' => $data], 200);
     }
 
     public function destroy_emp($id)
@@ -155,5 +155,4 @@ class QuestionnarieListController extends Controller
         $question = QuestionnarieQuestion::find($id);
         $question->delete();
     }
-
 }
