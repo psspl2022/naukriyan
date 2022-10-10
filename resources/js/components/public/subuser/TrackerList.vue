@@ -1,3 +1,5 @@
+
+
 <template>
   <div id="trackerlist">
     <subuser-header></subuser-header>
@@ -268,8 +270,11 @@
                           {{ track.current_location }}
                         </td>
                         <td>{{ track.gender }}</td>
-                        <td>{{ track.designation }}</td>
-                        <td>{{ track.key_skills }}</td>
+                        <td>{{ track.designation }}</td> 
+                        <td>  
+                          <text-highlight :queries="skillarr">{{ track.key_skills }}</text-highlight>
+                        </td>               
+                       
                         <td>{{ track.experience }}</td>
                         <td>{{ track.notice_period }}</td>
                         <td>
@@ -317,11 +322,18 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import TextHighlight from 'vue-text-highlight';
 //import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-export default {
-  name: "Trackerlist",
 
+Vue.component('text-highlight', TextHighlight);
+
+export default {
+  
+ 
+  name: "Trackerlist",
+  
   data() {
     return {
       trackers: [],
@@ -335,6 +347,7 @@ export default {
       sourceList: [],
       location: "",
       skills: "",
+      skillarr: [],
       selectAll: false,
       uploadstatus: this.$route.query.uploadstatus,
       trackersCount: "",
@@ -352,6 +365,7 @@ export default {
       this.$router.replace("/tracker-list");
     },
     getTrackerList(page = 1) {
+      this.skillarr=this.skills.split(',');
       this.searchStatus = true;
       const self = this;
       axios
@@ -443,6 +457,7 @@ export default {
       }
     },
   },
+ 
 };
 </script>
 
