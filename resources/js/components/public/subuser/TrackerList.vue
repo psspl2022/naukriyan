@@ -89,12 +89,28 @@
                     >
 
                     <div class="form-group">
-                      <input
+                      <vue-tags-input
                         type="text"
                         name="skills"
                         class="form-control form-control-sm"
                         v-model="skills"
-                        placeholder="Enter Multiple Skills also Separated by Comma"
+                        :placeholder="placeholder"
+                        @keyup="
+                          () => {
+                            placeholder = ' ';
+                          }
+                        "
+                        :separators="[';', ',']"
+                        :add-on-key="[13, ',', ';']"
+                        :tags="tags"
+                        @tags-changed="
+                          (newTags) => {
+                            tags = newTags;
+                          }
+                        "
+                        @before-adding-tag="checkTag"
+                        @before-deleting-tag="deltag"
+                
                       />
                     </div>
                   </div>
@@ -326,14 +342,16 @@ import Vue from 'vue';
 import TextHighlight from 'vue-text-highlight';
 //import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-
+import VueTagsInput from "@johmun/vue-tags-input";
 Vue.component('text-highlight', TextHighlight);
 
 export default {
   
  
   name: "Trackerlist",
-  
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
       trackers: [],
@@ -364,6 +382,31 @@ export default {
     resetUrl() {
       this.$router.replace("/tracker-list");
     },
+    deltag(obj) {
+      this.handlers.pop();
+      obj.deleteTag();
+    },
+    checkTag(obj) {
+      // obj.addTag();
+      if (this.handlers.indexOf(obj.skills.text) === -1) {
+        this.handlers.push(obj.skills.text);
+        obj.addTag();
+      } else {
+        this.skills = "";
+      }
+    },
+    isDuplicate(tags, tag) {
+      return tags.map((t) => t.text).indexOf(skills.text) !== -1;
+    },
+    getFilteredKeyword() {
+      if (this.keyword.length == 0) {
+        this.filteredKeywords = this.keywords;
+      }
+      this.filteredKeywords = this.keywords.filter((el) => {
+        return el.toLowerCase().startsWith(this.keyword.toLowerCase());
+      });
+    },
+
     getTrackerList(page = 1) {
       this.skillarr=this.skills.split(',');
       this.searchStatus = true;

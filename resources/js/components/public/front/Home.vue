@@ -25,26 +25,8 @@
           <form>
             <div class="form-group row">
               <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
-                <vue-tags-input
-                  class="input-tag"
-                  :placeholder="placeholder"
-                  v-model="tag"
-                  @keyup="
-                    () => {
-                      placeholder = ' ';
-                    }
-                  "
-                  :separators="[';', ',']"
-                  :add-on-key="[13, ',', ';']"
-                  :tags="tags"
-                  @tags-changed="
-                    (newTags) => {
-                      tags = newTags;
-                    }
-                  "
-                  @before-adding-tag="checkTag"
-                  @before-deleting-tag="deltag"
-                />
+             
+                
                 <i
                   class="fa fa-pencil-alt search-icons"
                   aria-hidden="true"
@@ -544,7 +526,6 @@ export default {
       if (this.keyword.length == 0) {
         this.filteredKeywords = this.keywords;
       }
-      console.log(filteredKeywords);
       this.filteredKeywords = this.keywords.filter((el) => {
         return el.toLowerCase().startsWith(this.keyword.toLowerCase());
       });
