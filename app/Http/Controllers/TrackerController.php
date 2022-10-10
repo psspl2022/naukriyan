@@ -174,7 +174,7 @@ class TrackerController extends Controller
     public function edit($id)
     {
         $Details = Tracker::where('id', $id)->first();
-        // return response()->json(['data' => $Details]);
+        return response()->json(['data' => $Details]);
     }
 
     public function update(Request $request, Tracker $tracker)
