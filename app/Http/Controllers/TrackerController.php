@@ -51,7 +51,7 @@ class TrackerController extends Controller
             $data->where(function ($query) use ($keyword) {
                 $query->where('current_location', 'like', "%$keyword%")
                     ->orwhere('preffered_location', 'like', "%$keyword%")
-                    ->orWhere('key_skills', 'like', "%$keyword%")
+                    ->where('key_skills', 'like', "%$keyword%")
                     ->orwhere('reference', 'like', "%$keyword%")
                     ->orWhere('name', 'like', "%$keyword%")
                     ->orWhere('email', 'like', "%$keyword%")
@@ -66,8 +66,10 @@ class TrackerController extends Controller
 
 
         if (isset($location) && $location != '') {
-            $data->Where('current_location', 'like', "%$location%")
-                ->orWhere('preffered_location', 'like', "%$location%");
+            $data->Where(function ($query) use ($location) {
+                $query->where('current_location', 'like', "%$location%")->orWhere('preffered_location', 'like', "%$location%");
+            });
+            // ->orWhere('preffered_location', 'like', "%$location%")
         }
 
         // if (isset($skills) && $skills != '') {
@@ -75,12 +77,13 @@ class TrackerController extends Controller
         // }
         if (isset($skills) && $skills != '') {
             $key = explode(',', $skills);
-            $data->Where(function ($query) use ($key) {
+            ($data)->Where(function ($query) use ($key) {
                 for ($i = 0; $i < count($key); $i++) {
-                    $query->orwhere('key_skills', 'like',  '%' . $key[$i] . '%');
+                    $query->orWhere('key_skills', 'like',  '%' . $key[$i] . '%');
                 }
             });
         }
+
         if (isset($uploadstatus)) {
 
             if ($uploadstatus === 'yes') {
@@ -93,9 +96,10 @@ class TrackerController extends Controller
 
 
         $trackerList = $data->paginate(50);
+        // $trackerList2 = $data->toSql();
 
 
-        return response()->json(['data' => $trackerList], 200);
+        return response()->json(['data' => $trackerList, 'data2' => $trackerList], 200);
     }
 
     public function store(Request $request)
