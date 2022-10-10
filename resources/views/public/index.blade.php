@@ -129,6 +129,7 @@
         }
 
         .ti-autocomplete li {
+            text-align: left;
             color: black !important;
         }
 

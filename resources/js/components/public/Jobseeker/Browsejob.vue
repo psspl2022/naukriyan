@@ -70,8 +70,6 @@
                               :autocomplete-items="autocompleteItems"
                               :add-only-from-autocomplete="true"
                               @tags-changed="update"
-                              @before-adding-tag="checkTag"
-                              @before-deleting-tag="deltag"
                             />
                           </div>
                           <strong>{{ error }}</strong>
@@ -728,10 +726,11 @@ export default {
   props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
-      tagt: [],
       tag: "",
       tags: [],
       handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       TempApplyStatus: false,
       allIndustry: [],
       jobsID: [],
@@ -739,9 +738,6 @@ export default {
       search_industry: "",
       search_functional: "",
       error: "",
-      autocompleteItems: [],
-
-      debounce: null,
       loading: false,
       inputsearch: "",
       allFee: "",
@@ -780,7 +776,6 @@ export default {
     this.keyword = this.$route.query.keyword;
     this.tags = this.$route.query.keyword.split(",");
     this.handlers = this.$route.query.keyword.split(",");
-    this.getAllSkills();
     this.$store.dispatch("getAllRecruiter", "/get-qualification");
     this.$store.dispatch("getAllDesignation", "/get-job-type");
     this.$store.dispatch("getAllProfile", "/userprofile");
@@ -815,24 +810,6 @@ export default {
     },
   },
   methods: {
-    deltag(obj) {
-      this.handlers.pop();
-      // this.search = this.handlers.toString();
-      // this.search = this.handlers.toString();
-      // this.keyword = this.handlers.toString();
-      obj.deleteTag();
-    },
-    checkTag(obj) {
-      // obj.addTag();
-      if (this.handlers.indexOf(obj.tag.text) === -1) {
-        this.handlers.push(obj.tag.text);
-        // this.search = this.handlers.toString();
-        // this.keyword = this.handlers.toString();
-        obj.addTag();
-      } else {
-        this.tag = "";
-      }
-    },
     getAllIndustries() {
       axios.get("/get-industries").then((response) => {
         this.allFee = response.data.data;
@@ -1055,14 +1032,5 @@ export default {
 }
 .vue-tags-input .ti-deletion-mark:after {
   transform: scaleX(1);
-}
-
-.ti-input {
-  border: none !important;
-}
-
-ul {
-  display: block;
-  flex-wrap: nowrap !important;
 }
 </style>

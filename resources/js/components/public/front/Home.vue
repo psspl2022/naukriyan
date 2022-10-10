@@ -10,11 +10,7 @@
     <header class="masthead text-center text-white">
       <div class="masthead-content">
         <div class="container">
-          <h1
-            id="looking"
-            class="masthead-heading mb-0"
-            @click="filterStatus = false"
-          >
+          <h1 id="looking" class="masthead-heading mb-0" @click="filterStatus = false">
             I Am Looking For !!
           </h1>
         </div>
@@ -27,7 +23,7 @@
               <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
                 <vue-tags-input
                   class="input-tag"
-                  :placeholder="placeholder"
+                  placeholder="Search Keyword keywords"
                   v-model="tag"
                   @keyup="
                     () => {
@@ -37,29 +33,15 @@
                   :separators="[';', ',']"
                   :add-on-key="[13, ',', ';']"
                   :tags="tags"
-                  @tags-changed="
-                    (newTags) => {
-                      tags = newTags;
-                    }
-                  "
-                  @before-adding-tag="checkTag"
-                  @before-deleting-tag="deltag"
+                  :autocomplete-items="autocompleteItems"
+                  :add-only-from-autocomplete="true"
+                  @tags-changed="update"
                 />
-                <i
-                  class="fa fa-pencil-alt search-icons"
-                  aria-hidden="true"
-                  required
-                ></i>
+                <i class="fa fa-pencil-alt search-icons" aria-hidden="true" required></i>
                 <div style="background-color: white">
-                  <ul
-                    class="filter-keyword"
-                    v-if="filteredKeywords && filterStatus"
-                  >
+                  <ul class="filter-keyword" v-if="filteredKeywords && filterStatus">
                     <li
-                      v-for="(filterKeyword, index) in filteredKeywords.slice(
-                        0,
-                        9
-                      )"
+                      v-for="(filterKeyword, index) in filteredKeywords.slice(0, 9)"
                       :key="index"
                       @click="setkeyword(filterKeyword)"
                     >
@@ -77,10 +59,7 @@
                   class="form-control"
                   v-model="location"
                 />
-                <i
-                  class="fa fa-location-arrow search-icons"
-                  aria-hidden="true"
-                ></i>
+                <i class="fa fa-location-arrow search-icons" aria-hidden="true"></i>
               </div>
 
               <div class="col-sm-2">
@@ -91,27 +70,17 @@
                     v-model="experience"
                   >
                     <option disabled value="">Experience</option>
-                    <option
-                      :value="index"
-                      v-for="(experience, index) in experiences"
-                    >
+                    <option :value="index" v-for="(experience, index) in experiences">
                       {{ experience }}
                     </option>
                   </select>
-                  <i
-                    class="fa fa-graduation-cap search-icons"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa fa-graduation-cap search-icons" aria-hidden="true"></i>
                 </div>
               </div>
 
               <div class="col-sm-2">
                 <div class="">
-                  <select
-                    id="jobtype"
-                    class="form-control rounded-0"
-                    v-model="jobtype"
-                  >
+                  <select id="jobtype" class="form-control rounded-0" v-model="jobtype">
                     <option disabled value="">Job Type</option>
                     <option
                       v-for="jobtype in allDesignation"
@@ -162,15 +131,13 @@
             </div>
             <div
               class="col-sm-12 mt-5"
-              v-else-if="
-                allProfile != null && allProfile.user_type === 'Jobseeker'
-              "
+              v-else-if="allProfile != null && allProfile.user_type === 'Jobseeker'"
             >
               <router-link :to="`/userinfo/pe`"
                 ><a>
                   <button class="btn transparent">
-                    <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i
-                    >Upload Your CV
+                    <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your
+                    CV
                   </button>
                 </a></router-link
               >
@@ -184,8 +151,7 @@
                 data-dismiss="modal"
               >
                 <button class="btn transparent">
-                  <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i
-                  >Upload Your CV
+                  <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your CV
                 </button>
               </a>
 
@@ -208,8 +174,7 @@
 
               <a href="" data-toggle="modal" data-target="#myModal1">
                 <button class="btn transparent">
-                  <i class="fa fa-user-plus mr-2" aria-hidden="true"></i
-                  >Register Here
+                  <i class="fa fa-user-plus mr-2" aria-hidden="true"></i>Register Here
                 </button>
               </a>
             </div>
@@ -280,14 +245,10 @@
                           </td>
                           <td v-else>
                             {{
-                              job.location
-                                ? job.location
-                                : "Not available" | capitalize
+                              job.location ? job.location : "Not available" | capitalize
                             }}
                           </td>
-                          <td
-                            v-if="job.main_exp === '0' && job.max_exp === '0'"
-                          >
+                          <td v-if="job.main_exp === '0' && job.max_exp === '0'">
                             Fresher
                           </td>
                           <td v-else-if="job.job_sector_id === 3">
@@ -475,10 +436,11 @@ export default {
   },
   data() {
     return {
-      tagt: [],
       tag: "",
       tags: [],
       handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       placeholder: "Skills, Designation, Companies",
       keyword: "",
       location: "",
@@ -495,9 +457,7 @@ export default {
       sec: [],
       videoResumes: [],
       moment: moment,
-      experiences: [
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-      ],
+      experiences: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
     };
   },
   mounted() {
@@ -524,18 +484,30 @@ export default {
   },
 
   methods: {
-    deltag(obj) {
-      this.handlers.pop();
-      obj.deleteTag();
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.tags.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
     },
-    checkTag(obj) {
-      // obj.addTag();
-      if (this.handlers.indexOf(obj.tag.text) === -1) {
-        this.handlers.push(obj.tag.text);
-        obj.addTag();
-      } else {
-        this.tag = "";
-      }
+    initItems() {
+      if (this.tag.length < 2) return;
+      const url = `get-allskills/` + this.tag;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
     },
     isDuplicate(tags, tag) {
       return tags.map((t) => t.text).indexOf(tag.text) !== -1;
@@ -601,6 +573,7 @@ export default {
   },
 
   watch: {
+    tag: "initItems",
     keyword() {
       this.getFilteredKeyword();
     },
@@ -718,9 +691,9 @@ export default {
 .vue-tags-input {
   width: 700px !important;
   max-width: 100% !important;
-  max-height: 39px;
-  overflow-y: hidden;
-  overflow-x: auto;
+  /* max-height: 39px; */
+  /* overflow-y: hidden; */
+  overflow-x: hidden;
 }
 
 .vue-tags-input .ti-tag:after {
@@ -736,36 +709,5 @@ export default {
 }
 .vue-tags-input .ti-deletion-mark:after {
   transform: scaleX(1);
-}
-
-.ti-input {
-  border: none !important;
-}
-
-ul {
-  display: block;
-  flex-wrap: nowrap !important;
-}
-
-/* width */
-::-webkit-scrollbar {
-  height: 0.1px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0.2px rgba(128, 128, 128, 0);
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 0, 0, 0);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b3000000;
 }
 </style>
