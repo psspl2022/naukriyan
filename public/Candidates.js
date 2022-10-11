@@ -589,7 +589,8 @@ var render = function() {
                                             ])
                                           ]
                                         )
-                                      })
+                                      }),
+                                      0
                                     )
                                   ]
                                 )

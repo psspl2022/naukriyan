@@ -515,7 +515,6 @@ export default {
       if (this.keyword.length == 0) {
         this.filteredKeywords = this.keywords;
       }
-      console.log(filteredKeywords);
       this.filteredKeywords = this.keywords.filter((el) => {
         return el.toLowerCase().startsWith(this.keyword.toLowerCase());
       });
