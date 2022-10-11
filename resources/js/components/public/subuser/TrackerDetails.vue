@@ -47,13 +47,8 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-7 mx-auto">
-                      <i
-                        class="fa fa-info-circle"
-                        style="color: red"
-                        aria-hidden="true"
-                      >
-                        Name,Email,Contact No. and Reference are mandatory
-                        fields.</i
+                      <i class="fa fa-info-circle" style="color: red" aria-hidden="true">
+                        Name,Email,Contact No. and Reference are mandatory fields.</i
                       >
                       <form
                         method="post"
@@ -64,9 +59,7 @@
                       >
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
-                            <label
-                              >Name<span style="color: red"> * </span></label
-                            >
+                            <label>Name<span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="text"
@@ -78,9 +71,7 @@
                             </div>
                           </div>
                           <div class="col-sm-6">
-                            <label
-                              >Email <span style="color: red"> * </span></label
-                            >
+                            <label>Email <span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="email"
@@ -97,10 +88,7 @@
                         </div>
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
-                            <label
-                              >Contact No.
-                              <span style="color: red"> * </span></label
-                            >
+                            <label>Contact No. <span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="text"
@@ -127,12 +115,8 @@
                                 placeholder="Enter Experience"
                                 v-model="form.experience"
                               >
-                                <option value="" disabled>
-                                  Select From Here
-                                </option>
-                                <option value="fresher">
-                                  0-1 Yr (Also Fresher)
-                                </option>
+                                <option value="" disabled>Select From Here</option>
+                                <option value="fresher">0-1 Yr (Also Fresher)</option>
                                 <option value="1-2">1-2 Yr</option>
                                 <option value="2-4">2-4 Yr</option>
                                 <option value="4-5">4-5 Yr</option>
@@ -148,17 +132,30 @@
                         <div class="form-group row inputBox">
                           <div class="col-sm-12">
                             <label
-                              >Key Skills (Use Multiple Skills Seperated By
-                              Comma(,))
+                              >Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-                              <input
+                              <vue-tags-input
+                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
+                                v-model="tag"
+                                @keyup="
+                                  () => {
+                                    placeholder = ' ';
+                                  }
+                                "
+                                :separators="[';', ',']"
+                                :add-on-key="[13, ',', ';']"
+                                :tags="tags"
+                                :autocomplete-items="autocompleteItems"
+                                @tags-changed="update"
+                              />
+                              <!-- <input
                                 type="text"
                                 id="password"
                                 class="form-control"
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="form.key_skills"
-                              />
+                              /> -->
                             </div>
                           </div>
                         </div>
@@ -178,16 +175,13 @@
                             <div style="background-color: white">
                               <ul
                                 class="filter-keyword"
-                                v-if="
-                                  filteredKeywords &&
-                                  filterStatus &&
-                                  designation
-                                "
+                                v-if="filteredKeywords && filterStatus && designation"
                               >
                                 <li
-                                  v-for="(
-                                    filterKeyword, index
-                                  ) in filteredKeywords.slice(0, 9)"
+                                  v-for="(filterKeyword, index) in filteredKeywords.slice(
+                                    0,
+                                    9
+                                  )"
                                   :key="index"
                                   @click="setkeyword(filterKeyword)"
                                 >
@@ -199,13 +193,8 @@
                           <div class="col-sm-6">
                             <label>Select Gender </label>
                             <div class="input password">
-                              <select
-                                class="form-control"
-                                v-model="form.gender"
-                              >
-                                <option value="" disabled="">
-                                  Select Gender
-                                </option>
+                              <select class="form-control" v-model="form.gender">
+                                <option value="" disabled="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
@@ -266,13 +255,8 @@
                           <div class="col-sm-6">
                             <label>Notice Period </label>
                             <div class="input text">
-                              <select
-                                class="form-control"
-                                v-model="form.notice_period"
-                              >
-                                <option value="" disabled="">
-                                  Select From Here
-                                </option>
+                              <select class="form-control" v-model="form.notice_period">
+                                <option value="" disabled="">Select From Here</option>
                                 <option value="immediate">Immediate</option>
                                 <option value="15">Within 15 days</option>
                                 <option value="30">30 days</option>
@@ -283,9 +267,7 @@
                             </div>
                           </div>
                           <div class="col-sm-6">
-                            <label
-                              >Reference <span style="color: red"> * </span>
-                            </label>
+                            <label>Reference <span style="color: red"> * </span> </label>
                             <div class="input text">
                               <select
                                 class="form-control custom-select"
@@ -293,9 +275,7 @@
                                 id="reference"
                                 v-model="form.reference"
                               >
-                                <option disabled value="">
-                                  Select Reference Name
-                                </option>
+                                <option disabled value="">Select Reference Name</option>
                                 <option
                                   :value="client.name"
                                   v-for="(client, index) in clientList"
@@ -310,10 +290,7 @@
 
                         <div class="form-group row inputBox">
                           <div class="col-md-12">
-                            <label
-                              >Remarks
-                              <span style="color: red"> * </span></label
-                            >
+                            <label>Remarks <span style="color: red"> * </span></label>
                             <textarea
                               class="form-control"
                               v-model="form.remarks"
@@ -334,19 +311,13 @@
                                   id="remember_me2"
                                 />
                                 <span class="checkbox-icon"
-                                  ><i
-                                    class="fa fa-square-o"
-                                    aria-hidden="true"
-                                  ></i>
+                                  ><i class="fa fa-square-o" aria-hidden="true"></i>
                                   <span class="check-icon">
-                                    <i
-                                      class="fa fa-check"
-                                      aria-hidden="true"
-                                    ></i>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
                                   </span>
                                 </span>
-                                All (<span style="color: red">*</span>) fields
-                                are mandatory.
+                                All (<span style="color: red">*</span>) fields are
+                                mandatory.
                               </label>
                             </div>
                           </div>
@@ -356,11 +327,7 @@
                             type="submit"
                             :disabled="filled"
                             id="sub_btn"
-                            class="
-                              btn btn-outline-info btn-block
-                              my-4
-                              waves-effect
-                            "
+                            class="btn btn-outline-info btn-block my-4 waves-effect"
                           >
                             {{ registerStatus ? "Updating..." : "Update" }}
                           </button>
@@ -380,10 +347,7 @@
                               application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                               class="form-control"
                             />
-                            <b
-                              v-if="progress > 0 && progress < 100"
-                              class="ml-2 mt-1"
-                            >
+                            <b v-if="progress > 0 && progress < 100" class="ml-2 mt-1">
                               Please Wait.........</b
                             >
                           </div>
@@ -400,11 +364,7 @@
                             >
                           </div>
                         </div>
-                        <button
-                          @click="onUpload"
-                          ref="myBtn"
-                          style="display: none"
-                        >
+                        <button @click="onUpload" ref="myBtn" style="display: none">
                           Upload!
                         </button>
                         <hr />
@@ -451,11 +411,19 @@
 
 <script>
 //import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
 export default {
   name: "TrackerDetails",
-
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
+      tag: "",
+      tags: [],
+      handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       userid: this.$route.params.trackid,
       // checked: false,
       form: new Form({
@@ -493,10 +461,36 @@ export default {
     this.getFilterKeywords();
   },
   methods: {
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.tags.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
+    },
+    initItems() {
+      if (this.tag.length < 2) return;
+      const url = `get-allskills/` + this.tag;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+    },
     getTrackerList() {
       axios.get("/tracker-details/" + this.userid).then((response) => {
         this.form = response.data.data;
         this.designation = response.data.data.designation;
+        this.tags = this.form.key_skills.split(",");
       });
     },
     getClientList() {
@@ -546,7 +540,7 @@ export default {
           contact: this.form.contact,
           email: this.form.email,
           experience: this.form.experience,
-          key_skills: this.form.key_skills,
+          key_skills: this.tags.toString(),
           current_ctc: this.form.current_ctc,
           expected_ctc: this.form.expected_ctc,
           notice_period: this.form.notice_period,
@@ -604,8 +598,7 @@ export default {
         axios
           .post("update-tracker/resume", formData, {
             onUploadProgress: (uploadEvent) => {
-              this.progress =
-                Math.round(uploadEvent.total / uploadEvent.total) * 100;
+              this.progress = Math.round(uploadEvent.total / uploadEvent.total) * 100;
             },
           })
           .then((res) => {
@@ -642,6 +635,7 @@ export default {
     },
   },
   watch: {
+    tag: "initItems",
     designation() {
       this.getFilteredKeyword();
     },

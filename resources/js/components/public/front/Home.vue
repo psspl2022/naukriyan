@@ -441,7 +441,6 @@ export default {
       handlers: [],
       autocompleteItems: [],
       debounce: null,
-      placeholder: "Skills, Designation, Companies",
       keyword: "",
       location: "",
       experience: "",
@@ -688,26 +687,5 @@ export default {
     background-position: 0% 50%;
   }
 }
-.vue-tags-input {
-  width: 700px !important;
-  max-width: 100% !important;
-  /* max-height: 39px; */
-  /* overflow-y: hidden; */
-  overflow-x: hidden;
-}
 
-.vue-tags-input .ti-tag:after {
-  transition: transform 0.2s;
-  position: absolute;
-  content: "";
-  height: 2px;
-  width: 108%;
-  left: -4%;
-  top: calc(50% - 1px);
-  background-color: #000;
-  transform: scaleX(0);
-}
-.vue-tags-input .ti-deletion-mark:after {
-  transform: scaleX(1);
-}
 </style>

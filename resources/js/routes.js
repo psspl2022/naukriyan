@@ -340,8 +340,8 @@ export const routes = [
         component: AddTracker
     },
     {
-        path:"/tracker-details/:trackid",
-        component :TrackerDetails
+        path: "/tracker-details/:trackid",
+        component: TrackerDetails
     },
     {
         path: '/emp/tracker-list',
@@ -351,7 +351,7 @@ export const routes = [
         path: '/emp/consolidatedata-list',
         component: EmpConsolidateDataList
     },
-        {
+    {
         path: '/emp/client-list',
         component: EmpClientList
     },
@@ -1264,8 +1264,8 @@ export const routes = [
         component: NewsLetterMailing,
     },
     {
-        path:'/admin/tracker/list',
-        component:AdminTrackerList
+        path: '/admin/tracker/list',
+        component: AdminTrackerList
     },
     {
         path: "/contactus-list",
@@ -1413,7 +1413,7 @@ export const routes = [
     },
     //Becil Candidate list
     {
-        path:'/becil-candidate-list',
+        path: '/becil-candidate-list',
         component: BecilCandidateList
     },
 

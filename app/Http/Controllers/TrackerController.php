@@ -104,13 +104,14 @@ class TrackerController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
+        // return $request->all();
+        // //dd($request);
+        // exit();
         $subuser_id = Session::get('user')['id'];
         $company_id = Session::get('user')['company_id'];
         $addedbyEmployerId = SubUser::where('id', $subuser_id)->first();
 
         $tracker = new Tracker();
-
 
         $tracker->name = $request->name;
         $tracker->email = $request->email;
@@ -121,6 +122,12 @@ class TrackerController extends Controller
         $tracker->current_ctc = $request->current_ctc;
         $tracker->expected_ctc = $request->expected_ctc;
         $tracker->notice_period = $request->notice_period;
+        $newskil = explode(',', $tracker->key_skills);
+        foreach ($newskil as $item) {
+            if (!DB::table('skills')->where('name', ucfirst($item))->exists()) {
+                DB::table('skills')->insert(['name' => ucfirst($item)]);
+            }
+        };
         //if (!empty($project->project_file)
         if ($request->hasFile('resume')) {
 
@@ -206,6 +213,12 @@ class TrackerController extends Controller
         $tracker->preffered_location = $request->preffered_location;
         $tracker->reference = $request->reference;
         $data = $tracker->save();
+        $newskil = explode(',', $request->key_skills);
+        foreach ($newskil as $item) {
+            if (!DB::table('skills')->where('name', ucfirst($item))->exists()) {
+                DB::table('skills')->insert(['name' => ucfirst($item)]);
+            }
+        };
         if ($data) {
             //new designation add
             if (isset($request->designation) && $request->designation !== '') {
