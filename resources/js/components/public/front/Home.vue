@@ -23,7 +23,7 @@
               <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
                 <vue-tags-input
                   class="input-tag"
-                  placeholder="Search Keyword keywords"
+                  placeholder="Skills, Designation, Companies"
                   v-model="tag"
                   @keyup="
                     () => {
@@ -34,7 +34,7 @@
                   :add-on-key="[13, ',', ';']"
                   :tags="tags"
                   :autocomplete-items="autocompleteItems"
-                  :add-only-from-autocomplete="true"
+                 
                   @tags-changed="update"
                 />
                 <i class="fa fa-pencil-alt search-icons" aria-hidden="true" required></i>
