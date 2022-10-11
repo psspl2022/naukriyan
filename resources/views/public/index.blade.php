@@ -158,6 +158,18 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #b3000000;
         }
+
+        .ti-tag {
+            width: max-content !important;
+        }
+
+        .ti-tags {
+            /* min-width: 100%; */
+            width: auto !important;
+        }
+        .ti-new-tag-input-wrapper{
+            width: 300px !important;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -173,9 +185,9 @@
     <script src="https://unpkg.com/@johmun/vue-tags-input/dist/vue-tags-input.js"></script>
     <script>
         var msg = '{{ Session::get('
-                                        alert ') }}';
+                                                        alert ') }}';
         var exist = '{{ Session::has('
-                                        alert ') }}';
+                                                        alert ') }}';
         if (exist) {
             alert(msg);
         }

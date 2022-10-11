@@ -57,7 +57,7 @@
                             /> -->
                             <vue-tags-input
                               class="input-tag"
-                              placeholder="Search Keyword keywords"
+                              placeholder="Search keywords"
                               v-model="tag"
                               @keyup="
                                 () => {
@@ -68,7 +68,6 @@
                               :add-on-key="[13, ',', ';']"
                               :tags="tags"
                               :autocomplete-items="autocompleteItems"
-                              :add-only-from-autocomplete="true"
                               @tags-changed="update"
                             />
                           </div>
