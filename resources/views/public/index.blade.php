@@ -123,6 +123,41 @@
         .input-tag .ti-input {
             border: none !important;
         }
+
+        .ti-autocomplete {
+            position: relative !important;
+        }
+
+        .ti-autocomplete li {
+            text-align: left;
+            color: black !important;
+        }
+
+        .ti-input {
+            overflow-x: auto;
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            height: 0.1px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 0.2px rgba(128, 128, 128, 0);
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 0, 0, 0);
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b3000000;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -138,9 +173,9 @@
     <script src="https://unpkg.com/@johmun/vue-tags-input/dist/vue-tags-input.js"></script>
     <script>
         var msg = '{{ Session::get('
-                                                        alert ') }}';
+                                        alert ') }}';
         var exist = '{{ Session::has('
-                                                        alert ') }}';
+                                        alert ') }}';
         if (exist) {
             alert(msg);
         }

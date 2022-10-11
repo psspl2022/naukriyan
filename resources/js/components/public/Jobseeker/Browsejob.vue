@@ -8,8 +8,7 @@
             <div class="col-sm-12 mt-5" v-if="allProfile">
               <router-link :to="`/userinfo/pe`">
                 <button class="btn transparent" type="button">
-                  <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i
-                  >Upload Your CV
+                  <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your CV
                 </button>
               </router-link>
             </div>
@@ -22,8 +21,7 @@
                 aria-hidden="true"
                 data-dismiss="modal"
               >
-                <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload
-                Your CV
+                <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your CV
               </button>
             </div>
           </form>
@@ -48,14 +46,30 @@
                       <div class="gap-10">
                         <div class="col-xs-12 col-sm-12">
                           <div class="form-group form-icon-right mb-10">
-                            <input
+                            <!-- <input
                               name="q"
                               type="text"
                               id="txtgoingto"
-                              placeholder="Search Keyword"
+                              placeholder="Search Keyword keywords"
                               class="form-control mb-0 ui-autocomplete-input"
                               autocomplete="off"
                               v-model="search"
+                            /> -->
+                            <vue-tags-input
+                              class="input-tag"
+                              placeholder="Search Keyword keywords"
+                              v-model="tag"
+                              @keyup="
+                                () => {
+                                  placeholder = ' ';
+                                }
+                              "
+                              :separators="[';', ',']"
+                              :add-on-key="[13, ',', ';']"
+                              :tags="tags"
+                              :autocomplete-items="autocompleteItems"
+                              :add-only-from-autocomplete="true"
+                              @tags-changed="update"
                             />
                           </div>
                           <strong>{{ error }}</strong>
@@ -186,11 +200,7 @@
                   </h5>
                 </div>
 
-                <div
-                  id="Functinal1"
-                  class="collapse"
-                  aria-labelledby="Functinal"
-                >
+                <div id="Functinal1" class="collapse" aria-labelledby="Functinal">
                   <div class="card-body">
                     <span class="select2-search select2-search--dropdown mb-3">
                       <input
@@ -226,9 +236,7 @@
                                 </span>
                               </span>
                               {{ functional.subcategory_name
-                              }}<small
-                                >({{ functional.jobmanagers.length }})</small
-                              >
+                              }}<small>({{ functional.jobmanagers.length }})</small>
                             </label>
                           </div>
                         </li>
@@ -286,9 +294,7 @@
                                 </span>
                               </span>
                               {{ jobtype.job_type
-                              }}<small
-                                >({{ jobtype.job_managers.length }})</small
-                              >
+                              }}<small>({{ jobtype.job_managers.length }})</small>
                             </label>
                           </div>
                         </li>
@@ -323,9 +329,7 @@
                   <div class="card-body">
                     <div class="filter-list">
                       <div class="mb-2">
-                        <label class="form-label"
-                          >Minimum Experience (In year)</label
-                        >
+                        <label class="form-label">Minimum Experience (In year)</label>
                         <span class="value">{{ minExp }}</span>
                         <input
                           class="range"
@@ -338,9 +342,7 @@
                       </div>
                       <hr />
                       <div class="mb-2">
-                        <label class="form-label"
-                          >Maximum Experience (In year)</label
-                        >
+                        <label class="form-label">Maximum Experience (In year)</label>
                         <span class="value">{{ maxExp }}</span>
                         <input
                           class="range"
@@ -352,9 +354,9 @@
                         />
                       </div>
                       <em
-                        ><i class="fa fa-info-circle" aria-hidden="true"></i>
-                        For Fresher Set Default value to 0 in Minimum Experience
-                        and Maximum Experinece Both</em
+                        ><i class="fa fa-info-circle" aria-hidden="true"></i> For Fresher
+                        Set Default value to 0 in Minimum Experience and Maximum
+                        Experinece Both</em
                       >
                     </div>
                   </div>
@@ -376,11 +378,7 @@
                   </h5>
                 </div>
 
-                <div
-                  id="Qualification1"
-                  class="collapse"
-                  aria-labelledby="Qualification"
-                >
+                <div id="Qualification1" class="collapse" aria-labelledby="Qualification">
                   <div class="card-body">
                     <div class="filter-list">
                       <ul class="list-unstyled mb-0" id="ulstar">
@@ -407,9 +405,7 @@
                                 </span>
                               </span>
                               {{ qualification.qualification
-                              }}<small
-                                >({{ qualification.jobmanagers.length }})</small
-                              >
+                              }}<small>({{ qualification.jobmanagers.length }})</small>
                             </label>
                           </div>
                         </li>
@@ -446,9 +442,7 @@
                     <div class="filter-list">
                       <div class="mb-2">
                         <label class="form-label">Minimum Salary</label>
-                        <span class="value">{{
-                          minValue | currencyConvert
-                        }}</span>
+                        <span class="value">{{ minValue | currencyConvert }}</span>
                         <input
                           class="range"
                           type="range"
@@ -461,9 +455,7 @@
                       <hr />
                       <div class="mb-2">
                         <label class="form-label">Maximum Salary</label>
-                        <span class="value">{{
-                          maxValue | currencyConvert
-                        }}</span>
+                        <span class="value">{{ maxValue | currencyConvert }}</span>
                         <input
                           class="range"
                           type="range"
@@ -520,36 +512,21 @@
                       </p>
                       <div class="duration fs-13">
                         <p>
-                          <i
-                            class="fa fa-building mr-2 orange"
-                            aria-hidden="true"
-                          ></i
+                          <i class="fa fa-building mr-2 orange" aria-hidden="true"></i
                           >Industry: <b>{{ joblist.category_name }}</b>
                         </p>
                         <p>
-                          <i
-                            class="fa fa-pencil-alt mr-2 orange"
-                            aria-hidden="true"
-                          ></i
+                          <i class="fa fa-pencil-alt mr-2 orange" aria-hidden="true"></i
                           >Skills:
 
                           <span
-                            :inner-html.prop="
-                              joblist.job_skills | stringToSpanTag
-                            "
+                            :inner-html.prop="joblist.job_skills | stringToSpanTag"
                           ></span>
                         </p>
                         <p>
-                          <i
-                            class="fa fa-flask mr-2 orange"
-                            aria-hidden="true"
-                          ></i
+                          <i class="fa fa-flask mr-2 orange" aria-hidden="true"></i
                           >Experience:
-                          <span
-                            v-if="
-                              joblist.main_exp === '0' &&
-                              joblist.max_exp === '0'
-                            "
+                          <span v-if="joblist.main_exp === '0' && joblist.max_exp === '0'"
                             >Fresher</span
                           >
                           <span v-else
@@ -558,10 +535,7 @@
                           >
                         </p>
                         <p>
-                          <i
-                            class="fa fa-map-marker mr-2 orange"
-                            aria-hidden="true"
-                          ></i
+                          <i class="fa fa-map-marker mr-2 orange" aria-hidden="true"></i
                           >Location: <span>{{ joblist.job_exp }}</span>
                         </p>
                       </div>
@@ -574,9 +548,7 @@
                         class="btn btn-success text-white btn-block"
                         @click.prevent="jobAlreadyApply()"
                         v-if="jobsID.includes(joblist.id) === true"
-                        :class="
-                          jobsID.includes(joblist.id) === true ? 'disabled' : ''
-                        "
+                        :class="jobsID.includes(joblist.id) === true ? 'disabled' : ''"
                         ><i class="fa fa-check-circle"></i> Applied</a
                       >
                       <a
@@ -644,9 +616,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Confirmation before Apply?</h4>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
@@ -668,26 +638,20 @@
               <div class="form-group row inputBox">
                 <div class="col-sm-12">
                   <div class="input text">
-                    <p>
-                      <strong>Company Name</strong> :- {{ demo.company_name }}
-                    </p>
+                    <p><strong>Company Name</strong> :- {{ demo.company_name }}</p>
                   </div>
                 </div>
               </div>
               <div class="question">
                 <p>
-                  Do you have any of the relavant or Equivalent Qualification ?
-                  ({{ demo.qualification }})
+                  Do you have any of the relavant or Equivalent Qualification ? ({{
+                    demo.qualification
+                  }})
                 </p>
                 <fieldset class="mb-3">
                   <div class="form-group ask_question">
                     <div class="icheck-primary d-inline">
-                      <input
-                        type="radio"
-                        id="radioPrimary1"
-                        name="r1"
-                        checked=""
-                      />
+                      <input type="radio" id="radioPrimary1" name="r1" checked="" />
                       <label for="radioPrimary1"> Yes </label>
                     </div>
                     <div class="icheck-primary d-inline">
@@ -700,19 +664,14 @@
 
               <div class="question">
                 <p>
-                  Do you have relevant experience of this job ?({{
-                    demo.min_exp
-                  }}Yr -{{ demo.max_exp }}Yr)
+                  Do you have relevant experience of this job ?({{ demo.min_exp }}Yr -{{
+                    demo.max_exp
+                  }}Yr)
                 </p>
                 <fieldset class="mb-3">
                   <div class="form-group ask_question">
                     <div class="icheck-primary d-inline">
-                      <input
-                        type="radio"
-                        id="radioPrimary3"
-                        name="ex1"
-                        checked=""
-                      />
+                      <input type="radio" id="radioPrimary3" name="ex1" checked="" />
                       <label for="radioPrimary3"> Yes </label>
                     </div>
                     <div class="icheck-primary d-inline">
@@ -724,20 +683,11 @@
               </div>
 
               <div class="question">
-                <p>
-                  Do you have relevant skill for this job ?({{
-                    demo.job_skill
-                  }})
-                </p>
+                <p>Do you have relevant skill for this job ?({{ demo.job_skill }})</p>
                 <fieldset class="mb-3">
                   <div class="form-group ask_question">
                     <div class="icheck-primary d-inline">
-                      <input
-                        type="radio"
-                        id="radioPrimary5"
-                        name="sk1"
-                        checked=""
-                      />
+                      <input type="radio" id="radioPrimary5" name="sk1" checked="" />
                       <label for="radioPrimary5"> Yes </label>
                     </div>
                     <div class="icheck-primary d-inline">
@@ -766,11 +716,21 @@
 </template>
 
 <script>
+import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
 export default {
+  components: {
+    VueTagsInput,
+  },
   name: "Browsejob",
   props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
+      tag: "",
+      tags: [],
+      handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       TempApplyStatus: false,
       allIndustry: [],
       jobsID: [],
@@ -782,7 +742,7 @@ export default {
       inputsearch: "",
       allFee: "",
       allFunctional: "",
-
+      keywords: "",
       demo: new Form({
         id: "",
         title: "",
@@ -804,8 +764,18 @@ export default {
       qualificationVal: [],
     };
   },
-
+  computed: {
+    filteredItems() {
+      return this.autocompleteItems.filter((i) => {
+        return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
+      });
+    },
+  },
   mounted() {
+    this.search = this.$route.query.keyword;
+    this.keyword = this.$route.query.keyword;
+    this.tags = this.$route.query.keyword.split(",");
+    this.handlers = this.$route.query.keyword.split(",");
     this.$store.dispatch("getAllRecruiter", "/get-qualification");
     this.$store.dispatch("getAllDesignation", "/get-job-type");
     this.$store.dispatch("getAllProfile", "/userprofile");
@@ -892,9 +862,7 @@ export default {
             industryVal: this.industryVal ? this.industryVal : "",
             functionalVal: this.functionalVal ? this.functionalVal : "",
             jobtypeVal: this.jobtypeVal ? this.jobtypeVal : "",
-            qualificationVal: this.qualificationVal
-              ? this.qualificationVal
-              : "",
+            qualificationVal: this.qualificationVal ? this.qualificationVal : "",
             page: page,
           },
         })
@@ -904,7 +872,39 @@ export default {
           this.allIndustry = response.data.data.data;
         });
     },
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
+      });
+      this.search = this.tags.toString();
+      this.keyword = this.tags.toString();
+      console.log(this.tags);
+    },
+    initItems() {
+      if (this.tag.length < 2) return;
+      const url = `get-allskills/` + this.tag;
 
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+    },
+    // getAllSkills: function () {
+    //   this.loading = true;
+    //   axios.get("/get-allskills").then((response) => {
+    //     this.autocompleteItems = response.data.map((a) => {
+    //       return { text: a.name };
+    //     });
+    //   });
+    // },
     checkUserApplyJobs() {
       const self = this;
       axios.get("check-user-apply-job").then((response) => {
@@ -957,6 +957,7 @@ export default {
     },
   },
   watch: {
+    tag: "initItems",
     minValue(newVal) {
       this.getAllJobs();
     },
@@ -1009,5 +1010,27 @@ export default {
 .filter-list hr {
   margin-top: 15px;
   margin-bottom: 10px;
+}
+.vue-tags-input {
+  width: 700px !important;
+  max-width: 100% !important;
+  /* max-height: 39px; */
+  /* overflow-y: hidden; */
+  overflow-x: hidden;
+}
+
+.vue-tags-input .ti-tag:after {
+  transition: transform 0.2s;
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 108%;
+  left: -4%;
+  top: calc(50% - 1px);
+  background-color: #000;
+  transform: scaleX(0);
+}
+.vue-tags-input .ti-deletion-mark:after {
+  transform: scaleX(1);
 }
 </style>
