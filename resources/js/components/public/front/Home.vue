@@ -441,7 +441,6 @@ export default {
       handlers: [],
       autocompleteItems: [],
       debounce: null,
-      placeholder: "Skills, Designation, Companies",
       keyword: "",
       location: "",
       experience: "",

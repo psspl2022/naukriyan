@@ -88,11 +88,10 @@
                       ></label
                     >
 
-                    <div class="form-group">
+                    <div class="">
                       <vue-tags-input
                         type="text"
-                        name="skills"
-                        class="form-control form-control-sm"
+                        name="skills"                       
                         v-model="skills"
                         :placeholder="placeholder"
                         @keyup="
@@ -371,6 +370,7 @@ export default {
       trackersCount: "",
       keyword: "",
       searchStatus: false,
+      placeholder: "Add Multiple Skills"
     };
   },
   mounted() {

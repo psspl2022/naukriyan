@@ -6,7 +6,7 @@ blog
 node_modules/
 npm-debug.log
 yarn-error.log
-
+/public/mix-manifest.json
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
