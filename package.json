@@ -45,6 +45,7 @@
         "vue-moment": "^4.1.0",
         "vue-owl-carousel": "^2.0.3",
         "vue-router": "^3.0.2",
+        "vue-sessionstorage": "^1.0.0",
         "vue-text-highlight": "^2.0.10",
         "vue-tour": "^1.5.0",
         "vuejs-datatable": "^2.0.0-alpha.7",

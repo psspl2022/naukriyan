@@ -116,6 +116,13 @@ export default {
 
   mounted() {},
   computed: {},
+  
+  beforeCreate () {
+    if(!this.$session.exists("subuser")){
+      this.$router.push("/subuser-login");
+    }
+  },
+  
   created() {
     this.getSessionUser();
   },
@@ -153,6 +160,7 @@ export default {
                   title: "Logout success",
                 });
 
+                this.$session.clear("subuser");
                 this.$router.push("/subuser-login");
                 window.location.reload();
               }

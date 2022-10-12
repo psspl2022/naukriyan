@@ -102,7 +102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_string_starts_with___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_core_js_modules_es_string_starts_with__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_join__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.join.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_join___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_core_js_modules_es_array_join__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_slicedToArray__ = __webpack_require__("./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_slicedToArray__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/slicedToArray.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_slicedToArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__babel_runtime_helpers_slicedToArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_symbol__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.symbol.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_symbol___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_core_js_modules_es_symbol__);
@@ -118,15 +118,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_object_keys___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_core_js_modules_es_object_keys__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_web_dom_collections_for_each__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/web.dom-collections.for-each.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_core_js_modules_web_dom_collections_for_each___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_core_js_modules_web_dom_collections_for_each__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__babel_runtime_regenerator__ = __webpack_require__("./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__babel_runtime_regenerator__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__babel_runtime_helpers_asyncToGenerator__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/asyncToGenerator.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__babel_runtime_helpers_asyncToGenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__babel_runtime_helpers_defineProperty__ = __webpack_require__("./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__babel_runtime_helpers_defineProperty__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/defineProperty.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__babel_runtime_helpers_defineProperty__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__babel_runtime_helpers_classCallCheck__ = __webpack_require__("./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__babel_runtime_helpers_classCallCheck__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__babel_runtime_helpers_createClass__ = __webpack_require__("./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__babel_runtime_helpers_createClass__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/createClass.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__babel_runtime_helpers_createClass__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_array_concat__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.concat.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_array_concat___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_core_js_modules_es_array_concat__);
@@ -150,11 +150,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_core_js_modules_es_reflect_construct___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_core_js_modules_es_reflect_construct__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_core_js_modules_es_regexp_to_string__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.regexp.to-string.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_core_js_modules_es_regexp_to_string___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_core_js_modules_es_regexp_to_string__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__("./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__babel_runtime_helpers_getPrototypeOf__ = __webpack_require__("./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__babel_runtime_helpers_getPrototypeOf__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/getPrototypeOf.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__babel_runtime_helpers_getPrototypeOf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__babel_runtime_helpers_getPrototypeOf__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__babel_runtime_helpers_inherits__ = __webpack_require__("./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__babel_runtime_helpers_inherits__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/inherits.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__babel_runtime_helpers_inherits__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_core_js_modules_es_array_from__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.from.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_core_js_modules_es_array_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33_core_js_modules_es_array_from__);
@@ -168,13 +168,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_37_core_js_modules_es_string_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37_core_js_modules_es_string_iterator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_core_js_modules_es_string_trim__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.string.trim.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_38_core_js_modules_es_string_trim___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38_core_js_modules_es_string_trim__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__babel_runtime_helpers_toConsumableArray__ = __webpack_require__("./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__babel_runtime_helpers_toConsumableArray__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/toConsumableArray.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__babel_runtime_helpers_toConsumableArray__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_core_js_modules_es_array_index_of__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.index-of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_40_core_js_modules_es_array_index_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40_core_js_modules_es_array_index_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_core_js_modules_es_array_reverse__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.reverse.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_41_core_js_modules_es_array_reverse___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_41_core_js_modules_es_array_reverse__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__babel_runtime_helpers_get__ = __webpack_require__("./node_modules/@babel/runtime/helpers/get.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__babel_runtime_helpers_get__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/get.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__babel_runtime_helpers_get___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_42__babel_runtime_helpers_get__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_core_js_modules_es_number_constructor__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.number.constructor.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_43_core_js_modules_es_number_constructor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43_core_js_modules_es_number_constructor__);
@@ -182,7 +182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44_core_js_modules_es_array_fill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44_core_js_modules_es_array_fill__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_core_js_modules_es_reflect_delete_property__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.reflect.delete-property.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45_core_js_modules_es_reflect_delete_property___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45_core_js_modules_es_reflect_delete_property__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__babel_runtime_helpers_assertThisInitialized__ = __webpack_require__("./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__babel_runtime_helpers_assertThisInitialized__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/assertThisInitialized.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__babel_runtime_helpers_assertThisInitialized___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_46__babel_runtime_helpers_assertThisInitialized__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_core_js_modules_es_array_iterator__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.array.iterator.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47_core_js_modules_es_array_iterator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_47_core_js_modules_es_array_iterator__);
@@ -200,7 +200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53_core_js_modules_es_reflect_apply___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_53_core_js_modules_es_reflect_apply__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_core_js_modules_es_reflect_get_prototype_of__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/core-js/modules/es.reflect.get-prototype-of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54_core_js_modules_es_reflect_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_54_core_js_modules_es_reflect_get_prototype_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_stackblur_canvas__ = __webpack_require__("./node_modules/stackblur-canvas/dist/stackblur-es.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55_stackblur_canvas__ = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/stackblur-canvas/dist/stackblur-es.js");
 
 
 
@@ -8602,6 +8602,437 @@ var index = /*#__PURE__*/Object.freeze({
 
 /***/ }),
 
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayWithHoles.js":
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/asyncToGenerator.js":
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/classCallCheck.js":
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/createClass.js":
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/defineProperty.js":
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/get.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var superPropBase = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/superPropBase.js");
+
+function _get(target, property, receiver) {
+  if (typeof Reflect !== "undefined" && Reflect.get) {
+    module.exports = _get = Reflect.get;
+  } else {
+    module.exports = _get = function _get(target, property, receiver) {
+      var base = superPropBase(target, property);
+      if (!base) return;
+      var desc = Object.getOwnPropertyDescriptor(base, property);
+
+      if (desc.get) {
+        return desc.get.call(receiver);
+      }
+
+      return desc.value;
+    };
+  }
+
+  return _get(target, property, receiver || target);
+}
+
+module.exports = _get;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/getPrototypeOf.js":
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/inherits.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/iterableToArray.js":
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/nonIterableRest.js":
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/slicedToArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayWithHoles.js");
+
+var iterableToArrayLimit = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
+
+var unsupportedIterableToArray = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableRest = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/nonIterableRest.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/superPropBase.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var getPrototypeOf = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+
+function _superPropBase(object, property) {
+  while (!Object.prototype.hasOwnProperty.call(object, property)) {
+    object = getPrototypeOf(object);
+    if (object === null) break;
+  }
+
+  return object;
+}
+
+module.exports = _superPropBase;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/typeof.js":
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/@babel/runtime/regenerator/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./node_modules/@amcharts/amcharts4/node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
+
 /***/ "./node_modules/@amcharts/amcharts4/node_modules/core-js/internals/a-callable.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15635,430 +16066,7 @@ handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
-/***/ (function(module, exports) {
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-module.exports = _arrayLikeToArray;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles.js":
-/***/ (function(module, exports) {
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-module.exports = _arrayWithHoles;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__("./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-
-module.exports = _arrayWithoutHoles;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-module.exports = _asyncToGenerator;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/get.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var superPropBase = __webpack_require__("./node_modules/@babel/runtime/helpers/superPropBase.js");
-
-function _get(target, property, receiver) {
-  if (typeof Reflect !== "undefined" && Reflect.get) {
-    module.exports = _get = Reflect.get;
-  } else {
-    module.exports = _get = function _get(target, property, receiver) {
-      var base = superPropBase(target, property);
-      if (!base) return;
-      var desc = Object.getOwnPropertyDescriptor(base, property);
-
-      if (desc.get) {
-        return desc.get.call(receiver);
-      }
-
-      return desc.value;
-    };
-  }
-
-  return _get(target, property, receiver || target);
-}
-
-module.exports = _get;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__("./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
-/***/ (function(module, exports) {
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-module.exports = _iterableToArrayLimit;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest.js":
-/***/ (function(module, exports) {
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableRest;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableSpread;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__("./node_modules/@babel/runtime/helpers/typeof.js");
-
-var assertThisInitialized = __webpack_require__("./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/slicedToArray.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__("./node_modules/@babel/runtime/helpers/arrayWithHoles.js");
-
-var iterableToArrayLimit = __webpack_require__("./node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
-
-var unsupportedIterableToArray = __webpack_require__("./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
-
-var nonIterableRest = __webpack_require__("./node_modules/@babel/runtime/helpers/nonIterableRest.js");
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-
-module.exports = _slicedToArray;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/superPropBase.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var getPrototypeOf = __webpack_require__("./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-
-function _superPropBase(object, property) {
-  while (!Object.prototype.hasOwnProperty.call(object, property)) {
-    object = getPrototypeOf(object);
-    if (object === null) break;
-  }
-
-  return object;
-}
-
-module.exports = _superPropBase;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__("./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
-
-var iterableToArray = __webpack_require__("./node_modules/@babel/runtime/helpers/iterableToArray.js");
-
-var unsupportedIterableToArray = __webpack_require__("./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
-
-var nonIterableSpread = __webpack_require__("./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__("./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js":
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/regenerator-runtime/runtime.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -16149,9 +16157,9 @@ var runtime = (function (exports) {
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
   var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
+  define(IteratorPrototype, iteratorSymbol, function () {
     return this;
-  };
+  });
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
@@ -16165,8 +16173,9 @@ var runtime = (function (exports) {
 
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
@@ -16280,9 +16289,9 @@ var runtime = (function (exports) {
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
-  };
+  });
   exports.AsyncIterator = AsyncIterator;
 
   // Note that simple async functions are implemented on top of
@@ -16475,13 +16484,13 @@ var runtime = (function (exports) {
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  define(Gp, iteratorSymbol, function() {
     return this;
-  };
+  });
 
-  Gp.toString = function() {
+  define(Gp, "toString", function() {
     return "[object Generator]";
-  };
+  });
 
   function pushTryEntry(locs) {
     var entry = { tryLoc: locs[0] };
@@ -16800,464 +16809,25 @@ try {
 } catch (accidentalStrictMode) {
   // This module should not be running in strict mode, so the above
   // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
   // strict mode using a global Function call. This could conceivably fail
   // if a Content Security Policy forbids using Function, but in that case
   // the proper solution is to fix the accidental strict mode problem. If
   // you've misconfigured your bundler to force strict mode and applied a
   // CSP to forbid Function, and you're not willing to fix either of those
   // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/regenerator/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js");
-
-
-/***/ }),
-
-/***/ "./node_modules/performance-now/lib/performance-now.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.12.2
-(function() {
-  var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
-
-  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
-    module.exports = function() {
-      return performance.now();
-    };
-  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
-    module.exports = function() {
-      return (getNanoSeconds() - nodeLoadTime) / 1e6;
-    };
-    hrtime = process.hrtime;
-    getNanoSeconds = function() {
-      var hr;
-      hr = hrtime();
-      return hr[0] * 1e9 + hr[1];
-    };
-    moduleLoadTime = getNanoSeconds();
-    upTime = process.uptime() * 1e9;
-    nodeLoadTime = moduleLoadTime - upTime;
-  } else if (Date.now) {
-    module.exports = function() {
-      return Date.now() - loadTime;
-    };
-    loadTime = Date.now();
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
   } else {
-    module.exports = function() {
-      return new Date().getTime() - loadTime;
-    };
-    loadTime = new Date().getTime();
+    Function("r", "regeneratorRuntime = r")(runtime);
   }
-
-}).call(this);
-
-//# sourceMappingURL=performance-now.js.map
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/raf/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__("./node_modules/performance-now/lib/performance-now.js")
-  , root = typeof window === 'undefined' ? global : window
-  , vendors = ['moz', 'webkit']
-  , suffix = 'AnimationFrame'
-  , raf = root['request' + suffix]
-  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix]
-
-for(var i = 0; !raf && i < vendors.length; i++) {
-  raf = root[vendors[i] + 'Request' + suffix]
-  caf = root[vendors[i] + 'Cancel' + suffix]
-      || root[vendors[i] + 'CancelRequest' + suffix]
-}
-
-// Some versions of FF have rAF but not cAF
-if(!raf || !caf) {
-  var last = 0
-    , id = 0
-    , queue = []
-    , frameDuration = 1000 / 60
-
-  raf = function(callback) {
-    if(queue.length === 0) {
-      var _now = now()
-        , next = Math.max(0, frameDuration - (_now - last))
-      last = next + _now
-      setTimeout(function() {
-        var cp = queue.slice(0)
-        // Clear queue here to prevent
-        // callbacks from appending listeners
-        // to the current frame's queue
-        queue.length = 0
-        for(var i = 0; i < cp.length; i++) {
-          if(!cp[i].cancelled) {
-            try{
-              cp[i].callback(last)
-            } catch(e) {
-              setTimeout(function() { throw e }, 0)
-            }
-          }
-        }
-      }, Math.round(next))
-    }
-    queue.push({
-      handle: ++id,
-      callback: callback,
-      cancelled: false
-    })
-    return id
-  }
-
-  caf = function(handle) {
-    for(var i = 0; i < queue.length; i++) {
-      if(queue[i].handle === handle) {
-        queue[i].cancelled = true
-      }
-    }
-  }
-}
-
-module.exports = function(fn) {
-  // Wrap in a new function to prevent
-  // `cancel` potentially being assigned
-  // to the native rAF function
-  return raf.call(root, fn)
-}
-module.exports.cancel = function() {
-  caf.apply(root, arguments)
-}
-module.exports.polyfill = function(object) {
-  if (!object) {
-    object = root;
-  }
-  object.requestAnimationFrame = raf
-  object.cancelAnimationFrame = caf
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/rgbcolor/index.js":
-/***/ (function(module, exports) {
-
-/*
-	Based on rgbcolor.js by Stoyan Stefanov <sstoo@gmail.com>
-	http://www.phpied.com/rgb-color-parser-in-javascript/
-*/
-
-module.exports = function(color_string) {
-    this.ok = false;
-    this.alpha = 1.0;
-
-    // strip any leading #
-    if (color_string.charAt(0) == '#') { // remove # if any
-        color_string = color_string.substr(1,6);
-    }
-
-    color_string = color_string.replace(/ /g,'');
-    color_string = color_string.toLowerCase();
-
-    // before getting into regexps, try simple matches
-    // and overwrite the input
-    var simple_colors = {
-        aliceblue: 'f0f8ff',
-        antiquewhite: 'faebd7',
-        aqua: '00ffff',
-        aquamarine: '7fffd4',
-        azure: 'f0ffff',
-        beige: 'f5f5dc',
-        bisque: 'ffe4c4',
-        black: '000000',
-        blanchedalmond: 'ffebcd',
-        blue: '0000ff',
-        blueviolet: '8a2be2',
-        brown: 'a52a2a',
-        burlywood: 'deb887',
-        cadetblue: '5f9ea0',
-        chartreuse: '7fff00',
-        chocolate: 'd2691e',
-        coral: 'ff7f50',
-        cornflowerblue: '6495ed',
-        cornsilk: 'fff8dc',
-        crimson: 'dc143c',
-        cyan: '00ffff',
-        darkblue: '00008b',
-        darkcyan: '008b8b',
-        darkgoldenrod: 'b8860b',
-        darkgray: 'a9a9a9',
-        darkgreen: '006400',
-        darkkhaki: 'bdb76b',
-        darkmagenta: '8b008b',
-        darkolivegreen: '556b2f',
-        darkorange: 'ff8c00',
-        darkorchid: '9932cc',
-        darkred: '8b0000',
-        darksalmon: 'e9967a',
-        darkseagreen: '8fbc8f',
-        darkslateblue: '483d8b',
-        darkslategray: '2f4f4f',
-        darkturquoise: '00ced1',
-        darkviolet: '9400d3',
-        deeppink: 'ff1493',
-        deepskyblue: '00bfff',
-        dimgray: '696969',
-        dodgerblue: '1e90ff',
-        feldspar: 'd19275',
-        firebrick: 'b22222',
-        floralwhite: 'fffaf0',
-        forestgreen: '228b22',
-        fuchsia: 'ff00ff',
-        gainsboro: 'dcdcdc',
-        ghostwhite: 'f8f8ff',
-        gold: 'ffd700',
-        goldenrod: 'daa520',
-        gray: '808080',
-        green: '008000',
-        greenyellow: 'adff2f',
-        honeydew: 'f0fff0',
-        hotpink: 'ff69b4',
-        indianred : 'cd5c5c',
-        indigo : '4b0082',
-        ivory: 'fffff0',
-        khaki: 'f0e68c',
-        lavender: 'e6e6fa',
-        lavenderblush: 'fff0f5',
-        lawngreen: '7cfc00',
-        lemonchiffon: 'fffacd',
-        lightblue: 'add8e6',
-        lightcoral: 'f08080',
-        lightcyan: 'e0ffff',
-        lightgoldenrodyellow: 'fafad2',
-        lightgrey: 'd3d3d3',
-        lightgreen: '90ee90',
-        lightpink: 'ffb6c1',
-        lightsalmon: 'ffa07a',
-        lightseagreen: '20b2aa',
-        lightskyblue: '87cefa',
-        lightslateblue: '8470ff',
-        lightslategray: '778899',
-        lightsteelblue: 'b0c4de',
-        lightyellow: 'ffffe0',
-        lime: '00ff00',
-        limegreen: '32cd32',
-        linen: 'faf0e6',
-        magenta: 'ff00ff',
-        maroon: '800000',
-        mediumaquamarine: '66cdaa',
-        mediumblue: '0000cd',
-        mediumorchid: 'ba55d3',
-        mediumpurple: '9370d8',
-        mediumseagreen: '3cb371',
-        mediumslateblue: '7b68ee',
-        mediumspringgreen: '00fa9a',
-        mediumturquoise: '48d1cc',
-        mediumvioletred: 'c71585',
-        midnightblue: '191970',
-        mintcream: 'f5fffa',
-        mistyrose: 'ffe4e1',
-        moccasin: 'ffe4b5',
-        navajowhite: 'ffdead',
-        navy: '000080',
-        oldlace: 'fdf5e6',
-        olive: '808000',
-        olivedrab: '6b8e23',
-        orange: 'ffa500',
-        orangered: 'ff4500',
-        orchid: 'da70d6',
-        palegoldenrod: 'eee8aa',
-        palegreen: '98fb98',
-        paleturquoise: 'afeeee',
-        palevioletred: 'd87093',
-        papayawhip: 'ffefd5',
-        peachpuff: 'ffdab9',
-        peru: 'cd853f',
-        pink: 'ffc0cb',
-        plum: 'dda0dd',
-        powderblue: 'b0e0e6',
-        purple: '800080',
-        rebeccapurple: '663399',
-        red: 'ff0000',
-        rosybrown: 'bc8f8f',
-        royalblue: '4169e1',
-        saddlebrown: '8b4513',
-        salmon: 'fa8072',
-        sandybrown: 'f4a460',
-        seagreen: '2e8b57',
-        seashell: 'fff5ee',
-        sienna: 'a0522d',
-        silver: 'c0c0c0',
-        skyblue: '87ceeb',
-        slateblue: '6a5acd',
-        slategray: '708090',
-        snow: 'fffafa',
-        springgreen: '00ff7f',
-        steelblue: '4682b4',
-        tan: 'd2b48c',
-        teal: '008080',
-        thistle: 'd8bfd8',
-        tomato: 'ff6347',
-        turquoise: '40e0d0',
-        violet: 'ee82ee',
-        violetred: 'd02090',
-        wheat: 'f5deb3',
-        white: 'ffffff',
-        whitesmoke: 'f5f5f5',
-        yellow: 'ffff00',
-        yellowgreen: '9acd32'
-    };
-    color_string = simple_colors[color_string] || color_string;
-    // emd of simple type-in colors
-
-    // array of color definition objects
-    var color_defs = [
-        {
-            re: /^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*((?:\d?\.)?\d)\)$/,
-            example: ['rgba(123, 234, 45, 0.8)', 'rgba(255,234,245,1.0)'],
-            process: function (bits){
-                return [
-                    parseInt(bits[1]),
-                    parseInt(bits[2]),
-                    parseInt(bits[3]),
-                    parseFloat(bits[4])
-                ];
-            }
-        },
-        {
-            re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
-            example: ['rgb(123, 234, 45)', 'rgb(255,234,245)'],
-            process: function (bits){
-                return [
-                    parseInt(bits[1]),
-                    parseInt(bits[2]),
-                    parseInt(bits[3])
-                ];
-            }
-        },
-        {
-            re: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
-            example: ['#00ff00', '336699'],
-            process: function (bits){
-                return [
-                    parseInt(bits[1], 16),
-                    parseInt(bits[2], 16),
-                    parseInt(bits[3], 16)
-                ];
-            }
-        },
-        {
-            re: /^([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
-            example: ['#fb0', 'f0f'],
-            process: function (bits){
-                return [
-                    parseInt(bits[1] + bits[1], 16),
-                    parseInt(bits[2] + bits[2], 16),
-                    parseInt(bits[3] + bits[3], 16)
-                ];
-            }
-        }
-    ];
-
-    // search through the definitions to find a match
-    for (var i = 0; i < color_defs.length; i++) {
-        var re = color_defs[i].re;
-        var processor = color_defs[i].process;
-        var bits = re.exec(color_string);
-        if (bits) {
-            var channels = processor(bits);
-            this.r = channels[0];
-            this.g = channels[1];
-            this.b = channels[2];
-            if (channels.length > 3) {
-                this.alpha = channels[3];
-            }
-            this.ok = true;
-        }
-
-    }
-
-    // validate/cleanup values
-    this.r = (this.r < 0 || isNaN(this.r)) ? 0 : ((this.r > 255) ? 255 : this.r);
-    this.g = (this.g < 0 || isNaN(this.g)) ? 0 : ((this.g > 255) ? 255 : this.g);
-    this.b = (this.b < 0 || isNaN(this.b)) ? 0 : ((this.b > 255) ? 255 : this.b);
-    this.alpha = (this.alpha < 0) ? 0 : ((this.alpha > 1.0 || isNaN(this.alpha)) ? 1.0 : this.alpha);
-
-    // some getters
-    this.toRGB = function () {
-        return 'rgb(' + this.r + ', ' + this.g + ', ' + this.b + ')';
-    }
-    this.toRGBA = function () {
-        return 'rgba(' + this.r + ', ' + this.g + ', ' + this.b + ', ' + this.alpha + ')';
-    }
-    this.toHex = function () {
-        var r = this.r.toString(16);
-        var g = this.g.toString(16);
-        var b = this.b.toString(16);
-        if (r.length == 1) r = '0' + r;
-        if (g.length == 1) g = '0' + g;
-        if (b.length == 1) b = '0' + b;
-        return '#' + r + g + b;
-    }
-
-    // help
-    this.getHelpXML = function () {
-
-        var examples = new Array();
-        // add regexps
-        for (var i = 0; i < color_defs.length; i++) {
-            var example = color_defs[i].example;
-            for (var j = 0; j < example.length; j++) {
-                examples[examples.length] = example[j];
-            }
-        }
-        // add type-in colors
-        for (var sc in simple_colors) {
-            examples[examples.length] = sc;
-        }
-
-        var xml = document.createElement('ul');
-        xml.setAttribute('id', 'rgbcolor-examples');
-        for (var i = 0; i < examples.length; i++) {
-            try {
-                var list_item = document.createElement('li');
-                var list_color = new RGBColor(examples[i]);
-                var example_div = document.createElement('div');
-                example_div.style.cssText =
-                        'margin: 3px; '
-                        + 'border: 1px solid black; '
-                        + 'background:' + list_color.toHex() + '; '
-                        + 'color:' + list_color.toHex()
-                ;
-                example_div.appendChild(document.createTextNode('test'));
-                var list_item_value = document.createTextNode(
-                    ' ' + examples[i] + ' -> ' + list_color.toRGB() + ' -> ' + list_color.toHex()
-                );
-                list_item.appendChild(example_div);
-                list_item.appendChild(list_item_value);
-                xml.appendChild(list_item);
-
-            } catch(e){}
-        }
-        return xml;
-
-    }
-
 }
 
 
 /***/ }),
 
-/***/ "./node_modules/stackblur-canvas/dist/stackblur-es.js":
+/***/ "./node_modules/@amcharts/amcharts4/node_modules/stackblur-canvas/dist/stackblur-es.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17897,6 +17467,442 @@ function BlurStack() {
 };
 
 
+
+
+/***/ }),
+
+/***/ "./node_modules/performance-now/lib/performance-now.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.12.2
+(function() {
+  var getNanoSeconds, hrtime, loadTime, moduleLoadTime, nodeLoadTime, upTime;
+
+  if ((typeof performance !== "undefined" && performance !== null) && performance.now) {
+    module.exports = function() {
+      return performance.now();
+    };
+  } else if ((typeof process !== "undefined" && process !== null) && process.hrtime) {
+    module.exports = function() {
+      return (getNanoSeconds() - nodeLoadTime) / 1e6;
+    };
+    hrtime = process.hrtime;
+    getNanoSeconds = function() {
+      var hr;
+      hr = hrtime();
+      return hr[0] * 1e9 + hr[1];
+    };
+    moduleLoadTime = getNanoSeconds();
+    upTime = process.uptime() * 1e9;
+    nodeLoadTime = moduleLoadTime - upTime;
+  } else if (Date.now) {
+    module.exports = function() {
+      return Date.now() - loadTime;
+    };
+    loadTime = Date.now();
+  } else {
+    module.exports = function() {
+      return new Date().getTime() - loadTime;
+    };
+    loadTime = new Date().getTime();
+  }
+
+}).call(this);
+
+//# sourceMappingURL=performance-now.js.map
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/raf/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var now = __webpack_require__("./node_modules/performance-now/lib/performance-now.js")
+  , root = typeof window === 'undefined' ? global : window
+  , vendors = ['moz', 'webkit']
+  , suffix = 'AnimationFrame'
+  , raf = root['request' + suffix]
+  , caf = root['cancel' + suffix] || root['cancelRequest' + suffix]
+
+for(var i = 0; !raf && i < vendors.length; i++) {
+  raf = root[vendors[i] + 'Request' + suffix]
+  caf = root[vendors[i] + 'Cancel' + suffix]
+      || root[vendors[i] + 'CancelRequest' + suffix]
+}
+
+// Some versions of FF have rAF but not cAF
+if(!raf || !caf) {
+  var last = 0
+    , id = 0
+    , queue = []
+    , frameDuration = 1000 / 60
+
+  raf = function(callback) {
+    if(queue.length === 0) {
+      var _now = now()
+        , next = Math.max(0, frameDuration - (_now - last))
+      last = next + _now
+      setTimeout(function() {
+        var cp = queue.slice(0)
+        // Clear queue here to prevent
+        // callbacks from appending listeners
+        // to the current frame's queue
+        queue.length = 0
+        for(var i = 0; i < cp.length; i++) {
+          if(!cp[i].cancelled) {
+            try{
+              cp[i].callback(last)
+            } catch(e) {
+              setTimeout(function() { throw e }, 0)
+            }
+          }
+        }
+      }, Math.round(next))
+    }
+    queue.push({
+      handle: ++id,
+      callback: callback,
+      cancelled: false
+    })
+    return id
+  }
+
+  caf = function(handle) {
+    for(var i = 0; i < queue.length; i++) {
+      if(queue[i].handle === handle) {
+        queue[i].cancelled = true
+      }
+    }
+  }
+}
+
+module.exports = function(fn) {
+  // Wrap in a new function to prevent
+  // `cancel` potentially being assigned
+  // to the native rAF function
+  return raf.call(root, fn)
+}
+module.exports.cancel = function() {
+  caf.apply(root, arguments)
+}
+module.exports.polyfill = function(object) {
+  if (!object) {
+    object = root;
+  }
+  object.requestAnimationFrame = raf
+  object.cancelAnimationFrame = caf
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/rgbcolor/index.js":
+/***/ (function(module, exports) {
+
+/*
+	Based on rgbcolor.js by Stoyan Stefanov <sstoo@gmail.com>
+	http://www.phpied.com/rgb-color-parser-in-javascript/
+*/
+
+module.exports = function(color_string) {
+    this.ok = false;
+    this.alpha = 1.0;
+
+    // strip any leading #
+    if (color_string.charAt(0) == '#') { // remove # if any
+        color_string = color_string.substr(1,6);
+    }
+
+    color_string = color_string.replace(/ /g,'');
+    color_string = color_string.toLowerCase();
+
+    // before getting into regexps, try simple matches
+    // and overwrite the input
+    var simple_colors = {
+        aliceblue: 'f0f8ff',
+        antiquewhite: 'faebd7',
+        aqua: '00ffff',
+        aquamarine: '7fffd4',
+        azure: 'f0ffff',
+        beige: 'f5f5dc',
+        bisque: 'ffe4c4',
+        black: '000000',
+        blanchedalmond: 'ffebcd',
+        blue: '0000ff',
+        blueviolet: '8a2be2',
+        brown: 'a52a2a',
+        burlywood: 'deb887',
+        cadetblue: '5f9ea0',
+        chartreuse: '7fff00',
+        chocolate: 'd2691e',
+        coral: 'ff7f50',
+        cornflowerblue: '6495ed',
+        cornsilk: 'fff8dc',
+        crimson: 'dc143c',
+        cyan: '00ffff',
+        darkblue: '00008b',
+        darkcyan: '008b8b',
+        darkgoldenrod: 'b8860b',
+        darkgray: 'a9a9a9',
+        darkgreen: '006400',
+        darkkhaki: 'bdb76b',
+        darkmagenta: '8b008b',
+        darkolivegreen: '556b2f',
+        darkorange: 'ff8c00',
+        darkorchid: '9932cc',
+        darkred: '8b0000',
+        darksalmon: 'e9967a',
+        darkseagreen: '8fbc8f',
+        darkslateblue: '483d8b',
+        darkslategray: '2f4f4f',
+        darkturquoise: '00ced1',
+        darkviolet: '9400d3',
+        deeppink: 'ff1493',
+        deepskyblue: '00bfff',
+        dimgray: '696969',
+        dodgerblue: '1e90ff',
+        feldspar: 'd19275',
+        firebrick: 'b22222',
+        floralwhite: 'fffaf0',
+        forestgreen: '228b22',
+        fuchsia: 'ff00ff',
+        gainsboro: 'dcdcdc',
+        ghostwhite: 'f8f8ff',
+        gold: 'ffd700',
+        goldenrod: 'daa520',
+        gray: '808080',
+        green: '008000',
+        greenyellow: 'adff2f',
+        honeydew: 'f0fff0',
+        hotpink: 'ff69b4',
+        indianred : 'cd5c5c',
+        indigo : '4b0082',
+        ivory: 'fffff0',
+        khaki: 'f0e68c',
+        lavender: 'e6e6fa',
+        lavenderblush: 'fff0f5',
+        lawngreen: '7cfc00',
+        lemonchiffon: 'fffacd',
+        lightblue: 'add8e6',
+        lightcoral: 'f08080',
+        lightcyan: 'e0ffff',
+        lightgoldenrodyellow: 'fafad2',
+        lightgrey: 'd3d3d3',
+        lightgreen: '90ee90',
+        lightpink: 'ffb6c1',
+        lightsalmon: 'ffa07a',
+        lightseagreen: '20b2aa',
+        lightskyblue: '87cefa',
+        lightslateblue: '8470ff',
+        lightslategray: '778899',
+        lightsteelblue: 'b0c4de',
+        lightyellow: 'ffffe0',
+        lime: '00ff00',
+        limegreen: '32cd32',
+        linen: 'faf0e6',
+        magenta: 'ff00ff',
+        maroon: '800000',
+        mediumaquamarine: '66cdaa',
+        mediumblue: '0000cd',
+        mediumorchid: 'ba55d3',
+        mediumpurple: '9370d8',
+        mediumseagreen: '3cb371',
+        mediumslateblue: '7b68ee',
+        mediumspringgreen: '00fa9a',
+        mediumturquoise: '48d1cc',
+        mediumvioletred: 'c71585',
+        midnightblue: '191970',
+        mintcream: 'f5fffa',
+        mistyrose: 'ffe4e1',
+        moccasin: 'ffe4b5',
+        navajowhite: 'ffdead',
+        navy: '000080',
+        oldlace: 'fdf5e6',
+        olive: '808000',
+        olivedrab: '6b8e23',
+        orange: 'ffa500',
+        orangered: 'ff4500',
+        orchid: 'da70d6',
+        palegoldenrod: 'eee8aa',
+        palegreen: '98fb98',
+        paleturquoise: 'afeeee',
+        palevioletred: 'd87093',
+        papayawhip: 'ffefd5',
+        peachpuff: 'ffdab9',
+        peru: 'cd853f',
+        pink: 'ffc0cb',
+        plum: 'dda0dd',
+        powderblue: 'b0e0e6',
+        purple: '800080',
+        rebeccapurple: '663399',
+        red: 'ff0000',
+        rosybrown: 'bc8f8f',
+        royalblue: '4169e1',
+        saddlebrown: '8b4513',
+        salmon: 'fa8072',
+        sandybrown: 'f4a460',
+        seagreen: '2e8b57',
+        seashell: 'fff5ee',
+        sienna: 'a0522d',
+        silver: 'c0c0c0',
+        skyblue: '87ceeb',
+        slateblue: '6a5acd',
+        slategray: '708090',
+        snow: 'fffafa',
+        springgreen: '00ff7f',
+        steelblue: '4682b4',
+        tan: 'd2b48c',
+        teal: '008080',
+        thistle: 'd8bfd8',
+        tomato: 'ff6347',
+        turquoise: '40e0d0',
+        violet: 'ee82ee',
+        violetred: 'd02090',
+        wheat: 'f5deb3',
+        white: 'ffffff',
+        whitesmoke: 'f5f5f5',
+        yellow: 'ffff00',
+        yellowgreen: '9acd32'
+    };
+    color_string = simple_colors[color_string] || color_string;
+    // emd of simple type-in colors
+
+    // array of color definition objects
+    var color_defs = [
+        {
+            re: /^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*((?:\d?\.)?\d)\)$/,
+            example: ['rgba(123, 234, 45, 0.8)', 'rgba(255,234,245,1.0)'],
+            process: function (bits){
+                return [
+                    parseInt(bits[1]),
+                    parseInt(bits[2]),
+                    parseInt(bits[3]),
+                    parseFloat(bits[4])
+                ];
+            }
+        },
+        {
+            re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
+            example: ['rgb(123, 234, 45)', 'rgb(255,234,245)'],
+            process: function (bits){
+                return [
+                    parseInt(bits[1]),
+                    parseInt(bits[2]),
+                    parseInt(bits[3])
+                ];
+            }
+        },
+        {
+            re: /^([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/,
+            example: ['#00ff00', '336699'],
+            process: function (bits){
+                return [
+                    parseInt(bits[1], 16),
+                    parseInt(bits[2], 16),
+                    parseInt(bits[3], 16)
+                ];
+            }
+        },
+        {
+            re: /^([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
+            example: ['#fb0', 'f0f'],
+            process: function (bits){
+                return [
+                    parseInt(bits[1] + bits[1], 16),
+                    parseInt(bits[2] + bits[2], 16),
+                    parseInt(bits[3] + bits[3], 16)
+                ];
+            }
+        }
+    ];
+
+    // search through the definitions to find a match
+    for (var i = 0; i < color_defs.length; i++) {
+        var re = color_defs[i].re;
+        var processor = color_defs[i].process;
+        var bits = re.exec(color_string);
+        if (bits) {
+            var channels = processor(bits);
+            this.r = channels[0];
+            this.g = channels[1];
+            this.b = channels[2];
+            if (channels.length > 3) {
+                this.alpha = channels[3];
+            }
+            this.ok = true;
+        }
+
+    }
+
+    // validate/cleanup values
+    this.r = (this.r < 0 || isNaN(this.r)) ? 0 : ((this.r > 255) ? 255 : this.r);
+    this.g = (this.g < 0 || isNaN(this.g)) ? 0 : ((this.g > 255) ? 255 : this.g);
+    this.b = (this.b < 0 || isNaN(this.b)) ? 0 : ((this.b > 255) ? 255 : this.b);
+    this.alpha = (this.alpha < 0) ? 0 : ((this.alpha > 1.0 || isNaN(this.alpha)) ? 1.0 : this.alpha);
+
+    // some getters
+    this.toRGB = function () {
+        return 'rgb(' + this.r + ', ' + this.g + ', ' + this.b + ')';
+    }
+    this.toRGBA = function () {
+        return 'rgba(' + this.r + ', ' + this.g + ', ' + this.b + ', ' + this.alpha + ')';
+    }
+    this.toHex = function () {
+        var r = this.r.toString(16);
+        var g = this.g.toString(16);
+        var b = this.b.toString(16);
+        if (r.length == 1) r = '0' + r;
+        if (g.length == 1) g = '0' + g;
+        if (b.length == 1) b = '0' + b;
+        return '#' + r + g + b;
+    }
+
+    // help
+    this.getHelpXML = function () {
+
+        var examples = new Array();
+        // add regexps
+        for (var i = 0; i < color_defs.length; i++) {
+            var example = color_defs[i].example;
+            for (var j = 0; j < example.length; j++) {
+                examples[examples.length] = example[j];
+            }
+        }
+        // add type-in colors
+        for (var sc in simple_colors) {
+            examples[examples.length] = sc;
+        }
+
+        var xml = document.createElement('ul');
+        xml.setAttribute('id', 'rgbcolor-examples');
+        for (var i = 0; i < examples.length; i++) {
+            try {
+                var list_item = document.createElement('li');
+                var list_color = new RGBColor(examples[i]);
+                var example_div = document.createElement('div');
+                example_div.style.cssText =
+                        'margin: 3px; '
+                        + 'border: 1px solid black; '
+                        + 'background:' + list_color.toHex() + '; '
+                        + 'color:' + list_color.toHex()
+                ;
+                example_div.appendChild(document.createTextNode('test'));
+                var list_item_value = document.createTextNode(
+                    ' ' + examples[i] + ' -> ' + list_color.toRGB() + ' -> ' + list_color.toHex()
+                );
+                list_item.appendChild(example_div);
+                list_item.appendChild(list_item_value);
+                xml.appendChild(list_item);
+
+            } catch(e){}
+        }
+        return xml;
+
+    }
+
+}
 
 
 /***/ })

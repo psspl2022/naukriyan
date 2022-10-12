@@ -870,10 +870,12 @@
                         switch (response.data.user_type) {
                             case 'Employer':
                                 //window.location = '/#/editemployer/';
+                                sessionStorage.setItem('employer', 'true');
                                 window.location = '/#/empdashboard/';
                                 break;
 
                             case 'Jobseeker':
+                                sessionStorage.setItem('jobseeker', 'true');
                                 window.location = '/#/userinfo/pe';
 
                                 //window.location = '/#/dashboard/';
