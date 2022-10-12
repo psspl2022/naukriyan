@@ -42,13 +42,8 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-8 mx-auto">
-                      <i
-                        class="fa fa-info-circle"
-                        style="color: red"
-                        aria-hidden="true"
-                      >
-                        Name,Email,Contact No. and Reference are mandatory
-                        fields.</i
+                      <i class="fa fa-info-circle" style="color: red" aria-hidden="true">
+                        Name,Email,Contact No. and Reference are mandatory fields.</i
                       >
                       <form
                         method="post"
@@ -59,9 +54,7 @@
                       >
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
-                            <label
-                              >Name<span style="color: red"> * </span></label
-                            >
+                            <label>Name<span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="text"
@@ -77,9 +70,7 @@
                             <has-error :form="form" field="name"></has-error>
                           </div>
                           <div class="col-sm-6">
-                            <label
-                              >Email <span style="color: red"> * </span></label
-                            >
+                            <label>Email <span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="email"
@@ -100,10 +91,7 @@
                         </div>
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
-                            <label
-                              >Contact No.
-                              <span style="color: red"> * </span></label
-                            >
+                            <label>Contact No. <span style="color: red"> * </span></label>
                             <div class="input text">
                               <input
                                 type="text"
@@ -137,12 +125,8 @@
                                   'is-invalid': form.errors.has('experience'),
                                 }"
                               >
-                                <option value="" disabled>
-                                  Select From Here
-                                </option>
-                                <option value="fresher">
-                                  0-1 Yr (Also Fresher)
-                                </option>
+                                <option value="" disabled>Select From Here</option>
+                                <option value="fresher">0-1 Yr (Also Fresher)</option>
                                 <option value="1-2">1-2 Yr</option>
                                 <option value="2-4">2-4 Yr</option>
                                 <option value="4-5">4-5 Yr</option>
@@ -163,25 +147,35 @@
                               /> -->
                             </div>
                           </div>
-                          <has-error
-                            :form="form"
-                            field="experience"
-                          ></has-error>
+                          <has-error :form="form" field="experience"></has-error>
                         </div>
                         <div class="form-group row inputBox">
                           <div class="col-sm-12">
                             <label
-                              >Key Skills (Use Multiple Skills Seperated By
-                              Comma(,))
+                              >Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-                              <vue-tags-input
+                              <!-- <vue-tags-input
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="tag"
                                 :separators="[';', ',']"
                                 :add-on-key="[13, ',', ';']"
                                 :tags="tags"
                                 @tags-changed="(newTags) => (tags = newTags)"
+                              /> -->
+                              <vue-tags-input
+                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
+                                v-model="tag"
+                                @keyup="
+                                  () => {
+                                    placeholder = ' ';
+                                  }
+                                "
+                                :separators="[';', ',']"
+                                :add-on-key="[13, ',', ';']"
+                                :tags="tags"
+                                :autocomplete-items="autocompleteItems"
+                                @tags-changed="update"
                               />
                               <!-- <input
                                 type="text"
@@ -213,16 +207,13 @@
                             <div style="background-color: white">
                               <ul
                                 class="filter-keyword"
-                                v-if="
-                                  filteredKeywords &&
-                                  filterStatus &&
-                                  designation
-                                "
+                                v-if="filteredKeywords && filterStatus && designation"
                               >
                                 <li
-                                  v-for="(
-                                    filterKeyword, index
-                                  ) in filteredKeywords.slice(0, 9)"
+                                  v-for="(filterKeyword, index) in filteredKeywords.slice(
+                                    0,
+                                    9
+                                  )"
                                   :key="index"
                                   @click="setkeyword(filterKeyword)"
                                 >
@@ -230,10 +221,7 @@
                                 </li>
                               </ul>
                             </div>
-                            <has-error
-                              :form="form"
-                              field="designation"
-                            ></has-error>
+                            <has-error :form="form" field="designation"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Select Gender </label>
@@ -245,9 +233,7 @@
                                 }"
                                 v-model="form.gender"
                               >
-                                <option value="" disabled="">
-                                  Select Gender
-                                </option>
+                                <option value="" disabled="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
@@ -270,10 +256,7 @@
                                 }"
                               />
                             </div>
-                            <has-error
-                              :form="form"
-                              field="current_ctc"
-                            ></has-error>
+                            <has-error :form="form" field="current_ctc"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Expected CTC (Per Annum) </label>
@@ -288,10 +271,7 @@
                                 }"
                               />
                             </div>
-                            <has-error
-                              :form="form"
-                              field="expected_ctc"
-                            ></has-error>
+                            <has-error :form="form" field="expected_ctc"></has-error>
                           </div>
                         </div>
                         <div class="form-group row inputBox">
@@ -304,15 +284,11 @@
                                 placeholder="Enter Current Location"
                                 v-model="form.current_location"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('current_location'),
+                                  'is-invalid': form.errors.has('current_location'),
                                 }"
                               />
                             </div>
-                            <has-error
-                              :form="form"
-                              field="current_location"
-                            ></has-error>
+                            <has-error :form="form" field="current_location"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
@@ -323,8 +299,7 @@
                                 placeholder="Enter Preffered Location"
                                 v-model="form.preffered_location"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('preffered_location'),
+                                  'is-invalid': form.errors.has('preffered_location'),
                                 }"
                               />
                             </div>
@@ -356,14 +331,11 @@
                               <select
                                 class="form-control"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('notice_period'),
+                                  'is-invalid': form.errors.has('notice_period'),
                                 }"
                                 v-model="form.notice_period"
                               >
-                                <option value="" disabled="">
-                                  Select From Here
-                                </option>
+                                <option value="" disabled="">Select From Here</option>
                                 <option value="immediate">Immediate</option>
                                 <option value="15">Within 15 days</option>
                                 <option value="30">30 days</option>
@@ -372,17 +344,13 @@
                                 <option value="90">90 days</option>
                               </select>
                             </div>
-                            <has-error
-                              :form="form"
-                              field="notice_period"
-                            ></has-error>
+                            <has-error :form="form" field="notice_period"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label class="col-form-label" for=""
                               ><span style="color: red"> * </span> Reference
                               <sub style="color: red"
-                                >(Not in List ?? Select 'others' and add
-                                new)</sub
+                                >(Not in List ?? Select 'others' and add new)</sub
                               ></label
                             >
                             <select
@@ -392,9 +360,7 @@
                               @change="openClient"
                               v-model="form.reference"
                             >
-                              <option disabled value="">
-                                Select Reference Name
-                              </option>
+                              <option disabled value="">Select Reference Name</option>
                               <option
                                 :value="client.name"
                                 v-for="(client, index) in clientList"
@@ -406,10 +372,7 @@
                             </select>
 
                             <em style="color: red"> </em>
-                            <has-error
-                              :form="form"
-                              field="reference"
-                            ></has-error>
+                            <has-error :form="form" field="reference"></has-error>
                           </div>
                         </div>
 
@@ -441,19 +404,13 @@
                                   id="remember_me2"
                                 />
                                 <span class="checkbox-icon"
-                                  ><i
-                                    class="fa fa-square-o"
-                                    aria-hidden="true"
-                                  ></i>
+                                  ><i class="fa fa-square-o" aria-hidden="true"></i>
                                   <span class="check-icon">
-                                    <i
-                                      class="fa fa-check"
-                                      aria-hidden="true"
-                                    ></i>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
                                   </span>
                                 </span>
-                                All (<span style="color: red">*</span>) fields
-                                are mandatory.
+                                All (<span style="color: red">*</span>) fields are
+                                mandatory.
                               </label>
                             </div>
                           </div>
@@ -462,11 +419,7 @@
                           <button
                             type="submit"
                             :disabled="filled"
-                            class="
-                              btn btn-outline-info btn-block
-                              my-4
-                              waves-effect
-                            "
+                            class="btn btn-outline-info btn-block my-4 waves-effect"
                           >
                             {{ registerStatus ? "Adding..." : "Add" }}
                           </button>
@@ -475,23 +428,19 @@
                     </div>
                     <div class="col-sm-4">
                       <div class="signup-info">
-                        <h4 class="mb-3" style="font-size: 1.4em">
-                          Recruitment Tracker
-                        </h4>
+                        <h4 class="mb-3" style="font-size: 1.4em">Recruitment Tracker</h4>
                         <hr />
                         <ul class="list-unstyled">
                           <li>
-                            A recruitment tracker is used to track job
-                            applications, interviews, and candidate contact
-                            details online.
+                            A recruitment tracker is used to track job applications,
+                            interviews, and candidate contact details online.
                           </li>
                           <li>
-                            Improve your recruitment process with this free
-                            Recruitment Tracker table! Just enter candidate info
-                            by hand, or link your online job application form
-                            with your Recruitment Tracker to add new candidates
-                            automatically! By adding interview notes to existing
-                            candidates, you can compare strengths and weaknesses
+                            Improve your recruitment process with this free Recruitment
+                            Tracker table! Just enter candidate info by hand, or link your
+                            online job application form with your Recruitment Tracker to
+                            add new candidates automatically! By adding interview notes to
+                            existing candidates, you can compare strengths and weaknesses
                             to choose the right person for the job.
                           </li>
                         </ul>
@@ -533,9 +482,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Add Reference</h4>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
@@ -610,6 +557,9 @@ export default {
     return {
       tag: "",
       tags: [],
+      handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       checked: false,
       form: new Form({
         name: "",
@@ -655,6 +605,31 @@ export default {
     }
   },
   methods: {
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.tags.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
+    },
+    initItems() {
+      if (this.tag.length < 2) return;
+      const url = `get-allskills/` + this.tag;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+    },
     handleFileUpload() {
       this.resume = this.$refs.resume.files[0];
     },
@@ -667,8 +642,8 @@ export default {
       this.registerStatus = true;
       let formData = new FormData();
       this.form.skills = [];
-      this.form.skills = [];
-      this.tags.map((item) => this.form.skills.push(item.text));
+      this.form.skills = this.tags;
+      // this.tags.map((item) => this.form.skills.push(item.text));
       formData.append("resume", this.resume);
       formData.append("name", this.form.name);
       formData.append("email", this.form.email);
@@ -676,7 +651,7 @@ export default {
       formData.append("designation", this.designation);
       formData.append("gender", this.form.gender);
       formData.append("experience", this.form.experience);
-      formData.append("skills", this.form.skills);
+      formData.append("skills", this.form.skills.toString());
       formData.append("current_ctc", this.form.current_ctc);
       formData.append("expected_ctc", this.form.expected_ctc);
       formData.append("notice_period", this.form.notice_period);
@@ -769,6 +744,7 @@ export default {
     },
   },
   watch: {
+    tag: "initItems",
     designation() {
       this.getFilteredKeyword();
     },

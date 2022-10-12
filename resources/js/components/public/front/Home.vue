@@ -23,7 +23,7 @@
               <div class="col-sm-4 pr-0 p-1 bg-white tag-input-con">
                 <vue-tags-input
                   class="input-tag"
-                  placeholder="Search Keyword keywords"
+                  placeholder="Skills, Designation, Companies"
                   v-model="tag"
                   @keyup="
                     () => {
@@ -34,7 +34,7 @@
                   :add-on-key="[13, ',', ';']"
                   :tags="tags"
                   :autocomplete-items="autocompleteItems"
-                  :add-only-from-autocomplete="true"
+                 
                   @tags-changed="update"
                 />
                 <i class="fa fa-pencil-alt search-icons" aria-hidden="true" required></i>
@@ -441,7 +441,6 @@ export default {
       handlers: [],
       autocompleteItems: [],
       debounce: null,
-      placeholder: "Skills, Designation, Companies",
       keyword: "",
       location: "",
       experience: "",
@@ -516,7 +515,6 @@ export default {
       if (this.keyword.length == 0) {
         this.filteredKeywords = this.keywords;
       }
-      console.log(filteredKeywords);
       this.filteredKeywords = this.keywords.filter((el) => {
         return el.toLowerCase().startsWith(this.keyword.toLowerCase());
       });
@@ -688,26 +686,5 @@ export default {
     background-position: 0% 50%;
   }
 }
-.vue-tags-input {
-  width: 700px !important;
-  max-width: 100% !important;
-  /* max-height: 39px; */
-  /* overflow-y: hidden; */
-  overflow-x: hidden;
-}
 
-.vue-tags-input .ti-tag:after {
-  transition: transform 0.2s;
-  position: absolute;
-  content: "";
-  height: 2px;
-  width: 108%;
-  left: -4%;
-  top: calc(50% - 1px);
-  background-color: #000;
-  transform: scaleX(0);
-}
-.vue-tags-input .ti-deletion-mark:after {
-  transform: scaleX(1);
-}
 </style>

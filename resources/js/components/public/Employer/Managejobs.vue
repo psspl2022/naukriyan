@@ -1,4 +1,3 @@
-
 text/x-generic Managejobs.vue ( HTML document, ASCII text, with CRLF line terminators )
 <template>
   <div id="accountexicutive">

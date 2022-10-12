@@ -19,10 +19,7 @@
 
               <div class="col-xs-12 col-sm-4 hidden-xs">
                 <p class="hot-line">
-                  <i
-                    class="fa fa-headphones mr-1 Phone is-animating"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa fa-headphones mr-1 Phone is-animating" aria-hidden="true"></i>
                   <a href="tel:+91 11 7962 6411">Hot Line: +91 11 7962 6411 </a>
                 </p>
               </div>
@@ -38,9 +35,7 @@
             <div class="cms-pg-header">
               <h2 class="hk-pg-title">Candidate List</h2>
               <router-link :to="`/add-tracker`">
-                <a href="" class="btn btn-primary text-white"
-                  ><i class="fas fa-plus mr-2"></i>Add Candidate</a
-                >
+                <a href="" class="btn btn-primary text-white"><i class="fas fa-plus mr-2"></i>Add Candidate</a>
               </router-link>
             </div>
 
@@ -50,18 +45,10 @@
                   <div class="col-md-3">
                     <label>Source</label>
                     <div class="form-group">
-                      <select
-                        name="source"
-                        class="form-control form-control-sm"
-                        v-model="source"
-                      >
+                      <select name="source" class="form-control form-control-sm" v-model="source">
                         <option value="">Select Source</option>
-                        <option
-                          v-for="(source, index) in sourceList"
-                          :value="source.name"
-                          :key="index"
-                          class="text-capitalize"
-                        >
+                        <option v-for="(source, index) in sourceList" :value="source.name" :key="index"
+                          class="text-capitalize">
                           {{ source.name }}
                         </option>
                       </select>
@@ -70,69 +57,50 @@
                   <div class="col-md-2">
                     <label>Location<small> (Preff./Curr.)</small></label>
                     <div class="form-group">
-                      <input
-                        type="text"
-                        name="location"
-                        class="form-control form-control-sm"
-                        v-model="location"
-                        placeholder="Enter Location"
-                      />
+                      <input type="text" name="location" class="form-control form-control-sm" v-model="location"
+                        placeholder="Enter Location" />
                     </div>
                   </div>
 
                   <div class="col-md-3">
-                    <label
-                      >Skills
+                    <label>Skills
                       <small>
-                        (Multiple Skills Seperated by comma(,))</small
-                      ></label
-                    >
+                        (Multiple Skills)
+                      </small>
+                    </label>
 
                     <div class="form-group">
-                      <input
-                        type="text"
-                        name="skills"
-                        class="form-control form-control-sm"
-                        v-model="skills"
-                        placeholder="Enter Multiple Skills also Separated by Comma"
-                      />
+                      <vue-tags-input 
+                      style="padding: 0;" 
+                      class="input-tag form-control form-control-sm"
+                      placeholder="Enter Multiple Skills" 
+                      v-model="skill"
+                      :add-on-key="[13, ',', ';']"
+                      :tags="skills"
+                      :autocomplete-items="autocompleteItems" 
+                      @tags-changed="update" />
                     </div>
                   </div>
 
                   <div class="col-md-2">
                     <label>From Date</label>
                     <div class="form-group">
-                      <input
-                        type="date"
-                        name="from_date"
-                        class="form-control form-control-sm"
-                        v-model="from_date"
-                        placeholder="Enter From Date"
-                      />
+                      <input type="date" name="from_date" class="form-control form-control-sm" v-model="from_date"
+                        placeholder="Enter From Date" />
                     </div>
                   </div>
                   <div class="col-md-2">
                     <label>To Date</label>
                     <div class="form-group">
-                      <input
-                        type="date"
-                        name="to_date"
-                        class="form-control form-control-sm"
-                        v-model="to_date"
-                        placeholder="Enter To Date"
-                      />
+                      <input type="date" name="to_date" class="form-control form-control-sm" v-model="to_date"
+                        placeholder="Enter To Date" />
                     </div>
                   </div>
 
                   <div class="col-md-1">
                     <label></label>
                     <div class="form-group">
-                      <button
-                        type="submit"
-                        name="submit"
-                        class="btn btn-primary"
-                        @click="getTrackerList"
-                      >
+                      <button type="submit" name="submit" class="btn btn-primary" @click="getTrackerList">
                         Search
                       </button>
                     </div>
@@ -140,12 +108,7 @@
                   <div class="col-md-1">
                     <label></label>
                     <div class="form-group">
-                      <button
-                        type="submit"
-                        name="submit"
-                        class="btn btn-success"
-                        @click="resetUrl"
-                      >
+                      <button type="submit" name="submit" class="btn btn-success" @click="resetUrl">
                         Reset
                       </button>
                     </div>
@@ -153,28 +116,15 @@
                 </div>
                 <div class="row mt-2 mb-2">
                   <div class="col-md-3" v-if="checkedNames.length === 0">
-                    <a
-                      href=""
-                      @click.prevent="exportTrackers()"
-                      type="button"
-                      class="btn btn-success text-white"
-                      ><i class="fas fa-file-export"></i> Complete Data Export
+                    <a href="" @click.prevent="exportTrackers()" type="button" class="btn btn-success text-white"><i
+                        class="fas fa-file-export"></i> Complete Data Export
                     </a>
                   </div>
                   <div class="col-md-8" v-if="checkedNames.length > 0">
-                    <span
-                      ><b>Total Checked :</b> {{ checkedNames.length }}</span
-                    >
+                    <span><b>Total Checked :</b> {{ checkedNames.length }}</span>
 
-                    <a
-                      href=""
-                      type="button"
-                      @click.prevent="exportTrackersChecked()"
-                      class="btn btn-success text-white"
-                      id="checkboxsButton"
-                      v-if="checkedNames.length > 0"
-                      ><i class="fas fa-file-export"></i> Export</a
-                    >
+                    <a href="" type="button" @click.prevent="exportTrackersChecked()" class="btn btn-success text-white"
+                      id="checkboxsButton" v-if="checkedNames.length > 0"><i class="fas fa-file-export"></i> Export</a>
                   </div>
                 </div>
                 <div class="row mt-2">
@@ -186,47 +136,25 @@
                     Candidate.
                   </div>
                   <div class="col-md-5">
-                    <pagination
-                      :data="trackersCount"
-                      @pagination-change-page="getTrackerList"
-                      :limit="1"
-                    ></pagination>
+                    <pagination :data="trackersCount" @pagination-change-page="getTrackerList" :limit="1"></pagination>
                   </div>
                   <div class="col-md-1">
-                    <img
-                      v-if="searchStatus"
-                      src="https://i.gifer.com/ZZ5H.gif"
-                      alt=""
-                      height="30"
-                      width="30"
-                    />
+                    <img v-if="searchStatus" src="https://i.gifer.com/ZZ5H.gif" alt="" height="30" width="30" />
                   </div>
 
                   <div class="col-md-2">
-                    <input
-                      type="text"
-                      placeholder="Search here......."
-                      v-model="keyword"
-                      @keyup="getTrackerList"
-                      class="form-control form-control-sm"
-                    />
+                    <input type="text" placeholder="Search here......." v-model="keyword" @keyup="getTrackerList"
+                      class="form-control form-control-sm" />
                   </div>
                 </div>
 
                 <div class="table-responsive custom-height">
-                  <table
-                    class="table table-head-fixed custom-table mt-2"
-                    id="datatable"
-                  >
+                  <table class="table table-head-fixed custom-table mt-2" id="datatable">
                     <thead>
                       <tr>
                         <th>
                           #
-                          <input
-                            type="checkbox"
-                            v-model="selectAll"
-                            @click="select"
-                          />
+                          <input type="checkbox" v-model="selectAll" @click="select" />
                         </th>
 
                         <th>Name</th>
@@ -247,21 +175,14 @@
                     <tbody v-if="trackers">
                       <tr v-for="(track, index) in trackers" :key="track.id">
                         <td>
-                          <input
-                            type="checkbox"
-                            name="emp_check"
-                            :value="track.id"
-                            v-model="checkedNames"
-                          />
+                          <input type="checkbox" name="emp_check" :value="track.id" v-model="checkedNames" />
                           {{ index + 1 }}
                         </td>
 
                         <td>
-                          <router-link :to="`/tracker-details/${track.id}`"
-                            ><a class="text-capitalize">{{
-                              track.name
-                            }}</a></router-link
-                          >
+                          <router-link :to="`/tracker-details/${track.id}`"><a class="text-capitalize">{{
+                          track.name
+                          }}</a></router-link>
                         </td>
                         <td>{{ track.email }} /{{ track.contact }}</td>
 
@@ -270,33 +191,26 @@
                           {{ track.current_location }}
                         </td>
                         <td>{{ track.gender }}</td>
-                        <td>{{ track.designation }}</td> 
-                        <td>  
-                          <text-highlight :queries="skillarr">{{ track.key_skills }}</text-highlight>
-                        </td>               
-                       
+                        <td>{{ track.designation }}</td>
+                        <td>
+                          <text-highlight :queries="skills">{{ track.key_skills }}</text-highlight>
+                        </td>
+
                         <td>{{ track.experience }}</td>
                         <td>{{ track.notice_period }}</td>
                         <td>
-                          <a
-                            v-if="track.resume !== null"
-                            :href="'/tracker/resume/' + track.resume"
-                            target="_blank"
-                            class="badge badge-secondary badge-sm text-white"
-                            ><i class="fa fa-download" aria-hidden="true"></i>
-                            Resume</a
-                          >
+                          <a v-if="track.resume !== null" :href="'/tracker/resume/' + track.resume" target="_blank"
+                            class="badge badge-secondary badge-sm text-white"><i class="fa fa-download"
+                              aria-hidden="true"></i>
+                            Resume</a>
                         </td>
                         <td>{{ track.remarks }}</td>
                         <td class="text-capitalize">{{ track.reference }}</td>
                         <td>{{ track.created_at | timeformat }}</td>
                         <td>
-                          <router-link :to="`/tracker-details/${track.id}`"
-                            ><a class="badge badge-primary text-white"
-                              ><i class="fa fa-eye" aria-hidden="true"></i>
-                              View</a
-                            ></router-link
-                          >
+                          <router-link :to="`/tracker-details/${track.id}`"><a class="badge badge-primary text-white"><i
+                                class="fa fa-eye" aria-hidden="true"></i>
+                              View</a></router-link>
                         </td>
                       </tr>
                     </tbody>
@@ -326,16 +240,23 @@ import Vue from 'vue';
 import TextHighlight from 'vue-text-highlight';
 //import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
-
+import VueTagsInput from "@johmun/vue-tags-input";
 Vue.component('text-highlight', TextHighlight);
 
 export default {
-  
- 
+
+
   name: "Trackerlist",
-  
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
+      skill: "",
+      skills: [],
+      handlers: [],
+      autocompleteItems: [],
+      debounce: null,
       trackers: [],
       checkedNames: [],
       checkedName: true,
@@ -346,8 +267,6 @@ export default {
       source: "",
       sourceList: [],
       location: "",
-      skills: "",
-      skillarr: [],
       selectAll: false,
       uploadstatus: this.$route.query.uploadstatus,
       trackersCount: "",
@@ -359,33 +278,63 @@ export default {
     this.getTrackerList();
     this.getSource();
   },
+  watch: {
+      skill: "initItems",
 
+    },
   methods: {
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.skills = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.skills.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
+    },
+    initItems() {
+      if (this.skill.length < 2) return;
+      const url = `get-allskills/` + this.skill;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+    },
+
+
     resetUrl() {
       this.$router.replace("/tracker-list");
     },
+
     getTrackerList(page = 1) {
-      this.skillarr=this.skills.split(',');
       this.searchStatus = true;
       const self = this;
       axios
         .get(
           "tracker-list?&from_date=" +
-            this.from_date +
-            "&to_date=" +
-            this.to_date +
-            "&source=" +
-            this.source +
-            "&location=" +
-            this.location +
-            "&skills=" +
-            this.skills +
-            "&uploadstatus=" +
-            this.uploadstatus +
-            "&keyword=" +
-            this.keyword +
-            "&page=" +
-            page
+          this.from_date +
+          "&to_date=" +
+          this.to_date +
+          "&source=" +
+          this.source +
+          "&location=" +
+          this.location +
+          "&skills=" +
+          this.skills +
+          "&uploadstatus=" +
+          this.uploadstatus +
+          "&keyword=" +
+          this.keyword +
+          "&page=" +
+          page
         )
         .then((response) => {
           self.trackers = response.data.data.data;
@@ -407,7 +356,7 @@ export default {
         .then((response) => {
           this.sourceList = response.data.data;
         })
-        .catch(function (error) {});
+        .catch(function (error) { });
     },
     exportTrackers() {
       swal
@@ -427,6 +376,7 @@ export default {
           }
         });
     },
+ 
     exportTrackersChecked() {
       if (!this.checkedNames.length) {
         alert("Please select at least one row");
@@ -457,9 +407,10 @@ export default {
       }
     },
   },
- 
+
 };
 </script>
 
 <style scoped>
+
 </style>
