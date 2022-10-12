@@ -277,18 +277,33 @@
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
                             <label>Current Location </label>
-                            <div class="input text">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter Current Location"
-                                v-model="form.current_location"
-                                :class="{
-                                  'is-invalid': form.errors.has('current_location'),
-                                }"
-                              />
-                            </div>
-                            <has-error :form="form" field="current_location"></has-error>
+                            <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-location-arrow"></i
+                        ></span>
+                        <select
+                          class="form-control"
+                          v-model="form.preferred_location"
+                        >
+                          <optgroup
+                            :label="st.state"
+                            v-for="(st, index) in location"
+                            :key="index"
+                          >
+                            <option
+                              v-for="(loc, index) in st.location"
+                              :key="index"
+                              :value="loc.location"
+                            >
+                              {{ loc.location }}
+                            </option>
+                          </optgroup>
+                        </select>
+                      </div>
+                      <has-error
+                        :form="form"
+                        field="preferred_location"
+                      ></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
@@ -557,6 +572,7 @@ export default {
     return {
       tag: "",
       tags: [],
+      location: [],
       handlers: [],
       autocompleteItems: [],
       debounce: null,
@@ -594,6 +610,7 @@ export default {
   mounted() {
     this.getFilteredKeyword();
     this.getFilterKeywords();
+    this.getAllLocation();
     if (localStorage.getItem("reloaded")) {
       // The page was just reloaded. Clear the value from local storage
       // so that it will reload the next time this page is visited.
@@ -602,6 +619,7 @@ export default {
       // Set a flag so that we know not to reload the page twice.
       localStorage.setItem("reloaded", "1");
       location.reload();
+    
     }
   },
   methods: {
@@ -638,6 +656,11 @@ export default {
         $("#addSubUser").modal("show");
       }
     },
+    getAllLocation() {
+      axios.get("/master/location/group").then((response) => {
+        this.location = response.data.data;
+      });
+    },
     addTracker() {
       this.registerStatus = true;
       let formData = new FormData();
@@ -656,7 +679,7 @@ export default {
       formData.append("expected_ctc", this.form.expected_ctc);
       formData.append("notice_period", this.form.notice_period);
       formData.append("remarks", this.form.remarks);
-      formData.append("preffered_location", this.form.preffered_location);
+      formData.append("preffered_location", this.form.preferred_location);
       formData.append("current_location", this.form.current_location);
       formData.append("reference", this.form.reference);
 
