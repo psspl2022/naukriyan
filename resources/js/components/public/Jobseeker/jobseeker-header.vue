@@ -244,6 +244,13 @@ export default {
       return this.$store.getters.getAllData;
     },
   },
+  
+  beforeCreate () {
+    if(!sessionStorage.hasOwnProperty("jobseeker")){
+      this.$router.push("/");
+    }
+  },
+
   methods: {
     userprofile() {
       axios
@@ -277,6 +284,7 @@ export default {
                   title: "Logout success",
                 });
 
+                sessionStorage.clear();
                 this.$router.push("/");
                 window.location.reload();
               }

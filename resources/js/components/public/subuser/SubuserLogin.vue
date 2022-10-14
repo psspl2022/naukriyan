@@ -182,6 +182,8 @@ export default {
               type: "success",
               title: response.data.message,
             });
+            
+            this.$session.set("subuser", "true");
             this.$router.push("/subuser-dashboard");
           }
           // } else if (

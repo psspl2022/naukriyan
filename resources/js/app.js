@@ -1,6 +1,9 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+import VueSessionStorage from "vue-sessionstorage";
+Vue.use(VueSessionStorage);
+
 $(document).ready(function () {
     $('input[type="radio"]').click(function () {
         var inputValue = $(this).attr("value");

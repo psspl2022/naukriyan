@@ -306,6 +306,13 @@ export default {
       return this.$store.getters.getAllProfile;
     },
   },
+  
+  beforeCreate () {
+    if(!sessionStorage.hasOwnProperty("employer")){
+      this.$router.push("/");
+    }
+  },
+
   methods: {
     dropdownToggle() {
       this.isActive = !this.isActive;
@@ -333,6 +340,7 @@ export default {
                   title: "Logout success",
                 });
 
+                sessionStorage.clear();
                 this.$router.push("/");
                 window.location.reload();
               }

@@ -166,6 +166,7 @@ export default {
     // this.$router.push({ path: "tracker-list", query: { data: "resume_Not_uploaded" } });
   },
 
+
   created() {
     this.getSessionUser();
     this.getCountData();
