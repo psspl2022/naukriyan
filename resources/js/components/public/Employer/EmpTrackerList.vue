@@ -84,14 +84,23 @@
                     >
 
                     <div class="form-group">
-                      <input
+                      <vue-tags-input 
+                      style="padding: 0;" 
+                      class="input-tag form-control form-control-sm"
+                      placeholder="Enter Multiple Skills" 
+                      v-model="skills"
+                      :add-on-key="[13, ',', ';']"
+                      :tags="allSkill"
+                      :autocomplete-items="autocompleteItems" 
+                      @tags-changed="update" />
+                      <!-- <input
                         type="text"
                         name="skills"
                         class="form-control form-control-sm"
                         v-model="skills"
                         placeholder="Enter Multiple Skills also Separated by Comma"
                         @keyup="getTrackerList"
-                      />
+                      /> -->
                     </div>
                   </div>
 
@@ -194,6 +203,15 @@
                         @keyup="getTrackerList"
                         min="0"
                       />
+                    </div>
+                  </div>
+
+                  <div class="col-md-1">
+                    <label></label>
+                    <div class="form-group">
+                      <button type="submit" name="submit" class="btn btn-primary" @click="getTrackerList">
+                        Search
+                      </button>
                     </div>
                   </div>
 
@@ -334,7 +352,10 @@
                         </td>
                         <td>{{ track.gender }}</td>
                         <td>{{ track.designation }}</td>
-                        <td>{{ track.key_skills }}</td>
+                        <!-- <td>{{ track.key_skills }}</td> -->
+                        <td>
+                          <text-highlight :queries="allSkill">{{ track.key_skills }}</text-highlight>
+                        </td>
                         <td>{{ track.experience }}</td>
                         <td>{{ track.notice_period }}</td>
                         <td>
@@ -424,9 +445,18 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import TextHighlight from 'vue-text-highlight';
 import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
+Vue.component('text-highlight', TextHighlight);
+
 export default {
   name: "EmpTrackerList",
+
+  components: {
+    VueTagsInput,
+  },
 
   data() {
     return {
@@ -441,6 +471,9 @@ export default {
       sourceList: [],
       location: "",
       skills: "",
+      allSkill: [],
+      handlers: [],
+      autocompleteItems: [],
       selectAll: false,
       userid: this.$route.query.user,
       trackersCount: "",
@@ -460,7 +493,36 @@ export default {
     this.getSource();
     this.getDesignationList();
   },
+  watch: {
+      skills: "initItems",
+
+    },
   methods: {
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.allSkill = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.allSkill.toString();
+    },
+    initItems() {
+      if (this.skills.length < 2) return;
+      const url = `get-allskills/` + this.skills;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+      
+    },
+
     resetUrl() {
       this.$router.replace("/emp/tracker-list");
       window.location.reload();
@@ -479,7 +541,7 @@ export default {
             "&location=" +
             this.location +
             "&skills=" +
-            this.skills +
+            this.allSkill +
             "&userid=" +
             this.userid +
             "&keyword=" +
