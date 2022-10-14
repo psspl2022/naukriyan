@@ -236,10 +236,10 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import TextHighlight from 'vue-text-highlight';
 //import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
+import Vue from 'vue';
+import TextHighlight from 'vue-text-highlight';
 import VueTagsInput from "@johmun/vue-tags-input";
 Vue.component('text-highlight', TextHighlight);
 
@@ -280,8 +280,7 @@ export default {
   },
   watch: {
       skill: "initItems",
-
-    },
+  },
   methods: {
     update(newTags) {
       this.autocompleteItems = [];

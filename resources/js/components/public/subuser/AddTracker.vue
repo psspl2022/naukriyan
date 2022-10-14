@@ -138,7 +138,7 @@
                               </select>
                               <!-- <input
                                 type="text"
-                                class="form-control"
+                                class="form-control" 
                                 placeholder="Enter Experience"
                                 v-model="form.experience"
                                 :class="{
@@ -155,14 +155,7 @@
                               >Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-                              <!-- <vue-tags-input
-                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
-                                v-model="tag"
-                                :separators="[';', ',']"
-                                :add-on-key="[13, ',', ';']"
-                                :tags="tags"
-                                @tags-changed="(newTags) => (tags = newTags)"
-                              /> -->
+                             
                               <vue-tags-input
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="tag"
@@ -177,16 +170,7 @@
                                 :autocomplete-items="autocompleteItems"
                                 @tags-changed="update"
                               />
-                              <!-- <input
-                                type="text"
-                                id="password"
-                                class="form-control"
-                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
-                                v-model="form.skills"
-                                :class="{
-                                  'is-invalid': form.errors.has('skills'),
-                                }"
-                              /> -->
+                            
                             </div>
                           </div>
                           <has-error :form="form" field="password"></has-error>
@@ -208,7 +192,7 @@
                               <ul
                                 class="filter-keyword"
                                 v-if="filteredKeywords && filterStatus && designation"
-                              >
+                              > 
                                 <li
                                   v-for="(filterKeyword, index) in filteredKeywords.slice(
                                     0,
@@ -217,7 +201,7 @@
                                   :key="index"
                                   @click="setkeyword(filterKeyword)"
                                 >
-                                  {{ filterKeyword }}
+                                  {{ filterKeyword }} 
                                 </li>
                               </ul>
                             </div>
@@ -258,10 +242,10 @@
                             </div>
                             <has-error :form="form" field="current_ctc"></has-error>
                           </div>
-                          <div class="col-sm-6">
+                          <div class="col-sm-6"> 
                             <label>Expected CTC (Per Annum) </label>
                             <div class="input text">
-                              <input
+                              <input  
                                 type="text"
                                 class="form-control"
                                 placeholder="Enter Expected CTC"
@@ -278,46 +262,60 @@
                           <div class="col-sm-6">
                             <label>Current Location </label>
                             <div class="input-group-prepend">
-                        <span class="input-group-text"
-                          ><i class="fas fa-location-arrow"></i
-                        ></span>
+                       
                         <select
                           class="form-control"
-                          v-model="form.preferred_location"
+                          v-model="form.current_location"
                         >
+                        <option value="" disabled="">Select Current Location</option>
                           <optgroup
                             :label="st.state"
                             v-for="(st, index) in location"
                             :key="index"
                           >
+
                             <option
                               v-for="(loc, index) in st.location"
                               :key="index"
                               :value="loc.location"
                             >
                               {{ loc.location }}
-                            </option>
+                            </option> 
                           </optgroup>
                         </select>
                       </div>
                       <has-error
                         :form="form"
-                        field="preferred_location"
+                        field="current_location"
                       ></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
-                            <div class="input text">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter Preffered Location"
-                                v-model="form.preffered_location"
-                                :class="{
-                                  'is-invalid': form.errors.has('preffered_location'),
-                                }"
-                              />
-                            </div>
+                            <div class="input-group-prepend">
+                      
+                        <select
+                              
+                          class="form-control"
+                          v-model="form.preffered_location"
+                        >
+                        <option value="" disabled="">Select Preffered Location</option>
+                          <optgroup
+                            :label="st.state"
+                            v-for="(st, index) in location"
+                            :key="index"
+                          >
+
+                            <option
+                              v-for="(loc, index) in st.location"
+                              :key="index"
+                              :value="loc.location"
+                            >
+                              {{ loc.location }}
+                            </option> 
+                          </optgroup>
+                        </select>
+                      </div>
+                      
                             <has-error
                               :form="form"
                               field="preffered_location"
@@ -329,8 +327,8 @@
                             <label>Resume </label>
                             <input
                               type="file"
-                              id="file"
-                              ref="resume"
+                              id="file" 
+                              ref="resume" 
                               v-on:change="handleFileUpload()"
                               accept="application/pdf,application/msword,
                               application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -679,7 +677,7 @@ export default {
       formData.append("expected_ctc", this.form.expected_ctc);
       formData.append("notice_period", this.form.notice_period);
       formData.append("remarks", this.form.remarks);
-      formData.append("preffered_location", this.form.preferred_location);
+      formData.append("preffered_location", this.form.preffered_location);
       formData.append("current_location", this.form.current_location);
       formData.append("reference", this.form.reference);
 
@@ -700,7 +698,7 @@ export default {
           this.registerStatus = false;
         })
         .catch((error) => {
-          toast({
+          toast({   
             type: "error",
             text: "Addition Failed",
           });
