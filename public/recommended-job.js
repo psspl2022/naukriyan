@@ -192,7 +192,8 @@ var render = function() {
                                 1
                               )
                             ])
-                          })
+                          }),
+                          0
                         )
                       ]
                     )
@@ -258,7 +259,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "interview " }, [
+    return _c("div", { staticClass: "interview" }, [
       _c("h2", { staticClass: "interview" }, [_vm._v("Recommended Jobs")])
     ])
   },
