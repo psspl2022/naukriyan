@@ -321,38 +321,39 @@
 
                   <div class="form-group inputBox row">
                     <div class="col-sm-6">
-                            <label>Preffered Location </label>
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"
+                      <label>Preffered Location </label>
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
                           ><i class="fas fa-location-arrow"></i
                         ></span>
-                        <select   
+                        <select
                           class="form-control"
                           v-model="form.preffered_location"
                         >
-                        <option value="" disabled="">Select Preffered Location</option>
+                          <option value="" disabled="">
+                            Select Preffered Location
+                          </option>
                           <optgroup
                             :label="st.state"
                             v-for="(st, index) in location"
                             :key="index"
                           >
-
                             <option
                               v-for="(loc, index) in st.location"
                               :key="index"
                               :value="loc.location"
                             >
                               {{ loc.location }}
-                            </option> 
+                            </option>
                           </optgroup>
                         </select>
                       </div>
-                      
-                            <has-error
-                              :form="form"
-                              field="preffered_location"
-                            ></has-error>
-                          </div>
+
+                      <has-error
+                        :form="form"
+                        field="preffered_location"
+                      ></has-error>
+                    </div>
                     <div class="col-sm-6">
                       <label class="col-form-label"
                         >I am a <span style="color: red"> * </span></label
