@@ -328,9 +328,11 @@
                         ></span>
                         <select   
                           class="form-control"
-                          v-model="form.preffered_location"
+                          v-model="form.preferred_location"
                         >
-                        <option value="" disabled="">Select Preffered Location</option>
+                        <option value="" disabled="disabled">
+                            Select One
+                          </option>
                           <optgroup
                             :label="st.state"
                             v-for="(st, index) in location"
@@ -343,14 +345,14 @@
                               :value="loc.location"
                             >
                               {{ loc.location }}
-                            </option> 
+                            </option>   
                           </optgroup>
-                        </select>
+                        </select> 
                       </div>
                       
                             <has-error
                               :form="form"
-                              field="preffered_location"
+                              field="preferred_location"
                             ></has-error>
                           </div>
                     <div class="col-sm-6">

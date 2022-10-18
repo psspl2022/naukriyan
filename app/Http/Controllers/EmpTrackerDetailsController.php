@@ -87,6 +87,14 @@ class EmpTrackerDetailsController extends Controller
                         }      
                    });
         }
+        if (isset($skills) && $skills != '') {
+            $key = explode(',', $skills);
+            ($data)->Where(function ($query) use ($key) {
+                for ($i = 0; $i < count($key); $i++) {
+                    $query->orWhere('key_skills', 'like',  '%' . $key[$i] . '%');
+                }
+            });
+        }
         if(isset($userid) && $userid != '' && $userid !='undefined') {
 
             $data->Where('added_by', $userid);
