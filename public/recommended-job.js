@@ -75,27 +75,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "RecommendedJobs",
-    data: function data() {
-        return {
-            recommendedJobs: []
-        };
-    },
-    mounted: function mounted() {
-        this.getRecommendedJobs();
-    },
+  name: "RecommendedJobs",
+  data: function data() {
+    return {
+      recommendedJobs: []
+    };
+  },
+  mounted: function mounted() {
+    this.getRecommendedJobs();
+  },
 
-    methods: {
-        getRecommendedJobs: function getRecommendedJobs() {
-            var _this = this;
+  methods: {
+    getRecommendedJobs: function getRecommendedJobs() {
+      var _this = this;
 
-            axios.get('/recommended-job').then(function (response) {
-                _this.recommendedJobs = response.data.data;
-            });
-        }
+      axios.get("/recommended-job").then(function (response) {
+        _this.recommendedJobs = response.data.data;
+      });
     }
+  }
 });
 
 /***/ }),
@@ -108,7 +126,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.apply-btn[data-v-09c7cd49] {\n    color: white!important;\n}\n", ""]);
+exports.push([module.i, "\n.apply-btn[data-v-09c7cd49] {\r\n  color: white !important;\n}\r\n", ""]);
 
 // exports
 
@@ -162,11 +180,13 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [
                                 _vm._v(
-                                  _vm._s(
-                                    recommendedJob.companies.company_name
-                                      ? recommendedJob.companies.company_name
-                                      : "N/A"
-                                  )
+                                  "\n                        " +
+                                    _vm._s(
+                                      recommendedJob.companies.company_name
+                                        ? recommendedJob.companies.company_name
+                                        : "N/A"
+                                    ) +
+                                    "\n                      "
                                 )
                               ]),
                               _vm._v(" "),
@@ -184,7 +204,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                                                    View Job\n                                                "
+                                        "\n                          View Job\n                        "
                                       )
                                     ]
                                   )
@@ -192,7 +212,8 @@ var render = function() {
                                 1
                               )
                             ])
-                          })
+                          }),
+                          0
                         )
                       ]
                     )
@@ -242,9 +263,7 @@ var staticRenderFns = [
                   }),
                   _vm._v(" "),
                   _c("a", { attrs: { href: "tel:+91 11 7962 6411" } }, [
-                    _vm._v(
-                      "Hot Line: +91 11 7962 6411\n                                    "
-                    )
+                    _vm._v("Hot Line: +91 11 7962 6411 ")
                   ])
                 ])
               ])
@@ -258,7 +277,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "interview " }, [
+    return _c("div", { staticClass: "interview" }, [
       _c("h2", { staticClass: "interview" }, [_vm._v("Recommended Jobs")])
     ])
   },

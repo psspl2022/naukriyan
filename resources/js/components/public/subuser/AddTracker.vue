@@ -138,7 +138,7 @@
                               </select>
                               <!-- <input
                                 type="text"
-                                class="form-control"
+                                class="form-control" 
                                 placeholder="Enter Experience"
                                 v-model="form.experience"
                                 :class="{
@@ -155,14 +155,6 @@
                               >Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-                              <!-- <vue-tags-input
-                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
-                                v-model="tag"
-                                :separators="[';', ',']"
-                                :add-on-key="[13, ',', ';']"
-                                :tags="tags"
-                                @tags-changed="(newTags) => (tags = newTags)"
-                              /> -->
                               <vue-tags-input
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="tag"
@@ -177,16 +169,6 @@
                                 :autocomplete-items="autocompleteItems"
                                 @tags-changed="update"
                               />
-                              <!-- <input
-                                type="text"
-                                id="password"
-                                class="form-control"
-                                placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
-                                v-model="form.skills"
-                                :class="{
-                                  'is-invalid': form.errors.has('skills'),
-                                }"
-                              /> -->
                             </div>
                           </div>
                           <has-error :form="form" field="password"></has-error>
@@ -277,32 +259,57 @@
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
                             <label>Current Location </label>
-                            <div class="input text">
-                              <input
-                                type="text"
+                            <div class="input-group-prepend">
+                              <select
                                 class="form-control"
-                                placeholder="Enter Current Location"
                                 v-model="form.current_location"
-                                :class="{
-                                  'is-invalid': form.errors.has('current_location'),
-                                }"
-                              />
+                              >
+                                <option value="" disabled="">
+                                  Select Current Location
+                                </option>
+                                <optgroup
+                                  :label="st.state"
+                                  v-for="(st, index) in location"
+                                  :key="index"
+                                >
+                                  <option
+                                    v-for="(loc, index) in st.location"
+                                    :key="index"
+                                    :value="loc.location"
+                                  >
+                                    {{ loc.location }}
+                                  </option>
+                                </optgroup>
+                              </select>
                             </div>
                             <has-error :form="form" field="current_location"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
-                            <div class="input text">
-                              <input
-                                type="text"
+                            <div class="input-group-prepend">
+                              <select
                                 class="form-control"
-                                placeholder="Enter Preffered Location"
                                 v-model="form.preffered_location"
-                                :class="{
-                                  'is-invalid': form.errors.has('preffered_location'),
-                                }"
-                              />
+                              >
+                                <option value="" disabled="">
+                                  Select Preffered Location
+                                </option>
+                                <optgroup
+                                  :label="st.state"
+                                  v-for="(st, index) in location"
+                                  :key="index"
+                                >
+                                  <option
+                                    v-for="(loc, index) in st.location"
+                                    :key="index"
+                                    :value="loc.location"
+                                  >
+                                    {{ loc.location }}
+                                  </option>
+                                </optgroup>
+                              </select>
                             </div>
+
                             <has-error
                               :form="form"
                               field="preffered_location"
@@ -335,7 +342,7 @@
                                 }"
                                 v-model="form.notice_period"
                               >
-                                <option value="" disabled="">Select From Here</option>
+                                <option value="">Select From Here</option>
                                 <option value="immediate">Immediate</option>
                                 <option value="15">Within 15 days</option>
                                 <option value="30">30 days</option>
@@ -557,6 +564,7 @@ export default {
     return {
       tag: "",
       tags: [],
+      location: [],
       handlers: [],
       autocompleteItems: [],
       debounce: null,
@@ -594,6 +602,7 @@ export default {
   mounted() {
     this.getFilteredKeyword();
     this.getFilterKeywords();
+    this.getAllLocation();
     if (localStorage.getItem("reloaded")) {
       // The page was just reloaded. Clear the value from local storage
       // so that it will reload the next time this page is visited.
@@ -637,6 +646,11 @@ export default {
       if (this.form.reference === "add_reference") {
         $("#addSubUser").modal("show");
       }
+    },
+    getAllLocation() {
+      axios.get("/master/location/group").then((response) => {
+        this.location = response.data.data;
+      });
     },
     addTracker() {
       this.registerStatus = true;

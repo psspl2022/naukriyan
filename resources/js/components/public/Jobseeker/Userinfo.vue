@@ -319,13 +319,9 @@
                     <has-error :form="form" field="gender"></has-error>
                   </div>
 
-                  <div class="form-group input-group row">
+                  <div class="form-group inputBox row">
                     <div class="col-sm-6">
-                      <label class="col-form-label"
-                        >Your Prefered Location<span style="color: red">
-                          *
-                        </span></label
-                      >
+                      <label>Preffered Location </label>
                       <div class="input-group-prepend">
                         <span class="input-group-text"
                           ><i class="fas fa-location-arrow"></i
@@ -334,6 +330,9 @@
                           class="form-control"
                           v-model="form.preferred_location"
                         >
+                          <option value="" disabled="">
+                            Select Preffered Location
+                          </option>
                           <optgroup
                             :label="st.state"
                             v-for="(st, index) in location"
@@ -349,9 +348,10 @@
                           </optgroup>
                         </select>
                       </div>
+
                       <has-error
                         :form="form"
-                        field="preferred_location"
+                        field="preffered_location"
                       ></has-error>
                     </div>
                     <div class="col-sm-6">
