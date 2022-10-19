@@ -36,6 +36,33 @@ text/x-generic Managejobs.vue ( HTML document, ASCII text, with CRLF line termin
           <div class="col-sm-12">
             <div class="cms-pg-header">
               <h2 class="hk-pg-title">Manage Job</h2>
+              <div class="col-md-4 mt-3 ml-auto">
+                <form action="" method="get">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Search job"
+                          v-model="jobSearchInput"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <button
+                          type="button"
+                          class="btn btn-primary text-white"
+                          @click.prevent="searchJob()"
+                        >
+                          {{ searchStatus ? "Searching..." : "Search" }}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
 
             <div class="card mt-3">
@@ -114,9 +141,11 @@ export default {
   name: "Managejobs",
   data() {
     return {
+      jobSearchInput: "",
       total_application: "",
       jobsBySession: [],
       loading: false,
+      searchStatus: false,
     };
   },
   mounted() {
@@ -124,10 +153,31 @@ export default {
   },
 
   methods: {
-    getJobsBySessionUser(page = 1) {
+    searchJob(page = 1) {
+      let jobTxt = this.jobSearchInput;
+      this.searchStatus = true;
+      this.loading = true;
+      // console.log(jobTxt);
+      axios
+        .get("/jobs-by-sessionuser", {
+          params: { page: +page, jobTitle: jobTxt },
+        })
+        .then((response) => {
+          this.jobsBySession = response.data.data;
+          this.searchStatus = false;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log("Error");
+          this.loading = false;
+        });
+    },
+    getJobsBySessionUser(page = 1, jobSearchInput = this.jobSearchInput) {
       this.loading = true;
       axios
-        .get("/jobs-by-sessionuser", { params: { page: +page } })
+        .get("/jobs-by-sessionuser", {
+          params: { page: +page, jobTitle: jobSearchInput },
+        })
         .then((response) => {
           this.loading = false;
           this.jobsBySession = response.data.data;

@@ -155,7 +155,6 @@
                               >Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-                             
                               <vue-tags-input
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="tag"
@@ -170,7 +169,6 @@
                                 :autocomplete-items="autocompleteItems"
                                 @tags-changed="update"
                               />
-                            
                             </div>
                           </div>
                           <has-error :form="form" field="password"></has-error>
@@ -192,7 +190,7 @@
                               <ul
                                 class="filter-keyword"
                                 v-if="filteredKeywords && filterStatus && designation"
-                              > 
+                              >
                                 <li
                                   v-for="(filterKeyword, index) in filteredKeywords.slice(
                                     0,
@@ -201,7 +199,7 @@
                                   :key="index"
                                   @click="setkeyword(filterKeyword)"
                                 >
-                                  {{ filterKeyword }} 
+                                  {{ filterKeyword }}
                                 </li>
                               </ul>
                             </div>
@@ -242,10 +240,10 @@
                             </div>
                             <has-error :form="form" field="current_ctc"></has-error>
                           </div>
-                          <div class="col-sm-6"> 
+                          <div class="col-sm-6">
                             <label>Expected CTC (Per Annum) </label>
                             <div class="input text">
-                              <input  
+                              <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Enter Expected CTC"
@@ -262,60 +260,56 @@
                           <div class="col-sm-6">
                             <label>Current Location </label>
                             <div class="input-group-prepend">
-                       
-                        <select
-                          class="form-control"
-                          v-model="form.current_location"
-                        >
-                        <option value="" disabled="">Select Current Location</option>
-                          <optgroup
-                            :label="st.state"
-                            v-for="(st, index) in location"
-                            :key="index"
-                          >
-
-                            <option
-                              v-for="(loc, index) in st.location"
-                              :key="index"
-                              :value="loc.location"
-                            >
-                              {{ loc.location }}
-                            </option> 
-                          </optgroup>
-                        </select>
-                      </div>
-                      <has-error
-                        :form="form"
-                        field="current_location"
-                      ></has-error>
+                              <select
+                                class="form-control"
+                                v-model="form.current_location"
+                              >
+                                <option value="" disabled="">
+                                  Select Current Location
+                                </option>
+                                <optgroup
+                                  :label="st.state"
+                                  v-for="(st, index) in location"
+                                  :key="index"
+                                >
+                                  <option
+                                    v-for="(loc, index) in st.location"
+                                    :key="index"
+                                    :value="loc.location"
+                                  >
+                                    {{ loc.location }}
+                                  </option>
+                                </optgroup>
+                              </select>
+                            </div>
+                            <has-error :form="form" field="current_location"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
                             <div class="input-group-prepend">
-                      
-                        <select
-                              
-                          class="form-control"
-                          v-model="form.preffered_location"
-                        >
-                        <option value="" disabled="">Select Preffered Location</option>
-                          <optgroup
-                            :label="st.state"
-                            v-for="(st, index) in location"
-                            :key="index"
-                          >
+                              <select
+                                class="form-control"
+                                v-model="form.preffered_location"
+                              >
+                                <option value="" disabled="">
+                                  Select Preffered Location
+                                </option>
+                                <optgroup
+                                  :label="st.state"
+                                  v-for="(st, index) in location"
+                                  :key="index"
+                                >
+                                  <option
+                                    v-for="(loc, index) in st.location"
+                                    :key="index"
+                                    :value="loc.location"
+                                  >
+                                    {{ loc.location }}
+                                  </option>
+                                </optgroup>
+                              </select>
+                            </div>
 
-                            <option
-                              v-for="(loc, index) in st.location"
-                              :key="index"
-                              :value="loc.location"
-                            >
-                              {{ loc.location }}
-                            </option> 
-                          </optgroup>
-                        </select>
-                      </div>
-                      
                             <has-error
                               :form="form"
                               field="preffered_location"
@@ -327,8 +321,8 @@
                             <label>Resume </label>
                             <input
                               type="file"
-                              id="file" 
-                              ref="resume" 
+                              id="file"
+                              ref="resume"
                               v-on:change="handleFileUpload()"
                               accept="application/pdf,application/msword,
                               application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -348,7 +342,7 @@
                                 }"
                                 v-model="form.notice_period"
                               >
-                                <option value="" disabled="">Select From Here</option>
+                                <option value="">Select From Here</option>
                                 <option value="immediate">Immediate</option>
                                 <option value="15">Within 15 days</option>
                                 <option value="30">30 days</option>
@@ -617,7 +611,6 @@ export default {
       // Set a flag so that we know not to reload the page twice.
       localStorage.setItem("reloaded", "1");
       location.reload();
-    
     }
   },
   methods: {
@@ -698,7 +691,7 @@ export default {
           this.registerStatus = false;
         })
         .catch((error) => {
-          toast({   
+          toast({
             type: "error",
             text: "Addition Failed",
           });

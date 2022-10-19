@@ -328,7 +328,7 @@
                         ></span>
                         <select
                           class="form-control"
-                          v-model="form.preffered_location"
+                          v-model="form.preferred_location"
                         >
                           <option value="" disabled="">
                             Select Preffered Location
