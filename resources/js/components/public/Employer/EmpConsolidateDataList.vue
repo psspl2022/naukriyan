@@ -87,13 +87,22 @@
                 <div class="col-md-2">
                   <label>Skills</label>
                   <div class="form-group">
-                    <input
+                    <vue-tags-input 
+                      style="padding: 0;" 
+                      class="input-tag form-control form-control-sm"
+                      placeholder="Enter Multiple Skills" 
+                      v-model="skills"
+                      :add-on-key="[13, ',', ';']"
+                      :tags="allSkill"
+                      :autocomplete-items="autocompleteItems" 
+                      @tags-changed="update" />
+                    <!-- <input
                       type="text"
                       name="skills"
                       class="form-control"
                       v-model="skills"
                       placeholder="Enter Skills"
-                    />
+                    /> -->
                   </div>
                 </div>
 
@@ -244,7 +253,10 @@
                           {{ resumes.preferred_location }}
                         </td>
                         <td>{{ resumes.work_experience }}</td>
-                        <td>{{ resumes.key_skills }}</td>
+                        <!-- <td>{{ resumes.key_skills }}</td> -->
+                        <td>
+                          <text-highlight :queries="allSkill">{{ resumes.key_skills }}</text-highlight>
+                        </td>
                         <td>
                           {{ resumes.annual_salary }}
                         </td>
@@ -276,8 +288,19 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import TextHighlight from 'vue-text-highlight';
+import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
+Vue.component('text-highlight', TextHighlight);
+
 export default {
   name: "List",
+  
+  components: {
+    VueTagsInput,
+  },
+
   data() {
     return {
       checkedNames: [],
@@ -294,6 +317,9 @@ export default {
       multikeyword: "",
       location: "",
       skills: "",
+      allSkill: [],
+      handlers: [],
+      autocompleteItems: [],
       selectAll: false,
       checkedData: "",
     };
@@ -301,7 +327,35 @@ export default {
   mounted() {
     this.getUniqueSource();
   },
+  watch: {
+      skills: "initItems",
+
+    },
   methods: {
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.allSkill = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.allSkill.toString();
+    },
+    initItems() {
+      if (this.skills.length < 2) return;
+      const url = `get-allskills/` + this.skills;
+
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        axios
+          .get(url)
+          .then((response) => {
+            this.autocompleteItems = response.data.data.map((a) => {
+              return { text: a.name };
+            });
+          })
+          .catch(() => console.warn("Oh. Something went wrong"));
+      }, 600);
+      
+    },
     select() {
       this.checkedNames = [];
 
@@ -331,7 +385,7 @@ export default {
             "&location=" +
             this.location +
             "&skills=" +
-            this.skills
+            this.allSkill
         )
         .then(function (response) {
           self.myData = response.data.data;

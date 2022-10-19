@@ -22,3 +22,7 @@ Route::post('/add-becil-userdetail','BecilUserProfileController@store');
 Route::post('/add-becil-userqualification','BecilUserProfileController@addQualification');
 Route::post('/add-becil-userexperince','BecilUserProfileController@addExperience');
 Route::post('/add-becil-userdocs','BecilUserProfileController@addDocument');
+
+// Workshops - Webinars
+Route::post('store-resume-building-workshop', 'WorkshopController@storeResumeBuilding');
+Route::post('store-linkedin-workshop', 'WorkshopController@storeLinkedIn');
