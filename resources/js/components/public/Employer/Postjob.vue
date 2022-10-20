@@ -62,7 +62,8 @@
                 <img
                   v-if="searchStatus"
                   src="https://i.gifer.com/ZZ5H.gif"
-                  alt=""
+                  alt="Loder"
+                  style="position: fixed; right: 50%; z-index: 999999999"
                   height="100"
                   width="100"
                 />
@@ -202,11 +203,7 @@ export default {
             this.status = true;
             axios.get(uri).then((response) => {
               if (response.status == 200) {
-                swal.fire(
-                  "Change status!",
-                  "Your status has been changed.",
-                  "success"
-                );
+                swal.fire("Change status!", "Your status has been changed.", "success");
                 this.status = false;
               }
               this.getEmployerJob();
@@ -232,11 +229,7 @@ export default {
             this.status = true;
             axios.get(uri).then((response) => {
               if (response.status == 200) {
-                swal.fire(
-                  "Change status!",
-                  "Your status has been changed.",
-                  "success"
-                );
+                swal.fire("Change status!", "Your status has been changed.", "success");
                 this.status = false;
               }
               this.getEmployerJob();

@@ -928,4 +928,3 @@ Route::get('get-all-becil-user-detail', 'BecilUserProfileController@getAlluserDe
 // Workshops - Webinars
 Route::post('store-resume-building-workshop', 'WorkshopController@storeResumeBuilding');
 Route::post('store-linkedin-workshop', 'WorkshopController@storeLinkedIn');
-
