@@ -1,0 +1,844 @@
+/*--------- Google Font import -----------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+
+:root
+{
+	/*---- colors -------*/
+	/* --primary-color: #f9980f; */
+	--primary-color: #f95602;
+	--secondary-color: #1a1a1a;
+	--third-color: #ffffff;
+}
+
+/* *
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html
+{
+	font-size: 16px;
+}
+
+body
+{
+	font-family: 'Poppins', sans-serif;
+} */
+
+img
+{
+	max-width: 100%;
+	height: auto;
+}
+
+.container1
+{
+	padding: 60px 10px;
+}
+
+.white
+{
+	color: var(--third-color);
+}
+
+.btn1
+{
+	display: block;
+	width: 100%;
+	background: var(--primary-color);
+	border: none;
+	border-radius: 0.2rem;
+	padding: 1rem;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.btn1:hover
+{
+	transform: translateY(10px);
+}
+
+.btn1 a, .btn-style
+{
+	color: var(--third-color)!important;
+	font-size: 0.8rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.heading-new
+{
+	color: var(--secondary-color);
+	font-size: 1.8rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+}
+
+
+.heading1
+{
+	color: var(--secondary-color);
+	font-size: 1.8rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+}
+
+
+
+
+
+/*---------- Top bar starts -----------*/
+.top-bar
+{
+	padding: 12px 20px;
+}
+
+.notification
+{
+	color: var(--secondary-color);
+	font-size: 1.1rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	line-height: 1.2;
+	text-align: center;
+}
+/*---------- Top bar ends -----------*/
+
+
+/*---------- Header section start ----------*/
+.header
+{
+	background:linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(49, 30, 3, 0.5)), url('../assets/public/asset/img/webinar-booking.jpg');
+  	background-position: top center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.subheading
+{
+	color: var(--primary-color);
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+.main-heading
+{
+	color: var(--third-color);
+	font-size: 2.2rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+	padding: 26px 0;
+}
+
+.inner-row
+{
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+}
+
+.inner-row .col .date, .inner-row .col .time
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--third-color);
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
+.date i, .time i
+{
+	color: var(--third-color);
+	background: var(--primary-color);
+	font-size: 1.6rem;
+	padding: 8px;
+	border: none;
+	border-radius: 0.3rem;
+	margin: 1rem 0;
+}
+
+.para-line
+{
+	font-size: 1rem;
+	text-align: center;
+	padding: 1.5rem 0;
+}
+
+.form-area
+{
+	background: #f6f6f6;
+	padding: 1.2rem;
+}
+
+.form-area .form-heading
+{
+	font-size: 1.6rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.form-area hr
+{
+	color: #d4d4d4;
+	margin: 20px 0;
+}
+
+.input-field
+{
+	margin: 1rem 0;
+	padding: 0 0.5rem;
+}
+
+.input-field label
+{
+	font-size: 0.9rem;
+}
+
+.input-field input
+{
+	width: 100%;
+	background: var(--third-color);
+	border: 1px solid #d4d4d4;
+	font-size: 0.9rem;
+	font-weight: 400;
+	padding: 0.8rem;
+}
+/*---------- Header section end ----------*/
+
+
+/*---------- Topics section start ----------*/
+.topics
+{
+	background: #F6F6F6;
+}
+
+.topics-row .col
+{
+	background: var(--third-color);
+	margin: 2rem 1rem;
+	padding: 2rem;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.topics-row .col i
+{
+	color: var(--third-color);
+	background: var(--primary-color);
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	padding: 0.6rem;
+	border: none;
+	border-radius: 5px;
+}
+
+.topics-row .col .topic-heading
+{
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.topics-row .col .para-line
+{
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+.topic-btn1-area
+{
+	display: flex;
+	justify-content: center;
+}
+
+.topic-btn1-area .btn1
+{
+	width: fit-content;
+}
+/*---------- Topics section end ----------*/
+
+
+/*----------- host section starts ----------*/
+.host-feature
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 0;
+}
+
+.host-feature i
+{
+	color: var(--third-color);
+	background: var(--primary-color);
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	padding: 0.4rem;
+	border: none;
+	border-radius: 5px;
+}
+
+.host-feature .feature-name
+{
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+/*----------- host section ends ----------*/
+
+
+/*----------- Testimonial section start -----------*/
+.testimonial
+{
+	background: #f6f6f6;
+}
+
+.testimonial-row .col
+{
+	border-top: 4px solid var(--primary-color);
+	background: var(--third-color);
+	margin-bottom: 1.6rem;
+	padding: 1.2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.testimonial-row .col img
+{
+	width: 26%;
+	margin: 0 auto;
+	border: none;
+	border-radius: 50px;
+}
+
+.testimonial-row .col .client-name
+{
+	margin-top: 0.5rem;
+	line-height: 1;
+}
+
+.testimonial-row .col .para-line
+{
+	margin: 0;
+	padding: 0;
+}
+
+.testimonial-row .col .testimonial-divider
+{
+	border-bottom: 1px solid #8e44ad;
+	padding: 0.5rem 0;
+	width: 50px;
+}
+/*----------- Testimonial section end -----------*/
+
+
+
+/*------------ Partner section start ------------*/
+.partners
+{
+	margin: 3rem 0;
+}
+
+.partner-row .col
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.partner-logo
+{
+	width: 70%;
+	padding: 0.5rem 0;
+}
+/*------------ Partner section end ------------*/
+
+
+
+/*----------- Footer section start ------------*/
+.footer1 .container1
+{
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(49, 30, 3, 0.5)), url('../assets/public/asset/img/footer.jpg');
+  	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.footer1 .container1
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer1 .container1 .heading-new
+{
+	color: var(--third-color);
+}
+
+.btn1
+{
+	color: var(--third-color);
+	font-weight: 500;
+	text-transform: uppercase;
+	width: fit-content;
+}
+/*----------- Footer section end ------------*/
+
+
+
+/*------------------------------------------------*/
+/*------------- Desktop size ---------------------*/
+/*------------------------------------------------*/
+@media screen and (min-width: 789px)
+{
+	.container1
+	{
+		padding: 5rem;
+	}
+
+	.row1
+	{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.row1 .col
+	{
+		width: 100%;
+	}
+
+	.heading-new
+	{
+		font-size: 2.4rem;
+	}
+
+	/*---------- Top bar starts -----------*/
+	.top-bar
+	{
+		padding: 12px 20px;
+	}
+
+	.notification
+	{
+		font-size: 1rem;
+	}
+	/*---------- Top bar ends -----------*/
+
+
+	/*---------- Header section start ----------*/
+	.header
+	{
+		background:linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(49, 30, 3, 0.5)), url('../assets/public/asset/img/webinar-booking.jpg');
+		background-position: top center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.header > .container1
+	{
+		height: 100vh;
+		display: flex;
+	}
+
+	.header .container1 .row1
+	{
+		gap: 5rem;
+	}
+
+	.header .container1 .row1 .header-content
+	{
+		width: 100%;
+	}
+
+	.header .container1 .row1 .header-form
+	{
+		width: 66%;
+	}
+
+	.header-content .subheading
+	{
+		text-align: left;
+	}
+
+	.header-content .main-heading
+	{
+		font-size: 3.2rem;
+		font-weight: 600;
+		text-align: left;
+	}
+
+	.header-content .main-heading span
+	{
+		color: var(--primary-color);
+	}
+
+	.inner-row
+	{
+		justify-content: flex-start;
+		gap: 3rem;
+	}
+
+	.inner-row .col
+	{
+		width: fit-content;
+	}
+
+	.inner-row .col .date, .inner-row .col .time
+	{
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
+	}
+
+	.para-line
+	{
+		text-align: left;
+	}
+
+	.form-row
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 0;
+		padding-top: 0;
+	}
+
+	.booking-form .form-row .col
+	{
+		width: 100%;
+	}
+
+	.form-area
+	{
+		padding: 2rem;
+	}
+
+	.booking-form .form-row .col .input-field
+	{
+		margin-bottom: 0;
+	}
+
+	.booking-form .input-field
+	{
+		margin: 1rem;
+	}
+
+	.booking-form .input-field .btn1
+	{
+		width: 100%;
+	}
+	/*---------- Header section end ----------*/
+
+
+	/*---------- Topics section start ----------*/
+	.topics .container1 .para-line
+	{
+		text-align: center;
+		max-width: 55%;
+		margin: 0 auto;
+	}
+
+	.topics-row
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.topics-row .col
+	{
+		padding: 3rem;
+	}
+
+	.topics-row .col .para-line
+	{
+		max-width: 100%;
+		text-align: left;
+	}
+	/*---------- Topics section end ----------*/
+
+
+	/*----------- host section starts ----------*/
+	.host .container1 .row1
+	{
+		gap: 3rem;
+	}
+
+	.host-img
+	{
+		border: none;
+		border-radius: 8px;
+	}
+
+	.host-content-col .subheading, .host-content-col .heading-new
+	{
+		text-align: left;
+	}
+
+	.host-content-col .para-line
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+	.host-feature
+	{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 1rem 0;
+	}
+
+	.host-feature i
+	{
+		font-size: 1.8rem;
+		margin-bottom: 0;
+	}
+
+	.host-feature .feature-name
+	{
+		padding-left: 0.8rem;
+	}
+	/*----------- host section ends ----------*/
+
+
+	/*----------- Testimonial section start -----------*/
+	.testimonial .container1 .para-line
+	{
+		text-align: center;
+		max-width: 60%;
+		margin: 0 auto;
+	}
+
+	.testimonial-row
+	{
+		gap: 3rem;
+	}
+
+	.testimonial-row .col
+	{
+		padding: 3rem;
+	}
+
+	.testimonial-row .col img
+	{
+		width: 80px;
+		height: 80px;
+	}
+
+	.testimonial-row .col .review-content
+	{
+		max-width: 100%;
+	}
+
+	.testimonial-row .col .testimonial-divider
+	{
+		border-bottom: 1px solid #8e44ad;
+		padding: 0.5rem 0;
+		width: 50px;
+	}
+	/*----------- Testimonial section end -----------*/
+
+
+	/*----------- Footer section start ------------*/
+	.footer1
+	{
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(49, 30, 3, 0.8)), url('../assets/public/asset/img/footer.jpg');
+	  	background-position: center center;
+	}
+
+	.footer1 .container1
+	{
+		padding: 8rem 0;
+	}
+
+	.footer1 .container1 .para-line
+	{
+		text-align: center;
+		max-width: 50%;
+	}
+	/*----------- Footer section end ------------*/
+}
+
+
+/*--------- Thanks content starts --------------*/
+.thanks-content i
+{
+	color: var(--primary-color);
+	font-size: 4rem;
+	text-align: center;
+	width: 100%;
+}
+
+.thanks-content .main-heading, .thanks-content .para-line
+{
+	color: #000000;
+	text-align: center;
+}
+
+.thanks-content .main-heading
+{
+	font-size: 1.8rem;
+	font-weight: 500;
+}
+
+.download-content
+{
+	background: #f6f6f6;
+	margin: 2rem 0;
+	padding: 2.4rem 0.5rem;
+}
+
+.download-content .heading
+{
+	color: var(--secondary-color);
+	font-size: 1.4rem;
+	text-align: left;
+}
+
+.download-details
+{
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+
+.extras-content
+{
+	background: var(--primary-color);
+	padding: 4rem 0.6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.extras-content .host-img
+{
+	width: 80px;
+	height: 80px;
+	border: none;
+	border-radius: 50%;
+}
+
+.extras-content .heading, .extras-content .para-line
+{
+	color: var(--third-color);
+	text-align: center;
+}
+
+.extras-content .heading
+{
+	font-size: 1.2rem;
+	padding: 0.5rem 0;
+}
+
+.extras-content .separator
+{
+	border: 1px solid var(--third-color);
+	width: 50px;
+}
+.social-media i
+{
+	margin: 0px 5px;
+	font-size: 1.5rem;
+	color: var(--third-color);
+	cursor: pointer;
+}
+/*---------- End Thankyou -----------*/
+
+/* Media Queries */
+@media screen and (min-width: 789px)
+{
+	/* .btn
+	{
+		width: fit-content;
+		padding: 1rem 3rem;
+	}
+
+	.btn a
+	{
+		color: var(--secondary-color);
+		font-size: 0.8rem;
+		font-weight: 600;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+
+	.container
+	{
+		padding: 5rem;
+	}
+
+	.container > .row
+	{
+		display: flex;
+		justify-content: center;
+		gap: 3rem;
+	} */
+
+	.thanks-content
+	{
+		width: 100%;
+	}
+
+	.extras-content
+	{
+		width: 70%;
+	}
+
+	.thanks-content .main-heading
+	{
+		font-size: 3rem;
+		font-weight: 600;
+	}
+
+	.extras-content
+	{
+		padding: 4rem;
+	}
+
+	.extras-content .host-img
+	{
+		width: 100px;
+		height: 100px;
+	}
+
+	.extras-content .heading
+	{
+		font-size: 1.8rem;
+		padding: 0.5rem 0;
+	}
+
+	.extras-content .separator
+	{
+		border: 1px solid var(--third-color);
+		width: 50px;
+		margin: 1.5rem 0;
+	}
+
+	.social-media i
+	{
+		font-size: 2rem;
+	}
+}

@@ -121,6 +121,25 @@
                   </li>
                 </ul>
               </li>
+
+              <li class="nav-item dropdown" role="presentation">
+                <a
+                  class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
+                  href="#"
+                  >Workshop</a
+                >
+
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                <router-link :to="`/resume-building-workshop`">
+                        <a class="dropdown-item" href="#"
+                          >Resume Building Workshop</a
+                        ></router-link>
+                </ul>
+              </li>
             </ul>
 
             <!-- For Employer -->

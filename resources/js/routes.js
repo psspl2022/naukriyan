@@ -310,8 +310,12 @@ import TestPage from "./components/public/Employer/TestPage.vue";
 import selfRegistration from "./components/admin/self_registration/List.vue";
 
 //Becil Candidate User
-import BecilCandidateList from './components/admin/reports/BecilCandidateList.vue'
+import BecilCandidateList from './components/admin/reports/BecilCandidateList.vue';
 
+//Workshop
+import ResumeBuildingWorkshop from './components/public/Workshop/ResumeBuilding.vue';
+
+import Thankyou from './components/public/Workshop/Thankyou.vue';
 
 // noinspection JSUnresolvedVariable,JSUnresolvedFunction
 export const routes = [
@@ -1416,5 +1420,16 @@ export const routes = [
         path: '/becil-candidate-list',
         component: BecilCandidateList
     },
+
+    //Workshop
+    {
+        path: '/resume-building-workshop',
+        component: ResumeBuildingWorkshop
+    },
+    {
+        path: '/thankyou',
+        component: Thankyou
+    }
+
 
 ];
