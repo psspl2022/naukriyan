@@ -40,7 +40,20 @@
               <hr />
             </div>
 
-            
+            <!-- <div>
+                <label
+                  >Search (Title / Status / Client Name)
+                  <input
+                    type="text"
+                    name="example1_length"
+                    aria-controls="example1"
+                    placeholder="Search here Title,Status,Client Name....."
+                    v-model="keyword"
+                    @keyup=""
+                    class="form-control form-control-sm"
+                  />
+                </label>
+              </div> -->
             <div class="row my-3">
               <div class="col-sm-3">
                 <div class="form-check checkbox-all">
@@ -493,7 +506,8 @@ export default {
       commentinfo:'',      
       input_subject:'',
       description:'',
-      empEmail:''
+      empEmail:'',
+      keyword: "",
     };
   },
   mounted() {

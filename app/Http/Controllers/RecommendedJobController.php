@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace App\Http\Controllers;
 
@@ -29,14 +31,13 @@ class RecommendedJobController extends Controller
 
             foreach ($skills as $key => $skill) {
                 if ($key == 0) {
-                    $q->where('job_skills', 'like', '%' . $skill . '%')->where('status','Active');
+                    $q->where('job_skills', 'like', '%' . $skill . '%')->where('status', 'Active');
                 } else {
-                    $q->orWhere('job_skills', 'like', '%' . $skill . '%')->where('status','Active');
+                    $q->orWhere('job_skills', 'like', '%' . $skill . '%')->where('status', 'Active');
                 }
             }
 
             return $q;
-
         })->get();
 
         return response()->json(['data' => $job], 200);
