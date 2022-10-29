@@ -115,17 +115,6 @@
                             <label>Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
-<<<<<<< HEAD
-
-                              <vue-tags-input placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
-                                v-model="tag" @keyup="
-                                  () => {
-                                    placeholder = ' ';
-                                  }
-                                " :separators="[';', ',']" :add-on-key="[13, ',', ';']" :tags="tags"
-                                :autocomplete-items="autocompleteItems" @tags-changed="update" />
-
-=======
                               <vue-tags-input
                                 placeholder="Enter Skills (Multiple Skills Seperated by Comma(,)"
                                 v-model="tag"
@@ -140,7 +129,6 @@
                                 :autocomplete-items="autocompleteItems"
                                 @tags-changed="update"
                               />
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                             </div>
                           </div>
                           <has-error :form="form" field="password"></has-error>
@@ -153,13 +141,6 @@
                                 placeholder="Select or Input Designation" v-model="designation" />
                             </div>
                             <div style="background-color: white">
-<<<<<<< HEAD
-                              <ul class="filter-keyword" v-if="filteredKeywords && filterStatus && designation">
-                                <li v-for="(filterKeyword, index) in filteredKeywords.slice(
-                                  0,
-                                  9
-                                )" :key="index" @click="setkeyword(filterKeyword)">
-=======
                               <ul
                                 class="filter-keyword"
                                 v-if="filteredKeywords && filterStatus && designation"
@@ -172,7 +153,6 @@
                                   :key="index"
                                   @click="setkeyword(filterKeyword)"
                                 >
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                                   {{ filterKeyword }}
                                 </li>
                               </ul>
@@ -208,17 +188,12 @@
                           <div class="col-sm-6">
                             <label>Expected CTC (Per Annum) </label>
                             <div class="input text">
-<<<<<<< HEAD
-                              <input type="text" class="form-control" placeholder="Enter Expected CTC"
-                                v-model="form.expected_ctc" :class="{
-=======
                               <input
                                 type="text"
                                 class="form-control"
                                 placeholder="Enter Expected CTC"
                                 v-model="form.expected_ctc"
                                 :class="{
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                                   'is-invalid': form.errors.has('expected_ctc'),
                                 }" />
                             </div>
@@ -229,14 +204,6 @@
                           <div class="col-sm-6">
                             <label>Current Location </label>
                             <div class="input-group-prepend">
-<<<<<<< HEAD
-
-                              <select class="form-control" v-model="form.current_location">
-                                <option value="" disabled="">Select Current Location</option>
-                                <optgroup :label="st.state" v-for="(st, index) in location" :key="index">
-
-                                  <option v-for="(loc, index) in st.location" :key="index" :value="loc.location">
-=======
                               <select
                                 class="form-control"
                                 v-model="form.current_location"
@@ -254,7 +221,6 @@
                                     :key="index"
                                     :value="loc.location"
                                   >
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                                     {{ loc.location }}
                                   </option>
                                 </optgroup>
@@ -265,21 +231,6 @@
                           <div class="col-sm-6">
                             <label>Preffered Location </label>
                             <div class="input-group-prepend">
-<<<<<<< HEAD
-
-                              <select class="form-control" v-model="form.preffered_location">
-                                <option value="" disabled="">Select Preffered Location</option>
-                                <optgroup :label="st.state" v-for="(st, index) in location" :key="index">
-
-                                  <option v-for="(loc, index) in st.location" :key="index" :value="loc.location">
-                                    {{ loc.location }}
-                                  </option>
-                                </optgroup>
-                              </select>
-                            </div>
-
-                            <has-error :form="form" field="preffered_location"></has-error>
-=======
                               <select
                                 class="form-control"
                                 v-model="form.preffered_location"
@@ -307,22 +258,17 @@
                               :form="form"
                               field="preffered_location"
                             ></has-error>
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                           </div>
                         </div>
                         <div class="form-group row inputBox">
                           <div class="col-md-12">
                             <label>Resume </label>
-<<<<<<< HEAD
-                            <input type="file" id="file" ref="resume" v-on:change="handleFileUpload()" accept="application/pdf,application/msword,
-=======
                             <input
                               type="file"
                               id="file"
                               ref="resume"
                               v-on:change="handleFileUpload()"
                               accept="application/pdf,application/msword,
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                               application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                               class="form-control" />
                             <has-error :form="form" field="resume"></has-error>
@@ -332,12 +278,6 @@
                           <div class="col-sm-6">
                             <label>Notice Period </label>
                             <div class="input text">
-<<<<<<< HEAD
-                              <select class="form-control" :class="{
-                                'is-invalid': form.errors.has('notice_period'),
-                              }" v-model="form.notice_period">
-                                <option value="" disabled="">Select From Here</option>
-=======
                               <select
                                 class="form-control"
                                 :class="{
@@ -346,7 +286,6 @@
                                 v-model="form.notice_period"
                               >
                                 <option value="">Select From Here</option>
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
                                 <option value="immediate">Immediate</option>
                                 <option value="15">Within 15 days</option>
                                 <option value="30">30 days</option>
@@ -561,10 +500,6 @@ export default {
       // Set a flag so that we know not to reload the page twice.
       localStorage.setItem("reloaded", "1");
       location.reload();
-<<<<<<< HEAD
-
-=======
->>>>>>> fed1755a52511282ab753631c6dde3b89e917aa1
     }
   },
   methods: {
