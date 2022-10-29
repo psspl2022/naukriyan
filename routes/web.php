@@ -924,3 +924,7 @@ Route::get('/get-video-resume', 'ProfileCompleteController@getVideoResume');
 //Becil-Jobs Users Data
 Route::get('get-all-becil-user-detail', 'BecilUserProfileController@getAlluserDetail');
 // Route::get('/testb','BecilUserProfileController@testing');
+
+// Workshops - Webinars
+Route::post('store-resume-building-workshop', 'WorkshopController@storeResumeBuilding');
+Route::post('store-linkedin-workshop', 'WorkshopController@storeLinkedIn');

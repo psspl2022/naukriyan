@@ -458,6 +458,7 @@ class JobmanagerController extends Controller
     {
         $status = $request->status;
         $keyword = $request->keyword;
+        $jobTitle = $request->jobTitle;
         $uid = Session::get('user')['id'];
         $data = DB::table('jobmanagers')
             ->leftjoin('job_categories', 'job_categories.id', 'jobmanagers.job_category_id')
@@ -465,7 +466,9 @@ class JobmanagerController extends Controller
             ->select('jobmanagers.id', 'jobmanagers.title', 'jobmanagers.status', 'jobmanagers.last_apply_date', 'job_categories.job_category', 'client_names.name')
             ->where('jobmanagers.userid', $uid)
             ->orderBy('jobmanagers.created_at', 'DESC');
-
+        if (isset($jobTitle)) {
+            $data->where('title', 'LIKE', "%$jobTitle%");
+        }
         if (isset($keyword) && $keyword !== '') {
             $data->where(function ($query) use ($keyword) {
                 $query->where('jobmanagers.title', 'like', "%$keyword%")
