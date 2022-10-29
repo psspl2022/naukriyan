@@ -20,7 +20,6 @@ $(document).ready(function () {
     });
 });
 
-
 // editor support
 // import 'v-markdown-editor/dist/index.css';
 import 'v-markdown-editor/dist/v-markdown-editor.css';
@@ -46,7 +45,6 @@ import storeData from "./store/index"
 const store = new Vuex.Store(
     storeData
 )
-
 import { filter } from './filter'
 
 // vue router
@@ -120,10 +118,13 @@ import swal from 'sweetalert2'
 
 window.swal = swal;
 const toast = swal.mixin({
+    background: 'rgb(230, 230, 2309)',
+    border:'2px solid #000000',
+    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 1px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(0, 0, 0, 0.2) 0px 2px 20px 0px;',
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000
+    timer: 9000
 });
 
 window.toast = toast

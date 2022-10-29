@@ -199,7 +199,7 @@
                   <div class="form-group input-group row">
                     <div class="col-sm-6">
                       <label class="col-form-label"
-                        >First Name<span style="color: red"> * </span></label
+                        >First Name<span style="color: red"> *</span></label
                       >
                       <div class="input-group-prepend">
                         <span class="input-group-text"
@@ -344,16 +344,16 @@
                               :value="loc.location"
                             >
                               {{ loc.location }}
-                            </option>
+                            </option> 
                           </optgroup>
-                        </select>
+                        </select> 
                       </div>
-
-                      <has-error
-                        :form="form"
-                        field="preffered_location"
-                      ></has-error>
-                    </div>
+                      
+                            <has-error
+                              :form="form"
+                              field="preffered_location"
+                            ></has-error>
+                          </div>
                     <div class="col-sm-6">
                       <label class="col-form-label"
                         >I am a <span style="color: red"> * </span></label
@@ -1042,7 +1042,7 @@
                                 >
                                   <span aria-hidden="true">&times;</span>
                                 </button>
-                                <p class="modal-title">Modal title</p>
+                                <!-- <p class="modal-title">Modal title</p> -->
                               </div>
                               <div class="modal-body">
                                 <div class="col-md-12" v-if="errors">
@@ -1060,7 +1060,7 @@
                                             ><i class="fas fa-user"></i
                                           ></span>
                                           <input
-                                            type="text"
+                                            type="text"   
                                             name="course"
                                             v-model="editCertInfo.course"
                                             class="form-control"
@@ -1430,6 +1430,7 @@
                             v-model="editEducationalInfo.percentage_grade"
                             class="form-control"
                             placeholder="CGPA/Percentage"
+                            maxlength="4"
                           />
                         </div>
                         <div class="col-md-6">
@@ -1596,9 +1597,9 @@
                               >
                                 <span aria-hidden="true">&times;</span>
                               </button>
-                              <p class="modal-title">
+                              <!-- <p class="modal-title">
                                 Edit Professional Detail
-                              </p>
+                              </p> -->
                             </div>
                             <div class="modal-body">
                               <div class="col-md-12" v-if="errors">

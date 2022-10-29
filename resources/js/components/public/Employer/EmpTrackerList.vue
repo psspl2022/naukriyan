@@ -47,7 +47,6 @@
                         name="source"
                         class="form-control form-control-sm"
                         v-model="source"
-                        @change="getTrackerList"
                       >
                         <option value="">Select Source</option>
                         <option
@@ -79,7 +78,7 @@
                     <label
                       >Skills
                       <small>
-                        (Multiple Skills Seperated by comma(,))</small
+                        (Multiple Skills)</small
                       ></label
                     >
 
@@ -113,7 +112,6 @@
                         class="form-control form-control-sm"
                         v-model="from_date"
                         placeholder="Enter From Date"
-                        @change="getTrackerList"
                       />
                     </div>
                   </div>
@@ -126,7 +124,6 @@
                         class="form-control form-control-sm"
                         v-model="to_date"
                         placeholder="Enter To Date"
-                        @change="getTrackerList"
                       />
                     </div>
                   </div>
@@ -137,7 +134,6 @@
                         name="designation"
                         class="form-control form-control-sm"
                         v-model="designation"
-                        @change="getTrackerList"
                       >
                         <option value="">Select Designation</option>
                         <option
@@ -159,7 +155,6 @@
                         name="resume_upload"
                         class="form-control form-control-sm"
                         v-model="resume_upload"
-                        @change="getTrackerList"
                       >
                         <option value="">All</option>
                         <option value="yes">Yes</option>
@@ -175,7 +170,6 @@
                         name="experience"
                         class="form-control form-control-sm"
                         v-model="experience"
-                        @change="getTrackerList"
                       >
                         <option value="">Select Experience</option>
                         <option value="fresher">0-1 Yr (Also Fresher)</option>
