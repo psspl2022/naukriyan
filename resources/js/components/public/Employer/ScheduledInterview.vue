@@ -44,6 +44,7 @@
                         type="date"
                         class="form-control"
                         placeholder="Enter From Date"
+                        value="2022-11-01"
                         id="startDate"
                       />
                     </div>
@@ -51,21 +52,18 @@
                       <input
                         type="date"
                         class="form-control"
-                        placeholder="Enter To Date"
+                        value=""
+                        placeholder="2020-11-01"
+                        min="2022-11-01"
+                        max="2050-11-01"
                         id="endDate"
                       />
                     </div>
                     <div class="col-sm-4">
-                      <button
-                        type="submit"
-                        class="btn btn-secondary text-white mr-2"
-                      >
+                      <button type="submit" class="btn btn-secondary text-white mr-2">
                         submit
                       </button>
-                      <button
-                        type="submit"
-                        class="btn btn-secondary text-white mr-2"
-                      >
+                      <button type="submit" class="btn btn-secondary text-white mr-2">
                         Reset
                       </button>
                     </div>
@@ -88,9 +86,7 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="(
-                          scheduleInterview, index
-                        ) in scheduledInterviewList"
+                        v-for="(scheduleInterview, index) in scheduledInterviewList"
                         :key="scheduleInterview.id"
                       >
                         <td>{{ index + 1 }}</td>
@@ -144,5 +140,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

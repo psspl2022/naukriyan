@@ -44,8 +44,7 @@
               <div class="col-sm-12">
                 <i class="fa fa-info" aria-hidden="true"></i
                 ><span style="color: red">
-                  Job Title,Job for,Job Sector and Job description are
-                  Mandatory</span
+                  Job Title,Job for,Job Sector and Job description are Mandatory</span
                 >
                 <form
                   class="popupForm"
@@ -58,8 +57,7 @@
                     <div class="form-group row mb-2">
                       <div class="col-sm-4">
                         <label class="col-form-label" for=""
-                          ><span style="color: red"> * </span>Select Job
-                          For</label
+                          ><span style="color: red"> * </span>Select Job For</label
                         >
                         <select
                           class="form-control custom-select"
@@ -76,8 +74,7 @@
                       </div>
                       <div class="col-sm-4">
                         <label class="col-form-label" for="">
-                          <span style="color: red"> * </span> Select Job
-                          Sector</label
+                          <span style="color: red"> * </span> Select Job Sector</label
                         >
                         <select
                           class="form-control custom-select"
@@ -97,10 +94,7 @@
                             {{ sector.job_sector }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_sector_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_sector_id"></has-error>
                       </div>
                       <div class="col-sm-4">
                         <label class="col-form-label" for=""
@@ -153,9 +147,7 @@
                         <has-error :form="form" field="title"></has-error>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Select Industry</label
-                        >
+                        <label class="col-form-label" for="">Select Industry</label>
                         <select
                           class="form-control custom-select"
                           name="job_industry_id"
@@ -173,10 +165,7 @@
                             {{ industry.category_name }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_industry_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_industry_id"></has-error>
                       </div>
 
                       <div class="col-sm-4">
@@ -188,14 +177,10 @@
                           name="job_functional_role_id"
                           v-model="form.job_functional_role_id"
                           :class="{
-                            'is-invalid': form.errors.has(
-                              'job_functional_role_id'
-                            ),
+                            'is-invalid': form.errors.has('job_functional_role_id'),
                           }"
                         >
-                          <option disabled value="">
-                            Select Functional area
-                          </option>
+                          <option disabled value="">Select Functional area</option>
                           <option
                             :value="functional.id"
                             v-for="functional in allDesignation"
@@ -212,9 +197,7 @@
                     </div>
                     <div class="form-group row mb-2">
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Select Category</label
-                        >
+                        <label class="col-form-label" for="">Select Category</label>
 
                         <select
                           class="form-control custom-select"
@@ -225,17 +208,11 @@
                           }"
                         >
                           <option disabled value="">Select Category</option>
-                          <option
-                            :value="category.id"
-                            v-for="category in allApplied"
-                          >
+                          <option :value="category.id" v-for="category in allApplied">
                             {{ category.job_category }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_category_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_category_id"></has-error>
                       </div>
 
                       <div class="col-sm-4">
@@ -268,10 +245,7 @@
                             {{ state.states_name }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_state_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_state_id"></has-error>
                       </div>
                     </div>
 
@@ -303,9 +277,7 @@
                             'is-invalid': form.errors.has('job_posted_type_id'),
                           }"
                         >
-                          <option disabled value="">
-                            Select job Post Type
-                          </option>
+                          <option disabled value="">Select job Post Type</option>
                           <option :value="post.id" v-for="post in allJobtype">
                             {{ post.job_post_as }}
                           </option>
@@ -328,10 +300,7 @@
                           <option value="women">Women</option>
                           <option value="Handicapped">Handicapped</option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_preference"
-                        ></has-error>
+                        <has-error :form="form" field="job_preference"></has-error>
                       </div>
                     </div>
 
@@ -348,17 +317,11 @@
                                 name="job_carreer_level"
                                 v-model="form.job_carreer_level"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('job_carreer_level'),
+                                  'is-invalid': form.errors.has('job_carreer_level'),
                                 }"
                               >
-                                <option disabled value="">
-                                  Select Carrer Level
-                                </option>
-                                <option
-                                  :value="carrer.id"
-                                  v-for="carrer in category"
-                                >
+                                <option disabled value="">Select Carrer Level</option>
+                                <option :value="carrer.id" v-for="carrer in category">
                                   {{ carrer.career_level }}
                                 </option>
                               </select>
@@ -383,9 +346,7 @@
                         <has-error :form="form" field="job_role"></has-error>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >No. Of Vacancy</label
-                        >
+                        <label class="col-form-label" for="">No. Of Vacancy</label>
                         <input
                           type="text"
                           name="job_vaccancy"
@@ -397,10 +358,7 @@
                             'is-invalid': form.errors.has('job_vaccancy'),
                           }"
                         />
-                        <has-error
-                          :form="form"
-                          field="job_vaccancy"
-                        ></has-error>
+                        <has-error :form="form" field="job_vaccancy"></has-error>
                       </div>
                     </div>
                     <div class="form-group row mb-2">
@@ -419,20 +377,12 @@
                                   'is-invalid': form.errors.has('main_exp'),
                                 }"
                               >
-                                <option value="" disabled>
-                                  Min Experience
-                                </option>
-                                <option
-                                  v-for="exper in experiences"
-                                  :value="exper"
-                                >
+                                <option value="" disabled>Min Experience</option>
+                                <option v-for="exper in experiences" :value="exper">
                                   {{ exper }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="main_exp"
-                              ></has-error>
+                              <has-error :form="form" field="main_exp"></has-error>
                             </div>
                             <div class="col-sm-6">
                               <label class="col-form-label invisible" for=""
@@ -446,28 +396,18 @@
                                   'is-invalid': form.errors.has('max_exp'),
                                 }"
                               >
-                                <option value="" disabled>
-                                  Max Experience
-                                </option>
-                                <option
-                                  v-for="exper in experiences"
-                                  :value="exper"
-                                >
+                                <option value="" disabled>Max Experience</option>
+                                <option v-for="exper in experiences" :value="exper">
                                   {{ exper }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="max_exp"
-                              ></has-error>
+                              <has-error :form="form" field="max_exp"></has-error>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Start Apply Date</label
-                        >
+                        <label class="col-form-label" for="">Start Apply Date</label>
                         <input
                           type="date"
                           class="form-control"
@@ -481,9 +421,7 @@
                         />
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Last Apply Date</label
-                        >
+                        <label class="col-form-label" for="">Last Apply Date</label>
                         <input
                           type="date"
                           class="form-control"
@@ -511,8 +449,7 @@
                                 name="grad_start_year"
                                 v-model="form.grad_start_year"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('grad_start_year'),
+                                  'is-invalid': form.errors.has('grad_start_year'),
                                 }"
                               >
                                 <option value="" disabled="">From</option>
@@ -520,10 +457,7 @@
                                   {{ year }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="grad_start_year"
-                              ></has-error>
+                              <has-error :form="form" field="grad_start_year"></has-error>
                             </div>
                             <div class="col-sm-6">
                               <label class="col-form-label invisible" for=""
@@ -534,8 +468,7 @@
                                 name="grad_end_year"
                                 v-model="form.grad_end_year"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('grad_end_year'),
+                                  'is-invalid': form.errors.has('grad_end_year'),
                                 }"
                               >
                                 <option value="" disabled="">To</option>
@@ -543,18 +476,13 @@
                                   {{ year }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="grad_end_year"
-                              ></has-error>
+                              <has-error :form="form" field="grad_end_year"></has-error>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Select Job Type</label
-                        >
+                        <label class="col-form-label" for="">Select Job Type</label>
                         <select
                           class="form-control custom-select"
                           name="job_type_id"
@@ -574,9 +502,7 @@
                         </select>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Select Job Shift</label
-                        >
+                        <label class="col-form-label" for="">Select Job Shift</label>
 
                         <select
                           class="form-control custom-select"
@@ -595,24 +521,14 @@
                             {{ shift.job_shift }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_shift_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_shift_id"></has-error>
                       </div>
                     </div>
                     <div class="form-group row mb-2">
                       <div class="col-sm-4">
                         <label class="col-form-label" for=""> Location</label>
-                        <select
-                          class="form-control custom-select"
-                          v-model="form.job_exp"
-                        >
-                          <optgroup
-                            :label="st.state"
-                            v-for="st in location"
-                            :key="st"
-                          >
+                        <select class="form-control custom-select" v-model="form.job_exp">
+                          <optgroup :label="st.state" v-for="st in location" :key="st">
                             <option
                               v-for="(loc, index) in st.location"
                               :key="index"
@@ -626,22 +542,16 @@
                         <has-error :form="form" field="job_exp"></has-error>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Select Qualification</label
-                        >
+                        <label class="col-form-label" for="">Select Qualification</label>
                         <select
                           class="form-control custom-select"
                           name="job_qualification_id"
                           v-model="form.job_qualification_id"
                           :class="{
-                            'is-invalid': form.errors.has(
-                              'job_qualification_id'
-                            ),
+                            'is-invalid': form.errors.has('job_qualification_id'),
                           }"
                         >
-                          <option disabled value="">
-                            Select Qualification
-                          </option>
+                          <option disabled value="">Select Qualification</option>
                           <option
                             :value="qualifications.id"
                             v-for="qualifications in allQualification"
@@ -650,15 +560,10 @@
                             {{ qualifications.qualification }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="job_qualification_id"
-                        ></has-error>
+                        <has-error :form="form" field="job_qualification_id"></has-error>
                       </div>
                       <div class="col-sm-4">
-                        <label class="col-form-label" for=""
-                          >Salary Disclosed</label
-                        >
+                        <label class="col-form-label" for="">Salary Disclosed</label>
                         <select
                           class="form-control custom-select"
                           name="sal_disclosed"
@@ -668,17 +573,12 @@
                           }"
                           @change="checkSalaryDisclose($event)"
                         >
-                          <option disabled value="">
-                            Select Salary Disclosed
-                          </option>
+                          <option disabled value="">Select Salary Disclosed</option>
                           <option value="Yes">Yes</option>
                           <option value="No">No</option>
                         </select>
 
-                        <has-error
-                          :form="form"
-                          field="sal_disclosed"
-                        ></has-error>
+                        <has-error :form="form" field="sal_disclosed"></has-error>
                       </div>
                     </div>
 
@@ -697,22 +597,15 @@
                                 v-model="form.offered_sal_min"
                                 :disabled="ctcEnableDisable"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('offered_sal_min'),
+                                  'is-invalid': form.errors.has('offered_sal_min'),
                                 }"
                               >
                                 <option value="" disabled="">Select Min</option>
-                                <option
-                                  v-for="sal in allRecruiter"
-                                  :key="sal.id"
-                                >
+                                <option v-for="sal in allRecruiter" :key="sal.id">
                                   {{ sal.salary_in_annum }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="offered_sal_min"
-                              ></has-error>
+                              <has-error :form="form" field="offered_sal_min"></has-error>
                             </div>
                             <div class="col-sm-6">
                               <label class="col-form-label invisible" for=""
@@ -724,22 +617,15 @@
                                 v-model="form.offered_sal_max"
                                 :disabled="ctcEnableDisable"
                                 :class="{
-                                  'is-invalid':
-                                    form.errors.has('offered_sal_max'),
+                                  'is-invalid': form.errors.has('offered_sal_max'),
                                 }"
                               >
                                 <option value="" disabled="">Select Max</option>
-                                <option
-                                  v-for="sal in allRecruiter"
-                                  :key="sal.id"
-                                >
+                                <option v-for="sal in allRecruiter" :key="sal.id">
                                   {{ sal.salary_in_annum }}
                                 </option>
                               </select>
-                              <has-error
-                                :form="form"
-                                field="offered_sal_max"
-                              ></has-error>
+                              <has-error :form="form" field="offered_sal_max"></has-error>
                             </div>
                           </div>
                         </div>
@@ -756,10 +642,7 @@
                           <span style="color: red"> * </span> Job Description &
                           Responsibility</label
                         >
-                        <ckeditor
-                          :editor="editor"
-                          v-model="form.description"
-                        ></ckeditor>
+                        <ckeditor :editor="editor" v-model="form.description"></ckeditor>
                         <has-error :form="form" field="description"></has-error>
                       </div>
                     </div>
@@ -769,8 +652,7 @@
                     <legend>Meta Tags</legend>
                     <div class="form-group row mb-2">
                       <div class="col-sm-12">
-                        <label class="col-form-label" for=""
-                          >Meta Title</label>
+                        <label class="col-form-label" for="">Meta Title</label>
                         <input
                           type="text"
                           class="form-control"
@@ -785,9 +667,7 @@
                         <has-error :form="form" field="meta_title"></has-error>
                       </div>
                       <div class="col-sm-12">
-                        <label class="col-form-label" for="">
-                           Meta Keywords</label
-                        >
+                        <label class="col-form-label" for=""> Meta Keywords</label>
                         <input
                           type="text"
                           class="form-control"
@@ -799,15 +679,10 @@
                             'is-invalid': form.errors.has('meta_keywords'),
                           }"
                         />
-                        <has-error
-                          :form="form"
-                          field="meta_keywords"
-                        ></has-error>
+                        <has-error :form="form" field="meta_keywords"></has-error>
                       </div>
                       <div class="col-sm-12">
-                        <label class="col-form-label" for=""
-                          >Meta Description</label
-                        >
+                        <label class="col-form-label" for="">Meta Description</label>
                         <input
                           type="text"
                           class="form-control"
@@ -831,8 +706,7 @@
                     <div class="form-group row mb-2">
                       <div class="col-sm-12">
                         <label class="col-form-label"
-                          >Skills (Separate by comma ( , ) for multiple
-                          skills)</label
+                          >Skills (Separate by comma ( , ) for multiple skills)</label
                         >
 
                         <input
@@ -887,10 +761,7 @@
                           <option value="Yes">Yes</option>
                           <option value="No">No</option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="questionnarie_add"
-                        ></has-error>
+                        <has-error :form="form" field="questionnarie_add"></has-error>
                       </div>
                     </div>
                   </fieldset>
@@ -906,9 +777,7 @@
                           name="questionnarie_name"
                           v-model="form.questionnarie_name"
                         >
-                          <option disabled value="">
-                            Select Questionnaire
-                          </option>
+                          <option disabled value="">Select Questionnaire</option>
                           <option
                             v-for="(tag, index) in allpost"
                             :value="tag.id"
@@ -917,17 +786,12 @@
                             {{ tag.name }}
                           </option>
                         </select>
-                        <has-error
-                          :form="form"
-                          field="questionnarie_name"
-                        ></has-error>
+                        <has-error :form="form" field="questionnarie_name"></has-error>
                       </div>
                     </div>
                   </fieldset>
 
-                  <button type="submit" class="btn btn-primary mt-3">
-                    Save
-                  </button>
+                  <button type="submit" class="btn btn-primary mt-3">Save</button>
                 </form>
               </div>
             </div>
@@ -953,9 +817,7 @@
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Add Client</h4>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
@@ -1092,9 +954,7 @@
               <div class="form-group row">
                 <div
                   class="col-sm-12"
-                  v-if="
-                    resData.com_contact == null || resData.com_contact == ''
-                  "
+                  v-if="resData.com_contact == null || resData.com_contact == ''"
                 >
                   <label class="col-form-label" for="">Company Contact</label>
                   <input
@@ -1120,7 +980,6 @@
                   <i class="fa fa-info-circle" aria-hidden="true"></i
                   ><span style="color: red"> All Fields are Mandatory</span>
                 </div>
-
               </div>
             </div>
 
@@ -1142,7 +1001,17 @@
 <script>
 import $ from "jquery";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+const d = new Date();
+let year = d.getFullYear();
+let month = d.getMonth() + 1;
+let day = d.getDate();
+if (month <= 9) {
+  month = "0" + day;
+}
+if (day <= 9) {
+  day = "0" + day;
+}
+const date = year + "-" + month + "-" + day;
 export default {
   name: "Postnewjob",
   // metaInfo: {
@@ -1188,7 +1057,7 @@ export default {
         job_state_id: "",
         job_preference: "",
         job_posted_type_id: "",
-        last_apply_date: "",
+        last_apply_date: date,
         job_questionnarie_id: "",
         job_keywords: "",
         meta_title: "",
@@ -1218,7 +1087,7 @@ export default {
         questionnarie_add: "",
         questionnarie_name: "",
         percentage: "",
-        start_apply_date: "",
+        start_apply_date: date,
         client_name: "",
       }),
       demo: new Form({
@@ -1268,10 +1137,7 @@ export default {
   computed: {
     years() {
       const year = new Date().getFullYear();
-      return Array.from(
-        { length: year - 1960 },
-        (value, index) => 1960 + index + 1
-      );
+      return Array.from({ length: year - 1960 }, (value, index) => 1960 + index + 1);
     },
     experiences() {
       const exp = 20;
@@ -1487,5 +1353,4 @@ export default {
 //     titleEl.textContent = 'meta titleeeeeeeeeeeeeeeeeeeeeeeeeeee';
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
