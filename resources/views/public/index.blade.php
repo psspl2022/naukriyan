@@ -167,10 +167,219 @@
             /* min-width: 100%; */
             width: auto !important;
         }
-        .ti-new-tag-input-wrapper{
+
+        .ti-new-tag-input-wrapper {
             width: 300px !important;
         }
-        
+
+        .stage {
+            display: inline-block;
+            width: 13% !important;
+            max-width: 100%;
+            padding: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: inherit;
+            color: inherit;
+            white-space: normal;
+        }
+
+        .stage {
+            background-color: gray;
+            color: white !important;
+            border: 1px solid #374151;
+            width: auto !important;
+            font-size: 15px !important;
+            font-weight: 400 !important;
+            padding: 3px 2px !important;
+            text-align: center;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .stage-line {
+            border-top: 3px solid #374151;
+            /* width: 7%; */
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .unstage {
+            display: inline-block;
+            width: 13% !important;
+            max-width: 100%;
+            padding: 0;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            line-height: inherit;
+            color: inherit;
+            white-space: normal;
+        }
+
+        .unstage {
+            background-color: rgb(249, 249, 249);
+            border: 1px solid #374151;
+            color: rgb(7, 7, 7) !important;
+            width: auto !important;
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            padding: 3px 2px !important;
+            text-align: center;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .unsave {
+            cursor: not-allowed !important;
+        }
+
+        .unstage-line {
+            border-top: 1px solid #374151;
+            padding: 0;
+            max-width: 100%;
+        }
+
+        #unstage {
+            display: none;
+        }
+
+        @media only screen and (min-width: 1097px) {
+
+            .unstage,
+            .stage {
+                width: 13% !important;
+            }
+
+            .unstage,
+            .stage {
+                font-size: 14px !important;
+                font-weight: 400 !important;
+                padding: 3px 4px !important;
+                border-radius: 20px;
+            }
+
+            .unstage-line,
+            .stage-line {
+                width: 4%;
+            }
+        }
+
+        @media only screen and (max-width: 1097px) and (min-width: 952px) {
+
+            .unstage,
+            .stage {
+                width: 13% !important;
+            }
+
+            .unstage,
+            .stage {
+                font-size: 14px !important;
+                font-weight: 400 !important;
+                padding: 3px 2px !important;
+                border-radius: 20px;
+            }
+
+            .unstage-line,
+            .stage-line {
+                width: 4% !important;
+            }
+        }
+
+        @media only screen and (max-width: 952px) and (min-width: 841px) {
+
+            .unstage,
+            .stage {
+                width: 15% !important;
+            }
+
+            .unstage,
+            .stage {
+                font-size: 14px !important;
+                font-weight: 400 !important;
+                padding: 3px 2px !important;
+                border-radius: 20px;
+            }
+
+            .unstage-line,
+            .stage-line {
+                width: 2% !important;
+            }
+        }
+
+        @media only screen and (max-width: 841px) and (min-width: 794px) {
+
+            .unstage,
+            .stage {
+                width: 16% !important;
+            }
+
+            .unstage,
+            .stage {
+                font-size: 14px !important;
+                font-weight: 400 !important;
+                padding: 3px 2px !important;
+                border-radius: 20px;
+            }
+
+            .unstage-line,
+            .stage-line {
+                width: 0.5% !important;
+            }
+        }
+
+        /* @media only screen and (max-width: 718px) and (min-width: 794px) {
+
+            .unstage,
+            .stage {
+                width: 15% !important;
+            }
+
+            .unstage,
+            .stage {
+                font-size: 13px !important;
+                font-weight: 200 !important;
+                padding: 3px 2px !important;
+                border-radius: 20px;
+            }
+
+            .unstage-line,
+            .stage-line {
+                width: 0.4% !important;
+            }
+        } */
+
+        @media only screen and (max-width: 794px) {
+            #stage {
+                display: none;
+            }
+
+            #unstage {
+                display: block !important;
+            }
+
+            .stage-heading {
+                display: inline-block;
+                width: 100% !important;
+                max-width: 100%;
+                padding: 0;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+                line-height: inherit;
+                color: inherit;
+                white-space: normal;
+            }
+
+            .stage-heading {
+                background-color: gray;
+                color: white !important;
+                width: auto !important;
+                font-size: 17px !important;
+                font-weight: 400 !important;
+                padding: 7px 17px !important;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -185,10 +394,12 @@
     </script>
     <script src="https://unpkg.com/@johmun/vue-tags-input/dist/vue-tags-input.js"></script>
     <script>
-        var msg = '{{ Session::get('
-                                                        alert ') }}';
-        var exist = '{{ Session::has('
-                                                        alert ') }}';
+        var msg =
+            '{{ Session::get('
+                                                                                                                                                                    alert ') }}';
+        var exist =
+            '{{ Session::has('
+                                                                                                                                                                    alert ') }}';
         if (exist) {
             alert(msg);
         }

@@ -113,17 +113,53 @@
               style="justify-content: start !important"
               id="stage"
             >
-              <span class="stage">Profile Details</span>
-              <div class="stage-line"></div>
-              <span class="stage">Profile Details</span>
-              <div class="stage-line"></div>
-              <span class="unstage">Profile Details</span>
-              <div class="unstage-line"></div>
-              <span class="unstage">Profile Details</span>
-              <div class="unstage-line"></div>
-              <span class="unstage">Profile Details</span>
-              <div class="unstage-line"></div>
-              <span class="unstage">Profile Details</span>
+              <span
+                :class="[
+                  stage >= 1 ? 'stage' : stageSave >= 1 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(1, stageSave)"
+                >Personal Details</span
+              >
+              <div :class="[stage >= 1 ? 'stage-line' : 'unstage-line']"></div>
+              <span
+                :class="[
+                  stage >= 2 ? 'stage' : stageSave >= 2 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(2, stageSave)"
+                >Education</span
+              >
+              <div :class="[stage >= 2 ? 'stage-line' : 'unstage-line']"></div>
+              <span
+                :class="[
+                  stage >= 3 ? 'stage' : stageSave >= 3 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(3, stageSave)"
+                >Professional</span
+              >
+              <div :class="[stage >= 3 ? 'stage-line' : 'unstage-line']"></div>
+              <span
+                :class="[
+                  stage >= 4 ? 'stage' : stageSave >= 4 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(4, stageSave)"
+                >Resume</span
+              >
+              <div :class="[stage >= 4 ? 'stage-line' : 'unstage-line']"></div>
+              <span
+                :class="[
+                  stage >= 5 ? 'stage' : stageSave >= 5 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(15, stageSave)"
+                >Certifications</span
+              >
+              <div :class="[stage >= 5 ? 'stage-line' : 'unstage-line']"></div>
+              <span
+                :class="[
+                  stage >= 6 ? 'stage' : stageSave >= 6 ? 'unstage' : 'unstage unsave',
+                ]"
+                v-on:click="setStage(6, stageSave)"
+                >Skills</span
+              >
             </div>
             <div class="cms-pg-header mt-0" id="unstage">
               <h1 class="stage-heading">Profile Details</h1>
@@ -132,7 +168,12 @@
         </div>
         <div class="card mt-3">
           <div class="card-body">
-            <ProfileStage />
+            <ProfileStage v-if="stage == 1" />
+            <EducationStage v-if="stage == 2" />
+            <ProfessionalStage v-if="stage == 3" />
+            <ResumeStage v-if="stage == 4" />
+            <CertificationStage v-if="stage == 5" />
+            <SkillStage v-if="stage == 6" />
           </div>
         </div>
       </div>
@@ -149,14 +190,26 @@
 <script>
 import $ from "jquery";
 import ProfileStage from "./ProfileStage.vue";
+import EducationStage from "./EducationStage.vue";
+import ProfessionalStage from "./ProfessionalStage.vue";
+import ResumeStage from "./ResumeStage.vue";
+import CertificationStage from "./CertificationStage.vue";
+import SkillStage from "./SkillStage.vue";
 export default {
   name: "MainStage",
   // props: ["keyword", "location", "experience", "jobtype"],
   components: {
     ProfileStage: ProfileStage,
+    EducationStage: EducationStage,
+    ProfessionalStage: ProfessionalStage,
+    ResumeStage: ResumeStage,
+    CertificationStage: CertificationStage,
+    SkillStage: SkillStage,
   },
   data() {
     return {
+      stage: 1,
+      stageSave: 4,
       form: new Form({
         id: "",
         name: "",
@@ -206,6 +259,11 @@ export default {
     },
   },
   methods: {
+    setStage(stage, stageSave) {
+      if (stageSave >= stage) {
+        this.stage = stage;
+      }
+    },
     getAllLocation() {
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
@@ -495,179 +553,6 @@ body {
 		c'est pas tout mais j'ai faim moi ^^
 		*/
     width: auto;
-  }
-}
-.stage[data-v-8bed8e26] {
-  display: inline-block;
-  /* width: 10% !important; */
-  max-width: 100%;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  line-height: inherit;
-  color: inherit;
-  white-space: normal;
-}
-.stage {
-  background-color: gray;
-  color: white !important;
-  width: auto !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  padding: 3px 2px !important;
-  text-align: center;
-  border-radius: 20px;
-  cursor: pointer;
-}
-.stage-line {
-  border-top: 3px solid #374151;
-  /* width: 7%; */
-  padding: 0;
-  max-width: 100%;
-}
-.unstage[data-v-8bed8e26] {
-  display: inline-block;
-  /* width: 10% !important; */
-  max-width: 100%;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  line-height: inherit;
-  color: inherit;
-  white-space: normal;
-}
-.unstage {
-  background-color: rgb(249, 249, 249);
-  border: 1px solid #374151;
-  color: rgb(7, 7, 7) !important;
-  width: auto !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  padding: 3px 2px !important;
-  text-align: center;
-  border-radius: 20px;
-  cursor: pointer;
-}
-.unstage-line {
-  border-top: 1px solid #374151;
-  padding: 0;
-  max-width: 100%;
-}
-#unstage {
-  display: none;
-}
-@media only screen and (min-width: 1198px) {
-  .unstage[data-v-8bed8e26],
-  .stage[data-v-8bed8e26] {
-    width: 11% !important;
-  }
-  .unstage,
-  .stage {
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    padding: 3px 4px !important;
-    border-radius: 20px;
-  }
-  .unstage-line,
-  .stage-line {
-    width: 6%;
-  }
-}
-@media only screen and (max-width: 1198px) and (min-width: 952px) {
-  .unstage[data-v-8bed8e26],
-  .stage[data-v-8bed8e26] {
-    width: 12% !important;
-  }
-  .unstage,
-  .stage {
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    padding: 3px 2px !important;
-    border-radius: 20px;
-  }
-  .unstage-line,
-  .stage-line {
-    width: 5% !important;
-  }
-}
-@media only screen and (max-width: 952px) and (min-width: 838px) {
-  .unstage[data-v-8bed8e26],
-  .stage[data-v-8bed8e26] {
-    width: 14% !important;
-  }
-  .unstage,
-  .stage {
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    padding: 3px 2px !important;
-    border-radius: 20px;
-  }
-  .unstage-line,
-  .stage-line {
-    width: 3% !important;
-  }
-}
-@media only screen and (max-width: 838px) and (min-width: 718px) {
-  .unstage[data-v-8bed8e26],
-  .stage[data-v-8bed8e26] {
-    width: 15% !important;
-  }
-  .unstage,
-  .stage {
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    padding: 3px 2px !important;
-    border-radius: 20px;
-  }
-  .unstage-line,
-  .stage-line {
-    width: 2% !important;
-  }
-}
-@media only screen and (max-width: 718px) and (min-width: 352px) {
-  .unstage[data-v-8bed8e26],
-  .stage[data-v-8bed8e26] {
-    width: 15% !important;
-  }
-  .unstage,
-  .stage {
-    font-size: 13px !important;
-    font-weight: 200 !important;
-    padding: 3px 2px !important;
-    border-radius: 20px;
-  }
-  .unstage-line,
-  .stage-line {
-    width: 1% !important;
-  }
-}
-@media only screen and (max-width: 683px) {
-  #stage {
-    display: none;
-  }
-  #unstage {
-    display: block !important;
-  }
-  .stage-heading {
-    display: inline-block;
-    width: 100% !important;
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    line-height: inherit;
-    color: inherit;
-    white-space: normal;
-  }
-  .stage-heading {
-    background-color: gray;
-    color: white !important;
-    width: auto !important;
-    font-size: 17px !important;
-    font-weight: 400 !important;
-    padding: 7px 17px !important;
-    text-align: center;
-    cursor: pointer;
   }
 }
 </style>
