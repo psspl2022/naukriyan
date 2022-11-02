@@ -212,8 +212,7 @@ var render = function() {
                                 1
                               )
                             ])
-                          }),
-                          0
+                          })
                         )
                       ]
                     )

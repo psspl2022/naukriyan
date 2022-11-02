@@ -17,10 +17,7 @@
 
               <div class="col-xs-12 col-sm-4 hidden-xs">
                 <p class="hot-line">
-                  <i
-                    class="fa fa-headphones mr-1 Phone is-animating"
-                    aria-hidden="true"
-                  ></i>
+                  <i class="fa fa-headphones mr-1 Phone is-animating" aria-hidden="true"></i>
                   <a href="tel:+91 11 7962 6411">Hot Line: +91 11 7962 6411 </a>
                 </p>
               </div>
@@ -43,48 +40,27 @@
                   <div class="row">
                     <div class="col-sm-8 mx-auto">
                       <i class="fa fa-info-circle" style="color: red" aria-hidden="true">
-                        Name,Email,Contact No. and Reference are mandatory fields.</i
-                      >
-                      <form
-                        method="post"
-                        role="form"
-                        class="consultant-signup"
-                        @submit.prevent="addTracker()"
-                        autocomplete="off"
-                      >
+                        Name,Email,Contact No. and Reference are mandatory fields.</i>
+                      <form method="post" role="form" class="consultant-signup" @submit.prevent="addTracker()"
+                        autocomplete="off">
                         <div class="form-group row inputBox">
                           <div class="col-sm-6">
                             <label>Name<span style="color: red"> * </span></label>
                             <div class="input text">
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="form.name"
-                                placeholder="Enter Name"
-                                required
-                                :class="{
+                              <input type="text" class="form-control" v-model="form.name" placeholder="Enter Name"
+                                required :class="{
                                   'is-invalid': form.errors.has('name'),
-                                }"
-                              />
+                                }" />
                             </div>
                             <has-error :form="form" field="name"></has-error>
                           </div>
                           <div class="col-sm-6">
                             <label>Email <span style="color: red"> * </span></label>
                             <div class="input text">
-                              <input
-                                type="email"
-                                class="form-control"
-                                v-model="form.email"
-                                @blur="checkEmail($event)"
-                                name="email"
-                                id="email"
-                                placeholder="Enter Email"
-                                required
-                                :class="{
+                              <input type="email" class="form-control" v-model="form.email" @blur="checkEmail($event)"
+                                name="email" id="email" placeholder="Enter Email" required :class="{
                                   'is-invalid': form.errors.has('email'),
-                                }"
-                              />
+                                }" />
                             </div>
                             <has-error :form="form" field="email"></has-error>
                           </div>
@@ -93,38 +69,23 @@
                           <div class="col-sm-6">
                             <label>Contact No. <span style="color: red"> * </span></label>
                             <div class="input text">
-                              <input
-                                type="text"
-                                class="form-control"
-                                id="contact"
-                                v-model="form.contact"
-                                required
+                              <input type="text" class="form-control" id="contact" v-model="form.contact" required
                                 maxlength="10"
-                                onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
-                                :class="{
+                                onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" :class="{
                                   'is-invalid': form.errors.has('contact'),
-                                }"
-                                placeholder="Enter Contact No."
-                              />
+                                }" placeholder="Enter Contact No." />
                             </div>
-                            <span
-                              id="e_contact_err"
-                              style="color: red; font-size: 12px"
-                            ></span>
+                            <span id="e_contact_err" style="color: red; font-size: 12px"></span>
                             <has-error :form="form" field="contact"></has-error>
                           </div>
 
                           <div class="col-sm-6">
                             <label>Experience </label>
                             <div class="input password">
-                              <select
-                                class="form-control"
-                                placeholder="Enter Experience"
-                                v-model="form.experience"
+                              <select class="form-control" placeholder="Enter Experience" v-model="form.experience"
                                 :class="{
                                   'is-invalid': form.errors.has('experience'),
-                                }"
-                              >
+                                }">
                                 <option value="" disabled>Select From Here</option>
                                 <option value="fresher">0-1 Yr (Also Fresher)</option>
                                 <option value="1-2">1-2 Yr</option>
@@ -151,8 +112,7 @@
                         </div>
                         <div class="form-group row inputBox">
                           <div class="col-sm-12">
-                            <label
-                              >Key Skills (Use Multiple Skills Seperated By Comma(,))
+                            <label>Key Skills (Use Multiple Skills Seperated By Comma(,))
                             </label>
                             <div class="input password">
                               <vue-tags-input
@@ -177,14 +137,8 @@
                           <div class="col-sm-6">
                             <label>Designation </label>
                             <div class="input text">
-                              <input
-                                type="text"
-                                @focus="filterStatus = true"
-                                class="form-control"
-                                id="keyword"
-                                placeholder="Select or Input Designation"
-                                v-model="designation"
-                              />
+                              <input type="text" @focus="filterStatus = true" class="form-control" id="keyword"
+                                placeholder="Select or Input Designation" v-model="designation" />
                             </div>
                             <div style="background-color: white">
                               <ul
@@ -208,13 +162,9 @@
                           <div class="col-sm-6">
                             <label>Select Gender </label>
                             <div class="input password">
-                              <select
-                                class="form-control"
-                                :class="{
-                                  'is-invalid': form.errors.has('gender'),
-                                }"
-                                v-model="form.gender"
-                              >
+                              <select class="form-control" :class="{
+                                'is-invalid': form.errors.has('gender'),
+                              }" v-model="form.gender">
                                 <option value="" disabled="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -228,15 +178,10 @@
                           <div class="col-sm-6">
                             <label>Current CTC (Per Annum) </label>
                             <div class="input text">
-                              <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter Current CTC"
-                                v-model="form.current_ctc"
-                                :class="{
+                              <input type="text" class="form-control" placeholder="Enter Current CTC"
+                                v-model="form.current_ctc" :class="{
                                   'is-invalid': form.errors.has('current_ctc'),
-                                }"
-                              />
+                                }" />
                             </div>
                             <has-error :form="form" field="current_ctc"></has-error>
                           </div>
@@ -250,8 +195,7 @@
                                 v-model="form.expected_ctc"
                                 :class="{
                                   'is-invalid': form.errors.has('expected_ctc'),
-                                }"
-                              />
+                                }" />
                             </div>
                             <has-error :form="form" field="expected_ctc"></has-error>
                           </div>
@@ -326,8 +270,7 @@
                               v-on:change="handleFileUpload()"
                               accept="application/pdf,application/msword,
                               application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                              class="form-control"
-                            />
+                              class="form-control" />
                             <has-error :form="form" field="resume"></has-error>
                           </div>
                         </div>
@@ -354,25 +297,12 @@
                             <has-error :form="form" field="notice_period"></has-error>
                           </div>
                           <div class="col-sm-6">
-                            <label class="col-form-label" for=""
-                              ><span style="color: red"> * </span> Reference
-                              <sub style="color: red"
-                                >(Not in List ?? Select 'others' and add new)</sub
-                              ></label
-                            >
-                            <select
-                              class="form-control custom-select"
-                              name="reference"
-                              id="reference"
-                              @change="openClient"
-                              v-model="form.reference"
-                            >
+                            <label class="col-form-label" for=""><span style="color: red"> * </span> Reference
+                              <sub style="color: red">(Not in List ?? Select 'others' and add new)</sub></label>
+                            <select class="form-control custom-select" name="reference" id="reference"
+                              @change="openClient" v-model="form.reference">
                               <option disabled value="">Select Reference Name</option>
-                              <option
-                                :value="client.name"
-                                v-for="(client, index) in clientList"
-                                :key="index"
-                              >
+                              <option :value="client.name" v-for="(client, index) in clientList" :key="index">
                                 {{ client.name }}
                               </option>
                               <option value="add_reference">Others</option>
@@ -386,16 +316,9 @@
                         <div class="form-group row inputBox">
                           <div class="col-md-12">
                             <label>Remarks </label>
-                            <textarea
-                              class="form-control"
-                              v-model="form.remarks"
-                              :class="{
-                                'is-invalid': form.errors.has('remarks'),
-                              }"
-                              rows="5"
-                              cols="5"
-                              placeholder="Enter Remarks Here"
-                            ></textarea>
+                            <textarea class="form-control" v-model="form.remarks" :class="{
+                              'is-invalid': form.errors.has('remarks'),
+                            }" rows="5" cols="5" placeholder="Enter Remarks Here"></textarea>
 
                             <has-error :form="form" field="remarks"></has-error>
                           </div>
@@ -405,13 +328,8 @@
                           <div class="d-flex justify-content-between">
                             <div class="my-checkbox">
                               <label class="checkbox-inline" for="remember_me2">
-                                <input
-                                  type="checkbox"
-                                  class="custom-control-input"
-                                  id="remember_me2"
-                                />
-                                <span class="checkbox-icon"
-                                  ><i class="fa fa-square-o" aria-hidden="true"></i>
+                                <input type="checkbox" class="custom-control-input" id="remember_me2" />
+                                <span class="checkbox-icon"><i class="fa fa-square-o" aria-hidden="true"></i>
                                   <span class="check-icon">
                                     <i class="fa fa-check" aria-hidden="true"></i>
                                   </span>
@@ -423,11 +341,8 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <button
-                            type="submit"
-                            :disabled="filled"
-                            class="btn btn-outline-info btn-block my-4 waves-effect"
-                          >
+                          <button type="submit" :disabled="filled"
+                            class="btn btn-outline-info btn-block my-4 waves-effect">
                             {{ registerStatus ? "Adding..." : "Add" }}
                           </button>
                         </div>
@@ -455,10 +370,7 @@
                       <div class="already">
                         <p>
                           <router-link :to="`/tracker-list`">
-                            <button
-                              type="button"
-                              class="btn btn-default btn-block btn-shadow mt-2"
-                            >
+                            <button type="button" class="btn btn-default btn-block btn-shadow mt-2">
                               <i class="fas fa-sign-in-alt"></i> Candidate List
                             </button>
                           </router-link>
@@ -479,13 +391,7 @@
     <div class="modal fade popupForm custom-model-width" id="addSubUser">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form
-            class="popupForm"
-            role="demo"
-            method="post"
-            @submit.prevent="addReference()"
-            id="addUserForm"
-          >
+          <form class="popupForm" role="demo" method="post" @submit.prevent="addReference()" id="addUserForm">
             <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Add Reference</h4>
@@ -497,14 +403,8 @@
               <div class="form-group row">
                 <div class="col-sm-12">
                   <label class="col-form-label" for="">Reference Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    required
-                    placeholder="Enter Reference Name"
-                    v-model="demo.reference_name"
-                    name="reference_name"
-                  />
+                  <input type="text" class="form-control" required placeholder="Enter Reference Name"
+                    v-model="demo.reference_name" name="reference_name" />
                   <has-error :form="demo" field="reference_name"></has-error>
                 </div>
               </div>
@@ -512,20 +412,14 @@
               <div class="form-group row">
                 <div class="col-sm-12">
                   <label class="col-form-label" for="">Description</label>
-                  <textarea
-                    class="form-control"
-                    required
-                    placeholder="Enter Description"
-                    v-model="demo.description"
-                    :class="{ 'is-invalid': demo.errors.has('description') }"
-                    name="description"
-                  >
+                  <textarea class="form-control" required placeholder="Enter Description" v-model="demo.description"
+                    :class="{ 'is-invalid': demo.errors.has('description') }" name="description">
                   </textarea>
                   <has-error :form="demo" field="description"></has-error>
                 </div>
               </div>
-              <i class="fa fa-info-circle" aria-hidden="true"></i
-              ><span style="color: red"> All Fields are Mandatory</span>
+              <i class="fa fa-info-circle" aria-hidden="true"></i><span style="color: red"> All Fields are
+                Mandatory</span>
             </div>
 
             <!-- Modal footer -->
@@ -533,12 +427,7 @@
               <button type="submit" class="btn btn-primary text-white">
                 {{ createStatus ? "Saving..." : "Save" }}
               </button>
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-dismiss="modal"
-                @click="resetForm()"
-              >
+              <button type="button" class="btn btn-danger" data-dismiss="modal" @click="resetForm()">
                 Close
               </button>
             </div>
@@ -617,7 +506,7 @@ export default {
     update(newTags) {
       this.autocompleteItems = [];
       this.tags = newTags.map((a) => {
-        return a.text;
+        return a.text.trim();
       });
       this.handlers = this.tags.toString();
       // this.keyword = this.tags.toString();
@@ -754,7 +643,7 @@ export default {
             });
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     },
   },
   watch: {
@@ -785,6 +674,7 @@ export default {
   overflow-y: scroll;
   height: auto;
 }
+
 .filter-keyword li {
   color: gray;
   padding: 3px 13px;
@@ -794,10 +684,12 @@ export default {
 .filter-keyword li:first-child {
   background-color: #ebebeb;
 }
+
 .vue-tags-input {
   width: 700px !important;
   max-width: 100% !important;
 }
+
 .vue-tags-input .ti-tag:after {
   transition: transform 0.2s;
   position: absolute;
@@ -809,6 +701,7 @@ export default {
   background-color: #000;
   transform: scaleX(0);
 }
+
 .vue-tags-input .ti-deletion-mark:after {
   transform: scaleX(1);
 }

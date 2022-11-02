@@ -2529,7 +2529,7 @@ var render = function() {
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
-                          return _vm.storeRegisterFormData()
+                          _vm.storeRegisterFormData()
                         }
                       }
                     },
@@ -2712,7 +2712,7 @@ var render = function() {
                             attrs: { type: "file" },
                             on: {
                               change: function($event) {
-                                return _vm.onFileChange($event)
+                                _vm.onFileChange($event)
                               }
                             }
                           })
@@ -2758,9 +2758,7 @@ var render = function() {
                                     )
                                   },
                                   function($event) {
-                                    return _vm.getPositionOnCompanyChange(
-                                      $event
-                                    )
+                                    _vm.getPositionOnCompanyChange($event)
                                   }
                                 ]
                               }
@@ -3026,7 +3024,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.updatePasswordConsultant()
+                  _vm.updatePasswordConsultant()
                 }
               }
             },
@@ -3207,7 +3205,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.addConsultant()
+                    _vm.addConsultant()
                   }
                 }
               },
@@ -4502,7 +4500,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.emailOTPVerify()
+                        _vm.emailOTPVerify()
                       }
                     }
                   },
@@ -4651,7 +4649,7 @@ var render = function() {
                                 attrs: { type: "file", name: "file" },
                                 on: {
                                   change: function($event) {
-                                    return _vm.updateProfileImage($event)
+                                    _vm.updateProfileImage($event)
                                   }
                                 }
                               })
@@ -4711,7 +4709,7 @@ var render = function() {
                                     on: {
                                       submit: function($event) {
                                         $event.preventDefault()
-                                        return _vm.updateConsultantInfo()
+                                        _vm.updateConsultantInfo()
                                       }
                                     }
                                   },
@@ -5555,7 +5553,7 @@ var render = function() {
                                     on: {
                                       submit: function($event) {
                                         $event.preventDefault()
-                                        return _vm.updateConsultantCompany()
+                                        _vm.updateConsultantCompany()
                                       }
                                     }
                                   },
@@ -6200,9 +6198,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       change: function($event) {
-                                                        return _vm.companyLogo(
-                                                          $event
-                                                        )
+                                                        _vm.companyLogo($event)
                                                       }
                                                     }
                                                   }),
@@ -6253,7 +6249,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       change: function($event) {
-                                                        return _vm.companyBanner(
+                                                        _vm.companyBanner(
                                                           $event
                                                         )
                                                       }
@@ -6493,8 +6489,7 @@ var render = function() {
                                                       )
                                                     ]
                                                   )
-                                                }),
-                                                0
+                                                })
                                               )
                                             ]
                                           )
@@ -7051,7 +7046,7 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        return _vm.ConsultantLogin()
+                        _vm.ConsultantLogin()
                       }
                     }
                   },
