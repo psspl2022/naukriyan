@@ -318,7 +318,7 @@ import ResumeBuildingWorkshop from './components/public/Workshop/ResumeBuilding.
 import Thankyou from './components/public/Workshop/Thankyou.vue';
 
 //Profile Stage
-import ProfileStage from './components/public/jobseeker/ProfileStage.vue';
+import MainStage from './components/public/jobseeker/MainStage.vue';
 
 // noinspection JSUnresolvedVariable,JSUnresolvedFunction
 export const routes = [
@@ -1433,11 +1433,11 @@ export const routes = [
         path: '/thankyou',
         component: Thankyou
     },
-    
+
     //ProfileStage
     {
         path: '/profile-stage',
-        component: ProfileStage
+        component: MainStage
     },
 
 
