@@ -1,108 +1,8 @@
 <template>
   <div id="browsejob">
     <main-header></main-header>
-    <!-- <header class="masthead1 text-center text-white">
-        <div class="masthead-content" id="form-container">
-          <div class="container">
-            <form>
-              <div class="col-sm-12 mt-5" v-if="allProfile">
-                <router-link :to="`/userinfo/pe`">
-                  <button class="btn transparent" type="button">
-                    <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your CV
-                  </button>
-                </router-link>
-              </div>
-              <div class="col-sm-12 mt-5" v-else>
-                <button
-                  class="btn transparent"
-                  type="button"
-                  data-toggle="modal"
-                  data-target="#myJobseekerModal"
-                  aria-hidden="true"
-                  data-dismiss="modal"
-                >
-                  <i class="fa fa-file-invoice mr-2" aria-hidden="true"></i>Upload Your CV
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="bg-circle-1 bg-circle"></div>
-        <div class="bg-circle-2 bg-circle"></div>
-        <div class="bg-circle-3 bg-circle"></div>
-        <div class="bg-circle-4 bg-circle"></div>
-      </header> -->
-
-    <!-- <header class="masthead1 text-center text-white bg-white">
-            <div class="masthead-content" id="form-container">
-                <div class="container">
-
-                    <h1 class="title">Profile Details</h1>
-
-                    <div class="grid">
-                        <div class="form-group a">
-                            <label for="name">Name</label>
-                            <input id="name" type="text">
-                        </div>
-
-                        <div class="form-group b">
-                            <label for="first-name">Email</label>
-                            <input id="first-name" type="text">
-                        </div>
-
-                        <div class="form-group email-group">
-                            <label for="email">Contact No.</label>
-                            <input id="email" type="text">
-                        </div>
-
-                        <div class="form-group phone-group">
-                            <label for="phone">Téléphone (mobile)</label>
-                            <input id="phone" type="text">
-                        </div>
-
-                        <div class="textarea-group">
-                            <label for="bio">Bio</label>
-                            <textarea id="bio"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Adresse</label>
-                            <input id="address" type="text">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="city">Ville</label>
-                            <input id="city" type="text">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="zip">Code postal</label>
-                            <input id="zip" type="text">
-                        </div>
-                    </div>
-
-                    <div class="checkboxes">
-
-                        <div class="checkbox-group">
-                            <input id="newsletter" type="checkbox">
-                            <label for="newsletter">Je souhaite recevoir la newsletter</label>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input id="newsletter-partners" type="checkbox">
-                            <label for="newsletter-partners">Je souhaite recevoir la newsletter des partenaires</label>
-                        </div>
-
-                    </div>
-
-                    <div class="button-container">
-                        <button class="button">Enregister les modifications</button>
-                    </div>
-                </div>
-            </div>
-        </header> -->
     <section
-      class="top-adjust section pb-5 mt-0 pt-0 col-12"
+      class="top-adjust section pb-5 mt-2 pt-0 col-12"
       style="margin-top: 7rem !important"
     >
       <div class="container mx-auto">
@@ -149,7 +49,7 @@
                 :class="[
                   stage >= 5 ? 'stage' : stageSave >= 5 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(15, stageSave)"
+                v-on:click="setStage(5, stageSave)"
                 >Certifications</span
               >
               <div :class="[stage >= 5 ? 'stage-line' : 'unstage-line']"></div>
@@ -209,10 +109,10 @@ export default {
   data() {
     return {
       stage: 1,
-      stageSave: 4,
+      stageSave: 6,
       form: new Form({
         id: "",
-        name: "",
+        name: "",   
         email: "",
         contact_no: "",
         gender: "",
