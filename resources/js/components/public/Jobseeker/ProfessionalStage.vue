@@ -52,9 +52,10 @@
                 }"
               >
                 <option value="" selected>Select Job Type</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option value="1">Part Time</option>
+                <option value="2">Full Time</option>
+                <option value="3">Freelancer</option>
+                <option value="4">Internship</option>
               </select>
               <has-error :form="form" field="gender"></has-error>
             </div>
@@ -66,18 +67,18 @@
                 class="form-group flex-row text-center"
                 style="margin-top: 2px !important"
               >
-                <div class="col-12 col-lg-7 pt d-flex flex-row align-items-center">
-                  <div class="col-3">From:</div>
+                <div class="col-12 col-lg-6 pt d-flex flex-row align-items-center">
+                  <div class="col-4">From:</div>
                   <input
                     type="date"
-                    class="form-control col-9"
+                    class="form-control col-8"
                     v-model="form.fromdate[i - 1]"
                     placeholder="2022-11-01"
                     value="2022-11-01"
                   />
                 </div>
 
-                <div class="col-12 col-lg-5 d-flex flex-row align-items-center">
+                <div class="col-12 col-lg-6 d-flex flex-row align-items-center">
                   <div class="col-3">To:</div>
                   <input
                     type="date"
@@ -113,25 +114,27 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-12">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Responsibility</label
               >
-              <input
+              <textarea
                 type="text"
                 class="form-control"
                 :name="'responsibility' + i"
-                placeholder="Enter Designation"
-                v-model="form.responsibility"
+                placeholder="Enter Responsibility"
+                v-model="form.responsibility[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('responsibility') }"
-              />
+              ></textarea>
               <has-error :form="form" field="name"></has-error>
             </div>
           </div>
         </fieldset>
-
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="remove(i)" v-if="i > 1" class="btn btn-primary mt-3"
+          >Remove</span
+        >
       </form>
     </div>
   </div>
@@ -146,12 +149,13 @@ export default {
     return {
       i: 1,
       form: new Form({
-        id: "",
-        designation: [],
-        organization: [],
+        id: "1",
+        total: 1,
+        designation: [""],
+        organization: [""],
         jobtype: [""],
-        fromdate: [],
-        todate: [],
+        fromdate: [""],
+        todate: [""],
         salary: [""],
         responsibility: [""],
       }),
@@ -188,14 +192,50 @@ export default {
   },
   methods: {
     getAllLocation() {
-      //   axios.get("/master/location/group").then((response) => {
-      //   });
+      // axios.post("/add-professional-detail", this.form).then((response) => {
+      //   console.log(response);
+      // });
       console.log(this.form);
+      if (
+        this.form.designation.includes("") ||
+        this.form.organization.includes("") ||
+        this.form.jobtype.includes("") ||
+        this.form.fromdate.includes("") ||
+        this.form.todate.includes("") ||
+        this.form.salary.includes("") ||
+        this.form.responsibility.includes("")
+      ) {
+        swal("Please fill all mandatory fields");
+      } else {
+        this.form.total = this.i;
+        this.form.post("/add-professional-detail").then(() => {
+          toast({
+            type: "success",
+            title: "Job Added successfully",
+          });
+        });
+      }
     },
     addMore(i) {
       this.i = ++i;
+      this.form.designation.push("");
+      this.form.organization.push("");
       this.form.jobtype.push("");
+      this.form.fromdate.push("");
+      this.form.todate.push("");
       this.form.salary.push("");
+      this.form.responsibility.push("");
+      // console.log(this.i);
+    },
+    remove(i) {
+      this.i = --i;
+      this.form.designation.pop();
+      this.form.organization.pop();
+      this.form.jobtype.pop();
+      this.form.fromdate.pop();
+      this.form.todate.pop();
+      this.form.salary.pop();
+      this.form.responsibility.pop();
       // console.log(this.i);
     },
   },
