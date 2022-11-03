@@ -93,13 +93,13 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Select Experience</label>
+                    <label class="col-form-label" for=""> Minimum Experience</label>
                     <select
                       class="form-control"
-                      name="main_exp"
-                      v-model="form.main_exp"
+                      name="min_exp"
+                      v-model="form.min_exp"
                       :class="{
-                        'is-invalid': form.errors.has('main_exp'),
+                        'is-invalid': form.errors.has('min_exp'),
                       }"
                     >
                       <option value="" disabled>Min Experience</option>
@@ -107,7 +107,24 @@
                         {{ exper }}
                       </option>
                     </select>
-                    <has-error :form="form" field="main_exp"></has-error>
+                    <has-error :form="form" field="min_exp"></has-error>
+                  </div>
+                  <div class="col-sm-6">
+                    <label class="col-form-label" for=""> Maximum Experience</label>
+                    <select
+                      class="form-control"
+                      name="max_exp"
+                      v-model="form.max_exp"
+                      :class="{
+                        'is-invalid': form.errors.has('max_exp'),
+                      }"
+                    >
+                      <option value="" disabled>Max Experience</option>
+                      <option v-for="exper in experiences" :value="exper">
+                        {{ exper }}
+                      </option>
+                    </select>
+                    <has-error :form="form" field="max_exp"></has-error>
                   </div>
                 </div>
               </div>
@@ -133,28 +150,7 @@
               </select>
               <has-error :form="form" field="job_industry_id"></has-error>
             </div>
-
-            <div class="col-sm-4">
-              <label class="col-form-label" for=""> Location</label>
-              <select
-                class="form-control custom-select"
-                v-model="form.job_exp"
-                name="preferred_loc"
-              >
-                <optgroup :label="st.state" v-for="st in location" :key="st">
-                  <option
-                    v-for="(loc, index) in st.location"
-                    :key="index"
-                    :value="loc.location"
-                  >
-                    {{ loc.location }}
-                  </option>
-                </optgroup>
-              </select>
-
-              <has-error :form="form" field="job_exp"></has-error>
-            </div>
-
+            
             <div class="col-sm-4">
               <label class="col-form-label" for="">Select Functional area</label>
               <select
@@ -176,6 +172,29 @@
               </select>
               <has-error :form="form" field="job_functional_role_id"></has-error>
             </div>
+
+            <div class="col-sm-4">
+              <label class="col-form-label" for=""> Location</label>
+              <select
+                class="form-control custom-select"
+                v-model="form.job_exp"
+                name="preferred_loc"
+                multiple
+              >
+                <optgroup :label="st.state" v-for="st in location" :key="st">
+                  <option
+                    v-for="(loc, index) in st.location"
+                    :key="index"
+                    :value="loc.location"
+                  >
+                    {{ loc.location }}  
+                  </option>
+                </optgroup>
+              </select>
+
+              <has-error :form="form" field="job_exp"></has-error>
+            </div>
+
           </div>
         </fieldset>
 
