@@ -61,7 +61,8 @@
 
     <!-- Ahref Tag -->
     <meta name="ahrefs-site-verification" content="e8fe8e0fc914efde2cd867ecb77af34eef367616ce4aa20129400e966d2de239">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -396,10 +397,10 @@
     <script>
         var msg =
             '{{ Session::get('
-                                                                                                                                                                    alert ') }}';
+                                                                                                                                                                                alert ') }}';
         var exist =
             '{{ Session::has('
-                                                                                                                                                                    alert ') }}';
+                                                                                                                                                                                alert ') }}';
         if (exist) {
             alert(msg);
         }

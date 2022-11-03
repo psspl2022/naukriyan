@@ -410,7 +410,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            _vm.composeMail()
+                            return _vm.composeMail()
                           }
                         }
                       },
@@ -604,7 +604,7 @@ var render = function() {
                         on: {
                           submit: function($event) {
                             $event.preventDefault()
-                            _vm.sendMessage()
+                            return _vm.sendMessage()
                           }
                         }
                       },
