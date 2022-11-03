@@ -105,8 +105,9 @@
                       }"
                     >
                       <option value="" selected>Select Salary</option>
-                      <option v-for="exper in experiences" :key="exper" :value="exper">
-                        {{ exper }}
+                      <option value="2" selected>Less then 3</option>
+                      <option v-for="sal in 98" :key="sal" :value="sal">
+                        {{ sal + 2 }}
                       </option>
                     </select>
                     <has-error :form="form" field="main_exp"></has-error>
