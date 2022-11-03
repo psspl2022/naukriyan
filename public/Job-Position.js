@@ -940,7 +940,7 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              _vm.getConsultantJobs()
+                              return _vm.getConsultantJobs()
                             }
                           }
                         },
@@ -954,7 +954,7 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              _vm.resetFilter()
+                              return _vm.resetFilter()
                             }
                           }
                         },
@@ -1053,7 +1053,7 @@ var render = function() {
                                                 },
                                                 on: {
                                                   click: function($event) {
-                                                    _vm.getCommissionAndJobLastDate(
+                                                    return _vm.getCommissionAndJobLastDate(
                                                       post.id
                                                     )
                                                   }
@@ -1151,7 +1151,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.clearAjaxRequest()
+                                  return _vm.clearAjaxRequest()
                                 }
                               }
                             },
@@ -1581,7 +1581,9 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.getCommissionAndJobLastDate(_vm.posts.id)
+                                  return _vm.getCommissionAndJobLastDate(
+                                    _vm.posts.id
+                                  )
                                 }
                               }
                             },
@@ -1656,7 +1658,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.clearAjaxRequest()
+                                  return _vm.clearAjaxRequest()
                                 }
                               }
                             },
