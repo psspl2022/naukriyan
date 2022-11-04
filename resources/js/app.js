@@ -1,9 +1,10 @@
 require('./bootstrap');
 window.Vue = require('vue');
-
+import VueDatePicker from "@mathieustan/vue-datepicker";
+import "@mathieustan/vue-datepicker/dist/vue-datepicker.min.css";
 import VueSessionStorage from "vue-sessionstorage";
 Vue.use(VueSessionStorage);
-
+Vue.use(VueDatePicker);
 $(document).ready(function () {
     $('input[type="radio"]').click(function () {
         var inputValue = $(this).attr("value");
@@ -119,7 +120,7 @@ import swal from 'sweetalert2'
 window.swal = swal;
 const toast = swal.mixin({
     background: 'rgb(230, 230, 2309)',
-    border:'2px solid #000000',
+    border: '2px solid #000000',
     boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 1px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px 0px, rgba(0, 0, 0, 0.2) 0px 2px 20px 0px;',
     toast: true,
     position: 'top-end',

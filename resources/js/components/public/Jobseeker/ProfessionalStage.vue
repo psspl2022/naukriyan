@@ -209,7 +209,7 @@ export default {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
-        this.form.post("/add-professional-detail").then(() => {
+        this.form.post("/add-professional-detail-stage").then(() => {
           toast({
             type: "success",
             title: "Job Added successfully",

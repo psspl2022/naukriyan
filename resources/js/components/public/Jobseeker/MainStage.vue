@@ -108,8 +108,8 @@ export default {
   },
   data() {
     return {
-      stage: 3,
-      stageSave: 3,
+      stage: 5,
+      stageSave: 5,
       form: new Form({
         id: "",
         name: "",

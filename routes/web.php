@@ -15,11 +15,13 @@ header('Access-Control-Allow-Origin:  *');
 // header('Access-Control-Allow-Origin:  http://127.0.0.1:8000');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
+Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
+Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
 Route::post('file-upload/profile', 'JobseekerController@testUploadImage');
-Route::post('/add-professional-detail', 'UserprofileController@addProfessionalDetail');
+
 Route::get('/get-jobseeker-info/{id}', 'JobseekerController@getJobseekerInfo');
 
 Route::get('/getjobscategory/prakharsoftwares', 'PrakharDataController@getJobsBySectorPsspl');
@@ -148,6 +150,7 @@ Route::get('/', 'FrontAllUserController@index');
 
 //jobseeker route
 Route::group(['middleware' => 'jobseeker'], function () {
+    Route::post('/add-professional-detail', 'UserprofileController@addProfessionalDetail');
     Route::get('/get-jobseeker-package', 'PackagemanagerController@getpackagejobseeker');
     Route::get('/jobseeker-profile', 'UserprofileController@jobseeker_profile');
     //getall skill
@@ -928,4 +931,3 @@ Route::get('get-all-becil-user-detail', 'BecilUserProfileController@getAlluserDe
 // Workshops - Webinars
 Route::post('store-resume-building-workshop', 'WorkshopController@storeResumeBuilding');
 Route::post('store-linkedin-workshop', 'WorkshopController@storeLinkedIn');
-
