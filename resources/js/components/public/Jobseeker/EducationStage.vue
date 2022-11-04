@@ -54,14 +54,14 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Passing Year</label
               >   
-              <date-picker 
+              <!-- <date-picker 
                 id="app" 
                 v-model="form.pass_year[i - 1]" 
                 type="year" 
                 :name="'pass_year' + i"
                 :class="{ 'is-invalid': form.errors.has('pass_year') }"
                 >
-              </date-picker>
+              </date-picker> -->
               <has-error :form="form" field="pass_year"></has-error>
             </div>
 
@@ -107,10 +107,10 @@
 
 <script>
 import $ from "jquery";
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+// import DatePicker from 'vue2-datepicker';
+// import 'vue2-datepicker/index.css';
 export default {
-  components: { DatePicker },
+  // components: { DatePicker },
   name: "EducationStage",
   // props: ["keyword", "location", "experience", "jobtype"],
   el: '#app',
