@@ -30,12 +30,9 @@
                       placeholder = ' ';
                     }
                   "
-                  :separators="[';', ',']"
                   :add-on-key="[13, ',', ';']"
-                  :tags="tags"
                   :autocomplete-items="autocompleteItems"
                  
-                  @tags-changed="update"
                 />
                 <i class="fa fa-pencil-alt search-icons" aria-hidden="true" required></i>
                 <div style="background-color: white">
@@ -483,15 +480,7 @@ export default {
   },
 
   methods: {
-    update(newTags) {
-      this.autocompleteItems = [];
-      this.tags = newTags.map((a) => {
-        return a.text;
-      });
-      this.handlers = this.tags.toString();
-      // this.keyword = this.tags.toString();
-      // console.log(this.tags);
-    },
+   
     initItems() {
       if (this.tag.length < 2) return;
       const url = `get-allskills/` + this.tag;

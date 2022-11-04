@@ -196,7 +196,6 @@ export default {
       // axios.post("/add-professional-detail", this.form).then((response) => {
       //   console.log(response);
       // });
-      console.log(this.form);
       if (
         this.form.designation.includes("") ||
         this.form.organization.includes("") ||
