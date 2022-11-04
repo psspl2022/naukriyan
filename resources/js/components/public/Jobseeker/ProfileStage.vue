@@ -78,8 +78,9 @@
                 <span style="color: red"> * </span> Date Of Birth</label
               >
               <VueDatePicker
-                v-model="date"
+                v-model="form.date"
                 ref="menu"
+                placeholder="YYYY-MM-DD"
                 :max-date="new Date().toISOString().substr(0, 10)"
                 min-date="1980-01-01"
                 @onOpen="menu = true"
@@ -210,9 +211,9 @@ export default {
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
-      date: new Date(),
       menu: false,
       form: new Form({
+        date: new Date(),
         id: "",
         name: "",
         email: "",
@@ -557,4 +558,5 @@ body {
     width: auto;
   }
 }
+
 </style>

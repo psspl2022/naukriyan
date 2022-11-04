@@ -381,6 +381,51 @@
                 cursor: pointer;
             }
         }
+
+        .vd-picker,
+        .vd-menu__content {
+            width: 150px !important;
+            min-width: 202px !important;
+            height: 238px !important;
+            font: 300;
+            font-size: 1rem !important;
+        }
+
+        /* .vd-menu__content--active */
+        .vd-picker-header {
+            min-height: 57px !important;
+            height: 47px !important;
+        }
+
+        .vd-picker__table-day {
+            position: relative;
+            width: 13% !important;
+            height: 18px !important
+        }
+
+        .vd-picker__table-day__text {
+            width: 11px !important;
+            height: 10px !important;
+        }
+
+        .vd-picker__controls {
+            height: 38px !important;
+        }
+
+        .vd-picker__input input {
+            padding: 6px !important;
+            max-width: 93%;
+            min-width: 0;
+            width: 100%;
+            background-color: #ffffff !important;
+            border: 1px solid black !important;
+        }
+
+        .vd-picker-header__date {
+            font-size: 19px !important;
+            height: 32px !important;
+            padding: 10px !important;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -397,10 +442,10 @@
     <script>
         var msg =
             '{{ Session::get('
-                                                                                                                                                                                alert ') }}';
+                                                                                                                                                                                                                                                                                                                                                                                                                    alert ') }}';
         var exist =
             '{{ Session::has('
-                                                                                                                                                                                alert ') }}';
+                                                                                                                                                                                                                                                                                                                                                                                                                    alert ') }}';
         if (exist) {
             alert(msg);
         }
