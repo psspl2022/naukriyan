@@ -77,16 +77,16 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Date Of Birth</label
               >
-              <select id="year" name="yyyy" v-model="year" @change="change_year"></select>
-              <select
-                id="month"
-                name="mm"
-                v-model="month"
-                @change="change_month"
-              ></select>
-              <select id="day" name="dd">
-                <option value="day">day</option>
-              </select>
+              <VueDatePicker
+                v-model="form.date"
+                ref="menu"
+                placeholder="YYYY-MM-DD"
+                :max-date="new Date().toISOString().substr(0, 10)"
+                min-date="1980-01-01"
+                @onOpen="menu = true"
+                @onClose="menu = false"
+              />
+
               <has-error :form="form" field="gender"></has-error>
             </div>
             <div class="col-sm-4">
@@ -150,7 +150,7 @@
               </select>
               <has-error :form="form" field="job_industry_id"></has-error>
             </div>
-            
+
             <div class="col-sm-4">
               <label class="col-form-label" for="">Select Functional area</label>
               <select
@@ -187,14 +187,13 @@
                     :key="index"
                     :value="loc.location"
                   >
-                    {{ loc.location }}  
+                    {{ loc.location }}
                   </option>
                 </optgroup>
               </select>
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
-
           </div>
         </fieldset>
 
@@ -206,12 +205,15 @@
 
 <script>
 import $ from "jquery";
+
 export default {
   name: "ProfileStage",
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
+      menu: false,
       form: new Form({
+        date: new Date(),
         id: "",
         name: "",
         email: "",
@@ -350,6 +352,11 @@ export default {
         val = 1;
       }
       $(day).val(val);
+    },
+  },
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.menu.$refs.agenda.mode = "year"));
     },
   },
 };
@@ -551,4 +558,5 @@ body {
     width: auto;
   }
 }
+
 </style>
