@@ -3,14 +3,9 @@
     <div class="col-sm-12">
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> Name,Email,Contact No</span>
-      <form
-        class="popupForm"
-        role="form"
-        method="post"
-        @submit.prevent="addEducation()"
-      >
+      <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
         <fieldset v-for="i in i" :key="i">
-          <legend  v-if="i==1">Education</legend>
+          <legend v-if="i == 1">Education</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -53,15 +48,13 @@
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Passing Year</label
-              >   
-              <date-picker 
-                id="app" 
-                v-model="form.pass_year[i - 1]" 
-                type="year" 
-                :name="'pass_year' + i"
-                :class="{ 'is-invalid': form.errors.has('pass_year') }"
-                >
-              </date-picker>
+              >
+              <VueDatePicker
+                v-model="form.pass_year"
+                min-date="1980"
+                max-date="2020"
+                type="year"
+              />
               <has-error :form="form" field="pass_year"></has-error>
             </div>
 
@@ -94,11 +87,12 @@
               />
               <has-error :form="form" field="ins_loc"></has-error>
             </div>
-
           </div>
         </fieldset>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="i>1" v-on:click="remove(i)" class="btn btn-primary mt-3">Remove</span>
+        <span v-if="i > 1" v-on:click="remove(i)" class="btn btn-primary mt-3"
+          >Remove</span
+        >
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -107,32 +101,26 @@
 
 <script>
 import $ from "jquery";
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+// import DatePicker from 'vue2-datepicker';
+// import 'vue2-datepicker/index.css';
 export default {
-  components: { DatePicker },
+  // components: { DatePicker },
   name: "EducationStage",
   // props: ["keyword", "location", "experience", "jobtype"],
-  el: '#app',
- 
   data() {
-    return { 
-      defaultDate: 'YYYY',
-      DatePickerFormat: 'yyyy',
+    return {
       i: 1,
       form: new Form({
         id: "",
-        ins_name:[""],
-        pass_year: ["YYYY"],
+        ins_name: [""],
+        pass_year: new Date(),
         course_type: [""],
-        degree:[""],
+        degree: [""],
         ins_loc: [""],
       }),
     };
   },
-  mounted() {
-   
-  },
+  mounted() {},
   computed: {
     allDesignation() {
       return this.$store.getters.getAllDesignation;
@@ -149,7 +137,7 @@ export default {
     },
   },
   methods: {
-    addEducation(){
+    addEducation() {
       if (
         this.form.ins_name.includes("") ||
         this.form.pass_year.includes("") ||
@@ -187,9 +175,9 @@ export default {
       this.form.ins_name.pop("");
       this.form.pass_year.pop("");
       this.form.course_type.pop("");
-      this.form.ins_loc.pop("");      
+      this.form.ins_loc.pop("");
       this.form.degree.pop("");
-    }
+    },
   },
 };
 </script>
