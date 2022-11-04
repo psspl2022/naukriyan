@@ -87,4 +87,16 @@ class StageRegistration extends Controller
         // $updateLastModifiedDate->save();
         return  $request->all();
     }
+    public function getProfessionalDetail()
+    {
+
+        $data = JsProfessionalDetail::where('js_userid', 2)->get();
+        return  $data->all();
+    }
+    public function deleteProfessionalDetail($id)
+    {
+
+        $data = JsProfessionalDetail::where('id', $id)->delete();
+        return  $id;
+    }
 }

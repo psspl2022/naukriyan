@@ -442,10 +442,10 @@
     <script>
         var msg =
             '{{ Session::get('
-                                                                                                                                                                                                                                                                                                                                                                                                                    alert ') }}';
+                                                                                                                                                                                                                                                                                                                                                                                                                                            alert ') }}';
         var exist =
             '{{ Session::has('
-                                                                                                                                                                                                                                                                                                                                                                                                                    alert ') }}';
+                                                                                                                                                                                                                                                                                                                                                                                                                                            alert ') }}';
         if (exist) {
             alert(msg);
         }
