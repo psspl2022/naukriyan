@@ -38,27 +38,43 @@ class StageRegistration extends Controller
         // $uid = Session::get('user')['id'];
         // $data = [];
         $uid = 2;
+        $update = 0;
+        $create = 0;
         for ($i = 0; $i < $request->total; $i++) {
-            // $data2 = [];
-            // $data
-            // $data[$i] = $data2;
-            $js_professional = new JsProfessionalDetail();
-            $js_professional->js_userid = $uid;
-            $js_professional->designations = $request->designation[$i];
-            $js_professional->organisation = $request->organization[$i];
-            $js_professional->job_type = $request->jobtype[$i];
-            // $js_professional->job_shift = $request->job_shift;
-            // $js_professional->industry_name = $request->industry_name;
-            // $js_professional->functional_role = $request->functional_role;
-            $js_professional->from_date = $request->fromdate[$i];
-            $js_professional->to_date = $request->todate[$i];
-            $js_professional->responsibility = $request->responsibility[$i];
-            $js_professional->save();
+
+            if ($request->index[$i] != null) {
+                JsProfessionalDetail::where('id', $request->index[$i])
+                    ->update([
+                        'designations' =>  $request->designation[$i],
+                        'organisation' => $request->organization[$i],
+                        'job_type' => $request->jobtype[$i],
+                        'from_date' => $request->fromdate[$i],
+                        'to_date' => $request->todate[$i],
+                        'responsibility' => $request->responsibility[$i]
+                    ]);
+                ++$update;
+            } else {
+                $js_professional = new JsProfessionalDetail();
+                $js_professional->js_userid = $uid;
+                $js_professional->designations = $request->designation[$i];
+                $js_professional->organisation = $request->organization[$i];
+                $js_professional->job_type = $request->jobtype[$i];
+                // $js_professional->job_shift = $request->job_shift;
+                // $js_professional->industry_name = $request->industry_name;
+                // $js_professional->functional_role = $request->functional_role;
+                $js_professional->from_date = $request->fromdate[$i];
+                $js_professional->to_date = $request->todate[$i];
+                $js_professional->responsibility = $request->responsibility[$i];
+                $js_professional->save();
+                ++$create;
+            }
         }
-        $updateLastModifiedDate = Jobseeker::find($uid);
-        $updateLastModifiedDate->last_modified = Carbon::now();
-        $updateLastModifiedDate->save();
-        return  $request->all();
+        if ($create > 0 || $update > 0) {
+            $updateLastModifiedDate = Jobseeker::find($uid);
+            $updateLastModifiedDate->last_modified = Carbon::now();
+            $updateLastModifiedDate->save();
+        }
+        return ['created' => $create, 'update' => $update];
     }
     public function addCertificationDetail(Request $request)
     {
