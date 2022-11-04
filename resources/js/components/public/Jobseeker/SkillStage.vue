@@ -1,184 +1,44 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span>
-      <form
-        class="popupForm"
-        role="form"
-        method="post"
-        @submit.prevent="addemployeejob()"
-      >
-        <fieldset>
-          <legend>Skills</legend>
+
+      <form class="popupForm" role="form" method="post" @submit.prevent="addSkill()">
+        <fieldset class="mb-2" v-for="i in i" :key="i">
+          <legend v-if="i==1">Skills</legend>
           <div class="row mb-2">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Name</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="name"
-                placeholder="Enter Full Name"
-                v-model="form.name"
-                :class="{ 'is-invalid': form.errors.has('name') }"
-              />
-              <has-error :form="form" field="name"></has-error>
+                <span style="color: red"> * </span>Skill</label>
+              <input type="text" class="form-control" :name="'skill' + i" placeholder="Enter Skill" list="skill_list"
+                v-model="form.skill[i - 1]" @keyup="
+                  () => {
+                    initItems(form.skill[i - 1]);
+                  }
+                " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems" @tags-changed="update"
+                :class="{ 'is-invalid': form.errors.has('skill') }" />
+              <datalist id="skill_list">
+                <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
+              </datalist>
+              <has-error :form="form" field="skill"></has-error>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Email</label
-              >
-              <input
-                type="email"
-                class="form-control"
-                name="email"
-                placeholder="Enter Email"
-                v-model="form.email"
-                :class="{ 'is-invalid': form.errors.has('email') }"
-              />
-              <has-error :form="form" field="email"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Contact No.</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="contact_no"
-                placeholder="Enter Full Contact No"
-                v-model="form.contact_no"
-                :class="{ 'is-invalid': form.errors.has('contact_no') }"
-              />
-              <has-error :form="form" field="contact_no"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Gender</label
-              >
-              <select
-                class="form-control custom-select"
-                name="gender"
-                v-model="form.gender"
+                <span style="color: red"> * </span>Expert Level</label>
+              <select class="form-control custom-select" :name="'expert_level' + i" v-model="form.expert_level[i - 1]"
                 :class="{
-                  'is-invalid': form.errors.has('gender'),
-                }"
-              >
-                <option value="" disabled>Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                  'is-invalid': form.errors.has('expert_level'),
+                }">
+                <option value="" disabled>Select Expert Level</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Expert">Expert</option>
               </select>
-              <has-error :form="form" field="gender"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Date Of Birth</label
-              >
-              <select id="year" name="yyyy" v-model="year" @change="change_year"></select>
-              <select
-                id="month"
-                name="mm"
-                v-model="month"
-                @change="change_month"
-              ></select>
-              <select id="day" name="dd">
-                <option value="day">day</option>
-              </select>
-              <has-error :form="form" field="gender"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <div class="">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Select Experience</label>
-                    <select
-                      class="form-control"
-                      name="main_exp"
-                      v-model="form.main_exp"
-                      :class="{
-                        'is-invalid': form.errors.has('main_exp'),
-                      }"
-                    >
-                      <option value="" disabled>Min Experience</option>
-                      <option v-for="exper in experiences" :value="exper">
-                        {{ exper }}
-                      </option>
-                    </select>
-                    <has-error :form="form" field="main_exp"></has-error>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">Select Industry</label>
-              <select
-                class="form-control custom-select"
-                name="job_industry_id"
-                v-model="form.job_industry_id"
-                :class="{
-                  'is-invalid': form.errors.has('job_industry_id'),
-                }"
-              >
-                <option disabled value="">Select Industry</option>
-                <option
-                  :value="industry.id"
-                  v-for="industry in allIndustry"
-                  :key="industry.id"
-                >
-                  {{ industry.category_name }}
-                </option>
-              </select>
-              <has-error :form="form" field="job_industry_id"></has-error>
-            </div>
-
-            <div class="col-sm-4">
-              <label class="col-form-label" for=""> Location</label>
-              <select
-                class="form-control custom-select"
-                v-model="form.job_exp"
-                name="preferred_loc"
-              >
-                <optgroup :label="st.state" v-for="st in location" :key="st">
-                  <option
-                    v-for="(loc, index) in st.location"
-                    :key="index"
-                    :value="loc.location"
-                  >
-                    {{ loc.location }}
-                  </option>
-                </optgroup>
-              </select>
-
-              <has-error :form="form" field="job_exp"></has-error>
-            </div>
-
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">Select Functional area</label>
-              <select
-                class="form-control custom-select"
-                name="job_functional_role_id"
-                v-model="form.job_functional_role_id"
-                :class="{
-                  'is-invalid': form.errors.has('job_functional_role_id'),
-                }"
-              >
-                <option disabled value="">Select Functional area</option>
-                <option
-                  :value="functional.id"
-                  v-for="functional in allDesignation"
-                  :key="functional.id"
-                >
-                  {{ functional.subcategory_name }}
-                </option>
-              </select>
-              <has-error :form="form" field="job_functional_role_id"></has-error>
+              <has-error :form="form" field="expert_level"></has-error>
             </div>
           </div>
         </fieldset>
-
+        <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-if="i > 1" v-on:click="remove(i)" class="btn btn-primary mt-3">Remove</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -192,145 +52,72 @@ export default {
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
+      i: 1,
+      skill_list: [],
+      handlers: [],
+      autocompleteItems: [],
       form: new Form({
         id: "",
-        name: "",
-        email: "",
-        contact_no: "",
-        gender: "",
-        dd: "",
-        mm: "",
-        yyyy: "",
-        min_exp: "",
-        max_exp: "",
-        job_skill: "",
-        company_name: "",
-        job_industry_id: "",
-        preferred_loc: "",
-        job_functional_role_id: "",
+        skill: [""],
+        expert_level: [""],
       }),
-      Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      year: "",
-      month: "",
-      location: [],
-      job_industry_id: [],
-      preferred_loc: [],
-      job_functional_role_id: [],
     };
   },
   mounted() {
-    this.getAllLocation();
-    this.$store.dispatch("getAllData", "/getindustry/master");
-    this.$store.dispatch("getAllLocation", "/getjobtype");
-    this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
-    this.setDob();
+
   },
   computed: {
-    allDesignation() {
-      return this.$store.getters.getAllDesignation;
-    },
-    experiences() {
-      const exp = 20;
-      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    },
-    allIndustry() {
-      return this.$store.getters.getAllData;
-    },
-    allLocation() {
-      return this.$store.getters.getAllLocation;
-    },
   },
   methods: {
-    getAllLocation() {
-      axios.get("/master/location/group").then((response) => {
-        this.location = response.data.data;
+    addSkill() {
+      if (
+        this.form.skill.includes("") ||
+        this.form.expert_level.includes("")
+      ) {
+        swal("Please fill all mandatory fields");
+      } else {
+        this.form.total = this.i;
+        this.form.post("/add-skill-detail").then(() => {
+          toast({
+            type: "success",
+            title: "Skill Detail Added successfully",
+          });
+        });
+      }
+    },
+
+    addMore(i) {
+      this.i = ++i;
+      this.form.skill.push("");
+      this.form.expert_level.push("");
+    },
+    remove(i) {
+      this.i = --i;
+      this.form.skill.pop("");
+      this.form.expert_level.pop("");
+    },
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
       });
+      this.handlers = this.tags.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
     },
-    setDob() {
-      var option = '<option value="day">day</option>';
-      var selectedDay = "day";
-      for (var i = 1; i <= this.Days[0]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#day").append(option);
-      $("#day").val(selectedDay);
+    initItems(skill) {
+      console.log(skill)
+      // if (this.skill.length < 2) return;
+      const url = `get-allskills/` + skill;
 
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month").append(option);
-      $("#month").val(selectedMon);
-
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month2").append(option);
-      $("#month2").val(selectedMon);
-
-      var d = new Date();
-      var option = '<option value="year">year</option>';
-      selectedYear = "year";
-      for (var i = 1930; i <= d.getFullYear(); i++) {
-        // years start i
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#year").append(option);
-      $("#year").val(selectedYear);
-    },
-    isLeapYear() {
-      year = parseInt(this.year);
-      if (year % 4 != 0) {
-        return false;
-      } else if (year % 400 == 0) {
-        return true;
-      } else if (year % 100 == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    change_year() {
-      if (isLeapYear(this.year)) {
-        this.Days[1] = 29;
-      } else {
-        this.Days[1] = 28;
-      }
-      if ($("#month").val() == 2) {
-        var day = $("#day");
-        var val = $(day).val();
-        $(day).empty();
-        var option = '<option value="day">day</option>';
-        for (var i = 1; i <= this.Days[1]; i++) {
-          //add option days
-          option += '<option value="' + i + '">' + i + "</option>";
-        }
-        $(day).append(option);
-        if (val > this.Days[month]) {
-          val = 1;
-        }
-        $(day).val(val);
-      }
-    },
-    change_month() {
-      var day = $("#day");
-      var val = $(day).val();
-      $(day).empty();
-      var option = '<option value="day">day</option>';
-      var month = parseInt(this.month) - 1;
-      for (var i = 1; i <= this.Days[month]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $(day).append(option);
-      if (val > this.Days[month]) {
-        val = 1;
-      }
-      $(day).val(val);
+      axios
+        .get(url)
+        .then((response) => {
+          this.skill_list = response.data.data.map((a) => {
+            return a.name;
+          });
+        })
+      console.log(this.skill_list)
     },
   },
 };
@@ -438,11 +225,11 @@ body {
   border: 0;
 }
 
-.checkbox-group input[type="checkbox"]:focus + label:before {
+.checkbox-group input[type="checkbox"]:focus+label:before {
   border-color: #5850eb;
 }
 
-.checkbox-group input[type="checkbox"]:checked + label:before {
+.checkbox-group input[type="checkbox"]:checked+label:before {
   color: #fff;
   content: "\2713";
   background: #5850eb;
@@ -494,7 +281,7 @@ body {
     display: flex;
   }
 
-  .checkboxes > :not(:first-child) {
+  .checkboxes> :not(:first-child) {
     margin-left: 1rem;
   }
 
