@@ -156,9 +156,9 @@ export default {
       i: 1,
       x: 1,
       form: new Form({
-        id: "1",
-        total: 1,
         index: [""],
+        total: 1,
+        id: "1",
         designation: [""],
         organization: [""],
         jobtype: [""],
@@ -181,11 +181,6 @@ export default {
   },
   created() {
     this.getAllProfessinal();
-    // this.getAllLocation();
-    // this.$store.dispatch("getAllData", "/getindustry/master");
-    // this.$store.dispatch("getAllLocation", "/getjobtype");
-    // this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
-    // this.setDob();
   },
   // computed: {
   //   allDesignation() {
@@ -260,6 +255,7 @@ export default {
     },
     addMore(i) {
       this.i = ++i;
+      this.form.index.push("");
       this.form.designation.push("");
       this.form.organization.push("");
       this.form.jobtype.push("");
@@ -267,7 +263,6 @@ export default {
       this.form.todate.push("");
       this.form.salary.push("");
       this.form.responsibility.push("");
-      this.form.index.push("");
       // console.log(this.i);
     },
     remove(i, index) {
