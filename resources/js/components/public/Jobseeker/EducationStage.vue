@@ -160,6 +160,12 @@ export default {
       }),
     };
   },
+  watch: {
+    i: "updatex",
+  },
+  created() {
+    this.getAllEducation();
+  },
   mounted() {    
     this.$store.dispatch("getAllQualification", "/qualification-get");
   },
@@ -212,13 +218,12 @@ export default {
           this.form.percentage = [];
           this.form.index = [];
           data.map((i, x) => {
-            this.form.ins_name.push(i.ins_name);
-            this.form.pass_year.push(i.pass_year);
-            this.form.jobtype.push(i.job_type);
+            this.form.ins_name.push(i.institute_name);
+            this.form.pass_year.push(i.passing_year);
             this.form.course_type.push(i.course_type);
-            this.form.ins_loc.push(i.ins_loc);
-            this.form.degree.push(i.degree);
-            this.form.percentage.push(i.percentage);
+            this.form.ins_loc.push(i.institute_location);
+            this.form.degree.push(i.degree_name);
+            this.form.percentage.push(i.percentage_grade);
             // this.form.degree.push(3);
             this.form.index.push(i.id);
           });

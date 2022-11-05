@@ -148,7 +148,7 @@ class StageRegistration extends Controller
 
     public function getEducationDetail()
     {
-        $data = JsEducationalDetail::where('js_userid', 1215)->get();
+        $data = JsEducationalDetail::where('js_userid', 1214)->get();
         return  $data->all();
     }
 
@@ -160,7 +160,7 @@ class StageRegistration extends Controller
 
           $a = JsEducationalDetail::updateOrCreate(
                [ 
-                   'js_userid' => 1215, 
+                   'js_userid' => 1214, 
                    'degree_name'=> $req->degree[$i], 
                    'course_type' => $req->course_type[$i] ],
                [ 
@@ -183,19 +183,21 @@ class StageRegistration extends Controller
        $data = JsEducationalDetail::where('id', $id)->delete();
        return  $id;
    }
+
+
     public function getStage()
     {
-
         // $uid = Session::get('user')['id'];
-        $uid = 2;
+        $uid = 1214;
         $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
         return  $data;
     }
+    
+
     public function updateStage($id)
     {
-
         // $uid = Session::get('user')['id'];
-        $uid = 2;
+        $uid = 1214;
         Jobseeker::where('id', $uid)->update(['stage' => $id]);
         $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
         return  $data;

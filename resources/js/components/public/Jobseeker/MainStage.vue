@@ -178,7 +178,7 @@ export default {
       if (stageSave >= stage) {
         axios.get(`/update-stage-registration/${stage}`).then((response) => {
           // console.log(response.data[0].savestage);
-          // this.stage = response.data[0].stage;
+          this.stage = response.data[0].stage;
           // this.stageSave = response.data[0].savestage;
         });
         this.stage = stage;
