@@ -43,14 +43,6 @@
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Date Of Birth</label>
-                <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-              >
               <VueDatePicker
                 v-model="form.date"
                 ref="menu"
@@ -122,7 +114,7 @@
 
             <div class="col-sm-4">
               <label class="col-form-label" for=""> Location</label>
-              <select class="form-control custom-select" v-model="form.job_exp" name="preferred_loc" multiple>
+              <select class="form-control custom-select" v-model="form.job_exp" name="preferred_loc" multiple style="height:150px;">
                 <optgroup :label="st.state" v-for="st in location" :key="st">
                   <option
                     v-for="(loc, index) in st.location"
