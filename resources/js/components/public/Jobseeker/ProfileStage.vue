@@ -43,14 +43,7 @@
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Date Of Birth</label>
-                <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                min-width="auto"
-              >
+              
               <VueDatePicker
                 v-model="form.date"
                 ref="menu"

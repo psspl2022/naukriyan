@@ -86,6 +86,7 @@
                     class="form-control col-9"
                     v-model="form.todate[i - 1]"
                     value="2022-11-01"
+                    :min="form.fromdate[i - 1]"
                     placeholder="2020-11-01"
                   />
                 </div>
@@ -96,7 +97,9 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="col-form-label" for=""> Select Salary</label>
+                    <label class="col-form-label" for="">
+                      <span style="color: red"> * </span> Select Salary</label
+                    >
                     <select
                       class="form-control"
                       :name="'salary' + i"
@@ -117,9 +120,7 @@
               </div>
             </div>
             <div class="col-sm-12">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Responsibility</label
-              >
+              <label class="col-form-label" for=""> Responsibility</label>
               <textarea
                 type="text"
                 class="form-control"
@@ -211,16 +212,16 @@ export default {
         this.form.jobtype.includes("") ||
         this.form.fromdate.includes("") ||
         this.form.todate.includes("") ||
-        this.form.salary.includes("") ||
-        this.form.responsibility.includes("")
+        this.form.salary.includes("")
       ) {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
-        this.form.post("/add-professional-detail-stage").then(() => {
+        this.form.post("/add-professional-detail-stage").then((response) => {
+          this.getAllProfessinal();
           toast({
             type: "success",
-            title: "Job Added successfully",
+            title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,
           });
         });
       }
@@ -232,14 +233,14 @@ export default {
         const data = response.data;
         if (data.length > 0) {
           this.i = data.length;
-          this.form.designation.pop();
-          this.form.organization.pop();
-          this.form.jobtype.pop();
-          this.form.fromdate.pop();
-          this.form.todate.pop();
-          this.form.salary.pop();
-          this.form.responsibility.pop();
-          this.form.index.pop();
+          this.form.designation = [];
+          this.form.organization = [];
+          this.form.jobtype = [];
+          this.form.fromdate = [];
+          this.form.todate = [];
+          this.form.salary = [];
+          this.form.responsibility = [];
+          this.form.index = [];
           data.map((i, x) => {
             this.form.designation.push(i.designations);
             this.form.organization.push(i.organisation);
@@ -266,7 +267,6 @@ export default {
       // console.log(this.i);
     },
     remove(i, index) {
-      console.log(i);
       this.i = --this.i;
       this.form.designation.splice(index, 1);
       this.form.organization.splice(index, 1);
@@ -277,9 +277,7 @@ export default {
       this.form.responsibility.splice(index, 1);
       this.form.index.splice(index, 1);
       if (i != "") {
-        axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {
-          console.log("hello");
-        });
+        axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {});
       }
     },
   },
