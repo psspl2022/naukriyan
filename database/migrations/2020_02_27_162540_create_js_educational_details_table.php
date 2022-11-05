@@ -18,6 +18,7 @@ class CreateJsEducationalDetailsTable extends Migration
             $table->integer('js_userid')->unsigned()->index();
             $table->string('education')->nullable();
             $table->string('degree_name')->nullable();
+            $table->string('course_type')->nullable();
             $table->string('percentage_grade')->nullable();
             $table->string('passing_year')->nullable();
             $table->enum('status',['0', '1'])->default('1');

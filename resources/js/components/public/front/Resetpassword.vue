@@ -3,7 +3,7 @@
         <section class="section" id="forget">
             <div class="container-center">
 
-                <form action=""class="form">
+                <form action="" class="form">
                     <center>
                         <img :src="'assets/public/asset/img/naukriyana1.png'" width="40%">
 

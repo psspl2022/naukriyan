@@ -1,38 +1,71 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> Name,Email,Contact No</span>
-      <form class="popupForm" role="form" method="post" @submit.prevent="addemployeejob()">
+      <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> Name,Email,Contact No</span>
+      <form
+        class="popupForm"
+        role="form"
+        method="post"
+        @submit.prevent="addemployeejob()"
+      >
         <fieldset>
           <legend>Profile Details</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Name</label>
-              <input type="text" class="form-control" name="name" placeholder="Enter Full Name" v-model="form.name"
-                :class="{ 'is-invalid': form.errors.has('name') }" />
+                <span style="color: red"> * </span> Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Enter Full Name"
+                v-model="form.name"
+                :class="{ 'is-invalid': form.errors.has('name') }"
+              />
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Email</label>
-              <input type="email" class="form-control" name="email" placeholder="Enter Email" v-model="form.email"
-                :class="{ 'is-invalid': form.errors.has('email') }" />
+                <span style="color: red"> * </span> Email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="Enter Email"
+                v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
+              />
               <has-error :form="form" field="email"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Contact No.</label>
-              <input type="text" class="form-control" name="contact_no" placeholder="Enter Full Contact No"
-                v-model="form.contact_no" :class="{ 'is-invalid': form.errors.has('contact_no') }" />
+                <span style="color: red"> * </span> Contact No.</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="contact_no"
+                placeholder="Enter Full Contact No"
+                v-model="form.contact_no"
+                :class="{ 'is-invalid': form.errors.has('contact_no') }"
+              />
               <has-error :form="form" field="contact_no"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Gender</label>
-              <select class="form-control custom-select" name="gender" v-model="form.gender" :class="{
-                'is-invalid': form.errors.has('gender'),
-              }">
+                <span style="color: red"> * </span> Gender</label
+              >
+              <select
+                class="form-control custom-select"
+                name="gender"
+                v-model="form.gender"
+                :class="{
+                  'is-invalid': form.errors.has('gender'),
+                }"
+              >
                 <option value="" disabled>Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -42,8 +75,8 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Date Of Birth</label>
-              
+                <span style="color: red"> * </span> Date Of Birth</label
+              >
               <VueDatePicker
                 v-model="form.date"
                 ref="menu"
@@ -61,9 +94,14 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label class="col-form-label" for=""> Minimum Experience</label>
-                    <select class="form-control" name="min_exp" v-model="form.min_exp" :class="{
-                      'is-invalid': form.errors.has('min_exp'),
-                    }">
+                    <select
+                      class="form-control"
+                      name="min_exp"
+                      v-model="form.min_exp"
+                      :class="{
+                        'is-invalid': form.errors.has('min_exp'),
+                      }"
+                    >
                       <option value="" disabled>Min Experience</option>
                       <option v-for="exper in experiences" :value="exper">
                         {{ exper }}
@@ -73,9 +111,14 @@
                   </div>
                   <div class="col-sm-6">
                     <label class="col-form-label" for=""> Maximum Experience</label>
-                    <select class="form-control" name="max_exp" v-model="form.max_exp" :class="{
-                      'is-invalid': form.errors.has('max_exp'),
-                    }">
+                    <select
+                      class="form-control"
+                      name="max_exp"
+                      v-model="form.max_exp"
+                      :class="{
+                        'is-invalid': form.errors.has('max_exp'),
+                      }"
+                    >
                       <option value="" disabled>Max Experience</option>
                       <option v-for="exper in experiences" :value="exper">
                         {{ exper }}
@@ -88,11 +131,20 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">Select Industry</label>
-              <select class="form-control custom-select" name="job_industry_id" v-model="form.job_industry_id" :class="{
-                'is-invalid': form.errors.has('job_industry_id'),
-              }">
+              <select
+                class="form-control custom-select"
+                name="job_industry_id"
+                v-model="form.job_industry_id"
+                :class="{
+                  'is-invalid': form.errors.has('job_industry_id'),
+                }"
+              >
                 <option disabled value="">Select Industry</option>
-                <option :value="industry.id" v-for="industry in allIndustry" :key="industry.id">
+                <option
+                  :value="industry.id"
+                  v-for="industry in allIndustry"
+                  :key="industry.id"
+                >
                   {{ industry.category_name }}
                 </option>
               </select>
@@ -101,12 +153,20 @@
 
             <div class="col-sm-4">
               <label class="col-form-label" for="">Select Functional area</label>
-              <select class="form-control custom-select" name="job_functional_role_id"
-                v-model="form.job_functional_role_id" :class="{
+              <select
+                class="form-control custom-select"
+                name="job_functional_role_id"
+                v-model="form.job_functional_role_id"
+                :class="{
                   'is-invalid': form.errors.has('job_functional_role_id'),
-                }">
+                }"
+              >
                 <option disabled value="">Select Functional area</option>
-                <option :value="functional.id" v-for="functional in allDesignation" :key="functional.id">
+                <option
+                  :value="functional.id"
+                  v-for="functional in allDesignation"
+                  :key="functional.id"
+                >
                   {{ functional.subcategory_name }}
                 </option>
               </select>
@@ -115,7 +175,13 @@
 
             <div class="col-sm-4">
               <label class="col-form-label" for=""> Location</label>
-              <select class="form-control custom-select" v-model="form.job_exp" name="preferred_loc" multiple>
+              <select
+                class="form-control custom-select"
+                v-model="form.job_exp"
+                name="preferred_loc"
+                multiple
+                style="height:150px;"
+              >
                 <optgroup :label="st.state" v-for="st in location" :key="st">
                   <option
                     v-for="(loc, index) in st.location"
@@ -140,12 +206,9 @@
 
 <script>
 import $ from "jquery";
+
 export default {
   name: "ProfileStage",
-  
-  // components: {
-  //   vuetify,
-  // },
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
@@ -175,9 +238,6 @@ export default {
       job_industry_id: [],
       preferred_loc: [],
       job_functional_role_id: [],
-      activePicker: null,
-      date: null,
-      menu: false,
     };
   },
   mounted() {
@@ -187,11 +247,6 @@ export default {
     this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
     this.setDob();
   },
-    watch: {
-      menu (val) {
-        val && setTimeout(() => (this.activePicker = 'YEAR'))
-      },
-    },
   computed: {
     allDesignation() {
       return this.$store.getters.getAllDesignation;
@@ -213,11 +268,8 @@ export default {
         this.location = response.data.data;
       });
     },
-    save (date) {
-        this.$refs.menu.save(date);
-      },
     setDob() {
-      var option = '<option value="day">Day</option>';
+      var option = '<option value="day">day</option>';
       var selectedDay = "day";
       for (var i = 1; i <= this.Days[0]; i++) {
         //add option days
@@ -226,7 +278,7 @@ export default {
       $("#day").append(option);
       $("#day").val(selectedDay);
 
-      var option = '<option value="Month">Month</option>';
+      var option = '<option value="month">month</option>';
       var selectedMon = "month";
       for (var i = 1; i <= 12; i++) {
         option += '<option value="' + i + '">' + i + "</option>";
@@ -234,7 +286,7 @@ export default {
       $("#month").append(option);
       $("#month").val(selectedMon);
 
-      var option = '<option value="Month">Month</option>';
+      var option = '<option value="month">month</option>';
       var selectedMon = "month";
       for (var i = 1; i <= 12; i++) {
         option += '<option value="' + i + '">' + i + "</option>";
@@ -243,7 +295,7 @@ export default {
       $("#month2").val(selectedMon);
 
       var d = new Date();
-      var option = '<option value="Year">Year</option>';
+      var option = '<option value="year">year</option>';
       selectedYear = "year";
       for (var i = 1930; i <= d.getFullYear(); i++) {
         // years start i
@@ -265,7 +317,7 @@ export default {
       }
     },
     change_year() {
-      if (this.isLeapYear(this.year)) {
+      if (isLeapYear(this.year)) {
         this.Days[1] = 29;
       } else {
         this.Days[1] = 28;
@@ -274,7 +326,7 @@ export default {
         var day = $("#day");
         var val = $(day).val();
         $(day).empty();
-        var option = '<option value="Day">Day</option>';
+        var option = '<option value="day">day</option>';
         for (var i = 1; i <= this.Days[1]; i++) {
           //add option days
           option += '<option value="' + i + '">' + i + "</option>";
@@ -290,7 +342,7 @@ export default {
       var day = $("#day");
       var val = $(day).val();
       $(day).empty();
-      var option = '<option value="Day">Day</option>';
+      var option = '<option value="day">day</option>';
       var month = parseInt(this.month) - 1;
       for (var i = 1; i <= this.Days[month]; i++) {
         //add option days
@@ -413,11 +465,11 @@ body {
   border: 0;
 }
 
-.checkbox-group input[type="checkbox"]:focus+label:before {
+.checkbox-group input[type="checkbox"]:focus + label:before {
   border-color: #5850eb;
 }
 
-.checkbox-group input[type="checkbox"]:checked+label:before {
+.checkbox-group input[type="checkbox"]:checked + label:before {
   color: #fff;
   content: "\2713";
   background: #5850eb;
@@ -469,7 +521,7 @@ body {
     display: flex;
   }
 
-  .checkboxes> :not(:first-child) {
+  .checkboxes > :not(:first-child) {
     margin-left: 1rem;
   }
 

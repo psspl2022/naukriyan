@@ -82,21 +82,7 @@ export default {
   },
   methods: {
     addResume() {
-      if (
-        this.form.video.includes("") ||
-        this.form.cover.includes("") ||
-        this.form.resume.includes("")
-      ) {
-        swal("Please fill all mandatory fields");
-      } else {
-        this.form.total = this.i;
-        this.form.post("/add-resume-detail").then(() => {
-          toast({
-            type: "success",
-            title: "Resume Detail Added successfully",
-          });
-        });
-      }
+  
     },
   }
     

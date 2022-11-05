@@ -11,6 +11,7 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Degree</label
               >
+              
               <select
                 class="form-control custom-select"
                 :name="'degree' + i"
@@ -20,9 +21,13 @@
                 }"
               >
                 <option value="" disabled>Select Degree</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option
+                  :value="education.qualification"
+                  v-for="education in allQualification"
+                  :key="education"
+                >
+                  {{ education.qualification }}
+                </option>
               </select>
               <has-error :form="form" field="degree"></has-error>
             </div>
@@ -39,22 +44,51 @@
                 }"
               >
                 <option value="" disabled>Select Course Type</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Distance Learning Program">Distance Learning Program</option>
+                <option value="Executive Program">Executive Program</option>
+                <option value="Certification">Certification</option>
               </select>
               <has-error :form="form" field="course_type"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Passing Year</label
+                <span style="color: red"> * </span>Percentage / Grade</label
               >
-              <VueDatePicker
-                v-model="form.pass_year[i - 1]"
-                min-date="1900"
-                :max-date="date"
-                type="year"
+              <input
+                type="text"
+                class="form-control"
+                :name="'percentage' + i"
+                placeholder="EnterPercentage / Grade"
+                v-model="form.percentage[i - 1]"
+                :class="{ 'is-invalid': form.errors.has('percentage') }"
               />
+              <has-error :form="form" field="percentage"></has-error>
+            </div>
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">
+                <span style="color: red"> * </span>Passing Year</label
+              >   
+              <date-picker 
+              
+              v-bind:style="{width: '325px'}"                
+                id="app" 
+                value-type=YYYY
+                v-model="form.pass_year[i - 1]" 
+                placeholder="Select Passing Year"
+                type="year" 
+                :name="'pass_year' + i"
+                :class="{ 'is-invalid': form.errors.has('pass_year') }"
+                >
+              </date-picker>
+            
+              <!-- <VueDatePicker
+                v-model="form.pass_year"
+                min-date="1980"
+                max-date="2020"
+                type="year"
+              /> -->
               <has-error :form="form" field="pass_year"></has-error>
             </div>
 
@@ -106,45 +140,36 @@
 
 <script>
 import $ from "jquery";
-// import DatePicker from 'vue2-datepicker';
-// import 'vue2-datepicker/index.css';
-const date = new Date();
-const year = date.getFullYear();
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
 export default {
-  // components: { DatePicker },
-  name: "EducationStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
+  components: { DatePicker },
   data() {
     return {
       i: 1,
       x: 1,
-      date: `${year}`,
       form: new Form({
         id: "",
         index: [""],
         ins_name: [""],
-        pass_year: [`${year}`],
+        // pass_year: new Date(),
+        pass_year: [""],
+        pass_year: [""],
         course_type: [""],
         degree: [""],
         ins_loc: [""],
+        percentage: [""]
       }),
     };
   },
-  mounted() {},
+  mounted() {    
+    this.$store.dispatch("getAllQualification", "/qualification-get");
+  },
   computed: {
-    // allDesignation() {
-    //   return this.$store.getters.getAllDesignation;
-    // },
-    // experiences() {
-    //   const exp = 20;
-    //   return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    // },
-    // allIndustry() {
-    //   return this.$store.getters.getAllData;
-    // },
-    // allLocation() {
-    //   return this.$store.getters.getAllLocation;
-    // },
+    allQualification() {
+      return this.$store.getters.getAllQualification;
+    },
+    // allD
   },
   watch: {
     i: "updatex",
@@ -154,13 +179,14 @@ export default {
       this.x = this.i;
     },
     addEducation() {
-      // console.log();
-      if (
+      console.log(this.form.pass_year)
+      if(
         this.form.ins_name.includes("") ||
         this.form.course_type.includes("") ||
         this.form.pass_year.includes(this.date) ||
         this.form.degree.includes("") ||
-        this.form.ins_loc.includes("")
+        this.form.ins_loc.includes("") ||
+        this.form.percentage.includes("")
       ) {
         swal("Please fill all mandatory fields");
       } else {
@@ -187,20 +213,16 @@ export default {
       this.form.course_type.push("");
       this.form.ins_loc.push("");
       this.form.degree.push("");
+      this.form.percentage.push("");
     },
-    remove(i, index) {
-      this.i = --this.i;
-      this.form.index.splice(index, 1);
-      this.form.ins_name.splice(index, 1);
-      this.form.pass_year.splice(index, 1);
-      this.form.course_type.splice(index, 1);
-      this.form.ins_loc.splice(index, 1);
-      this.form.degree.splice(index, 1);
-      if (i != "") {
-        axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {
-          console.log("hello");
-        });
-      }
+    remove(i) {
+      this.i = --i;
+      this.form.ins_name.pop("");
+      this.form.pass_year.pop("");
+      this.form.course_type.pop("");
+      this.form.ins_loc.pop("");
+      this.form.degree.pop("");
+      this.form.percentage.pop("");
     },
   },
 };
