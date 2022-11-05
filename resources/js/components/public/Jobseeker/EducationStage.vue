@@ -3,19 +3,15 @@
     <div class="col-sm-12">
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> Name,Email,Contact No</span>
-      <form
-        class="popupForm"
-        role="form"
-        method="post"
-        @submit.prevent="addEducation()"
-      >
+      <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
         <fieldset v-for="i in i" :key="i">
-          <legend  v-if="i==1">Education</legend>
+          <legend v-if="i == 1">Education</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Degree</label
               >
+              
               <select
                 class="form-control custom-select"
                 :name="'degree' + i"
@@ -25,9 +21,13 @@
                 }"
               >
                 <option value="" disabled>Select Degree</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option
+                  :value="education.qualification"
+                  v-for="education in allQualification"
+                  :key="education"
+                >
+                  {{ education.qualification }}
+                </option>
               </select>
               <has-error :form="form" field="degree"></has-error>
             </div>
@@ -44,24 +44,51 @@
                 }"
               >
                 <option value="" disabled>Select Course Type</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="others">Others</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Distance Learning Program">Distance Learning Program</option>
+                <option value="Executive Program">Executive Program</option>
+                <option value="Certification">Certification</option>
               </select>
               <has-error :form="form" field="course_type"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
+                <span style="color: red"> * </span>Percentage / Grade</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                :name="'percentage' + i"
+                placeholder="EnterPercentage / Grade"
+                v-model="form.percentage[i - 1]"
+                :class="{ 'is-invalid': form.errors.has('percentage') }"
+              />
+              <has-error :form="form" field="percentage"></has-error>
+            </div>
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Passing Year</label
               >   
-              <!-- <date-picker 
+              <date-picker 
+              
+              v-bind:style="{width: '325px'}"                
                 id="app" 
+                value-type=YYYY
                 v-model="form.pass_year[i - 1]" 
+                placeholder="Select Passing Year"
                 type="year" 
                 :name="'pass_year' + i"
                 :class="{ 'is-invalid': form.errors.has('pass_year') }"
                 >
-              </date-picker> -->
+              </date-picker>
+            
+              <!-- <VueDatePicker
+                v-model="form.pass_year"
+                min-date="1980"
+                max-date="2020"
+                type="year"
+              /> -->
               <has-error :form="form" field="pass_year"></has-error>
             </div>
 
@@ -94,11 +121,12 @@
               />
               <has-error :form="form" field="ins_loc"></has-error>
             </div>
-
           </div>
         </fieldset>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="i>1" v-on:click="remove(i)" class="btn btn-primary mt-3">Remove</span>
+        <span v-if="i > 1" v-on:click="remove(i)" class="btn btn-primary mt-3"
+          >Remove</span
+        >
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -107,55 +135,44 @@
 
 <script>
 import $ from "jquery";
-// import DatePicker from 'vue2-datepicker';
-// import 'vue2-datepicker/index.css';
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
 export default {
-  // components: { DatePicker },
-  name: "EducationStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
-  el: '#app',
- 
+  components: { DatePicker },
   data() {
-    return { 
-      defaultDate: 'YYYY',
-      DatePickerFormat: 'yyyy',
+    return {
       i: 1,
       form: new Form({
         id: "",
-        ins_name:[""],
-        pass_year: ["YYYY"],
+        ins_name: [""],
+        // pass_year: new Date(),
+        pass_year: [""],
         course_type: [""],
-        degree:[""],
+        degree: [""],
         ins_loc: [""],
+        percentage: [""]
       }),
     };
   },
-  mounted() {
-   
+  mounted() {    
+    this.$store.dispatch("getAllQualification", "/qualification-get");
   },
   computed: {
-    allDesignation() {
-      return this.$store.getters.getAllDesignation;
-    },
-    experiences() {
-      const exp = 20;
-      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    },
-    allIndustry() {
-      return this.$store.getters.getAllData;
-    },
-    allLocation() {
-      return this.$store.getters.getAllLocation;
+    allQualification() {
+      return this.$store.getters.getAllQualification;
     },
   },
   methods: {
-    addEducation(){
-      if (
+    addEducation() {
+      const date = new Date();
+      console.log(this.form.pass_year)
+      if(
         this.form.ins_name.includes("") ||
         this.form.pass_year.includes("") ||
         this.form.course_type.includes("") ||
         this.form.degree.includes("") ||
-        this.form.ins_loc.includes("")
+        this.form.ins_loc.includes("") ||
+        this.form.percentage.includes("")
       ) {
         swal("Please fill all mandatory fields");
       } else {
@@ -181,15 +198,17 @@ export default {
       this.form.course_type.push("");
       this.form.ins_loc.push("");
       this.form.degree.push("");
+      this.form.percentage.push("");
     },
     remove(i) {
       this.i = --i;
       this.form.ins_name.pop("");
       this.form.pass_year.pop("");
       this.form.course_type.pop("");
-      this.form.ins_loc.pop("");      
+      this.form.ins_loc.pop("");
       this.form.degree.pop("");
-    }
+      this.form.percentage.pop("");
+    },
   },
 };
 </script>

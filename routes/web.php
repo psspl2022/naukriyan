@@ -19,6 +19,12 @@ Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessional
 Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalDetail');
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
+
+
+Route::post('/add-education-detail', 'StageRegistration@addEducationDetail');
+
+Route::get('/qualification-get', 'UserprofileController@qualification');
+
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
@@ -157,9 +163,8 @@ Route::group(['middleware' => 'jobseeker'], function () {
     Route::get('/jobseeker-profile', 'UserprofileController@jobseeker_profile');
     //getall skill
 
-    Route::get('/qualification-get', 'UserprofileController@qualification');
 
-    Route::post('/add-education-detail', 'UserprofileController@saveEducationalDetail');
+    // Route::post('/add-education-detail', 'UserprofileController@saveEducationalDetail');
 
     Route::get('edit-educational-info/{id}', 'UserprofileController@editEducationalInfo');
 
