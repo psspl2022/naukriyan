@@ -249,23 +249,31 @@ class UserprofileController extends Controller
 
     public function addProfessionalDetail(Request $request)
     {
-        $uid = Session::get('user')['id'];
-        $js_professional = new JsProfessionalDetail();
-        $js_professional->js_userid = $uid;
-        $js_professional->designations = $request->designations;
-        $js_professional->organisation = $request->organisation;
-        $js_professional->job_type = $request->job_type;
-        $js_professional->job_shift = $request->job_shift;
-        $js_professional->industry_name = $request->industry_name;
-        $js_professional->functional_role = $request->functional_role;
-        $js_professional->from_date = $request->from_date;
-        $js_professional->to_date = $request->to_date;
-        $js_professional->responsibility = $request->responsibility;
-        $js_professional->save();
+        // $uid = Session::get('user')['id'];
+        // $data = [];
+        // $uid = 2;
+        // for ($i = 0; $i < $request->total; $i++) {
+        //     // $data2 = [];
+        //     // $data
+        //     // $data[$i] = $data2;
+        //     $js_professional = new JsProfessionalDetail();
+        //     $js_professional->js_userid = $uid;
+        //     $js_professional->designations = $request->designation[$i];
+        //     $js_professional->organisation = $request->organization[$i];
+        //     $js_professional->job_type = $request->jobtype[$i];
+        //     // $js_professional->job_shift = $request->job_shift;
+        //     // $js_professional->industry_name = $request->industry_name;
+        //     // $js_professional->functional_role = $request->functional_role;
+        //     $js_professional->from_date = $request->fromdate[$i];
+        //     $js_professional->to_date = $request->todate[$i];
+        //     $js_professional->responsibility = $request->responsibility[$i];
+        //     $js_professional->save();
 
-        $updateLastModifiedDate = Jobseeker::find($uid);
-        $updateLastModifiedDate->last_modified = Carbon::now();
-        $updateLastModifiedDate->save();
+        // }
+        // $updateLastModifiedDate = Jobseeker::find($uid);
+        // $updateLastModifiedDate->last_modified = Carbon::now();
+        // $updateLastModifiedDate->save();
+        return  $request->all();
     }
 
     public function update_professional_detail(Request $request)

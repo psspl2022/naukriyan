@@ -19,7 +19,7 @@ Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
 Route::post('file-upload/profile', 'JobseekerController@testUploadImage');
-
+Route::post('/add-professional-detail', 'UserprofileController@addProfessionalDetail');
 Route::get('/get-jobseeker-info/{id}', 'JobseekerController@getJobseekerInfo');
 
 Route::get('/getjobscategory/prakharsoftwares', 'PrakharDataController@getJobsBySectorPsspl');
@@ -177,7 +177,7 @@ Route::group(['middleware' => 'jobseeker'], function () {
     Route::get('/jobshift-get', 'UserprofileController@jobshift');
     Route::get('/industry-get', 'UserprofileController@industry');
     Route::get('/functionalrole-get', 'UserprofileController@functionalrole');
-    Route::post('/add-professional-detail', 'UserprofileController@addProfessionalDetail');
+    //   add proffesional route was here 
     Route::post('/update-professional-detail', 'UserprofileController@update_professional_detail');
     Route::get('/get-professional-detail', 'UserprofileController@getProfessionalDetail');
     Route::get('/delete-professional-detail/{id}', 'UserprofileController@deleteProfessionalDetail');
@@ -928,3 +928,4 @@ Route::get('get-all-becil-user-detail', 'BecilUserProfileController@getAlluserDe
 // Workshops - Webinars
 Route::post('store-resume-building-workshop', 'WorkshopController@storeResumeBuilding');
 Route::post('store-linkedin-workshop', 'WorkshopController@storeLinkedIn');
+
