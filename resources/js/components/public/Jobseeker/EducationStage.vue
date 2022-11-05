@@ -152,8 +152,6 @@ export default {
         id: "",
         index: [""],
         ins_name: [""],
-        // pass_year: new Date(),
-        pass_year: [""],
         pass_year: [""],
         course_type: [""],
         degree: [""],
@@ -200,29 +198,56 @@ export default {
       }
     },
 
-    getAllLocation() {
-      axios.get("/master/location/group").then((response) => {
-        this.location = response.data.data;
+    getAllEducation() {
+      axios.get("/get-education-detail").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          this.i = data.length;
+          this.form.ins_name = [];
+          this.form.pass_year = [];
+          this.form.course_type = [];
+          this.form.ins_loc = [];
+          this.form.degree = [];
+          this.form.percentage = [];
+          this.form.index = [];
+          data.map((i, x) => {
+            this.form.ins_name.push(i.ins_name);
+            this.form.pass_year.push(i.pass_year);
+            this.form.jobtype.push(i.job_type);
+            this.form.course_type.push(i.course_type);
+            this.form.ins_loc.push(i.ins_loc);
+            this.form.degree.push(i.degree);
+            this.form.percentage.push(i.percentage);
+            // this.form.degree.push(3);
+            this.form.index.push(i.id);
+          });
+        }
       });
     },
+
     addMore(i) {
       this.i = ++i;
       this.form.index.push("");
       this.form.ins_name.push("");
-      this.form.pass_year.push(this.date);
+      this.form.pass_year.push("");
       this.form.course_type.push("");
       this.form.ins_loc.push("");
       this.form.degree.push("");
       this.form.percentage.push("");
     },
-    remove(i) {
-      this.i = --i;
-      this.form.ins_name.pop("");
-      this.form.pass_year.pop("");
-      this.form.course_type.pop("");
-      this.form.ins_loc.pop("");
-      this.form.degree.pop("");
-      this.form.percentage.pop("");
+    remove(i, index) {
+      this.i = --this.i;
+      this.form.ins_name.splice(index, 1);
+      this.form.pass_year.splice(index, 1);
+      this.form.course_type.splice(index, 1);
+      this.form.ins_loc.splice(index, 1);
+      this.form.degree.splice(index, 1);
+      this.form.percentage.splice(index, 1);
+
+      if (i != "") {
+        axios.get(`/delete-education-detail/${i}`).then((response) => {});
+      }
     },
   },
 };

@@ -26,6 +26,8 @@ Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificati
 
 
 Route::post('/add-education-detail', 'StageRegistration@addEducationDetail');
+Route::get('/delete-education-detail/{id}', 'StageRegistration@deleteEducationDetail');
+Route::get('/get-professional-detail', 'StageRegistration@getEducationDetail');
 
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
