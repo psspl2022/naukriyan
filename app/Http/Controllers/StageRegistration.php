@@ -80,28 +80,44 @@ class StageRegistration extends Controller
     {
         // $uid = Session::get('user')['id'];
         // $data = [];
-        // $uid = 2;
-        // for ($i = 0; $i < $request->total; $i++) {
-        //     // $data2 = [];
-        //     // $data
-        //     // $data[$i] = $data2;
-        //     $js_professional = new JsProfessionalDetail();
-        //     $js_professional->js_userid = $uid;
-        //     $js_professional->designations = $request->designation[$i];
-        //     $js_professional->organisation = $request->organization[$i];
-        //     $js_professional->job_type = $requrequestest->jobtype[$i];
-        //     // $js_professional->job_shift = $->job_shift;
-        //     // $js_professional->industry_name = $request->industry_name;
-        //     // $js_professional->functional_role = $request->functional_role;
-        //     $js_professional->from_date = $request->fromdate[$i];
-        //     $js_professional->to_date = $request->todate[$i];
-        //     $js_professional->responsibility = $request->responsibility[$i];
-        //     $js_professional->save();
-        // }
-        // $updateLastModifiedDate = Jobseeker::find($uid);
-        // $updateLastModifiedDate->last_modified = Carbon::now();
-        // $updateLastModifiedDate->save();
-        return  $request->all();
+        // return $request->all();
+        $uid = 2;
+        $update = 0;
+        $create = 0;
+        for ($i = 0; $i < $request->total; $i++) {
+
+            if ($request->index[$i] != null) {
+                JsCertification::where('id', $request->index[$i])
+                    ->update([
+                        'course' =>  $request->courseName[$i],
+                        'certificate_institute_name' => $request->instituteName[$i],
+                        'certification_type' => $request->certficationtype[$i],
+                        'cert_from_date' => $request->fromdate[$i],
+                        'cert_to_date' => $request->todate[$i],
+                        'grade' => $request->score[$i],
+                        'description' => $request->description[$i]
+                    ]);
+                ++$update;
+            } else {
+                $js_certificate = new JsCertification();
+                $js_certificate->js_userid = $uid;
+                $js_certificate->course = $request->courseName[$i];
+                $js_certificate->certificate_institute_name = $request->instituteName[$i];
+                $js_certificate->certification_type = $request->certficationtype[$i];
+                $js_certificate->cert_from_date = $request->fromdate[$i];
+                $js_certificate->cert_to_date = $request->todate[$i];
+                $js_certificate->grade = $request->score[$i];
+                $js_certificate->description = $request->description[$i];
+                $js_certificate->save();
+                ++$create;
+            }
+        }
+        if ($create > 0 || $update > 0) {
+            $updateLastModifiedDate = Jobseeker::find($uid);
+            $updateLastModifiedDate->last_modified = Carbon::now();
+            $updateLastModifiedDate->save();
+        }
+        return ['created' => $create, 'update' => $update];
     }
     public function getProfessionalDetail()
     {
@@ -109,10 +125,22 @@ class StageRegistration extends Controller
         $data = JsProfessionalDetail::where('js_userid', 2)->get();
         return  $data->all();
     }
+    public function getCertificationDetail()
+    {
+
+        $data = JsCertification::where('js_userid', 2)->get();
+        return  $data->all();
+    }
     public function deleteProfessionalDetail($id)
     {
 
         $data = JsProfessionalDetail::where('id', $id)->delete();
+        return  $id;
+    }
+    public function deleteCertificationDetail($id)
+    {
+
+        $data = JsCertification::where('id', $id)->delete();
         return  $id;
     }
 }
