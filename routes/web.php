@@ -16,6 +16,8 @@ header('Access-Control-Allow-Origin:  *');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
 // ROute added by suraj 
+Route::get('/get-stage-registration', 'StageRegistration@getStage');
+Route::get('/update-stage-registration/{id}', 'StageRegistration@updateStage');
 Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
 Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalDetail');
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
