@@ -9,8 +9,8 @@
         method="post"
         @submit.prevent="addCertification()"
       >
-        <fieldset v-for="i in i" :key="i">
-          <legend>Certification</legend>
+        <fieldset class="mt-2" v-for="i in i" :key="i">
+          <legend v-if="i == 1">Certification</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -24,6 +24,7 @@
                 v-model="form.courseName[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('courseName') }"
               />
+              <input type="hidden" v-model="form.index[i - 1]" />
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
@@ -98,6 +99,7 @@
                     class="form-control col-9"
                     v-model="form.todate[i - 1]"
                     value="2022-11-01"
+                    :min="form.fromdate[i - 1]"
                     placeholder="2020-11-01"
                   />
                 </div>
@@ -119,12 +121,16 @@
               <has-error :form="form" field="name"></has-error>
             </div>
           </div>
+          <span
+            v-on:click="remove(form.index[i - 1], i - 1)"
+            v-if="x > 1"
+            class="btn btn-primary mt-3"
+          >
+            Remove
+          </span>
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-on:click="remove(i)" v-if="i > 1" class="btn btn-primary mt-3"
-          >Remove</span
-        >
       </form>
     </div>
   </div>
@@ -138,9 +144,11 @@ export default {
   data() {
     return {
       i: 1,
+      x: 1,
       form: new Form({
-        id: "1",
+        index: [""],
         total: 1,
+        id: "1",
         courseName: [""],
         instituteName: [""],
         certficationtype: [""],
@@ -149,14 +157,14 @@ export default {
         score: [""],
         description: [""],
       }),
-      Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      year: "",
-      month: "",
       location: [],
       job_industry_id: [],
       preferred_loc: [],
       job_functional_role_id: [],
     };
+  },
+  created() {
+    this.getAllCertification();
   },
   mounted() {},
   computed: {
@@ -174,9 +182,14 @@ export default {
     //   return this.$store.getters.getAllLocation;
     // },
   },
+  watch: {
+    i: "updatex",
+  },
   methods: {
+    updatex() {
+      this.x = this.i;
+    },
     addCertification() {
-      console.log(this.form);
       if (
         this.form.courseName.includes("") ||
         this.form.instituteName.includes("") ||
@@ -189,16 +202,46 @@ export default {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
-        this.form.post("/add-certification-detail-stage").then(() => {
+        this.form.post("/add-certification-detail-stage").then((response) => {
+          this.getAllCertification();
           toast({
             type: "success",
-            title: "Job Added successfully",
+            title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,
           });
         });
       }
     },
+    getAllCertification() {
+      // alert("hello");
+      axios.get("/get-certification-detail-stage").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          this.i = data.length;
+          this.form.courseName = [];
+          this.form.instituteName = [];
+          this.form.certficationtype = [];
+          this.form.fromdate = [];
+          this.form.todate = [];
+          this.form.score = [];
+          this.form.description = [];
+          this.form.index = [];
+          data.map((i, x) => {
+            this.form.index.push(i.id);
+            this.form.courseName.push(i.course);
+            this.form.instituteName.push(i.certificate_institute_name);
+            this.form.certficationtype.push(i.certification_type);
+            this.form.fromdate.push(i.cert_from_date);
+            this.form.todate.push(i.cert_to_date);
+            this.form.score.push(i.grade);
+            this.form.description.push(i.description);
+          });
+        }
+      });
+    },
     addMore(i) {
       this.i = ++i;
+      this.form.index.push("");
       this.form.courseName.push("");
       this.form.instituteName.push("");
       this.form.certficationtype.push("");
@@ -208,16 +251,19 @@ export default {
       this.form.description.push("");
       // console.log(this.i);
     },
-    remove(i) {
-      this.i = --i;
-      this.form.courseName.pop();
-      this.form.instituteName.pop();
-      this.form.certficationtype.pop();
-      this.form.fromdate.pop();
-      this.form.todate.pop();
-      this.form.score.pop();
-      this.form.description.pop();
-      // console.log(this.i);
+    remove(i, index) {
+      this.i = --this.i;
+      this.form.courseName.splice(index, 1);
+      this.form.instituteName.splice(index, 1);
+      this.form.certficationtype.splice(index, 1);
+      this.form.fromdate.splice(index, 1);
+      this.form.todate.splice(index, 1);
+      this.form.score.splice(index, 1);
+      this.form.description.splice(index, 1);
+      this.form.index.splice(index, 1);
+      if (i != "") {
+        axios.get(`/delete-certification-detail-stage/${i}`).then((response) => {});
+      }
     },
   },
 };

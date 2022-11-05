@@ -4,7 +4,7 @@
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> Name,Email,Contact No</span>
       <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
-        <fieldset v-for="i in i" :key="i">
+        <fieldset class="mt-2" v-for="i in i" :key="i">
           <legend v-if="i == 1">Education</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
@@ -122,11 +122,16 @@
               <has-error :form="form" field="ins_loc"></has-error>
             </div>
           </div>
+          <span
+            v-on:click="remove(form.index[i - 1], i - 1)"
+            v-if="x > 1"
+            class="btn btn-primary mt-3"
+          >
+            Remove
+          </span>
         </fieldset>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="i > 1" v-on:click="remove(i)" class="btn btn-primary mt-3"
-          >Remove</span
-        >
+
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -142,10 +147,13 @@ export default {
   data() {
     return {
       i: 1,
+      x: 1,
       form: new Form({
         id: "",
+        index: [""],
         ins_name: [""],
         // pass_year: new Date(),
+        pass_year: [""],
         pass_year: [""],
         course_type: [""],
         degree: [""],
@@ -161,15 +169,21 @@ export default {
     allQualification() {
       return this.$store.getters.getAllQualification;
     },
+    // allD
+  },
+  watch: {
+    i: "updatex",
   },
   methods: {
+    updatex() {
+      this.x = this.i;
+    },
     addEducation() {
-      const date = new Date();
       console.log(this.form.pass_year)
       if(
         this.form.ins_name.includes("") ||
-        this.form.pass_year.includes("") ||
         this.form.course_type.includes("") ||
+        this.form.pass_year.includes(this.date) ||
         this.form.degree.includes("") ||
         this.form.ins_loc.includes("") ||
         this.form.percentage.includes("")
@@ -193,8 +207,9 @@ export default {
     },
     addMore(i) {
       this.i = ++i;
+      this.form.index.push("");
       this.form.ins_name.push("");
-      this.form.pass_year.push("");
+      this.form.pass_year.push(this.date);
       this.form.course_type.push("");
       this.form.ins_loc.push("");
       this.form.degree.push("");

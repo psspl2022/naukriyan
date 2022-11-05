@@ -15,9 +15,11 @@ header('Access-Control-Allow-Origin:  *');
 // header('Access-Control-Allow-Origin:  http://127.0.0.1:8000');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
+// ROute added by suraj 
 Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
 Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalDetail');
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
+Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
 
 
@@ -25,6 +27,8 @@ Route::post('/add-education-detail', 'StageRegistration@addEducationDetail');
 
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
+Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificationDetail');
+// end route by suraj
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
