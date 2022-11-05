@@ -183,4 +183,21 @@ class StageRegistration extends Controller
        $data = JsEducationalDetail::where('id', $id)->delete();
        return  $id;
    }
+    public function getStage()
+    {
+
+        // $uid = Session::get('user')['id'];
+        $uid = 2;
+        $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
+        return  $data;
+    }
+    public function updateStage($id)
+    {
+
+        // $uid = Session::get('user')['id'];
+        $uid = 2;
+        Jobseeker::where('id', $uid)->update(['stage' => $id]);
+        $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
+        return  $data;
+    }
 }

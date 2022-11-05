@@ -95,6 +95,7 @@ import ProfessionalStage from "./ProfessionalStage.vue";
 import ResumeStage from "./ResumeStage.vue";
 import CertificationStage from "./CertificationStage.vue";
 import SkillStage from "./SkillStage.vue";
+
 export default {
   name: "MainStage",
   // props: ["keyword", "location", "experience", "jobtype"],
@@ -108,8 +109,8 @@ export default {
   },
   data() {
     return {
-      stage: 3,
-      stageSave: 6,
+      stage: 1,
+      stageSave: 1,
       form: new Form({
         id: "",
         name: "",
@@ -137,11 +138,15 @@ export default {
     };
   },
   mounted() {
+    this.startStage();
     this.getAllLocation();
     this.$store.dispatch("getAllData", "/getindustry/master");
     this.$store.dispatch("getAllLocation", "/getjobtype");
     this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
     this.setDob();
+  },
+  created() {
+    this.startStage();
   },
   computed: {
     allDesignation() {
@@ -158,13 +163,29 @@ export default {
       return this.$store.getters.getAllLocation;
     },
   },
+  // watch: {
+  //   stage: "startStage",
+  // },
   methods: {
+    startStage() {
+      axios.get(`/get-stage-registration`).then((response) => {
+        // console.log(response.data[0].savestage);
+        this.stage = response.data[0].stage;
+        this.stageSave = response.data[0].savestage;
+      });
+    },
     setStage(stage, stageSave) {
       if (stageSave >= stage) {
+        axios.get(`/update-stage-registration/${stage}`).then((response) => {
+          // console.log(response.data[0].savestage);
+          // this.stage = response.data[0].stage;
+          // this.stageSave = response.data[0].savestage;
+        });
         this.stage = stage;
       }
     },
     getAllLocation() {
+      // console.log(this.stage);
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
       });
