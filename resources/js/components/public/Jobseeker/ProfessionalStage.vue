@@ -8,8 +8,8 @@
         method="post"
         @submit.prevent="getAllLocation()"
       >
-        <fieldset v-for="i in i" :key="i">
-          <legend>Professional</legend>
+        <fieldset class="mb-2" v-for="i in i" :key="i">
+          <legend v-if="i == 1">Professional</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -23,6 +23,7 @@
                 v-model="form.designation[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('designation') }"
               />
+              <input type="hidden" v-model="form.index[i - 1]" />
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
@@ -130,12 +131,16 @@
               <has-error :form="form" field="name"></has-error>
             </div>
           </div>
+          <span
+            v-on:click="remove(form.index[i - 1], i - 1)"
+            v-if="x > 1"
+            class="btn btn-primary mt-3"
+          >
+            Remove
+          </span>
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-on:click="remove(i)" v-if="i > 1" class="btn btn-primary mt-3"
-          >Remove</span
-        >
       </form>
     </div>
   </div>
@@ -149,9 +154,11 @@ export default {
   data() {
     return {
       i: 1,
+      x: 1,
       form: new Form({
         id: "1",
         total: 1,
+        index: [""],
         designation: [""],
         organization: [""],
         jobtype: [""],
@@ -169,34 +176,40 @@ export default {
       job_functional_role_id: [],
     };
   },
-  mounted() {
+  watch: {
+    i: "updatex",
+  },
+  created() {
+    this.getAllProfessinal();
     // this.getAllLocation();
     // this.$store.dispatch("getAllData", "/getindustry/master");
     // this.$store.dispatch("getAllLocation", "/getjobtype");
     // this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
     // this.setDob();
   },
-  computed: {
-    allDesignation() {
-      return this.$store.getters.getAllDesignation;
-    },
-    experiences() {
-      const exp = 20;
-      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    },
-    allIndustry() {
-      return this.$store.getters.getAllData;
-    },
-    allLocation() {
-      return this.$store.getters.getAllLocation;
-    },
-  },
+  // computed: {
+  //   allDesignation() {
+  //     return this.$store.getters.getAllDesignation;
+  //   },
+  //   experiences() {
+  //     const exp = 20;
+  //     return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
+  //   },
+  //   allIndustry() {
+  //     return this.$store.getters.getAllData;
+  //   },
+  //   allLocation() {
+  //     return this.$store.getters.getAllLocation;
+  //   },
+  // },
   methods: {
+    updatex() {
+      this.x = this.i;
+    },
     getAllLocation() {
       // axios.post("/add-professional-detail", this.form).then((response) => {
       //   console.log(response);
       // });
-      console.log(this.form);
       if (
         this.form.designation.includes("") ||
         this.form.organization.includes("") ||
@@ -209,13 +222,41 @@ export default {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
-        this.form.post("/add-professional-detail").then(() => {
+        this.form.post("/add-professional-detail-stage").then(() => {
           toast({
             type: "success",
             title: "Job Added successfully",
           });
         });
       }
+    },
+    getAllProfessinal() {
+      // alert("hello");
+      axios.get("/get-professional-detail-stage").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          this.i = data.length;
+          this.form.designation.pop();
+          this.form.organization.pop();
+          this.form.jobtype.pop();
+          this.form.fromdate.pop();
+          this.form.todate.pop();
+          this.form.salary.pop();
+          this.form.responsibility.pop();
+          this.form.index.pop();
+          data.map((i, x) => {
+            this.form.designation.push(i.designations);
+            this.form.organization.push(i.organisation);
+            this.form.jobtype.push(i.job_type);
+            this.form.fromdate.push(i.from_date);
+            this.form.todate.push(i.to_date);
+            this.form.salary.push(3);
+            this.form.index.push(i.id);
+            this.form.responsibility.push(i.responsibility);
+          });
+        }
+      });
     },
     addMore(i) {
       this.i = ++i;
@@ -226,18 +267,25 @@ export default {
       this.form.todate.push("");
       this.form.salary.push("");
       this.form.responsibility.push("");
+      this.form.index.push("");
       // console.log(this.i);
     },
-    remove(i) {
-      this.i = --i;
-      this.form.designation.pop();
-      this.form.organization.pop();
-      this.form.jobtype.pop();
-      this.form.fromdate.pop();
-      this.form.todate.pop();
-      this.form.salary.pop();
-      this.form.responsibility.pop();
-      // console.log(this.i);
+    remove(i, index) {
+      console.log(i);
+      this.i = --this.i;
+      this.form.designation.splice(index, 1);
+      this.form.organization.splice(index, 1);
+      this.form.jobtype.splice(index, 1);
+      this.form.fromdate.splice(index, 1);
+      this.form.todate.splice(index, 1);
+      this.form.salary.splice(index, 1);
+      this.form.responsibility.splice(index, 1);
+      this.form.index.splice(index, 1);
+      if (i != "") {
+        axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {
+          console.log("hello");
+        });
+      }
     },
   },
 };

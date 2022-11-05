@@ -51,33 +51,16 @@
                 offset-y
                 min-width="auto"
               >
-                <!-- <template v-slot:activator="{ on, attrs }">
-                  <v-text-field
-                    v-model="date"
-                    label="Birthday date"
-                    prepend-icon="mdi-calendar"
-                    readonly
-                    v-bind="attrs"
-                    v-on="on"
-                  ></v-text-field>
-                </template> -->
-                <v-date-picker
-                  v-model="date"
-                  :active-picker.sync="activePicker"
-                  :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
-                  min="1950-01-01"
-                  @change="save"
-                ></v-date-picker>
-              </v-menu>
-              <!-- <select id="year" name="yyyy" v-model="year" @change="change_year">
-                <option value="day">Year</option>
-              </select>
-              <select id="month" name="mm" v-model="month" @change="change_month">
-                <option value="day">Month</option>
-              </select>
-              <select id="day" name="dd">
-                <option value="day">Day</option>
-              </select> -->
+              <VueDatePicker
+                v-model="form.date"
+                ref="menu"
+                placeholder="YYYY-MM-DD"
+                :max-date="new Date().toISOString().substr(0, 10)"
+                min-date="1980-01-01"
+                @onOpen="menu = true"
+                @onClose="menu = false"
+              />
+
               <has-error :form="form" field="gender"></has-error>
             </div>
             <div class="col-sm-4">
@@ -141,7 +124,11 @@
               <label class="col-form-label" for=""> Location</label>
               <select class="form-control custom-select" v-model="form.job_exp" name="preferred_loc" multiple>
                 <optgroup :label="st.state" v-for="st in location" :key="st">
-                  <option v-for="(loc, index) in st.location" :key="index" :value="loc.location">
+                  <option
+                    v-for="(loc, index) in st.location"
+                    :key="index"
+                    :value="loc.location"
+                  >
                     {{ loc.location }}
                   </option>
                 </optgroup>
@@ -149,7 +136,6 @@
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
-
           </div>
         </fieldset>
 
@@ -161,7 +147,6 @@
 
 <script>
 import $ from "jquery";
-import Vuetify from 'vuetify';
 export default {
   name: "ProfileStage",
   
@@ -171,7 +156,9 @@ export default {
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
+      menu: false,
       form: new Form({
+        date: new Date(),
         id: "",
         name: "",
         email: "",
@@ -321,6 +308,11 @@ export default {
         val = 1;
       }
       $(day).val(val);
+    },
+  },
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.menu.$refs.agenda.mode = "year"));
     },
   },
 };
@@ -522,4 +514,5 @@ body {
     width: auto;
   }
 }
+
 </style>
