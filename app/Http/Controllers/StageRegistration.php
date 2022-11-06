@@ -238,8 +238,43 @@ class StageRegistration extends Controller
     public function resumeUpload(Request $req)
     {
 
-        // $uid = Session::get('user')['id'];
+        // $userId = Session::get('user')['id'];
+        $resumeup = 0;
+        $userId = 2;
+        $filename = time() . '.' . $req->resume->extension();
+        $path = public_path() . '/resume/';
+        $upload = $req->resume->move($path, $filename);
 
+        $addressData = [
+            'js_userid' => $userId,
+            'resume' => $filename,
+        ];
+
+        JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
+        if ($upload) {
+            $resumeup = 1;
+        }
+        return $resumeup;
+    }
+    public function resumeSave(Request $req)
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $addressData = [
+            'resume_video_link' => $req->video,
+            'cover_letter' => $req->cover,
+        ];
+
+        JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
         return  $req->all();
+    }
+    public function resumeGet()
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $data = JsResume::where('js_userid', $userId)->get();
+        return $data;
     }
 }
