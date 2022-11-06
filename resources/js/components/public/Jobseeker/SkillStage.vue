@@ -36,9 +36,15 @@
               <has-error :form="form" field="expert_level"></has-error>
             </div>
           </div>
+          <span
+            v-on:click="remove(form.index[i - 1], i - 1)"
+            v-if="x > 1"
+            class="btn btn-primary mt-3"
+          >
+            Remove
+          </span>
         </fieldset>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="i > 1" v-on:click="remove(i)" class="btn btn-primary mt-3">Remove</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -53,22 +59,29 @@ export default {
   data() {
     return {
       i: 1,
+      x: 1,
       skill_list: [],
       handlers: [],
       autocompleteItems: [],
       form: new Form({
         id: "",
+        index: [""],
         skill: [""],
         expert_level: [""],
       }),
     };
   },
-  mounted() {
-
+  watch: {
+    i: "updatex",
   },
-  computed: {
+  created() {
+    this.getAllSkill();
   },
   methods: {
+    updatex() {
+      this.x = this.i;
+    },
+
     addSkill() {
       if (
         this.form.skill.includes("") ||
@@ -91,10 +104,32 @@ export default {
       this.form.skill.push("");
       this.form.expert_level.push("");
     },
-    remove(i) {
-      this.i = --i;
-      this.form.skill.pop("");
-      this.form.expert_level.pop("");
+    remove(i, index) {
+      this.i = --this.i;
+      this.form.skill.splice(index, 1);
+      this.form.expert_level.splice(index, 1);
+
+      if (i != "") {
+        axios.get(`/delete-skill-detail/${i}`).then((response) => {});
+      }
+
+    },
+    getAllSkill() {
+      axios.get("/get-skill-detail").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          this.i = data.length;
+          this.form.skill = [];
+          this.form.expert_level = [];
+          this.form.index = [];
+          data.map((i, x) => {
+            this.form.skill.push(i.skill);
+            this.form.expert_level.push(i.expert_level);
+            this.form.index.push(i.id);
+          });
+        }
+      });
     },
     update(newTags) {
       this.autocompleteItems = [];

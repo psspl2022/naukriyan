@@ -146,9 +146,41 @@ class StageRegistration extends Controller
     }
 
 
+    public function getSkillDetail()
+    {
+        $data = JsSkill::where('js_userid', 2)->get();
+        return  $data->all();
+    }
+
+    public function addSkillDetail(Request $req)
+    {
+
+        // $uid = Session::get('user')['id'];
+
+        for ($i = 0; $i < $req->total; $i++) {
+
+            $a = JsSkill::updateOrCreate(
+                [
+                    'js_userid' => 2,
+                    'skill' => $req->skill[$i]
+                ],
+                [
+                    'expert_level' => $req->expert_level[$i]
+                ]
+            );
+        }
+        return $a;
+    }
+
+    public function deleteSkillDetail($id)
+    {
+        $data = JsSkill::where('id', $id)->delete();
+        return  $id;
+    }
+
     public function getEducationDetail()
     {
-        $data = JsEducationalDetail::where('js_userid', 1215)->get();
+        $data = JsEducationalDetail::where('js_userid', 2)->get();
         return  $data->all();
     }
 
@@ -161,7 +193,7 @@ class StageRegistration extends Controller
 
             $a = JsEducationalDetail::updateOrCreate(
                 [
-                    'js_userid' => 1215,
+                    'js_userid' => 2,
                     'degree_name' => $req->degree[$i],
                     'course_type' => $req->course_type[$i]
                 ],
@@ -184,17 +216,19 @@ class StageRegistration extends Controller
         $data = JsEducationalDetail::where('id', $id)->delete();
         return  $id;
     }
+
+
     public function getStage()
     {
-
         // $uid = Session::get('user')['id'];
         $uid = 2;
         $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
         return  $data;
     }
+
+
     public function updateStage($id)
     {
-
         // $uid = Session::get('user')['id'];
         $uid = 2;
         Jobseeker::where('id', $uid)->update(['stage' => $id]);

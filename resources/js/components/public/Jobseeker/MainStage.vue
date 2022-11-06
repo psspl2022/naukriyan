@@ -137,31 +137,18 @@ export default {
       job_functional_role_id: [],
     };
   },
-  mounted() {
-    this.startStage();
-    this.getAllLocation();
-    this.$store.dispatch("getAllData", "/getindustry/master");
-    this.$store.dispatch("getAllLocation", "/getjobtype");
-    this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
-    this.setDob();
+  watch: {
+    i: "updatex",
   },
   created() {
+    this.getAllEducation();
+    this.startStage();
+  },
+  mounted() {
     this.startStage();
   },
   computed: {
-    allDesignation() {
-      return this.$store.getters.getAllDesignation;
-    },
-    experiences() {
-      const exp = 20;
-      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    },
-    allIndustry() {
-      return this.$store.getters.getAllData;
-    },
-    allLocation() {
-      return this.$store.getters.getAllLocation;
-    },
+   
   },
   // watch: {
   //   stage: "startStage",
@@ -178,7 +165,7 @@ export default {
       if (stageSave >= stage) {
         axios.get(`/update-stage-registration/${stage}`).then((response) => {
           // console.log(response.data[0].savestage);
-          // this.stage = response.data[0].stage;
+          this.stage = response.data[0].stage;
           // this.stageSave = response.data[0].savestage;
         });
         this.stage = stage;
