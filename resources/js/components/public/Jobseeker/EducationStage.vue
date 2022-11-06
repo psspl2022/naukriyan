@@ -175,15 +175,11 @@ export default {
     },
     // allD
   },
-  watch: {
-    i: "updatex",
-  },
   methods: {
     updatex() {
       this.x = this.i;
     },
     addEducation() {
-      console.log(this.form.pass_year)
       if(
         this.form.ins_name.includes("") ||
         this.form.course_type.includes("") ||

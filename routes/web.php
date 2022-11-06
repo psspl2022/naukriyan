@@ -24,10 +24,15 @@ Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deletePr
 Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
 
-
+//Education Route
 Route::post('/add-education-detail', 'StageRegistration@addEducationDetail');
 Route::get('/delete-education-detail/{id}', 'StageRegistration@deleteEducationDetail');
 Route::get('/get-education-detail', 'StageRegistration@getEducationDetail');
+
+//Skill Route
+Route::post('/add-skill-detail', 'StageRegistration@addSkillDetail');
+Route::get('/delete-skill-detail/{id}', 'StageRegistration@deleteSkillDetail');
+Route::get('/get-skill-detail', 'StageRegistration@getSkillDetail');
 
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
