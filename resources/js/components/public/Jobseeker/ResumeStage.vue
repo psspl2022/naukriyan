@@ -1,15 +1,15 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-     
       <form
         class="popupForm"
+        enctype="multipart/form-data"
         role="form"
         method="post"
         @submit.prevent="addResume()"
       >
         <fieldset v-for="i in i" :key="i">
-          <legend  v-if="i==1">Resume</legend>
+          <legend v-if="i == 1">Resume</legend>
           <div class="row mb-2">
             <div class="col-sm-6">
               <label class="col-form-label" for="">
@@ -18,8 +18,9 @@
               <input
                 type="file"
                 class="form-control"
-                :name="resume"
-                :class="{ 'is-invalid': form.errors.has('resume') }"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
               />
               <has-error :form="form" field="resume"></has-error>
             </div>
@@ -76,16 +77,35 @@ export default {
       }),
     };
   },
-  mounted() {
-  },
-  computed: {
-  },
+  mounted() {},
+  computed: {},
   methods: {
-    addResume() {
-  
+    handleFileUpload() {
+      this.form.resume = this.$refs.files;
+
+      let formData = new FormData();
+
+      /*
+                Add the form data we need to submit
+            */
+      formData.append("file", this.form.resume);
+
+      /*
+          Make the request to the POST /single-file URL
+        */
+      axios
+        .post("/resume-upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        });
+
+      // console.log(this.form.resume);
     },
-  }
-    
+  },
 };
 </script>
 
