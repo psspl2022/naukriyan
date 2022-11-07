@@ -14,17 +14,31 @@
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Name</label
+                <span style="color: red"> * </span> First Name</label
               >
               <input
                 type="text"
                 class="form-control"
-                name="name"
-                placeholder="Enter Full Name"
-                v-model="form.name"
-                :class="{ 'is-invalid': form.errors.has('name') }"
+                name="fname"
+                placeholder="Enter First Name"
+                v-model="form.fname"
+                :class="{ 'is-invalid': form.errors.has('fname') }"
               />
-              <has-error :form="form" field="name"></has-error>
+              <has-error :form="form" field="fname"></has-error>
+            </div>
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">
+                <span style="color: red"> * </span>Last Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="lname"
+                placeholder="Enter Last Name"
+                v-model="form.lname"
+                :class="{ 'is-invalid': form.errors.has('lname') }"
+              />
+              <has-error :form="form" field="lname"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -35,6 +49,7 @@
                 class="form-control"
                 name="email"
                 placeholder="Enter Email"
+                title="Enter Vaild Mail"
                 v-model="form.email"
                 :class="{ 'is-invalid': form.errors.has('email') }"
               />
@@ -93,13 +108,13 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Minimum Experience</label>
+                    <label class="col-form-label" for="">Experience Year</label>
                     <select
                       class="form-control"
-                      name="min_exp"
-                      v-model="form.min_exp"
+                      name="exp_year"
+                      v-model="form.exp_year"
                       :class="{
-                        'is-invalid': form.errors.has('min_exp'),
+                        'is-invalid': form.errors.has('exp_year'),
                       }"
                     >
                       <option value="" disabled>Min Experience</option>
@@ -107,16 +122,16 @@
                         {{ exper }}
                       </option>
                     </select>
-                    <has-error :form="form" field="min_exp"></has-error>
+                    <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Maximum Experience</label>
+                    <label class="col-form-label" for="">Experience Month</label>
                     <select
                       class="form-control"
-                      name="max_exp"
-                      v-model="form.max_exp"
+                      name="exp_mon"
+                      v-model="form.exp_mon"
                       :class="{
-                        'is-invalid': form.errors.has('max_exp'),
+                        'is-invalid': form.errors.has('exp_mon'),
                       }"
                     >
                       <option value="" disabled>Max Experience</option>
@@ -124,7 +139,7 @@
                         {{ exper }}
                       </option>
                     </select>
-                    <has-error :form="form" field="max_exp"></has-error>
+                    <has-error :form="form" field="exp_mon"></has-error>
                   </div>
                 </div>
               </div>
@@ -177,10 +192,10 @@
               <label class="col-form-label" for=""> Location</label>
               <select
                 class="form-control custom-select"
-                v-model="form.job_exp"
+                v-model="form.preferred_loc"
                 name="preferred_loc"
                 multiple
-                style="height:150px;"
+                style="height: 150px"
               >
                 <optgroup :label="st.state" v-for="st in location" :key="st">
                   <option
@@ -214,22 +229,18 @@ export default {
     return {
       menu: false,
       form: new Form({
-        date: new Date(),
         id: "",
-        name: "",
+        fname: "",
+        lname: "",
         email: "",
         contact_no: "",
         gender: "",
-        dd: "",
-        mm: "",
-        yyyy: "",
-        min_exp: "",
-        max_exp: "",
-        job_skill: "",
-        company_name: "",
+        date: new Date(),
+        exp_year: "",
+        exp_mon: "",
         job_industry_id: "",
-        preferred_loc: "",
         job_functional_role_id: "",
+        preferred_loc: "",
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -267,6 +278,38 @@ export default {
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
       });
+    },
+    addemployeejob() {
+      let date = new Date();
+      if (
+        this.form.fname == "" ||
+        this.form.lname == "" ||
+        this.form.email == "" ||
+        this.form.contact_no == "" ||
+        this.form.exp_year == "" ||
+        this.form.exp_mon == "" ||
+        this.form.job_industry_id == "" ||
+        this.form.job_functional_role_id == "" ||
+        this.form.preferred_loc == "" ||
+        this.form.gender == "" ||
+        this.form.date == date
+      ) {
+        swal("Please fill all mandatory fields");
+      } else {
+        var pattern = /^[6-9][0-9]{9}$/;
+        if (!pattern.test(this.form.contact_no)) {
+          swal("Mobile Number is not valid");
+        } else {
+          this.form.total = this.i;
+          this.form.post("/persnol-save").then((response) => {
+            this.getAllProfessinal();
+            toast({
+              type: "success",
+              title: `Resume added successfully`,
+            });
+          });
+        }
+      }
     },
     setDob() {
       var option = '<option value="day">day</option>';
@@ -559,5 +602,4 @@ body {
     width: auto;
   }
 }
-
 </style>

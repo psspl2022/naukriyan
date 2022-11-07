@@ -1,6 +1,10 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
+        <span
+          class="btn btn-outline-secondary btn-sm float-right mb-3"
+          v-on:click="skipStage()"
+        >Skip</span>
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> All Field Required</span>
       <form
@@ -10,7 +14,6 @@
         @submit.prevent="addCertification()"
       >
         <fieldset class="mt-2" v-for="i in i" :key="i">
-          <spna>Skip</spna>
           <legend v-if="i == 1">Certification</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
@@ -141,11 +144,14 @@
 import $ from "jquery";
 export default {
   name: "CertificationStage",
-  // props: ["keyword", "location", "experience", "certficationtype"],
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       i: 1,
       x: 1,
+      stage: 0,
       form: new Form({
         index: [""],
         total: 1,
@@ -265,6 +271,13 @@ export default {
       if (i != "") {
         axios.get(`/delete-certification-detail-stage/${i}`).then((response) => {});
       }
+    },
+    skipStage() {
+      this.stage = 5;
+      // console.log("hello");
+      axios.get(`/skip-stage/${this.stage}`).then((response) => {
+        this.startStage();
+      });
     },
   },
 };

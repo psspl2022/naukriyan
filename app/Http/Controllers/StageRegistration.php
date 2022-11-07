@@ -269,6 +269,28 @@ class StageRegistration extends Controller
         JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
         return  $req->all();
     }
+    public function addPersnol(Request $req)
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $personalData = [
+            'fname' => $req->fname,
+            'lname' => $req->lname,
+            'email' => $req->email,
+            'contact' => $req->contact_no,
+            'gender' => $req->gender,
+            'dob' => $req->date,
+            'exp_year' => $req->exp_year,
+            'exp_month' => $req->exp_mon,
+            'industry_id' => $req->job_industry_id,
+            'functionalrole_id' => $req->job_functional_role_id,
+            'preferred_location' => $req->preferred_loc,
+        ];
+
+        $data = Jobseeker::updateOrCreate(['js_userid' => $userId], $personalData);
+        return  $data;
+    }
     public function resumeGet()
     {
         //dd($request->all());
@@ -276,5 +298,20 @@ class StageRegistration extends Controller
         $userId = 2;
         $data = JsResume::where('js_userid', $userId)->get();
         return $data;
+    }
+
+    public function skipStage($stage)
+    {
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+
+        $checkStage = Jobseeker::where('id', $userId)->select('savestage')->get();
+
+        if ($checkStage[0]->savestage < $stage) {
+            $data = Jobseeker::where('id', $userId)->update(['savestage' => $stage]);
+        }
+        $data = Jobseeker::where('id', $userId)->update(['stage' => ($stage + 1)]);
+
+        return $stage;
     }
 }

@@ -68,12 +68,12 @@
         </div>
         <div class="card mt-3">
           <div class="card-body">
-            <ProfileStage v-if="stage == 1" />
-            <EducationStage v-if="stage == 2" />
-            <ProfessionalStage v-if="stage == 3" />
-            <ResumeStage v-if="stage == 4" />
-            <CertificationStage v-if="stage == 5" />
-            <SkillStage v-if="stage == 6" />
+            <ProfileStage :startStage="startStage" v-if="stage == 1" />
+            <EducationStage :startStage="startStage" v-if="stage == 2" />
+            <ProfessionalStage :startStage="startStage" v-if="stage == 3" />
+            <ResumeStage :startStage="startStage" v-if="stage == 4" />
+            <CertificationStage :startStage="startStage" v-if="stage == 5" />
+            <SkillStage :startStage="startStage" v-if="stage == 6" />
           </div>
         </div>
       </div>
@@ -147,9 +147,7 @@ export default {
   mounted() {
     this.startStage();
   },
-  computed: {
-   
-  },
+  computed: {},
   // watch: {
   //   stage: "startStage",
   // },
@@ -170,98 +168,6 @@ export default {
         });
         this.stage = stage;
       }
-    },
-    getAllLocation() {
-      // console.log(this.stage);
-      axios.get("/master/location/group").then((response) => {
-        this.location = response.data.data;
-      });
-    },
-    setDob() {
-      var option = '<option value="day">day</option>';
-      var selectedDay = "day";
-      for (var i = 1; i <= this.Days[0]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#day").append(option);
-      $("#day").val(selectedDay);
-
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month").append(option);
-      $("#month").val(selectedMon);
-
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month2").append(option);
-      $("#month2").val(selectedMon);
-
-      var d = new Date();
-      var option = '<option value="year">year</option>';
-      selectedYear = "year";
-      for (var i = 1930; i <= d.getFullYear(); i++) {
-        // years start i
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#year").append(option);
-      $("#year").val(selectedYear);
-    },
-    isLeapYear() {
-      year = parseInt(this.year);
-      if (year % 4 != 0) {
-        return false;
-      } else if (year % 400 == 0) {
-        return true;
-      } else if (year % 100 == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    change_year() {
-      if (isLeapYear(this.year)) {
-        this.Days[1] = 29;
-      } else {
-        this.Days[1] = 28;
-      }
-      if ($("#month").val() == 2) {
-        var day = $("#day");
-        var val = $(day).val();
-        $(day).empty();
-        var option = '<option value="day">day</option>';
-        for (var i = 1; i <= this.Days[1]; i++) {
-          //add option days
-          option += '<option value="' + i + '">' + i + "</option>";
-        }
-        $(day).append(option);
-        if (val > this.Days[month]) {
-          val = 1;
-        }
-        $(day).val(val);
-      }
-    },
-    change_month() {
-      var day = $("#day");
-      var val = $(day).val();
-      $(day).empty();
-      var option = '<option value="day">day</option>';
-      var month = parseInt(this.month) - 1;
-      for (var i = 1; i <= this.Days[month]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $(day).append(option);
-      if (val > this.Days[month]) {
-        val = 1;
-      }
-      $(day).val(val);
     },
   },
 };
