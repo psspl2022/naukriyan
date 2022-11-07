@@ -37,6 +37,9 @@ Route::post('/add-skill-detail', 'StageRegistration@addSkillDetail');
 Route::get('/delete-skill-detail/{id}', 'StageRegistration@deleteSkillDetail');
 Route::get('/get-skill-detail', 'StageRegistration@getSkillDetail');
 
+//Skip Stage
+Route::get('/skip-stage/{stage}', 'StageRegistration@skipStage');
+
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
 Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificationDetail');

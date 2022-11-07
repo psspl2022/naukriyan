@@ -277,4 +277,18 @@ class StageRegistration extends Controller
         $data = JsResume::where('js_userid', $userId)->get();
         return $data;
     }
+
+    public function skipStage($stage)
+    {
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+
+        $checkStage = Jobseeker::where('id', $userId)->select('savestage')->get();
+
+        if ($checkStage[0]->savestage < $stage) {
+            $data = Jobseeker::where('id', $userId)->update(['savestage' => $stage, 'stage' => $stage + 1]);
+        }
+
+        return $stage;
+    }
 }
