@@ -849,10 +849,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>Designation<span style="color: red"> </span></label>
+                                                {{-- <label>Designation<span style="color: red"> </span></label>
                                                 <div class="input password">
                                                     <input type="text" name="designation" id="j_designation"
                                                         class="form-control" placeholder="Enter Designation">
+                                                </div> --}}
+                                                <label>Select Industry<span style="color: red"> </span></label>
+                                                <div class="input password">
+                                                    <select
+                                                        class="form-control"
+                                                        name="industry_id"
+                                                        id="industryDropDownList"
+                                                        >
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -1294,10 +1303,31 @@
             });
         })
 
+        function getIndustry(){
+            $.ajax({
+                        method: "GET",
+                        url: "/get-industries",
+                        success: function(response) {
+                            $('#industryDropDownList').html('');  
+                            var options = '';  
+                            options += '<option value="" disabled>Select Industry</option>';  
+                            for (var i = 0; i < response.data.length; i++) {  
+                                options += '<option value="' + response.data[i].id + '">' + response.data[i].category_name + '</option>';  
+                            }  
+                            $('#industryDropDownList').append(options);  
+                        },
+                        error: function(response) {
+                            console.log('Something went wrong...');
+                        }
+                    })
+        }
+
         //for employer click menu in footer login form
         $(document).ready(function() {
             let timeout;
             let delay = 1000; // 1 seconds
+
+            getIndustry();
 
             // LIVE CHECKING CANDIDATE CONTACT NUMBER
             $('#cand_contact').keyup(function(e) {
@@ -1524,7 +1554,8 @@
                 formData.append('password', $('#j_password').val());
                 formData.append('gender', $('#j_gender').val());
                 formData.append('candidate_type', $('#j_cand_type').val());
-                formData.append('designation', $('#j_designation').val());
+                // formData.append('designation', $('#j_designation').val());
+                formData.append('industry_id', $('#industryDropDownList').val());
                 formData.append('resume', $('#j_resume')[0].files[0]);
 
                 // var firstname = $("#j_fname").val();
