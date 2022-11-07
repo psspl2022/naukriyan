@@ -1,6 +1,10 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
+      <span
+          class="btn btn-outline-secondary btn-sm float-right mb-3"
+          v-on:click="skipStage()"
+        >Skip</span>
       <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> /</span>
       <form
         class="popupForm"
@@ -293,6 +297,14 @@ export default {
       if (i != "") {
         axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {});
       }
+    },
+    
+    skipStage() {
+      this.stage = 3;
+      // console.log("hello");
+      axios.get(`/skip-stage/${this.stage}`).then((response) => {
+        this.startStage();
+      });
     },
   },
 };

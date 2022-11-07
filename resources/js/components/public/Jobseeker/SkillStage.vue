@@ -54,7 +54,7 @@
 <script>
 import $ from "jquery";
 export default {
-  name: "SkillStage",
+  name: "SkillstartStage",
   // props: ["keyword", "location", "experience", "jobtype"],
   data() {
     return {
