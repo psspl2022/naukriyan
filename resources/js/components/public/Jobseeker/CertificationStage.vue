@@ -10,6 +10,7 @@
         @submit.prevent="addCertification()"
       >
         <fieldset class="mt-2" v-for="i in i" :key="i">
+          <spna>Skip</spna>
           <legend v-if="i == 1">Certification</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
