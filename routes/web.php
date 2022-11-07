@@ -102,6 +102,7 @@ Route::get('/master/location/group', 'CitiesController@getLocationByGroup');
 //for jobs in main header Top Metropolitan cities
 Route::get('/master/location', 'CitiesController@getLocation');
 
+Route::get('/get-industries', 'UserprofileController@industry');
 
 Route::get('/', function () {
     return view('public/index');
