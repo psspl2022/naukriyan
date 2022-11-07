@@ -89,7 +89,8 @@ class FrontJobseekerController extends Controller
         $jobseeker->gender = $request->gender;
         //$jobseeker->user_type = $request->user_type;
         $jobseeker->candidate_type = $request->candidate_type;
-        $jobseeker->designation = $request->designation;
+        // $jobseeker->designation = $request->designation;
+        $jobseeker->industry_id = $request->industry_id;
         $jobseeker->user_type="Jobseeker";
 
         $email = $request->email;
