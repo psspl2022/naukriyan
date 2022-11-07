@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-sm-12">
       <div>
-        <span
+        <!-- <span
           class="btn btn-outline-secondary btn-sm float-right mb-3"
           v-on:click="skipStage()"
           >Skip</span
-        >
+        > -->
       </div>
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> All Field Required</span>
@@ -138,6 +138,7 @@
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="skipStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
     </div>
   </div>
@@ -214,6 +215,7 @@ export default {
         this.form.total = this.i;
         this.form.post("/add-certification-detail-stage").then((response) => {
           this.getAllCertification();
+          this.skipStage();
           toast({
             type: "success",
             title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,

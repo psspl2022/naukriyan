@@ -142,6 +142,7 @@
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="updatepStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
     </div>
   </div>
@@ -151,11 +152,16 @@
 import $ from "jquery";
 export default {
   name: "ProfessionalStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       i: 1,
       x: 1,
+      props: {
+        startStage: { type: Function },
+      },
       form: new Form({
         index: [""],
         total: 1,
@@ -202,6 +208,13 @@ export default {
     updatex() {
       this.x = this.i;
     },
+    updatepStage() {
+      let stage = 3;
+      // console.log("hello");
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
+      });
+    },
     getAllLocation() {
       // axios.post("/add-professional-detail", this.form).then((response) => {
       //   console.log(response);
@@ -219,9 +232,10 @@ export default {
         this.form.total = this.i;
         this.form.post("/add-professional-detail-stage").then((response) => {
           this.getAllProfessinal();
+          this.updatepStage();
           toast({
             type: "success",
-            title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,
+            title: `Professinoal ${response.data.created} Added and ${response.data.update} Updated successfully`,
           });
         });
       }

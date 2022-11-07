@@ -11,7 +11,7 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Degree</label
               >
-              
+
               <select
                 class="form-control custom-select"
                 :name="'degree' + i"
@@ -46,7 +46,9 @@
                 <option value="" disabled>Select Course Type</option>
                 <option value="Full Time">Full Time</option>
                 <option value="Part Time">Part Time</option>
-                <option value="Distance Learning Program">Distance Learning Program</option>
+                <option value="Distance Learning Program">
+                  Distance Learning Program
+                </option>
                 <option value="Executive Program">Executive Program</option>
                 <option value="Certification">Certification</option>
               </select>
@@ -69,20 +71,19 @@
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Passing Year</label
-              >   
-              <date-picker 
-              
-              v-bind:style="{width: '325px'}"                
-                id="app" 
-                value-type=YYYY
-                v-model="form.pass_year[i - 1]" 
+              >
+              <date-picker
+                v-bind:style="{ width: '325px' }"
+                id="app"
+                value-type="YYYY"
+                v-model="form.pass_year[i - 1]"
                 placeholder="Select Passing Year"
-                type="year" 
+                type="year"
                 :name="'pass_year' + i"
                 :class="{ 'is-invalid': form.errors.has('pass_year') }"
-                >
+              >
               </date-picker>
-            
+
               <!-- <VueDatePicker
                 v-model="form.pass_year"
                 min-date="1980"
@@ -140,14 +141,20 @@
 
 <script>
 import $ from "jquery";
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 export default {
   components: { DatePicker },
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       i: 1,
       x: 1,
+      props: {
+        startStage: { type: Function },
+      },
       form: new Form({
         id: "",
         index: [""],
@@ -156,7 +163,7 @@ export default {
         course_type: [""],
         degree: [""],
         ins_loc: [""],
-        percentage: [""]
+        percentage: [""],
       }),
     };
   },
@@ -166,7 +173,7 @@ export default {
   created() {
     this.getAllEducation();
   },
-  mounted() {    
+  mounted() {
     this.$store.dispatch("getAllQualification", "/qualification-get");
   },
   computed: {
@@ -179,8 +186,15 @@ export default {
     updatex() {
       this.x = this.i;
     },
+    updatepStage() {
+      let stage = 2;
+      // console.log("hello");
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
+      });
+    },
     addEducation() {
-      if(
+      if (
         this.form.ins_name.includes("") ||
         this.form.course_type.includes("") ||
         this.form.pass_year.includes(this.date) ||
@@ -192,6 +206,7 @@ export default {
       } else {
         this.form.total = this.i;
         this.form.post("/add-education-detail").then(() => {
+          this.updatepStage();
           toast({
             type: "success",
             title: "Education Detail Added successfully",

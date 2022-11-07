@@ -66,11 +66,16 @@
 import $ from "jquery";
 export default {
   name: "ResumeStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       i: 1,
       selectedImage: null,
+      props: {
+        startStage: { type: Function },
+      },
       form: new Form({
         id: "",
         video: "",
@@ -138,6 +143,7 @@ export default {
           this.form.total = this.i;
           this.form.post("/resume-save").then((response) => {
             this.getAllProfessinal();
+            this.updatepStage();
             toast({
               type: "success",
               title: `Resume added successfully`,
@@ -158,6 +164,13 @@ export default {
             this.form.resume = i.resume;
           });
         }
+      });
+    },
+    updatepStage() {
+      let stage = 4;
+      // console.log("hello");
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
       });
     },
   },

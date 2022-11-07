@@ -108,7 +108,7 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label class="col-form-label" for="">Experience Year</label>
+                    <label class="col-form-label" for="">Experience</label>
                     <select
                       class="form-control"
                       name="exp_year"
@@ -117,7 +117,7 @@
                         'is-invalid': form.errors.has('exp_year'),
                       }"
                     >
-                      <option value="" disabled>Min Experience</option>
+                      <option value="" disabled>Year</option>
                       <option v-for="exper in experiences" :value="exper">
                         {{ exper }}
                       </option>
@@ -125,7 +125,9 @@
                     <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
-                    <label class="col-form-label" for="">Experience Month</label>
+                    <label class="col-form-label" style="visibility: hidden" for=""
+                      >Month</label
+                    >
                     <select
                       class="form-control"
                       name="exp_mon"
@@ -134,7 +136,7 @@
                         'is-invalid': form.errors.has('exp_mon'),
                       }"
                     >
-                      <option value="" disabled>Max Experience</option>
+                      <option value="0">Month</option>
                       <option v-for="exper in experiences" :value="exper">
                         {{ exper }}
                       </option>
@@ -202,6 +204,7 @@
                     v-for="(loc, index) in st.location"
                     :key="index"
                     :value="loc.location"
+                    :selected="form.preferred_loc.includes(loc.location)"
                   >
                     {{ loc.location }}
                   </option>
@@ -224,7 +227,9 @@ import $ from "jquery";
 
 export default {
   name: "ProfileStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       menu: false,
@@ -237,10 +242,10 @@ export default {
         gender: "",
         date: new Date(),
         exp_year: "",
-        exp_mon: "",
+        exp_mon: "0",
         job_industry_id: "",
         job_functional_role_id: "",
-        preferred_loc: "",
+        preferred_loc: [],
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -252,6 +257,7 @@ export default {
     };
   },
   mounted() {
+    this.getPersnol();
     this.getAllLocation();
     this.$store.dispatch("getAllData", "/getindustry/master");
     this.$store.dispatch("getAllLocation", "/getjobtype");
@@ -279,6 +285,7 @@ export default {
         this.location = response.data.data;
       });
     },
+
     addemployeejob() {
       let date = new Date();
       if (
@@ -302,100 +309,45 @@ export default {
         } else {
           this.form.total = this.i;
           this.form.post("/persnol-save").then((response) => {
-            this.getAllProfessinal();
+            // this.getAllProfessinal();
+            console.log("hello");
+            this.updatepStage();
             toast({
               type: "success",
-              title: `Resume added successfully`,
+              title: `Persnol Detail added successfully`,
             });
           });
         }
       }
     },
-    setDob() {
-      var option = '<option value="day">day</option>';
-      var selectedDay = "day";
-      for (var i = 1; i <= this.Days[0]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#day").append(option);
-      $("#day").val(selectedDay);
-
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month").append(option);
-      $("#month").val(selectedMon);
-
-      var option = '<option value="month">month</option>';
-      var selectedMon = "month";
-      for (var i = 1; i <= 12; i++) {
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#month2").append(option);
-      $("#month2").val(selectedMon);
-
-      var d = new Date();
-      var option = '<option value="year">year</option>';
-      selectedYear = "year";
-      for (var i = 1930; i <= d.getFullYear(); i++) {
-        // years start i
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $("#year").append(option);
-      $("#year").val(selectedYear);
-    },
-    isLeapYear() {
-      year = parseInt(this.year);
-      if (year % 4 != 0) {
-        return false;
-      } else if (year % 400 == 0) {
-        return true;
-      } else if (year % 100 == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    change_year() {
-      if (isLeapYear(this.year)) {
-        this.Days[1] = 29;
-      } else {
-        this.Days[1] = 28;
-      }
-      if ($("#month").val() == 2) {
-        var day = $("#day");
-        var val = $(day).val();
-        $(day).empty();
-        var option = '<option value="day">day</option>';
-        for (var i = 1; i <= this.Days[1]; i++) {
-          //add option days
-          option += '<option value="' + i + '">' + i + "</option>";
+    getPersnol() {
+      // alert("hello");
+      axios.get("/persnol-get").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          data.map((i, x) => {
+            this.form.fname = i.fname;
+            this.form.lname = i.lname;
+            this.form.email = i.email;
+            this.form.contact_no = i.contact;
+            this.form.exp_year = i.exp_year;
+            this.form.exp_mon = i.exp_month;
+            this.form.job_industry_id = i.industry_id;
+            this.form.job_functional_role_id = i.functionalrole_id;
+            this.form.preferred_loc = i.preferred_location;
+            this.form.gender = i.gender;
+            this.form.date = i.dob;
+          });
         }
-        $(day).append(option);
-        if (val > this.Days[month]) {
-          val = 1;
-        }
-        $(day).val(val);
-      }
+      });
     },
-    change_month() {
-      var day = $("#day");
-      var val = $(day).val();
-      $(day).empty();
-      var option = '<option value="day">day</option>';
-      var month = parseInt(this.month) - 1;
-      for (var i = 1; i <= this.Days[month]; i++) {
-        //add option days
-        option += '<option value="' + i + '">' + i + "</option>";
-      }
-      $(day).append(option);
-      if (val > this.Days[month]) {
-        val = 1;
-      }
-      $(day).val(val);
+    updatepStage() {
+      let stage = 1;
+      // console.log("hello");
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
+      });
     },
   },
   watch: {
