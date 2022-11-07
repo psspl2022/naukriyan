@@ -152,69 +152,70 @@ class StageRegistration extends Controller
         return  $data->all();
     }
 
-    public function addSkillDetail(Request $req){
+    public function addSkillDetail(Request $req)
+    {
 
         // $uid = Session::get('user')['id'];
 
         for ($i = 0; $i < $req->total; $i++) {
 
-          $a = JsSkill::updateOrCreate(
-               [ 
-                   'js_userid' => 2, 
-                   'skill'=> $req->skill[$i]
+            $a = JsSkill::updateOrCreate(
+                [
+                    'js_userid' => 2,
+                    'skill' => $req->skill[$i]
                 ],
-               [    
-                'expert_level' => $req->expert_level[$i]
-               ]
-           );
-    
-       }
-       return $a;
-   }
+                [
+                    'expert_level' => $req->expert_level[$i]
+                ]
+            );
+        }
+        return $a;
+    }
 
-   public function deleteSkillDetail($id)
-   {
-       $data = JsSkill::where('id', $id)->delete();
-       return  $id;
-   }
+    public function deleteSkillDetail($id)
+    {
+        $data = JsSkill::where('id', $id)->delete();
+        return  $id;
+    }
 
-   public function getEducationDetail()
-   {
-       $data = JsEducationalDetail::where('js_userid', 2)->get();
-       return  $data->all();
-   }
+    public function getEducationDetail()
+    {
+        $data = JsEducationalDetail::where('js_userid', 2)->get();
+        return  $data->all();
+    }
 
-   public function addEducationDetail(Request $req){
+    public function addEducationDetail(Request $req)
+    {
 
-       // $uid = Session::get('user')['id'];
+        // $uid = Session::get('user')['id'];
 
-       for ($i = 0; $i < $req->total; $i++) {
+        for ($i = 0; $i < $req->total; $i++) {
 
-         $a = JsEducationalDetail::updateOrCreate(
-              [ 
-                  'js_userid' => 2, 
-                  'degree_name'=> $req->degree[$i], 
-                  'course_type' => $req->course_type[$i] ],
-              [ 
-                  'degree_name' => $req->degree[$i], 
-                  'course_type' => $req->course_type[$i], 
-                  'percentage_grade' => $req->percentage[$i], 
-                  'passing_year' => $req->pass_year[$i], 
-                  'institute_name' => $req->ins_name[$i],
-                  'institute_location' =>$req->ins_loc[$i]
+            $a = JsEducationalDetail::updateOrCreate(
+                [
+                    'js_userid' => 2,
+                    'degree_name' => $req->degree[$i],
+                    'course_type' => $req->course_type[$i]
+                ],
+                [
+                    'degree_name' => $req->degree[$i],
+                    'course_type' => $req->course_type[$i],
+                    'percentage_grade' => $req->percentage[$i],
+                    'passing_year' => $req->pass_year[$i],
+                    'institute_name' => $req->ins_name[$i],
+                    'institute_location' => $req->ins_loc[$i]
 
-              ]
-          );
-   
-      }
-      return $a;
-  }
+                ]
+            );
+        }
+        return $a;
+    }
 
-  public function deleteEducationDetail($id)
-  {
-      $data = JsEducationalDetail::where('id', $id)->delete();
-      return  $id;
-  }
+    public function deleteEducationDetail($id)
+    {
+        $data = JsEducationalDetail::where('id', $id)->delete();
+        return  $id;
+    }
 
 
     public function getStage()
@@ -233,5 +234,47 @@ class StageRegistration extends Controller
         Jobseeker::where('id', $uid)->update(['stage' => $id]);
         $data = Jobseeker::select('stage', 'savestage')->where('id', $uid)->get();
         return  $data;
+    }
+    public function resumeUpload(Request $req)
+    {
+
+        // $userId = Session::get('user')['id'];
+        $resumeup = 0;
+        $userId = 2;
+        $filename = time() . '.' . $req->resume->extension();
+        $path = public_path() . '/resume/';
+        $upload = $req->resume->move($path, $filename);
+
+        $addressData = [
+            'js_userid' => $userId,
+            'resume' => $filename,
+        ];
+
+        JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
+        if ($upload) {
+            $resumeup = 1;
+        }
+        return $resumeup;
+    }
+    public function resumeSave(Request $req)
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $addressData = [
+            'resume_video_link' => $req->video,
+            'cover_letter' => $req->cover,
+        ];
+
+        JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
+        return  $req->all();
+    }
+    public function resumeGet()
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $data = JsResume::where('js_userid', $userId)->get();
+        return $data;
     }
 }

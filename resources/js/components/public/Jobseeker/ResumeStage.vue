@@ -1,15 +1,15 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-     
       <form
         class="popupForm"
+        enctype="multipart/form-data"
         role="form"
         method="post"
         @submit.prevent="addResume()"
       >
         <fieldset v-for="i in i" :key="i">
-          <legend  v-if="i==1">Resume</legend>
+          <legend v-if="i == 1">Resume</legend>
           <div class="row mb-2">
             <div class="col-sm-6">
               <label class="col-form-label" for="">
@@ -17,9 +17,11 @@
               >
               <input
                 type="file"
-                class="form-control"
-                :name="resume"
-                :class="{ 'is-invalid': form.errors.has('resume') }"
+                @change="onFileChanged"
+                accept="application/pdf,application/msword,
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                id="file"
+                class="custom-file-input-re"
               />
               <has-error :form="form" field="resume"></has-error>
             </div>
@@ -68,6 +70,7 @@ export default {
   data() {
     return {
       i: 1,
+      selectedImage: null,
       form: new Form({
         id: "",
         video: "",
@@ -77,15 +80,87 @@ export default {
     };
   },
   mounted() {
+    this.getAllProfessinal();
   },
-  computed: {
-  },
+  computed: {},
   methods: {
-    addResume() {
-  
+    onFileChanged(event) {
+      //const file = event.target.files[0]
+      this.selectedFile = event.target.files[0];
+      if (
+        this.selectedFile["type"] === "application/pdf" ||
+        this.selectedFile["type"] === "application/msword" ||
+        this.selectedFile["type"] ===
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      ) {
+        const elem = this.$refs.myBtn;
+        const formData = new FormData();
+        formData.append("resume", this.selectedFile, this.selectedFile.name);
+        axios
+          .post("/resume-upload", formData, {
+            onUploadProgress: (uploadEvent) => {
+              this.progress = Math.round(uploadEvent.total / uploadEvent.total) * 100;
+            },
+          })
+          .then((res) => {
+            // this.$router.go("/userinfo/pe");
+            this.form.resume = res.data;
+            console.log(res.data);
+            toast({
+              type: "success",
+              title: "Resume Uploaded Successfully",
+            });
+          })
+          .catch((error) => {
+            toast({
+              type: "error",
+              text: "Something Went wrong",
+            });
+          });
+        // console.log(this.selectedFile);
+        // elem.click();
+      } else {
+        toast({
+          type: "warning",
+          title: "Only PDF and Docx files are allowed",
+        });
+        this.$refs.myBtn.value = "";
+        //this.$router.go("/userinfo/pe");
+      }
     },
-  }
-    
+    addResume() {
+      if (this.form.video == "" || this.form.cover == "") {
+        swal("Please fill all mandatory fields");
+      } else {
+        if (this.form.resume == "") {
+          swal("Please Upload Resume");
+        } else {
+          this.form.total = this.i;
+          this.form.post("/resume-save").then((response) => {
+            this.getAllProfessinal();
+            toast({
+              type: "success",
+              title: `Resume added successfully`,
+            });
+          });
+        }
+      }
+    },
+    getAllProfessinal() {
+      // alert("hello");
+      axios.get("/get-resum-stage").then((response) => {
+        // console.log(response.data.length);
+        const data = response.data;
+        if (data.length > 0) {
+          data.map((i, x) => {
+            this.form.video = i.resume_video_link;
+            this.form.cover = i.cover_letter;
+            this.form.resume = i.resume;
+          });
+        }
+      });
+    },
+  },
 };
 </script>
 

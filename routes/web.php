@@ -19,6 +19,9 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 Route::get('/get-stage-registration', 'StageRegistration@getStage');
 Route::get('/update-stage-registration/{id}', 'StageRegistration@updateStage');
 Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
+Route::post('/resume-upload', 'StageRegistration@resumeUpload');
+Route::post('/resume-save', 'StageRegistration@resumeSave');
+Route::get('/get-resum-stage', 'StageRegistration@resumeGet');
 Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalDetail');
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
 Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
