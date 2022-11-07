@@ -14,17 +14,31 @@
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Name</label
+                <span style="color: red"> * </span> First Name</label
               >
               <input
                 type="text"
                 class="form-control"
-                name="name"
-                placeholder="Enter Full Name"
-                v-model="form.name"
-                :class="{ 'is-invalid': form.errors.has('name') }"
+                name="fname"
+                placeholder="Enter First Name"
+                v-model="form.fname"
+                :class="{ 'is-invalid': form.errors.has('fname') }"
               />
-              <has-error :form="form" field="name"></has-error>
+              <has-error :form="form" field="fname"></has-error>
+            </div>
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">
+                <span style="color: red"> * </span>Last Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="lname"
+                placeholder="Enter Last Name"
+                v-model="form.lname"
+                :class="{ 'is-invalid': form.errors.has('lname') }"
+              />
+              <has-error :form="form" field="lname"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -94,13 +108,13 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Minimum Experience</label>
+                    <label class="col-form-label" for="">Experience Year</label>
                     <select
                       class="form-control"
-                      name="min_exp"
-                      v-model="form.min_exp"
+                      name="exp_year"
+                      v-model="form.exp_year"
                       :class="{
-                        'is-invalid': form.errors.has('min_exp'),
+                        'is-invalid': form.errors.has('exp_year'),
                       }"
                     >
                       <option value="" disabled>Min Experience</option>
@@ -108,16 +122,16 @@
                         {{ exper }}
                       </option>
                     </select>
-                    <has-error :form="form" field="min_exp"></has-error>
+                    <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
-                    <label class="col-form-label" for=""> Maximum Experience</label>
+                    <label class="col-form-label" for="">Experience Month</label>
                     <select
                       class="form-control"
-                      name="max_exp"
-                      v-model="form.max_exp"
+                      name="exp_mon"
+                      v-model="form.exp_mon"
                       :class="{
-                        'is-invalid': form.errors.has('max_exp'),
+                        'is-invalid': form.errors.has('exp_mon'),
                       }"
                     >
                       <option value="" disabled>Max Experience</option>
@@ -125,7 +139,7 @@
                         {{ exper }}
                       </option>
                     </select>
-                    <has-error :form="form" field="max_exp"></has-error>
+                    <has-error :form="form" field="exp_mon"></has-error>
                   </div>
                 </div>
               </div>
@@ -216,13 +230,14 @@ export default {
       menu: false,
       form: new Form({
         id: "",
-        name: "",
+        fname: "",
+        lname: "",
         email: "",
         contact_no: "",
         gender: "",
         date: new Date(),
-        min_exp: "",
-        max_exp: "",
+        exp_year: "",
+        exp_mon: "",
         job_industry_id: "",
         job_functional_role_id: "",
         preferred_loc: "",
@@ -267,11 +282,12 @@ export default {
     addemployeejob() {
       let date = new Date();
       if (
-        this.form.name == "" ||
+        this.form.fname == "" ||
+        this.form.lname == "" ||
         this.form.email == "" ||
         this.form.contact_no == "" ||
-        this.form.min_exp == "" ||
-        this.form.max_exp == "" ||
+        this.form.exp_year == "" ||
+        this.form.exp_mon == "" ||
         this.form.job_industry_id == "" ||
         this.form.job_functional_role_id == "" ||
         this.form.preferred_loc == "" ||
