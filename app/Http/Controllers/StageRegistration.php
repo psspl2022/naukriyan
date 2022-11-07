@@ -307,8 +307,9 @@ class StageRegistration extends Controller
         $checkStage = Jobseeker::where('id', $userId)->select('savestage')->get();
 
         if ($checkStage[0]->savestage < $stage) {
-            $data = Jobseeker::where('id', $userId)->update(['savestage' => $stage, 'stage' => $stage + 1]);
+            $data = Jobseeker::where('id', $userId)->update(['savestage' => $stage]);
         }
+        $data = Jobseeker::where('id', $userId)->update(['stage' => ($stage + 1)]);
 
         return $stage;
     }

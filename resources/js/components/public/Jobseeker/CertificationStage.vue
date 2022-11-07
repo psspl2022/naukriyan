@@ -2,9 +2,11 @@
   <div class="row">
     <div class="col-sm-12">
       <div>
-        <span class="btn btn-outline-secondary btn-sm float-right mb-3"
-        v-on:click="skipStage()"
-        >Skip</span>
+        <span
+          class="btn btn-outline-secondary btn-sm float-right mb-3"
+          v-on:click="skipStage()"
+          >Skip</span
+        >
       </div>
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> All Field Required</span>
@@ -145,11 +147,13 @@
 import $ from "jquery";
 export default {
   name: "CertificationStage",
-  // props: ["keyword", "location", "experience", "certficationtype"],
+  props: {
+    startStage: { type: Function },
+  },
   data() {
     return {
       i: 1,
-      x: 1,      
+      x: 1,
       stage: 0,
       form: new Form({
         index: [""],
@@ -269,13 +273,15 @@ export default {
       this.form.index.splice(index, 1);
       if (i != "") {
         axios.get(`/delete-certification-detail-stage/${i}`).then((response) => {});
-      }  
+      }
     },
-    skipStage(){
-        this.stage = 5;
-        console.log("hello")
-        axios.get(`/skip-stage/${this.stage}`).then((response) => {console.log(response)});
-    }
+    skipStage() {
+      this.stage = 5;
+      // console.log("hello");
+      axios.get(`/skip-stage/${this.stage}`).then((response) => {
+        this.startStage();
+      });
+    },
   },
 };
 </script>
