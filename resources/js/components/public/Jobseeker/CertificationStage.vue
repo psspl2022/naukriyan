@@ -1,13 +1,10 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <div>
         <span
           class="btn btn-outline-secondary btn-sm float-right mb-3"
           v-on:click="skipStage()"
-          >Skip</span
-        >
-      </div>
+        >Skip</span>
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> All Field Required</span>
       <form
