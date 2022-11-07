@@ -269,6 +269,27 @@ class StageRegistration extends Controller
         JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
         return  $req->all();
     }
+    public function addPersnol(Request $req)
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        $addressData = [
+            'industry_name' => $req->video,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+            'functional_role' => $req->cover,
+        ];
+
+        // JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
+        return  $req->all();
+    }
     public function resumeGet()
     {
         //dd($request->all());
