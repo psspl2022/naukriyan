@@ -274,6 +274,12 @@ class StageRegistration extends Controller
         //dd($request->all());
         // $userId = Session::get('user')['id'];
         $userId = 2;
+        if (is_array($req->preferred_loc)) {
+
+            $req->preferred_loc =  implode(',', $req->preferred_loc);
+        } else {
+            $req->preferred_loc = $req->preferred_loc;
+        }
         $personalData = [
             'fname' => $req->fname,
             'lname' => $req->lname,
@@ -288,7 +294,16 @@ class StageRegistration extends Controller
             'preferred_location' => $req->preferred_loc,
         ];
 
-        $data = Jobseeker::updateOrCreate(['js_userid' => $userId], $personalData);
+        $data = Jobseeker::where('id', $userId)->update($personalData);
+        return  $personalData;
+    }
+    public function getPersnol(Request $req)
+    {
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+
+        $data = Jobseeker::where('id', $userId)->get();
         return  $data;
     }
     public function resumeGet()
@@ -306,9 +321,9 @@ class StageRegistration extends Controller
         $userId = 2;
 
         $checkStage = Jobseeker::where('id', $userId)->select('savestage')->get();
-
-        if ($checkStage[0]->savestage < $stage) {
-            $data = Jobseeker::where('id', $userId)->update(['savestage' => $stage]);
+        // return $checkStage[0]->savestage;
+        if ($checkStage[0]->savestage <= $stage) {
+            $data = Jobseeker::where('id', $userId)->update(['savestage' => ($stage + 1)]);
         }
         $data = Jobseeker::where('id', $userId)->update(['stage' => ($stage + 1)]);
 
