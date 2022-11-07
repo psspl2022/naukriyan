@@ -35,6 +35,7 @@
                 class="form-control"
                 name="email"
                 placeholder="Enter Email"
+                title="Enter Vaild Mail"
                 v-model="form.email"
                 :class="{ 'is-invalid': form.errors.has('email') }"
               />
@@ -177,10 +178,10 @@
               <label class="col-form-label" for=""> Location</label>
               <select
                 class="form-control custom-select"
-                v-model="form.job_exp"
+                v-model="form.preferred_loc"
                 name="preferred_loc"
                 multiple
-                style="height:150px;"
+                style="height: 150px"
               >
                 <optgroup :label="st.state" v-for="st in location" :key="st">
                   <option
@@ -214,22 +215,17 @@ export default {
     return {
       menu: false,
       form: new Form({
-        date: new Date(),
         id: "",
         name: "",
         email: "",
         contact_no: "",
         gender: "",
-        dd: "",
-        mm: "",
-        yyyy: "",
+        date: new Date(),
         min_exp: "",
         max_exp: "",
-        job_skill: "",
-        company_name: "",
         job_industry_id: "",
-        preferred_loc: "",
         job_functional_role_id: "",
+        preferred_loc: "",
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -267,6 +263,37 @@ export default {
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
       });
+    },
+    addemployeejob() {
+      let date = new Date();
+      if (
+        this.form.name == "" ||
+        this.form.email == "" ||
+        this.form.contact_no == "" ||
+        this.form.min_exp == "" ||
+        this.form.max_exp == "" ||
+        this.form.job_industry_id == "" ||
+        this.form.job_functional_role_id == "" ||
+        this.form.preferred_loc == "" ||
+        this.form.gender == "" ||
+        this.form.date == date
+      ) {
+        swal("Please fill all mandatory fields");
+      } else {
+        var pattern = /^[6-9][0-9]{9}$/;
+        if (!pattern.test(this.form.contact_no)) {
+          swal("Mobile Number is not valid");
+        } else {
+          this.form.total = this.i;
+          this.form.post("/persnol-save").then((response) => {
+            this.getAllProfessinal();
+            toast({
+              type: "success",
+              title: `Resume added successfully`,
+            });
+          });
+        }
+      }
     },
     setDob() {
       var option = '<option value="day">day</option>';
@@ -559,5 +586,4 @@ body {
     width: auto;
   }
 }
-
 </style>

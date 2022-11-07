@@ -26,6 +26,7 @@ Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalD
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
 Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
+Route::post('/persnol-save', 'StageRegistration@addPersnol');
 
 //Education Route
 Route::post('/add-education-detail', 'StageRegistration@addEducationDetail');
