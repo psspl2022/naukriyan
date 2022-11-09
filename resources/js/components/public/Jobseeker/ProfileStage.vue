@@ -254,6 +254,7 @@
                 :multiple="true"
                 :options="source"
                 :limit="5"
+                :disabled="true"
                 :flat="true"
                 :select="checkLocation"
                 :show-count="true"

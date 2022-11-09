@@ -58,6 +58,8 @@
                 <option value="2">Full Time</option>
                 <option value="3">Freelancer</option>
                 <option value="4">Internship</option>
+                <option value="5">Consultant</option>
+                <option value="6">Contractual</option>
               </select>
               <has-error :form="form" field="gender"></has-error>
             </div>
@@ -76,6 +78,7 @@
                     class="form-control col-8"
                     v-model="form.fromdate[i - 1]"
                     placeholder="2022-11-01"
+                    :max="new Date().toISOString().slice(0, 10)"
                     value="2022-11-01"
                   />
                 </div>
@@ -88,6 +91,7 @@
                     v-model="form.todate[i - 1]"
                     value="2022-11-01"
                     :min="form.fromdate[i - 1]"
+                    :max="new Date().toISOString().slice(0, 10)"
                     placeholder="2020-11-01"
                   />
                 </div>
