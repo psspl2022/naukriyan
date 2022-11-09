@@ -22,6 +22,7 @@ use App\Jobmanager;
 use App\Follower;
 use App\FunctionalRole;
 use App\Empcompaniesdetail;
+use App\Institute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -207,6 +208,7 @@ class StageRegistration extends Controller
 
                 ]
             );
+            $ins = Institute::firstOrCreate(['name' => $req->ins_name[$i]]);
         }
         return $a;
     }
