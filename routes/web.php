@@ -48,6 +48,7 @@ Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificatio
 // end route by suraj
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
+Route::get('get-allinstitutes/{name}', 'InstituteController@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
 Route::post('file-upload/profile', 'JobseekerController@testUploadImage');
 
