@@ -16,6 +16,11 @@ header('Access-Control-Allow-Origin:  *');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
 // ROute added by suraj 
+Route::get('/check-mobile/{num}', 'vaildationController@getContact');
+Route::get('/check-email/{num}', 'vaildationController@getEmail');
+// valdation route 
+Route::get('/getindustry/master2', 'IndustryController@indexdemo');
+Route::get('/getfunctionalrole2', 'FunctionalroleController@index');
 Route::get('/get-stage-registration', 'StageRegistration@getStage');
 Route::get('/update-stage-registration/{id}', 'StageRegistration@updateStage');
 Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
@@ -48,6 +53,7 @@ Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificatio
 // end route by suraj
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
+Route::get('get-allinstitutes/{name}', 'InstituteController@index');
 Route::post('file-upload', 'JobseekerController@testUpload');
 Route::post('file-upload/profile', 'JobseekerController@testUploadImage');
 

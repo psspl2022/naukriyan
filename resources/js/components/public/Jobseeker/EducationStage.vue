@@ -1,8 +1,8 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span>
+      <!-- <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> Name,Email,Contact No</span> -->
       <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
         <fieldset class="mt-2" v-for="i in i" :key="i">
           <legend v-if="i == 1">Education</legend>
@@ -50,19 +50,19 @@
                   Distance Learning Program
                 </option>
                 <option value="Executive Program">Executive Program</option>
-                <option value="Certification">Certification</option>
               </select>
               <has-error :form="form" field="course_type"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Percentage / Grade</label
+                Percentage(%)</label
               >
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 :name="'percentage' + i"
-                placeholder="EnterPercentage / Grade"
+                placeholder="EnterPercentage"
+                step="0.01"
                 v-model="form.percentage[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('percentage') }"
               />
@@ -72,7 +72,7 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Passing Year</label
               >
-              <date-picker
+              <!-- <date-picker
                 v-bind:style="{ width: '325px' }"
                 id="app"
                 value-type="YYYY"
@@ -82,12 +82,25 @@
                 :name="'pass_year' + i"
                 :class="{ 'is-invalid': form.errors.has('pass_year') }"
               >
-              </date-picker>
+              </date-picker> -->
+
+              <select
+                class="form-control custom-select"
+                :name="'pass_year' + i"
+                v-model="form.pass_year[i - 1]"
+                :class="{
+                  'is-invalid': form.errors.has('pass_year'),
+                }"
+                
+              >
+              <option value="">Select Year</option>
+              <option v-for="year in years" :value="year">{{year}}</option>
+              </select>
 
               <!-- <VueDatePicker
                 v-model="form.pass_year"
                 min-date="1980"
-                max-date="2020"
+                max-date="2022"
                 type="year"
               /> -->
               <has-error :form="form" field="pass_year"></has-error>
@@ -104,13 +117,20 @@
                 placeholder="Enter Institute Name"
                 v-model="form.ins_name[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('ins_name') }"
+                list="institute_list"
+                @keyup="
+                  () => {
+                    initItems(form.ins_name[i - 1]);
+                  }"
               />
+              <datalist id="institute_list">
+                <option v-for="institute in institute_list" :key="institute" :value="institute">{{ institute }}</option>
+              </datalist>
               <has-error :form="form" field="ins_name"></has-error>
             </div>
 
             <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Institute Location</label
+              <label class="col-form-label" for="">Institute Location</label
               >
               <input
                 type="text"
@@ -165,6 +185,8 @@ export default {
         ins_loc: [""],
         percentage: [""],
       }),
+      years: ['pursuing'],
+      institute_list: [],
     };
   },
   watch: {
@@ -172,6 +194,7 @@ export default {
   },
   created() {
     this.getAllEducation();
+    this.allYears();
   },
   mounted() {
     this.$store.dispatch("getAllQualification", "/qualification-get");
@@ -193,6 +216,28 @@ export default {
         this.startStage();
       });
     },
+
+    
+    initItems(institute) {
+      console.log(institute)
+      const url = `get-allinstitutes/` + institute;
+      axios
+        .get(url)
+        .then((response) => {
+          this.institute_list = response.data.data.map((a) => {
+            return a.name;
+          });
+        })
+      console.log(this.institute_list)
+    },
+
+    allYears(){
+      for(var i=new Date().getFullYear(); i>=1980; i--){
+        this.years.push(i);
+      }
+      console.log(this.years);
+    },
+
     addEducation() {
       if (
         this.form.ins_name.includes("") ||

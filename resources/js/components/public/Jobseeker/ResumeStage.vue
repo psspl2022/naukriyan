@@ -1,6 +1,7 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
+      <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> Resume</span>
       <form
         class="popupForm"
         enctype="multipart/form-data"
@@ -13,7 +14,7 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Institute Name</label
+                <span style="color: red"> * </span>Resume</label
               >
               <input
                 type="file"
@@ -26,9 +27,7 @@
               <has-error :form="form" field="resume"></has-error>
             </div>
             <div class="col-sm-6">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Video Resume</label
-              >
+              <label class="col-form-label" for=""> Video Resume Link</label>
               <input
                 type="text"
                 class="form-control"
@@ -40,9 +39,7 @@
               <has-error :form="form" field="video"></has-error>
             </div>
             <div class="col-sm-12">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Cover Letter</label
-              >
+              <label class="col-form-label" for="">Cover Letter</label>
               <textarea
                 type="text"
                 class="form-control"
@@ -133,22 +130,18 @@ export default {
       }
     },
     addResume() {
-      if (this.form.video == "" || this.form.cover == "") {
-        swal("Please fill all mandatory fields");
+      if (this.form.resume == "") {
+        swal("Please Upload Resume");
       } else {
-        if (this.form.resume == "") {
-          swal("Please Upload Resume");
-        } else {
-          this.form.total = this.i;
-          this.form.post("/resume-save").then((response) => {
-            this.getAllProfessinal();
-            this.updatepStage();
-            toast({
-              type: "success",
-              title: `Resume added successfully`,
-            });
+        this.form.total = this.i;
+        this.form.post("/resume-save").then((response) => {
+          this.getAllProfessinal();
+          this.updatepStage();
+          toast({
+            type: "success",
+            title: `Resume added successfully`,
           });
-        }
+        });
       }
     },
     getAllProfessinal() {

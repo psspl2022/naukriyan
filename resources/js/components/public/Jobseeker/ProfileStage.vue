@@ -1,8 +1,8 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span>
+      <!-- <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> Name,Email,Contact No</span> -->
       <form
         class="popupForm"
         role="form"
@@ -14,27 +14,49 @@
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> First Name</label
+                First Name
+                <span style="color: red"> *</span
+                ><span
+                  :style="
+                    valid.fname
+                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                      : 'color: red; font-weight: 500; font-size: 10px'
+                  "
+                  >{{ errMsg.fname }}</span
+                ></label
               >
               <input
                 type="text"
                 class="form-control"
                 name="fname"
+                :style="valid.fname ? '' : 'border-color:red !important'"
+                v-on:keyup="nameCheck"
                 placeholder="Enter First Name"
                 v-model="form.fname"
-                :class="{ 'is-invalid': form.errors.has('fname') }"
               />
               <has-error :form="form" field="fname"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Last Name</label
-              >
+                Last Name
+                <span style="color: red"> *</span>
+                <span
+                  :style="
+                    valid.lname
+                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                      : 'color: red; font-weight: 500; font-size: 10px'
+                  "
+                >
+                  {{ errMsg.lname }}
+                </span>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="lname"
                 placeholder="Enter Last Name"
+                :style="valid.lname ? '' : 'border-color:red !important'"
+                v-on:keyup="lnameCheck"
                 v-model="form.lname"
                 :class="{ 'is-invalid': form.errors.has('lname') }"
               />
@@ -42,12 +64,24 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Email</label
+                Email
+                <span style="color: red"> *</span>
+                <span
+                  :style="
+                    valid.email
+                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                      : 'color: red; font-weight: 500; font-size: 10px'
+                  "
+                >
+                  {{ errMsg.email }}
+                </span></label
               >
               <input
                 type="email"
                 class="form-control"
                 name="email"
+                :style="valid.email ? '' : 'border-color:red !important'"
+                v-on:keyup="emailCheck"
                 placeholder="Enter Email"
                 title="Enter Vaild Mail"
                 v-model="form.email"
@@ -57,12 +91,24 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Contact No.</label
-              >
+                Contact No.
+                <span style="color: red"> * </span>
+                <span
+                  :style="
+                    valid.contact
+                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                      : 'color: red; font-weight: 500; font-size: 10px'
+                  "
+                >
+                  {{ errMsg.contact }}
+                </span>
+              </label>
               <input
                 type="text"
                 class="form-control"
                 name="contact_no"
+                :style="valid.contact ? '' : 'border-color:red !important'"
+                v-on:keyup="contactCheck"
                 placeholder="Enter Full Contact No"
                 v-model="form.contact_no"
                 :class="{ 'is-invalid': form.errors.has('contact_no') }"
@@ -118,7 +164,7 @@
                       }"
                     >
                       <option value="" disabled>Year</option>
-                      <option v-for="exper in experiences" :value="exper">
+                      <option v-for="exper in experiences" :key="exper" :value="exper">
                         {{ exper }}
                       </option>
                     </select>
@@ -136,8 +182,8 @@
                         'is-invalid': form.errors.has('exp_mon'),
                       }"
                     >
-                      <option value="0">Month</option>
-                      <option v-for="exper in experiences" :value="exper">
+                      <option value="" disabled>Month</option>
+                      <option v-for="exper in experiences" :key="exper" :value="exper">
                         {{ exper }}
                       </option>
                     </select>
@@ -191,25 +237,52 @@
             </div>
 
             <div class="col-sm-4">
-              <label class="col-form-label" for=""> Location</label>
-              <select
+              <label class="col-form-label" for="">
+                Preferred Location <span style="color: red"> * </span>
+                <span
+                  :style="
+                    valid.location
+                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                      : 'color: red; font-weight: 500; font-size: 10px'
+                  "
+                >
+                  {{ errMsg.location }}
+                </span></label
+              >
+              <treeselect
+                v-model="form.preferred_loc"
+                :multiple="true"
+                :options="source"
+                :limit="5"
+                :disabled="true"
+                :flat="true"
+                :select="checkLocation"
+                :show-count="true"
+                :disable-branch-nodes="true"
+                :max-height="200"
+              />
+              <treeselect-value :value="form.preferred_loc" />
+              <!-- <select
                 class="form-control custom-select"
                 v-model="form.preferred_loc"
+                :style="valid.location ? '' : 'border-color:red !important'"
                 name="preferred_loc"
                 multiple
                 style="height: 150px"
+                id="location"
               >
                 <optgroup :label="st.state" v-for="st in location" :key="st">
                   <option
                     v-for="(loc, index) in st.location"
                     :key="index"
+                    v-on:click="checkLocation(this)"
                     :value="loc.location"
                     :selected="form.preferred_loc.includes(loc.location)"
                   >
                     {{ loc.location }}
                   </option>
                 </optgroup>
-              </select>
+              </select> -->
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
@@ -224,15 +297,20 @@
 
 <script>
 import $ from "jquery";
-
+import Treeselect from "@riophae/vue-treeselect";
 export default {
   name: "ProfileStage",
   props: {
     startStage: { type: Function },
   },
+  components: { Treeselect },
   data() {
     return {
+      source2: [],
+      source: [],
       menu: false,
+      valid: { fname: true, lname: true, email: true, contact: true, location: true },
+      errMsg: { fname: "", lname: "", email: "", contact: "", location: "" },
       form: new Form({
         id: "",
         fname: "",
@@ -242,7 +320,7 @@ export default {
         gender: "",
         date: new Date(),
         exp_year: "",
-        exp_mon: "0",
+        exp_mon: "",
         job_industry_id: "",
         job_functional_role_id: "",
         preferred_loc: [],
@@ -256,12 +334,15 @@ export default {
       job_functional_role_id: [],
     };
   },
+  created() {
+    this.getAllLocation();
+  },
   mounted() {
     this.getPersnol();
     this.getAllLocation();
-    this.$store.dispatch("getAllData", "/getindustry/master");
+    this.$store.dispatch("getAllData", "/getindustry/master2");
     this.$store.dispatch("getAllLocation", "/getjobtype");
-    this.$store.dispatch("getAllDesignation", "/getfunctionalrole");
+    this.$store.dispatch("getAllDesignation", "/getfunctionalrole2");
     this.setDob();
   },
   computed: {
@@ -280,21 +361,104 @@ export default {
     },
   },
   methods: {
+    nameCheck() {
+      let rgx = /^[a-zA-Z\s]{1,}$/g;
+      if (this.form.fname.length < 2) {
+        this.valid.fname = false;
+        this.errMsg.fname = "First Name Should be Min 2 Letter";
+      } else {
+        if (rgx.test(this.form.fname)) {
+          this.valid.fname = true;
+        } else {
+          this.valid.fname = false;
+          this.errMsg.fname = "First Name only contain Alphabet and Space";
+        }
+      }
+      // let check =
+    },
+    lnameCheck() {
+      let rgx = /^[a-zA-Z\s]{1,}$/g;
+      // let check =
+      if (this.form.lname.length < 2) {
+        this.valid.lname = false;
+        this.errMsg.lname = "Last Name Should be Min 2 Letter";
+      } else {
+        if (rgx.test(this.form.lname)) {
+          this.valid.lname = true;
+        } else {
+          this.valid.lname = false;
+          this.errMsg.lname = "Last Name only contain Alphabet and Space";
+        }
+      }
+    },
+    emailCheck() {
+      var pattern = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      if (!pattern.test(this.form.email)) {
+        this.valid.email = false;
+        this.errMsg.email = "Email is not vaild";
+      } else {
+        axios.get(`/check-email/${this.form.email}`).then((response) => {
+          if (response.data > 0) {
+            this.valid.email = false;
+            this.errMsg.email = "Email already exist";
+          } else {
+            this.valid.email = true;
+          }
+        });
+      }
+    },
+    contactCheck() {
+      var pattern = /^[6-9][0-9]{9}$/;
+      if (!pattern.test(this.form.contact_no)) {
+        this.valid.contact = false;
+        this.errMsg.contact = "Number is not vaild";
+      } else {
+        axios.get(`/check-mobile/${this.form.contact_no}`).then((response) => {
+          if (response.data > 0) {
+            this.valid.contact = false;
+            this.errMsg.contact = "Number already exist";
+          } else {
+            this.valid.contact = true;
+          }
+        });
+      }
+    },
+    checkLocation() {
+      console.log(this.form.preferred_loc);
+      // if (this.form.preferred_loc.length < 5) {
+      //   this.valid.location = false;
+      //   this.errMsg.location = "Minimume 5 location should be selected";
+      // } else {
+      //   this.valid.location = true;
+      // }
+    },
     getAllLocation() {
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
+        this.location.map((i, key) => {
+          var children = [];
+          i.location.map((j, index2) => {
+            children[index2] = { label: j.location, id: j.id };
+          });
+          this.source2[key] = { label: i.state, id: "parent" + key, children: children };
+        });
+        this.source = this.source2;
+        // console.log("new", this.source2);
       });
     },
-
+    updatesrc() {
+      this.source = this.source2;
+    },
     addemployeejob() {
       let date = new Date();
+      // console.log(this.form.exp_year);
+      // console.log(this.form.exp_mon);
+      // console.log(this.form.preferred_loc);
       if (
         this.form.fname == "" ||
         this.form.lname == "" ||
         this.form.email == "" ||
         this.form.contact_no == "" ||
-        this.form.exp_year == "" ||
-        this.form.exp_mon == "" ||
         this.form.job_industry_id == "" ||
         this.form.job_functional_role_id == "" ||
         this.form.preferred_loc == "" ||
@@ -303,21 +467,16 @@ export default {
       ) {
         swal("Please fill all mandatory fields");
       } else {
-        var pattern = /^[6-9][0-9]{9}$/;
-        if (!pattern.test(this.form.contact_no)) {
-          swal("Mobile Number is not valid");
-        } else {
-          this.form.total = this.i;
-          this.form.post("/persnol-save").then((response) => {
-            // this.getAllProfessinal();
-            console.log("hello");
-            this.updatepStage();
-            toast({
-              type: "success",
-              title: `Persnol Detail added successfully`,
-            });
+        this.form.total = this.i;
+        this.form.post("/persnol-save").then((response) => {
+          // this.getAllProfessinal();
+
+          this.updatepStage();
+          toast({
+            type: "success",
+            title: `Persnol Detail added successfully`,
           });
-        }
+        });
       }
     },
     getPersnol() {
@@ -331,13 +490,22 @@ export default {
             this.form.lname = i.lname;
             this.form.email = i.email;
             this.form.contact_no = i.contact;
-            this.form.exp_year = i.exp_year;
-            this.form.exp_mon = i.exp_month;
-            this.form.job_industry_id = i.industry_id;
-            this.form.job_functional_role_id = i.functionalrole_id;
-            this.form.preferred_loc = i.preferred_location;
+            this.form.exp_year = i.exp_year == null ? "" : i.exp_year;
+            this.form.exp_mon = i.exp_month == null ? "" : i.exp_month;
+            this.form.job_industry_id = i.industry_id == null ? "" : i.industry_id;
+            this.form.job_functional_role_id =
+              i.functionalrole_id == null ? "" : i.functionalrole_id;
+            this.form.preferred_loc =
+              i.preferred_location == (null || "") ? [] : i.preferred_location.split(",");
             this.form.gender = i.gender;
             this.form.date = i.dob;
+            if (this.form.preferred_loc.length > 0) {
+              var newloc = [];
+              this.form.preferred_loc.map((i, k) => {
+                newloc[k] = parseInt(i);
+              });
+              this.form.preferred_loc = newloc;
+            }
           });
         }
       });
@@ -351,13 +519,14 @@ export default {
     },
   },
   watch: {
+    source2: "updatesrc",
     menu(val) {
       val && setTimeout(() => (this.$refs.menu.$refs.agenda.mode = "year"));
     },
   },
 };
 </script>
-
+<style src="@riophae/vue-treeselect/dist/vue-treeselect.min.css"></style>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 

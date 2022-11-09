@@ -22,6 +22,7 @@ use App\Jobmanager;
 use App\Follower;
 use App\FunctionalRole;
 use App\Empcompaniesdetail;
+use App\Institute;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -207,6 +208,7 @@ class StageRegistration extends Controller
 
                 ]
             );
+            $ins = Institute::firstOrCreate(['name' => $req->ins_name[$i]]);
         }
         return $a;
     }
@@ -303,7 +305,19 @@ class StageRegistration extends Controller
         // $userId = Session::get('user')['id'];
         $userId = 2;
 
-        $data = Jobseeker::where('id', $userId)->get();
+        $data = Jobseeker::where('id', $userId)->select(
+            'fname',
+            'lname',
+            'email',
+            'contact',
+            'gender',
+            'dob',
+            'exp_year',
+            'exp_month',
+            'industry_id',
+            'functionalrole_id',
+            'preferred_location'
+        )->get();
         return  $data;
     }
     public function resumeGet()
