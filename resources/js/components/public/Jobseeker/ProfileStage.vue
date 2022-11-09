@@ -254,8 +254,9 @@
                 :multiple="true"
                 :options="source"
                 :limit="5"
+                :disabled="true"
                 :flat="true"
-                :sort-value-by="ORDER_SELECTED"
+                :select="checkLocation"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
@@ -422,14 +423,14 @@ export default {
         });
       }
     },
-    checkLocation(e) {
-      console.log(e.value());
-      if (this.form.preferred_loc.length < 5) {
-        this.valid.location = false;
-        this.errMsg.location = "Minimume 5 location should be selected";
-      } else {
-        this.valid.location = true;
-      }
+    checkLocation() {
+      console.log(this.form.preferred_loc);
+      // if (this.form.preferred_loc.length < 5) {
+      //   this.valid.location = false;
+      //   this.errMsg.location = "Minimume 5 location should be selected";
+      // } else {
+      //   this.valid.location = true;
+      // }
     },
     getAllLocation() {
       axios.get("/master/location/group").then((response) => {
@@ -439,10 +440,10 @@ export default {
           i.location.map((j, index2) => {
             children[index2] = { label: j.location, id: j.id };
           });
-          this.source2[key] = { label: i.state, children: children };
+          this.source2[key] = { label: i.state, id: "parent" + key, children: children };
         });
         this.source = this.source2;
-        console.log("new", this.source2);
+        // console.log("new", this.source2);
       });
     },
     updatesrc() {
@@ -452,7 +453,7 @@ export default {
       let date = new Date();
       // console.log(this.form.exp_year);
       // console.log(this.form.exp_mon);
-
+      // console.log(this.form.preferred_loc);
       if (
         this.form.fname == "" ||
         this.form.lname == "" ||
@@ -498,6 +499,13 @@ export default {
               i.preferred_location == null ? [""] : i.preferred_location.split(",");
             this.form.gender = i.gender;
             this.form.date = i.dob;
+            if (this.form.preferred_loc.length > 0) {
+              var newloc = [];
+              this.form.preferred_loc.map((i, k) => {
+                newloc[k] = parseInt(i);
+              });
+              this.form.preferred_loc = newloc;
+            }
           });
         }
       });
