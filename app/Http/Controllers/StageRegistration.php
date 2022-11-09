@@ -305,7 +305,19 @@ class StageRegistration extends Controller
         // $userId = Session::get('user')['id'];
         $userId = 2;
 
-        $data = Jobseeker::where('id', $userId)->get();
+        $data = Jobseeker::where('id', $userId)->select(
+            'fname',
+            'lname',
+            'email',
+            'contact',
+            'gender',
+            'dob',
+            'exp_year',
+            'exp_month',
+            'industry_id',
+            'functionalrole_id',
+            'preferred_location'
+        )->get();
         return  $data;
     }
     public function resumeGet()
