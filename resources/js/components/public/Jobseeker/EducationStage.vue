@@ -1,8 +1,8 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span>
+      <!-- <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> Name,Email,Contact No</span> -->
       <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
         <fieldset class="mt-2" v-for="i in i" :key="i">
           <legend v-if="i == 1">Education</legend>

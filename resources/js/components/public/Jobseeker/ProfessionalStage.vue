@@ -1,11 +1,8 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <span
-          class="btn btn-outline-secondary btn-sm float-right mb-3"
-          v-on:click="skipStage()"
-        >Skip</span>
-      <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> /</span>
+     
+      <!-- <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> /</span> -->
       <form
         class="popupForm"
         role="form"
