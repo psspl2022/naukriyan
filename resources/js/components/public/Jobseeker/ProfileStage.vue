@@ -32,11 +32,11 @@
                   type="file"
                   accept="image/*"
                   style="display: none"
+                  @change="onProfileChanged"
                 />
-                <!-- @change="onProfileChanged" -->
-                <!-- <button @click="onUploadImg" ref="myBtnImg" style="display: none">
+                <button @click="onUploadImg" ref="myBtnImg" style="display: none">
                   Upload!
-                </button> -->
+                </button>
               </div>
               <has-error :form="form" field="fname"></has-error>
             </div>
@@ -357,14 +357,15 @@ export default {
         job_industry_id: "",
         job_functional_role_id: "",
         preferred_loc: [],
+        profile_pic_thumb: "",
       }),
-      Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-      year: "",
-      month: "",
+      progress: "",
+      selectedImage: null,
       location: [],
       job_industry_id: [],
       preferred_loc: [],
       job_functional_role_id: [],
+      profile1: "",
     };
   },
   created() {
@@ -391,6 +392,7 @@ export default {
   watch: {
     source2: "updatesrc",
     locationlist: "checkLocation",
+    profile1: "updatesrc",
   },
   methods: {
     // Updating stage step
@@ -403,6 +405,7 @@ export default {
     // update option value
     updatesrc() {
       this.source = this.source2;
+      this.form.profile_pic_thumb = this.profile1;
     },
     // Name Validation Function
     nameCheck() {
@@ -494,6 +497,7 @@ export default {
     addPersnol() {
       let date = new Date();
       this.form.preferred_loc = this.locationlist;
+
       if (
         !this.valid.fname ||
         !this.valid.lname ||
@@ -537,6 +541,7 @@ export default {
               i.preferred_location == null || i.preferred_location == ""
                 ? []
                 : i.preferred_location.split(",");
+            this.form.profile_pic_thumb = null ? "" : i.profile_pic_thumb;
             this.form.gender = i.gender;
             this.form.date = i.dob;
             // if (this.locationlist.length > 0) {
@@ -549,6 +554,38 @@ export default {
           });
         }
       });
+    },
+    onProfileChanged(event) {
+      this.selectedImage = event.target.files[0];
+      this.onUploadImg();
+      // const elem = this.$refs.myBtnImg;
+      // elem.click();
+    },
+    onUploadImg() {
+      if (this.selectedImage) {
+        const formData = new FormData();
+        formData.append("image", this.selectedImage, this.selectedImage.name);
+        axios
+          .post("file-upload/profile", formData, {
+            onUploadProgress: (uploadEvent) => {
+              this.progress = Math.round(uploadEvent.total / uploadEvent.total) * 100;
+            },
+          })
+          .then((res) => {
+            this.profile1 = res.data;
+            // console.log(this.profile1);
+            toast({
+              type: "success",
+              title: "Profile Uploaded Successfully",
+            });
+          })
+          .catch((error) => {
+            toast({
+              type: "error",
+              text: "Something Went wrong",
+            });
+          });
+      }
     },
   },
 };
