@@ -105,7 +105,6 @@ export default {
             },
           })
           .then((res) => {
-            // this.$router.go("/userinfo/pe");
             this.form.resume = res.data;
             console.log(res.data);
             toast({
