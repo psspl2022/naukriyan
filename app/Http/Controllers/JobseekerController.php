@@ -442,7 +442,7 @@ class JobseekerController extends Controller
     public function getLocations()
     {
         $cities = Cities::pluck('cities_name')->toArray();
-         $master_location = DB::table('master_location')->pluck('location')->toArray();
+        $master_location = DB::table('master_location')->pluck('location')->toArray();
         //$skills = JsSkill::pluck('skill')->toArray();
         // $companies = Empcompaniesdetail::pluck('company_name')->toArray();
         // $jobManagers = Jobmanager::select('job_role', 'job_skills', 'title')->get();
@@ -450,7 +450,7 @@ class JobseekerController extends Controller
         // $roleSkillsJobTitle = $jobManagers->map(function ($query) {
         // });
 
-        $demo = array_merge($cities,$master_location);
+        $demo = array_merge($cities, $master_location);
 
         return $demo;
     }
@@ -471,46 +471,46 @@ class JobseekerController extends Controller
     {
         //dd($request->all());
         $userId = Session::get('user')['id'];
-        $filename = time().'.'.$request->resume->extension();
-        $path=public_path().'/resume/';
-        $upload = $request->resume->move($path,$filename);
+        $filename = time() . '.' . $request->resume->extension();
+        $path = public_path() . '/resume/';
+        $upload = $request->resume->move($path, $filename);
 
         $addressData = [
             'js_userid' => $userId,
             'resume' => $filename,
         ];
 
-        JsResume::updateOrCreate(['js_userid' => $userId],$addressData);
+        JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
     }
     public function testUploadImage(Request $request)
     {
-       //dd($request->all());
-        $userId = Session::get('user')['id'];
-       // dd($userId);
-        $filename = time().'.'.$request->image->extension();
-        $path=public_path().'/jobseeker_profile_image/';
-        $upload = $request->image->move($path,$filename);
+        //dd($request->all());
+        // $userId = Session::get('user')['id'];
+        $userId = 2;
+        // dd($userId);
+        $filename = time() . '.' . $request->image->extension();
+        $path = public_path() . '/jobseeker_profile_image/';
+        $upload = $request->image->move($path, $filename);
         //dd($upload);
-        $jobseekeer= Jobseeker::findorFail($userId);
+        $jobseekeer = Jobseeker::findorFail($userId);
         $jobseekeer->profile_pic_thumb = $filename;
         $jobseekeer->save();
-    //     $profileData = [
-    //         'id'=>$userId,
-            
-    //         'profile_pic_thumb' => $filename,
-    //     ];
-    //    // dd($profileData);
-    //    try {
-    //     $up =  DB::table
-    //     $queryStatus = "Successful";
-    // } catch(Exception $e) {
-    //     $queryStatus = "Not success";
-    // }
-    // dd($queryStatus);
-        
-      // dd($up);
+        //     $profileData = [
+        //         'id'=>$userId,
+
+        //         'profile_pic_thumb' => $filename,
+        //     ];
+        //    // dd($profileData);
+        //    try {
+        //     $up =  DB::table
+        //     $queryStatus = "Successful";
+        // } catch(Exception $e) {
+        //     $queryStatus = "Not success";
+        // }
+        // dd($queryStatus);
+
+        // dd($up);
         //Jobseeker::updateOrCreate(['id'=>$userId], $profileData);
-        
-       
+        return $filename;
     }
 }
