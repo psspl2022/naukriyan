@@ -288,7 +288,6 @@
                 :multiple="true"
                 :options="source"
                 :limit="5"
-                :disabled="true"
                 :flat="true"
                 :sort-value-by="ORDER_SELECTED"
                 :show-count="true"
