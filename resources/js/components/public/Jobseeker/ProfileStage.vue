@@ -288,8 +288,9 @@
                 :multiple="true"
                 :options="source"
                 :limit="5"
+                :disabled="true"
                 :flat="true"
-                :default-expand-level="2"
+                :sort-value-by="ORDER_SELECTED"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
@@ -471,12 +472,13 @@ export default {
         });
       }
     },
-    // Location Validation Function
-    checkLocation() {
-      if (this.locationlist.length > 5) {
-        this.locationlist.splice(4, 1);
+    checkLocation(e) {
+      console.log(e.value());
+      if (this.form.preferred_loc.length < 5) {
         this.valid.location = false;
-        this.errMsg.location = "Maximum 5 location should be selected";
+        this.errMsg.location = "Minimume 5 location should be selected";
+      } else {
+        this.valid.location = true;
       }
     },
     // getting all location
@@ -488,9 +490,10 @@ export default {
           i.location.map((j, index2) => {
             children[index2] = { label: j.location, id: j.location };
           });
-          this.source2[key] = { label: i.state, id: "parent" + key, children: children };
+          this.source2[key] = { label: i.state, children: children };
         });
         this.source = this.source2;
+        console.log("new", this.source2);
       });
     },
     // adding data in persnol
@@ -544,13 +547,6 @@ export default {
             this.form.profile_pic_thumb = null ? "" : i.profile_pic_thumb;
             this.form.gender = i.gender;
             this.form.date = i.dob;
-            // if (this.locationlist.length > 0) {
-            //   var newloc = [];
-            //   this.locationlist.map((i, k) => {
-            //     newloc[k] = parseInt(i);
-            //   });
-            //   this.locationlist = newloc;
-            // }
           });
         }
       });
