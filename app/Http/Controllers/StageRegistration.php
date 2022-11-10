@@ -166,7 +166,7 @@ class StageRegistration extends Controller
                     'skill' => $req->skill[$i]
                 ],
                 [
-                    'expert_level' => ($i < count($req->expert_level)) ? $req->expert_level[$i] : ""
+                    'expert_level' => (($i < count($req->expert_level)) && ($req->expert_level[$i] != "")) ? $req->expert_level[$i] : ""
                 ]
             );
         }

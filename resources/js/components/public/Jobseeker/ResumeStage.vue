@@ -28,6 +28,7 @@
             </div>
             <div class="col-sm-6">
               <label class="col-form-label" for=""> Video Resume Link</label>
+              <i class="fa fa-info ml-2 mr-1" aria-hidden="true"></i><span style="color: red"> How to make Video Resume ?</span>
               <input
                 type="text"
                 class="form-control"
