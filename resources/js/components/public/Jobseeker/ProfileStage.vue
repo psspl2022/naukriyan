@@ -3,117 +3,151 @@
     <div class="col-sm-12">
       <!-- <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> Name,Email,Contact No</span> -->
-      <form
-        class="popupForm"
-        role="form"
-        method="post"
-        @submit.prevent="addemployeejob()"
-      >
+      <form class="popupForm" role="form" method="post" @submit.prevent="addPersnol()">
         <fieldset>
           <legend>Profile Details</legend>
           <div class="row mb-2">
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                First Name
-                <span style="color: red"> *</span
-                ><span
-                  :style="
-                    valid.fname
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
-                  "
-                  >{{ errMsg.fname }}</span
-                ></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="fname"
-                :style="valid.fname ? '' : 'border-color:red !important'"
-                v-on:keyup="nameCheck"
-                placeholder="Enter First Name"
-                v-model="form.fname"
-              />
+            <div class="col-sm-3">
+              <div class="profile-pic m-0">
+                <label
+                  for="file-input"
+                  style="display: flex; justify-content: center; align-items: center"
+                >
+                  <img
+                    id="previewImg"
+                    :src="'/jobseeker_profile_image/' + form.profile_pic_thumb"
+                    style="width: 150px; height: 140px; border: 1px solid orange"
+                    v-if="form.profile_pic_thumb"
+                  />
+                  <img
+                    id="previewImg"
+                    src="default_images/no_image_available.png"
+                    style="width: 150px; height: 150px; border: 1px solid orange"
+                    v-else
+                  />
+                  <i class="fas fa-camera" id="cam"></i>
+                </label>
+                <input
+                  id="file-input"
+                  type="file"
+                  accept="image/*"
+                  style="display: none"
+                />
+                <!-- @change="onProfileChanged" -->
+                <!-- <button @click="onUploadImg" ref="myBtnImg" style="display: none">
+                  Upload!
+                </button> -->
+              </div>
               <has-error :form="form" field="fname"></has-error>
             </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                Last Name
-                <span style="color: red"> *</span>
-                <span
-                  :style="
-                    valid.lname
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
-                  "
-                >
-                  {{ errMsg.lname }}
-                </span>
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                name="lname"
-                placeholder="Enter Last Name"
-                :style="valid.lname ? '' : 'border-color:red !important'"
-                v-on:keyup="lnameCheck"
-                v-model="form.lname"
-                :class="{ 'is-invalid': form.errors.has('lname') }"
-              />
-              <has-error :form="form" field="lname"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                Email
-                <span style="color: red"> *</span>
-                <span
-                  :style="
-                    valid.email
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
-                  "
-                >
-                  {{ errMsg.email }}
-                </span></label
-              >
-              <input
-                type="email"
-                class="form-control"
-                name="email"
-                :style="valid.email ? '' : 'border-color:red !important'"
-                v-on:keyup="emailCheck"
-                placeholder="Enter Email"
-                title="Enter Vaild Mail"
-                v-model="form.email"
-                :class="{ 'is-invalid': form.errors.has('email') }"
-              />
-              <has-error :form="form" field="email"></has-error>
-            </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                Contact No.
-                <span style="color: red"> * </span>
-                <span
-                  :style="
-                    valid.contact
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
-                  "
-                >
-                  {{ errMsg.contact }}
-                </span>
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                name="contact_no"
-                :style="valid.contact ? '' : 'border-color:red !important'"
-                v-on:keyup="contactCheck"
-                placeholder="Enter Full Contact No"
-                v-model="form.contact_no"
-                :class="{ 'is-invalid': form.errors.has('contact_no') }"
-              />
-              <has-error :form="form" field="contact_no"></has-error>
+            <div class="col-sm-9 d-sm-flex m-0 p-0">
+              <div class="col-sm-6 m-0 p-0">
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">
+                    First Name
+                    <span style="color: red"> *</span
+                    ><span
+                      :style="
+                        valid.fname
+                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                          : 'color: red; font-weight: 500; font-size: 10px'
+                      "
+                      >{{ errMsg.fname }}</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="fname"
+                    :style="valid.fname ? '' : 'border-color:red !important'"
+                    v-on:keyup="nameCheck"
+                    placeholder="Enter First Name"
+                    v-model="form.fname"
+                  />
+                  <has-error :form="form" field="fname"></has-error>
+                </div>
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">
+                    Last Name
+                    <span style="color: red"> *</span>
+                    <span
+                      :style="
+                        valid.lname
+                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                          : 'color: red; font-weight: 500; font-size: 10px'
+                      "
+                    >
+                      {{ errMsg.lname }}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="lname"
+                    placeholder="Enter Last Name"
+                    :style="valid.lname ? '' : 'border-color:red !important'"
+                    v-on:keyup="lnameCheck"
+                    v-model="form.lname"
+                    :class="{ 'is-invalid': form.errors.has('lname') }"
+                  />
+                  <has-error :form="form" field="lname"></has-error>
+                </div>
+              </div>
+              <div class="col-sm-6 m-0 p-0">
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">
+                    Email
+                    <span style="color: red"> *</span>
+                    <span
+                      :style="
+                        valid.email
+                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                          : 'color: red; font-weight: 500; font-size: 10px'
+                      "
+                    >
+                      {{ errMsg.email }}
+                    </span></label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    :style="valid.email ? '' : 'border-color:red !important'"
+                    v-on:keyup="emailCheck"
+                    placeholder="Enter Email"
+                    title="Enter Vaild Mail"
+                    v-model="form.email"
+                    :class="{ 'is-invalid': form.errors.has('email') }"
+                  />
+                  <has-error :form="form" field="email"></has-error>
+                </div>
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">
+                    Contact No.
+                    <span style="color: red"> * </span>
+                    <span
+                      :style="
+                        valid.contact
+                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
+                          : 'color: red; font-weight: 500; font-size: 10px'
+                      "
+                    >
+                      {{ errMsg.contact }}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contact_no"
+                    :style="valid.contact ? '' : 'border-color:red !important'"
+                    v-on:keyup="contactCheck"
+                    placeholder="Enter Full Contact No"
+                    v-model="form.contact_no"
+                    :class="{ 'is-invalid': form.errors.has('contact_no') }"
+                  />
+                  <has-error :form="form" field="contact_no"></has-error>
+                </div>
+              </div>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -250,18 +284,18 @@
                 </span></label
               >
               <treeselect
-                v-model="form.preferred_loc"
+                v-model="locationlist"
                 :multiple="true"
                 :options="source"
                 :limit="5"
                 :disabled="true"
                 :flat="true"
-                :select="checkLocation"
+                :sort-value-by="ORDER_SELECTED"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
               />
-              <treeselect-value :value="form.preferred_loc" />
+
               <!-- <select
                 class="form-control custom-select"
                 v-model="form.preferred_loc"
@@ -296,7 +330,6 @@
 </template>
 
 <script>
-import $ from "jquery";
 import Treeselect from "@riophae/vue-treeselect";
 export default {
   name: "ProfileStage",
@@ -306,6 +339,7 @@ export default {
   components: { Treeselect },
   data() {
     return {
+      locationlist: [],
       source2: [],
       source: [],
       menu: false,
@@ -341,9 +375,7 @@ export default {
     this.getPersnol();
     this.getAllLocation();
     this.$store.dispatch("getAllData", "/getindustry/master2");
-    this.$store.dispatch("getAllLocation", "/getjobtype");
     this.$store.dispatch("getAllDesignation", "/getfunctionalrole2");
-    this.setDob();
   },
   computed: {
     allDesignation() {
@@ -356,11 +388,24 @@ export default {
     allIndustry() {
       return this.$store.getters.getAllData;
     },
-    allLocation() {
-      return this.$store.getters.getAllLocation;
-    },
+  },
+  watch: {
+    source2: "updatesrc",
+    locationlist: "checkLocation",
   },
   methods: {
+    // Updating stage step
+    updatepStage() {
+      let stage = 1;
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
+      });
+    },
+    // update option value
+    updatesrc() {
+      this.source = this.source2;
+    },
+    // Name Validation Function
     nameCheck() {
       let rgx = /^[a-zA-Z\s]{1,}$/g;
       if (this.form.fname.length < 2) {
@@ -374,11 +419,10 @@ export default {
           this.errMsg.fname = "First Name only contain Alphabet and Space";
         }
       }
-      // let check =
     },
+    // Last Name validation function
     lnameCheck() {
       let rgx = /^[a-zA-Z\s]{1,}$/g;
-      // let check =
       if (this.form.lname.length < 2) {
         this.valid.lname = false;
         this.errMsg.lname = "Last Name Should be Min 2 Letter";
@@ -391,6 +435,7 @@ export default {
         }
       }
     },
+    // Email Validation function
     emailCheck() {
       var pattern = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (!pattern.test(this.form.email)) {
@@ -407,6 +452,7 @@ export default {
         });
       }
     },
+    // Contact Validation function
     contactCheck() {
       var pattern = /^[6-9][0-9]{9}$/;
       if (!pattern.test(this.form.contact_no)) {
@@ -423,37 +469,36 @@ export default {
         });
       }
     },
-    checkLocation() {
-      console.log(this.form.preferred_loc);
-      // if (this.form.preferred_loc.length < 5) {
-      //   this.valid.location = false;
-      //   this.errMsg.location = "Minimume 5 location should be selected";
-      // } else {
-      //   this.valid.location = true;
-      // }
+    checkLocation(e) {
+      console.log(e.value());
+      if (this.form.preferred_loc.length < 5) {
+        this.valid.location = false;
+        this.errMsg.location = "Minimume 5 location should be selected";
+      } else {
+        this.valid.location = true;
+      }
     },
+    // getting all location
     getAllLocation() {
       axios.get("/master/location/group").then((response) => {
         this.location = response.data.data;
         this.location.map((i, key) => {
           var children = [];
           i.location.map((j, index2) => {
-            children[index2] = { label: j.location, id: j.id };
+            children[index2] = { label: j.location, id: j.location };
           });
-          this.source2[key] = { label: i.state, id: "parent" + key, children: children };
+          this.source2[key] = { label: i.state, children: children };
         });
         this.source = this.source2;
-        // console.log("new", this.source2);
+        console.log("new", this.source2);
       });
     },
-    updatesrc() {
-      this.source = this.source2;
-    },
-    addemployeejob() {
+    // adding data in persnol
+    addPersnol() {
       let date = new Date();
       // console.log(this.form.exp_year);
       // console.log(this.form.exp_mon);
-      // console.log(this.form.preferred_loc);
+
       if (
         this.form.fname == "" ||
         this.form.lname == "" ||
@@ -461,16 +506,15 @@ export default {
         this.form.contact_no == "" ||
         this.form.job_industry_id == "" ||
         this.form.job_functional_role_id == "" ||
-        this.form.preferred_loc == "" ||
+        this.form.preferred_loc.length == 0 ||
         this.form.gender == "" ||
         this.form.date == date
       ) {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
-        this.form.post("/persnol-save").then((response) => {
-          // this.getAllProfessinal();
-
+        this.form.post("/persnol-save").then(() => {
+          this.getPersnol();
           this.updatepStage();
           toast({
             type: "success",
@@ -479,10 +523,9 @@ export default {
         });
       }
     },
+    // getting persnol data dynamic
     getPersnol() {
-      // alert("hello");
       axios.get("/persnol-get").then((response) => {
-        // console.log(response.data.length);
         const data = response.data;
         if (data.length > 0) {
           data.map((i, x) => {
@@ -495,33 +538,15 @@ export default {
             this.form.job_industry_id = i.industry_id == null ? "" : i.industry_id;
             this.form.job_functional_role_id =
               i.functionalrole_id == null ? "" : i.functionalrole_id;
-            this.form.preferred_loc =
-              i.preferred_location == null ? [""] : i.preferred_location.split(",");
+            this.locationlist =
+              i.preferred_location == null || i.preferred_location == ""
+                ? []
+                : i.preferred_location.split(",");
             this.form.gender = i.gender;
             this.form.date = i.dob;
-            if (this.form.preferred_loc.length > 0) {
-              var newloc = [];
-              this.form.preferred_loc.map((i, k) => {
-                newloc[k] = parseInt(i);
-              });
-              this.form.preferred_loc = newloc;
-            }
           });
         }
       });
-    },
-    updatepStage() {
-      let stage = 1;
-      // console.log("hello");
-      axios.get(`/skip-stage/${stage}`).then((response) => {
-        this.startStage();
-      });
-    },
-  },
-  watch: {
-    source2: "updatesrc",
-    menu(val) {
-      val && setTimeout(() => (this.$refs.menu.$refs.agenda.mode = "year"));
     },
   },
 };
@@ -722,5 +747,18 @@ body {
 		*/
     width: auto;
   }
+}
+#cam {
+  position: absolute;
+  background: transparent;
+  bottom: 20%;
+  /* left: 42%; */
+  font-size: 25px;
+  color: #a9a5a5;
+}
+.profile-pic {
+  background-color: #fff;
+  padding: 1rem;
+  position: relative;
 }
 </style>

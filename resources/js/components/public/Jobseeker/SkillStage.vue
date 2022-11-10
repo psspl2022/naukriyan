@@ -3,29 +3,29 @@
     <div class="col-sm-12">
 
       <form class="popupForm" role="form" method="post" @submit.prevent="addSkill()">
-        <fieldset class="mb-2" v-for="i in i" :key="i">
-          <legend v-if="i==1">Skills</legend>
-          <div class="row mb-2">
+        <fieldset class="mb-2">
+          <legend>Skills</legend>
+          <div class="row ">
             <div class="col-sm-6">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Skill</label>
-              <input type="text" class="form-control" :name="'skill' + i" placeholder="Enter Skill" list="skill_list"
-                v-model="form.skill[i - 1]" @keyup="
+              <input v-for="i in i" :key="i" type="text" class="form-control mb-3" :name="'skill' + i"
+                placeholder="Enter Skill" list="skill_list" v-model="form.skill[i - 1]" @keyup="
                   () => {
                     initItems(form.skill[i - 1]);
                   }
                 " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems" @tags-changed="update"
                 :class="{ 'is-invalid': form.errors.has('skill') }" />
-              <datalist id="skill_list">
+              <datalist id="skill_list" v-for="i in i" :key="i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
               </datalist>
-              <has-error :form="form" field="skill"></has-error>
+              <has-error :form="form" field="skill" v-for="i in i" :key="i"></has-error>
             </div>
             <div class="col-sm-6">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Expert Level</label>
-              <select class="form-control custom-select" :name="'expert_level' + i" v-model="form.expert_level[i - 1]"
-                :class="{
+              <select v-for="i in i" :key="i" placeholder="Select Expert Level" class="form-control custom-select mb-3"
+                :name="'expert_level' + i" v-model="form.expert_level[i - 1]" :class="{
                   'is-invalid': form.errors.has('expert_level'),
                 }">
                 <option value="" disabled>Select Expert Level</option>
@@ -33,18 +33,41 @@
                 <option value="Moderate">Moderate</option>
                 <option value="Expert">Expert</option>
               </select>
-              <has-error :form="form" field="expert_level"></has-error>
+              <has-error :form="form" field="expert_level" v-for="i in i" :key="i"></has-error>
             </div>
           </div>
-          <span
-            v-on:click="remove(form.index[i - 1], i - 1)"
-            v-if="x > 1"
-            class="btn btn-primary mt-3"
-          >
+          <div class="row mt-0 mb-2" v-if="j == 1">
+            <div class="col-sm-12 mt-0" v-if="j == 1">
+              <label class="col-form-label" for="" v-if="j == 1">Add More Skill</label>
+              <!-- <textarea
+                v-if="j == 1"
+                type="text"
+                class="form-control"
+                :name="more_skill"
+                placeholder="Enter Additional Skill"
+                v-model="more_skill"
+                :class="{ 'is-invalid': form.errors.has('more_skill') }"
+              ></textarea> -->
+
+              <vue-tags-input 
+              class="" 
+              placeholder="Add Additional Skills" 
+              v-model="tag"
+              :tags="tags"
+              @tags-changed="newTags => tags = newTags"
+              @keyup="
+                () => {
+                  placeholder = ' ';
+                }
+              " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
+              <has-error :form="form" field="more_skill"></has-error>
+            </div>
+          </div>
+          <span v-on:click="remove(form.index[i - 1], i - 1)" v-if="x > 1" class="btn btn-primary mt-3">
             Remove
           </span>
         </fieldset>
-        <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -53,13 +76,19 @@
 
 <script>
 import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
 export default {
   name: "SkillstartStage",
-  // props: ["keyword", "location", "experience", "jobtype"],
+  components: {
+    VueTagsInput,
+  },
   data() {
     return {
-      i: 1,
+      i: 3,
+      j: 0,
       x: 1,
+      tag: '',
+      tags: [],
       skill_list: [],
       handlers: [],
       autocompleteItems: [],
@@ -67,7 +96,8 @@ export default {
         id: "",
         index: [""],
         skill: [""],
-        expert_level: [""],
+        expert_level: ["", "", ""],
+        more_skill: [],
       }),
     };
   },
@@ -88,21 +118,25 @@ export default {
         this.form.expert_level.includes("")
       ) {
         swal("Please fill all mandatory fields");
-      } else {
-        this.form.total = this.i;
+      } else if(this.j == 1 && this.tags.length > 0){
+          this.tags.map((i) => {
+            this.form.skill.push(i.text);
+          });
+          this.form.total = this.i;
         this.form.post("/add-skill-detail").then(() => {
           toast({
             type: "success",
             title: "Skill Detail Added successfully",
           });
         });
-      }
+        } else{
+          swal("Please fill all mandatory fields");
+        }
+      
     },
 
-    addMore(i) {
-      this.i = ++i;
-      this.form.skill.push("");
-      this.form.expert_level.push("");
+    addMore(j) {
+      this.j = ++j;
     },
     remove(i, index) {
       this.i = --this.i;
@@ -110,7 +144,7 @@ export default {
       this.form.expert_level.splice(index, 1);
 
       if (i != "") {
-        axios.get(`/delete-skill-detail/${i}`).then((response) => {});
+        axios.get(`/delete-skill-detail/${i}`).then((response) => { });
       }
 
     },

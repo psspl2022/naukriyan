@@ -158,7 +158,7 @@ class StageRegistration extends Controller
 
         // $uid = Session::get('user')['id'];
 
-        for ($i = 0; $i < $req->total; $i++) {
+        for ($i = 0; $i < count($req->skill); $i++) {
 
             $a = JsSkill::updateOrCreate(
                 [
@@ -166,7 +166,7 @@ class StageRegistration extends Controller
                     'skill' => $req->skill[$i]
                 ],
                 [
-                    'expert_level' => $req->expert_level[$i]
+                    'expert_level' => ($i < count($req->expert_level)) ? $req->expert_level[$i] : ""
                 ]
             );
         }
