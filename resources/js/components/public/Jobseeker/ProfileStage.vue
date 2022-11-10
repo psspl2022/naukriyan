@@ -289,7 +289,6 @@
                 :options="source"
                 :limit="5"
                 :flat="true"
-                :sort-value-by="ORDER_SELECTED"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
@@ -471,13 +470,10 @@ export default {
         });
       }
     },
-    checkLocation(e) {
-      console.log(e.value());
-      if (this.form.preferred_loc.length < 5) {
-        this.valid.location = false;
-        this.errMsg.location = "Minimume 5 location should be selected";
-      } else {
-        this.valid.location = true;
+    checkLocation() {
+      // console.log(e.value());
+      if (this.locationlist.length > 5) {
+        this.locationlist.splice(4, 1);
       }
     },
     // getting all location
@@ -499,7 +495,6 @@ export default {
     addPersnol() {
       let date = new Date();
       this.form.preferred_loc = this.locationlist;
-
       if (
         !this.valid.fname ||
         !this.valid.lname ||
