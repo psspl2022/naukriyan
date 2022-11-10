@@ -102,8 +102,8 @@
               <div class="">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label class="col-form-label" for="">
-                      <span style="color: red"> * </span> Select Salary</label
+                    <label class="col-form-label w-100" for="">
+                      <span style="color: red"> * </span> Select Salary(in years)<span class="float-right">Confidential <input type="checkbox" :name="'confidential' + i" v-model="form.sal_conf[i - 1]" id=""></span></label
                     >
                     <select
                       class="form-control"
@@ -177,6 +177,7 @@ export default {
         fromdate: [""],
         todate: [""],
         salary: [""],
+        sal_conf: [""],
         responsibility: [""],
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
@@ -258,6 +259,7 @@ export default {
           this.form.fromdate = [];
           this.form.todate = [];
           this.form.salary = [];
+          this.form.sal_conf = [];
           this.form.responsibility = [];
           this.form.index = [];
           data.map((i, x) => {
@@ -267,6 +269,7 @@ export default {
             this.form.fromdate.push(i.from_date);
             this.form.todate.push(i.to_date);
             this.form.salary.push(3);
+            this.form.sal_conf.push(i.sal_confidential);
             this.form.index.push(i.id);
             this.form.responsibility.push(i.responsibility);
           });
