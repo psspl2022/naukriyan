@@ -316,6 +316,7 @@ class StageRegistration extends Controller
             'exp_month',
             'industry_id',
             'functionalrole_id',
+            'profile_pic_thumb',
             'preferred_location'
         )->get();
         return  $data;

@@ -50,6 +50,7 @@ Route::get('/skip-stage/{stage}', 'StageRegistration@skipStage');
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
 Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificationDetail');
+
 // end route by suraj
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
 Route::get('get-allskills/{key}', 'getAllskills@index');
