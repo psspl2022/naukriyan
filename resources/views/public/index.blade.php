@@ -426,6 +426,10 @@
             height: 32px !important;
             padding: 10px !important;
         }
+
+        .vue-tags-input {
+            max-width: 100% !important;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -464,8 +468,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Login to Naukriyan</h5>
-                            <button type="button" id="clb" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clb" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -516,8 +519,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" id="loginSubmit"
-                                            class="btn btn-block btn-lg btn-primary">
+                                        <button type="submit" id="loginSubmit" class="btn btn-block btn-lg btn-primary">
                                             Login
                                         </button>
                                     </div>
@@ -553,8 +555,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbjob" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clbjob" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -565,8 +566,7 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control"
-                                                required="">
+                                            <select name="user_type" id="user_type" class="form-control" required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Jobseeker">Jobseeker</option>
                                             </select>
@@ -642,8 +642,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbemp" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clbemp" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -654,8 +653,7 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control"
-                                                required="">
+                                            <select name="user_type" id="user_type" class="form-control" required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Employer">Employer</option>
                                             </select>
@@ -737,12 +735,10 @@
                         </div>
                         <div class="modal-body">
                             @if (session('message'))
-                                <div class="alert alert-success alert-dismissable custom-success-box"
-                                    style="margin: 15px;">
-                                    <a href="#" class="close" data-dismiss="alert"
-                                        aria-label="close">&times;</a>
-                                    <strong> {{ session('message') }} </strong>
-                                </div>
+                            <div class="alert alert-success alert-dismissable custom-success-box" style="margin: 15px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong> {{ session('message') }} </strong>
+                            </div>
                             @endif
                             <ul class="nav nav-tabs nav-fill">
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab"
@@ -761,25 +757,22 @@
 
                                         </ul>
                                     </div>
-                                    <form method="post" accept-charset="utf-8"
-                                        action="{{ route('jobseekerregister') }}" id="submitJobseekerReg"
-                                        enctype="multipart/form-data">
+                                    <form method="post" accept-charset="utf-8" action="{{ route('jobseekerregister') }}"
+                                        id="submitJobseekerReg" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row inputBox">
                                             <input type="hidden" name="user_type" value="Jobseeker">
                                             <div class="col-sm-6">
                                                 <label>First Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="fname"
-                                                        id="j_fname" class="form-control"
-                                                        placeholder="Enter First Name" /></div>
+                                                <div class="input text"><input type="text" name="fname" id="j_fname"
+                                                        class="form-control" placeholder="Enter First Name" /></div>
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="lname"
-                                                        id="j_lname" class="form-control"
-                                                        placeholder="Enter Last Name" /></div>
+                                                <div class="input text"><input type="text" name="lname" id="j_lname"
+                                                        class="form-control" placeholder="Enter Last Name" /></div>
 
                                             </div>
                                         </div>
@@ -793,8 +786,8 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Email<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="email" name="email"
-                                                        id="j_email" class="form-control" placeholder="Enter Email"
+                                                <div class="input text"><input type="email" name="email" id="j_email"
+                                                        class="form-control" placeholder="Enter Email"
                                                         autocomplete="off" /></div>
 
                                             </div>
@@ -856,11 +849,8 @@
                                                 </div> --}}
                                                 <label>Select Industry<span style="color: red"> </span></label>
                                                 <div class="input password">
-                                                    <select
-                                                        class="form-control"
-                                                        name="industry_id"
-                                                        id="industryDropDownList"
-                                                        >
+                                                    <select class="form-control" name="industry_id"
+                                                        id="industryDropDownList">
                                                     </select>
                                                 </div>
                                             </div>
@@ -870,8 +860,8 @@
                                             <div class="col-sm-12">
                                                 <label>Resume<span style="color: red"> * </span></label>
                                                 <div class="input password">
-                                                    <input type="file" name="resume" id="j_resume"
-                                                        class="form-control" accept="application/pdf">
+                                                    <input type="file" name="resume" id="j_resume" class="form-control"
+                                                        accept="application/pdf">
                                                 </div>
                                             </div>
 
@@ -895,8 +885,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" name="submit"
-                                                class="btn btn-block btn-lg btn-primary" id="submitJobseekerRegBtn">
+                                            <button type="submit" name="submit" class="btn btn-block btn-lg btn-primary"
+                                                id="submitJobseekerRegBtn">
                                                 Signup
                                             </button>
                                         </div>
@@ -909,8 +899,8 @@
 
                                         </ul>
                                     </div>
-                                    <form method="post" accept-charset="utf-8"
-                                        action="{{ route('employerregister') }}" id="submitEmployerReg">
+                                    <form method="post" accept-charset="utf-8" action="{{ route('employerregister') }}"
+                                        id="submitEmployerReg">
                                         @csrf
                                         <div class="form-group row inputBox">
                                             <div class="col-sm-6">
@@ -960,8 +950,8 @@
                                                         </ol>
                                                     </span>
                                                 </div>
-                                                <div class="input password"><input type="password"
-                                                        name="emp_password" id="emp_password" class="form-control"
+                                                <div class="input password"><input type="password" name="emp_password"
+                                                        id="emp_password" class="form-control"
                                                         placeholder="Enter Password" /></div>
 
 
@@ -1009,9 +999,9 @@
                                                         <option value="">Select Company</option>
 
                                                         @foreach ($companies as $com)
-                                                            <option value="{{ $com->id }}">
-                                                                {{ $com->company_name }}
-                                                            </option>
+                                                        <option value="{{ $com->id }}">
+                                                            {{ $com->company_name }}
+                                                        </option>
                                                         @endforeach
 
                                                         <option value="{{ $last_company_id->id + 1 }}">Others
@@ -1022,8 +1012,8 @@
                                             <div class="col-sm-6" id="other">
                                                 <label>Input Company </label>
                                                 <div class="input text">
-                                                    <input type="text" name="other" id="other_comp"
-                                                        class="form-control" placeholder="Enter Company Name" />
+                                                    <input type="text" name="other" id="other_comp" class="form-control"
+                                                        placeholder="Enter Company Name" />
                                                 </div>
                                             </div>
 
@@ -1060,8 +1050,8 @@
                             </div>
                             <div class="signText text-center">
                                 <p class="mb-0 fs-16">You have already account?
-                                    <a href="" data-toggle="modal" data-target="#myModal"
-                                        data-dismiss="modal" class="fw-700">Login</a>
+                                    <a href="" data-toggle="modal" data-target="#myModal" data-dismiss="modal"
+                                        class="fw-700">Login</a>
                                 </p>
                             </div>
                         </div>
@@ -1092,7 +1082,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
@@ -1122,7 +1112,7 @@
             }
         });
         //for login without click on footer menu
-        $('#loginSubmit').on('click', function(e) {
+        $('#loginSubmit').on('click', function (e) {
             e.preventDefault();
             let formData = $('#jobseekerLogin').serializeArray();
 
@@ -1134,7 +1124,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     //console.log(response);
                     if (response.status === 'failed') {
                         alert(response.error);
@@ -1166,12 +1156,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         //console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag").append("<div class='alert alert-danger'><li>" +
                                 value + "</li></div>");
                         });
@@ -1186,7 +1176,7 @@
         })
 
         //for candidate click menu in footer login form
-        $('#loginSubmitJobseeker').on('click', function(e) {
+        $('#loginSubmitJobseeker').on('click', function (e) {
             e.preventDefault();
             let formData = $('#footerjobseekerLogin').serializeArray();
 
@@ -1198,7 +1188,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     if (response.status === 'failed') {
                         alert(response.error);
                         $('#loginSubmitJobseeker').text('Login');
@@ -1227,12 +1217,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag_jobseeker").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag_jobseeker").append(
                                 "<div class='alert alert-danger'><li>" + value +
                                 "</li></div>");
@@ -1245,7 +1235,7 @@
         })
 
         //for employer click menu in footer login form
-        $('#loginSubmitEmployer').on('click', function(e) {
+        $('#loginSubmitEmployer').on('click', function (e) {
             e.preventDefault();
             let formData = $('#footeremployerLogin').serializeArray();
 
@@ -1257,7 +1247,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     if (response.status === 'failed') {
                         alert(response.error);
                         $('#loginSubmitEmployer').text('Login');
@@ -1286,12 +1276,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag_employer").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag_employer").append(
                                 "<div class='alert alert-danger'><li>" + value +
                                 "</li></div>");
@@ -1303,43 +1293,43 @@
             });
         })
 
-        function getIndustry(){
+        function getIndustry() {
             $.ajax({
-                        method: "GET",
-                        url: "/get-industries",
-                        success: function(response) {
-                            $('#industryDropDownList').html('');  
-                            var options = '';  
-                            options += '<option value="" disabled>Select Industry</option>';  
-                            for (var i = 0; i < response.data.length; i++) {  
-                                options += '<option value="' + response.data[i].id + '">' + response.data[i].category_name + '</option>';  
-                            }  
-                            $('#industryDropDownList').append(options);  
-                        },
-                        error: function(response) {
-                            console.log('Something went wrong...');
-                        }
-                    })
+                method: "GET",
+                url: "/get-industries",
+                success: function (response) {
+                    $('#industryDropDownList').html('');
+                    var options = '';
+                    options += '<option value="" disabled>Select Industry</option>';
+                    for (var i = 0; i < response.data.length; i++) {
+                        options += '<option value="' + response.data[i].id + '">' + response.data[i].category_name + '</option>';
+                    }
+                    $('#industryDropDownList').append(options);
+                },
+                error: function (response) {
+                    console.log('Something went wrong...');
+                }
+            })
         }
 
         //for employer click menu in footer login form
-        $(document).ready(function() {
+        $(document).ready(function () {
             let timeout;
             let delay = 1000; // 1 seconds
 
             getIndustry();
 
             // LIVE CHECKING CANDIDATE CONTACT NUMBER
-            $('#cand_contact').keyup(function(e) {
+            $('#cand_contact').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let mobileNumber = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-cand-contact/" + mobileNumber,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("c_contact_err").innerHTML =
                                     "Contact no. already exist !";
@@ -1348,7 +1338,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1356,16 +1346,16 @@
             });
 
             // LIVE CHECKING CANDIDATE EMAIL ADDRESS
-            $('#cand_email').keyup(function(e) {
+            $('#cand_email').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let emailAddress = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-cand-email/" + emailAddress,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("c_email_err").innerHTML =
                                     "Email already exist !";
@@ -1374,7 +1364,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1382,16 +1372,16 @@
             });
 
             // LIVE CHECKING EMPLOYER CONTACT NUMBER
-            $('#emp_contact').keyup(function(e) {
+            $('#emp_contact').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let empMobileNumber = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-emp-contact/" + empMobileNumber,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("e_contact_err").innerHTML =
                                     "Contact no. already exist !";
@@ -1400,7 +1390,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1408,16 +1398,16 @@
             });
 
             // LIVE CHECKING EMPLOYER EMAIL ADDRESS
-            $('#emp_email').keyup(function(e) {
+            $('#emp_email').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let empEmailAddress = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-emp-email/" + empEmailAddress,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("e_email_err").innerHTML =
                                     "Email already exist !";
@@ -1426,7 +1416,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1434,12 +1424,12 @@
             });
         });
 
-        $(".custom-compose").click(function() {
+        $(".custom-compose").click(function () {
             $(".tab-content").hide();
             $(".compose-mail").show();
         });
 
-        $('[data-type="adhaar-number"]').keyup(function() {
+        $('[data-type="adhaar-number"]').keyup(function () {
 
             var value = $(this).val();
 
@@ -1460,7 +1450,7 @@
             }
         }
 
-        $('input[type="file"]').on("change", function(e) {
+        $('input[type="file"]').on("change", function (e) {
             e.preventDefault();
             var fileName = e.target.files[0].name;
             $(this).next('.custom-file-label').html(fileName);
@@ -1468,7 +1458,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $.ajaxSetup({
                 headers: {
@@ -1478,7 +1468,7 @@
 
             // EMPLOYER REGISTRATION
 
-            $('#submitEmployerReg').submit(function(e) {
+            $('#submitEmployerReg').submit(function (e) {
                 e.preventDefault();
                 var firstname = $("#emp_fname").val();
                 var lastname = $("#emp_lname").val();
@@ -1513,7 +1503,7 @@
                         'other': other,
                     },
 
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         var baseURL = window.location.origin;
 
@@ -1527,10 +1517,10 @@
                         $('#submitEmployerRegBtn').removeAttr('disabled');
                     },
 
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error.responseJSON);
                         $(".error_bag_employer_reg").html("");
-                        $.each(error.responseJSON.errors, function(key, value) {
+                        $.each(error.responseJSON.errors, function (key, value) {
                             $(".error_bag_employer_reg").append("<li>" + value[0] +
                                 "</li></ul>");
                             $('.error_bag_employer_reg').addClass('error_emp_reg');
@@ -1543,7 +1533,7 @@
 
 
             // JOB SEEKER REGISTRATION
-            $('#submitJobseekerReg').submit(function(e) {
+            $('#submitJobseekerReg').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData();
 
@@ -1579,7 +1569,7 @@
                     processData: false, //add this
                     contentType: false,
 
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         var baseURL = window.location.origin;
 
@@ -1593,10 +1583,10 @@
                         $('#submitJobseekerRegBtn').removeAttr('disabled');
                     },
 
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error.responseJSON);
                         $(".error_bag_jobseeker_reg").html("");
-                        $.each(error.responseJSON.errors, function(key, value) {
+                        $.each(error.responseJSON.errors, function (key, value) {
                             $(".error_bag_jobseeker_reg").append("<li>" + value[0] +
                                 "</li></ul>");
                             $('.error_bag_jobseeker_reg').addClass('error_job_reg');
@@ -1615,11 +1605,11 @@
             integrationID: "95be4d61-8b95-4d33-9c35-a8e98d6e9f90", // The ID of this integration.
             region: "eu-gb", // The region your integration is hosted in.
             serviceInstanceID: "dc25712f-732c-46f1-984e-2edd22c155fd", // The ID of your service instance.
-            onLoad: function(instance) {
+            onLoad: function (instance) {
                 instance.render();
             }
         };
-        setTimeout(function() {
+        setTimeout(function () {
             const t = document.createElement('script');
             t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
             document.head.appendChild(t);
