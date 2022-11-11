@@ -7,17 +7,16 @@
     <link rel="shortcut icon" type="image/jpg" href="favicon_nkr.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equi="refresh" content="5; url=" https://naukriyan.com/">
-    <meta name="description"
-        content="Naukriyan is one of the best job portal and consultants for Delhi NCR, India, hiring leaders for the leading companies. Call us ☎ (+91) 117-962-6411" />
+    <meta name="description" content="Naukriyan is one of the best job portal and consultants for Delhi NCR, India, hiring leaders for the leading companies. Call us ☎ (+91) 117-962-6411" />
     <meta name="author" content="" />
-    <meta name="keywords"
-        content="Best job consultants for Delhi NCR, Best job portals in India,Best job search portal,Best Job Search Websites,find jobs,Job sites in india,Job portal website" />
+    <meta name="keywords" content="Best job consultants for Delhi NCR, Best job portals in India,Best job search portal,Best Job Search Websites,find jobs,Job sites in india,Job portal website" />
     <meta name="p:domain_verify" content="7522282dd009799dae68035a9525761d" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!--google font -->
     <!-- Site Verification Tags-->
     <meta name="google-site-verification" content="FevFL3827wKfFqHUVJG7nvfIdeVdPBQvEOXSe2LucNo" />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-8H3RWJ7S3Z"></script>-->
     <!--<script>
@@ -61,15 +60,12 @@
 
     <!-- Ahref Tag -->
     <meta name="ahrefs-site-verification" content="e8fe8e0fc914efde2cd867ecb77af34eef367616ce4aa20129400e966d2de239">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css"
-        type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" type="text/css">
 
     <link href="{{ asset('assets/public/asset/css/bootstrap-responsive.css') }}" rel="stylesheet" />
 
@@ -442,10 +438,10 @@
     <script>
         var msg =
             '{{ Session::get('
-                                                                                                                                                                                                                                                                                                                                                                                                                                            alert ') }}';
+        alert ') }}';
         var exist =
             '{{ Session::has('
-                                                                                                                                                                                                                                                                                                                                                                                                                                            alert ') }}';
+        alert ') }}';
         if (exist) {
             alert(msg);
         }
@@ -464,8 +460,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Login to Naukriyan</h5>
-                            <button type="button" id="clb" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clb" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -487,25 +482,21 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <input type="email" name="email" class="form-control"
-                                                placeholder="Enter Email" id="email" required="required"
-                                                autocomplete="off" />
+                                            <input type="email" name="email" class="form-control" placeholder="Enter Email" id="email" required="required" autocomplete="off" />
                                         </div>
 
                                     </div>
                                     <div class="form-group inputBox">
                                         <i class="fa fa-key" aria-hidden="true"></i>
                                         <div class="input password">
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Enter Password" id="password" required="required" />
+                                            <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password" required="required" />
                                         </div>
 
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
                                                     Remember Me
                                                 </label>
@@ -516,24 +507,21 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" id="loginSubmit"
-                                            class="btn btn-block btn-lg btn-primary">
+                                        <button type="submit" id="loginSubmit" class="btn btn-block btn-lg btn-primary">
                                             Login
                                         </button>
                                     </div>
                                 </form>
                             </div>
                             <div class="signText text-center">
-                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal"
-                                        data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
+                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal" data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
                                 </p>
                             </div>
                         </div>
 
 
                         <div class="modal-footer">
-                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a
-                                    href="">Terms
+                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a href="">Terms
                                     of Service</a>, <a href="">Cookie Policy </a>,
                                 <a href="">Privacy Policy</a> and
                                 <a href="">Cancellation</a>.
@@ -553,8 +541,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbjob" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clbjob" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -565,8 +552,7 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control"
-                                                required="">
+                                            <select name="user_type" id="user_type" class="form-control" required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Jobseeker">Jobseeker</option>
                                             </select>
@@ -576,25 +562,21 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <input type="email" name="email" class="form-control"
-                                                placeholder="Enter Email" id="email" required="required"
-                                                autocomplete="off" />
+                                            <input type="email" name="email" class="form-control" placeholder="Enter Email" id="email" required="required" autocomplete="off" />
                                         </div>
 
                                     </div>
                                     <div class="form-group inputBox">
                                         <i class="fa fa-key" aria-hidden="true"></i>
                                         <div class="input password">
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Enter Password" id="password" required="required" />
+                                            <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password" required="required" />
                                         </div>
 
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="jobseekerCheckbox">
+                                                <input class="form-check-input" type="checkbox" value="" id="jobseekerCheckbox">
                                                 <label class="form-check-label" for="jobseekerCheckbox">
                                                     Remember Me
                                                 </label>
@@ -605,8 +587,7 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" id="loginSubmitJobseeker"
-                                            class="btn btn-block btn-lg btn-primary">
+                                        <button type="submit" id="loginSubmitJobseeker" class="btn btn-block btn-lg btn-primary">
                                             Login
                                         </button>
                                     </div>
@@ -614,15 +595,13 @@
                             </div>
 
                             <div class="signText text-center">
-                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal"
-                                        data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
+                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal" data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a
-                                    href="">Terms
+                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a href="">Terms
                                     of Service</a>, <a href="">Cookie Policy </a>,
                                 <a href="">Privacy Policy</a> and
                                 <a href="">Cancellation</a>.
@@ -642,8 +621,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">log in to Naukriyan</h5>
-                            <button type="button" id="clbemp" class="close" data-dismiss="modal"
-                                aria-hidden="true">
+                            <button type="button" id="clbemp" class="close" data-dismiss="modal" aria-hidden="true">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -654,8 +632,7 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <select name="user_type" id="user_type" class="form-control"
-                                                required="">
+                                            <select name="user_type" id="user_type" class="form-control" required="">
                                                 <option value="">---Select User type---</option>
                                                 <option value="Employer">Employer</option>
                                             </select>
@@ -665,25 +642,21 @@
                                     <div class="form-group inputBox">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         <div class="input text">
-                                            <input type="email" name="email" class="form-control"
-                                                placeholder="Enter Email" id="email" required="required"
-                                                autocomplete="off" />
+                                            <input type="email" name="email" class="form-control" placeholder="Enter Email" id="email" required="required" autocomplete="off" />
                                         </div>
 
                                     </div>
                                     <div class="form-group inputBox">
                                         <i class="fa fa-key" aria-hidden="true"></i>
                                         <div class="input password">
-                                            <input type="password" name="password" class="form-control"
-                                                placeholder="Enter Password" id="password" required="required" />
+                                            <input type="password" name="password" class="form-control" placeholder="Enter Password" id="password" required="required" />
                                         </div>
 
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-between">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="employerCheckbox">
+                                                <input class="form-check-input" type="checkbox" value="" id="employerCheckbox">
                                                 <label class="form-check-label" for="employerCheckbox">
                                                     Remember Me
                                                 </label>
@@ -694,23 +667,20 @@
                                     </div>
                                     <div class="form-group">
 
-                                        <button type="submit" id="loginSubmitEmployer"
-                                            class="btn btn-block btn-lg btn-primary">
+                                        <button type="submit" id="loginSubmitEmployer" class="btn btn-block btn-lg btn-primary">
                                             Login
                                         </button>
                                     </div>
                                 </form>
                             </div>
                             <div class="signText text-center">
-                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal"
-                                        data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
+                                <p class="mb-0 fs-16">Don't have an account? <a href="" data-toggle="modal" data-target="#myModal1" data-dismiss="modal" class="fw-700">Sign up</a>
                                 </p>
                             </div>
                         </div>
 
                         <div class="modal-footer">
-                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a
-                                    href="">Terms
+                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a href="">Terms
                                     of Service</a>, <a href="">Cookie Policy </a>,
                                 <a href="">Privacy Policy</a> and
                                 <a href="">Cancellation</a>.
@@ -737,19 +707,15 @@
                         </div>
                         <div class="modal-body">
                             @if (session('message'))
-                                <div class="alert alert-success alert-dismissable custom-success-box"
-                                    style="margin: 15px;">
-                                    <a href="#" class="close" data-dismiss="alert"
-                                        aria-label="close">&times;</a>
-                                    <strong> {{ session('message') }} </strong>
-                                </div>
+                            <div class="alert alert-success alert-dismissable custom-success-box" style="margin: 15px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong> {{ session('message') }} </strong>
+                            </div>
                             @endif
                             <ul class="nav nav-tabs nav-fill">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab"
-                                        href="#Candidate">Jobseeker</a>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Candidate">Jobseeker</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab"
-                                        href="#Employeer">Employer</a>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Employeer">Employer</a>
                                 </li>
 
 
@@ -761,41 +727,31 @@
 
                                         </ul>
                                     </div>
-                                    <form method="post" accept-charset="utf-8"
-                                        action="{{ route('jobseekerregister') }}" id="submitJobseekerReg"
-                                        enctype="multipart/form-data">
+                                    <form method="post" accept-charset="utf-8" action="{{ route('jobseekerregister') }}" id="submitJobseekerReg" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row inputBox">
                                             <input type="hidden" name="user_type" value="Jobseeker">
                                             <div class="col-sm-6">
                                                 <label>First Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="fname"
-                                                        id="j_fname" class="form-control"
-                                                        placeholder="Enter First Name" /></div>
+                                                <div class="input text"><input type="text" name="fname" id="j_fname" class="form-control" placeholder="Enter First Name" /></div>
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="lname"
-                                                        id="j_lname" class="form-control"
-                                                        placeholder="Enter Last Name" /></div>
+                                                <div class="input text"><input type="text" name="lname" id="j_lname" class="form-control" placeholder="Enter Last Name" /></div>
 
                                             </div>
                                         </div>
                                         <div class="form-group row inputBox">
                                             <div class="col-sm-6">
                                                 <label>Contact No.<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="number" name="contact"
-                                                        id="j_contact" class="form-control"
-                                                        placeholder="Enter Contact No." /></div>
+                                                <div class="input text"><input type="number" name="contact" id="j_contact" class="form-control" placeholder="Enter Contact No." /></div>
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Email<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="email" name="email"
-                                                        id="j_email" class="form-control" placeholder="Enter Email"
-                                                        autocomplete="off" /></div>
+                                                <div class="input text"><input type="email" name="email" id="j_email" class="form-control" placeholder="Enter Email" autocomplete="off" /></div>
 
                                             </div>
                                         </div>
@@ -804,8 +760,7 @@
                                                 <label style="margin-bottom:5px;">Password<span style="color: red"> *
                                                     </span>
 
-                                                    <div class="tooltip-pass"><i class="fas fa-info-circle"
-                                                            style="position:inherit !important;font-size:16px !important;"></i>
+                                                    <div class="tooltip-pass"><i class="fas fa-info-circle" style="position:inherit !important;font-size:16px !important;"></i>
                                                         <span class="tooltiptext">Password contain atleast 8
                                                             characters.
                                                             Password should be match all criteria given below:<br>
@@ -818,9 +773,7 @@
                                                         </span>
                                                     </div>
                                                 </label>
-                                                <div class="input password"><input type="password" name="password"
-                                                        id="j_password" class="form-control"
-                                                        placeholder="Enter Password" /></div>
+                                                <div class="input password"><input type="password" name="password" id="j_password" class="form-control" placeholder="Enter Password" /></div>
 
                                             </div>
                                             <div class="col-sm-6">
@@ -856,11 +809,7 @@
                                                 </div> --}}
                                                 <label>Select Industry<span style="color: red"> </span></label>
                                                 <div class="input password">
-                                                    <select
-                                                        class="form-control"
-                                                        name="industry_id"
-                                                        id="industryDropDownList"
-                                                        >
+                                                    <select class="form-control" name="industry_id" id="industryDropDownList">
                                                     </select>
                                                 </div>
                                             </div>
@@ -870,8 +819,7 @@
                                             <div class="col-sm-12">
                                                 <label>Resume<span style="color: red"> * </span></label>
                                                 <div class="input password">
-                                                    <input type="file" name="resume" id="j_resume"
-                                                        class="form-control" accept="application/pdf">
+                                                    <input type="file" name="resume" id="j_resume" class="form-control" accept="application/pdf">
                                                 </div>
                                             </div>
 
@@ -881,10 +829,8 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="my-checkbox">
                                                     <label class="checkbox-inline" for="remember_me3">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="remember_me3">
-                                                        <span class="checkbox-icon"><i class="fa fa-square-o"
-                                                                aria-hidden="true"></i>
+                                                        <input type="checkbox" class="custom-control-input" id="remember_me3">
+                                                        <span class="checkbox-icon"><i class="fa fa-square-o" aria-hidden="true"></i>
                                                             <span class="check-icon">
                                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                                             </span>
@@ -895,8 +841,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" name="submit"
-                                                class="btn btn-block btn-lg btn-primary" id="submitJobseekerRegBtn">
+                                            <button type="submit" name="submit" class="btn btn-block btn-lg btn-primary" id="submitJobseekerRegBtn">
                                                 Signup
                                             </button>
                                         </div>
@@ -909,38 +854,29 @@
 
                                         </ul>
                                     </div>
-                                    <form method="post" accept-charset="utf-8"
-                                        action="{{ route('employerregister') }}" id="submitEmployerReg">
+                                    <form method="post" accept-charset="utf-8" action="{{ route('employerregister') }}" id="submitEmployerReg">
                                         @csrf
                                         <div class="form-group row inputBox">
                                             <div class="col-sm-6">
                                                 <label>First Name<span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="emp_fname"
-                                                        class="form-control" id="emp_fname"
-                                                        placeholder="Enter First Name" /></div>
+                                                <div class="input text"><input type="text" name="emp_fname" class="form-control" id="emp_fname" placeholder="Enter First Name" /></div>
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name <span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="text" name="emp_lname"
-                                                        class="form-control" id="emp_lname"
-                                                        placeholder="Enter Last Name" /></div>
+                                                <div class="input text"><input type="text" name="emp_lname" class="form-control" id="emp_lname" placeholder="Enter Last Name" /></div>
 
                                             </div>
                                         </div>
                                         <div class="form-group row inputBox">
                                             <div class="col-sm-6">
                                                 <label>Contact No. <span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="number" name="emp_contact"
-                                                        class="form-control" id="emp_contact"
-                                                        placeholder="Enter Contact No." /></div>
+                                                <div class="input text"><input type="number" name="emp_contact" class="form-control" id="emp_contact" placeholder="Enter Contact No." /></div>
                                                 <span id="e_contact_err" style="color: red; font-size: 12px;"></span>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Email <span style="color: red"> * </span></label>
-                                                <div class="input text"><input type="email" name="emp_email"
-                                                        class="form-control" id="emp_email" placeholder="Enter Email"
-                                                        autocomplete="off" /></div>
+                                                <div class="input text"><input type="email" name="emp_email" class="form-control" id="emp_email" placeholder="Enter Email" autocomplete="off" /></div>
                                                 <span id="e_email_err" style="color: red; font-size: 12px;"></span>
 
                                             </div>
@@ -948,8 +884,7 @@
                                         <div class="form-group row inputBox">
                                             <div class="col-sm-6">
                                                 <label>Password <span style="color: red"> * </span></label>
-                                                <div class="tooltip-pass"><i class="fas fa-info-circle"
-                                                        style="position:inherit !important;font-size:16px !important;"></i>
+                                                <div class="tooltip-pass"><i class="fas fa-info-circle" style="position:inherit !important;font-size:16px !important;"></i>
                                                     <span class="tooltiptext">Password contain atleast 8 characters.
                                                         Password should be match all criteria given below:<br>
                                                         <ol>
@@ -960,18 +895,14 @@
                                                         </ol>
                                                     </span>
                                                 </div>
-                                                <div class="input password"><input type="password"
-                                                        name="emp_password" id="emp_password" class="form-control"
-                                                        placeholder="Enter Password" /></div>
+                                                <div class="input password"><input type="password" name="emp_password" id="emp_password" class="form-control" placeholder="Enter Password" /></div>
 
 
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Designation <span style="color: red"> * </span></label>
 
-                                                <div class="input text"><input type="text" name="emp_designation"
-                                                        class="form-control" id="emp_designation"
-                                                        placeholder="Enter Designation" /></div>
+                                                <div class="input text"><input type="text" name="emp_designation" class="form-control" id="emp_designation" placeholder="Enter Designation" /></div>
 
                                             </div>
                                         </div>
@@ -1004,14 +935,13 @@
                                             <div class="col-sm-6">
                                                 <label>Select Company <span style="color: red">*</span></label>
                                                 <div class="input password">
-                                                    <select name="company_id" style="width: 100%" id="com_search"
-                                                        class="select-box" onchange="others(this.value);">
+                                                    <select name="company_id" style="width: 100%" id="com_search" class="select-box" onchange="others(this.value);">
                                                         <option value="">Select Company</option>
 
                                                         @foreach ($companies as $com)
-                                                            <option value="{{ $com->id }}">
-                                                                {{ $com->company_name }}
-                                                            </option>
+                                                        <option value="{{ $com->id }}">
+                                                            {{ $com->company_name }}
+                                                        </option>
                                                         @endforeach
 
                                                         <option value="{{ $last_company_id->id + 1 }}">Others
@@ -1022,8 +952,7 @@
                                             <div class="col-sm-6" id="other">
                                                 <label>Input Company </label>
                                                 <div class="input text">
-                                                    <input type="text" name="other" id="other_comp"
-                                                        class="form-control" placeholder="Enter Company Name" />
+                                                    <input type="text" name="other" id="other_comp" class="form-control" placeholder="Enter Company Name" />
                                                 </div>
                                             </div>
 
@@ -1039,16 +968,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="d-flex justify-content-between"
-                                                style="font-family: sans-serif;">
+                                            <div class="d-flex justify-content-between" style="font-family: sans-serif;">
                                                 <em>If Your company name is not in
                                                     your list then you can input your company name by selecting others
                                                     options in this list.</em>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-block btn-lg btn-primary"
-                                                id="submitEmployerRegBtn">
+                                            <button type="submit" class="btn btn-block btn-lg btn-primary" id="submitEmployerRegBtn">
                                                 Sign Up
                                             </button>
                                         </div>
@@ -1060,14 +987,12 @@
                             </div>
                             <div class="signText text-center">
                                 <p class="mb-0 fs-16">You have already account?
-                                    <a href="" data-toggle="modal" data-target="#myModal"
-                                        data-dismiss="modal" class="fw-700">Login</a>
+                                    <a href="" data-toggle="modal" data-target="#myModal" data-dismiss="modal" class="fw-700">Login</a>
                                 </p>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a
-                                    href="">Terms
+                            <p class="text-muted text-center mb-0 fs-13">By logging in, I agree to Naukriyan <a href="">Terms
                                     of Service</a>, <a href="">Cookie Policy </a>,
                                 <a href="">Privacy Policy</a> and
                                 <a href="">Cancellation</a>.
@@ -1090,8 +1015,7 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -1303,23 +1227,23 @@
             });
         })
 
-        function getIndustry(){
+        function getIndustry() {
             $.ajax({
-                        method: "GET",
-                        url: "/get-industries",
-                        success: function(response) {
-                            $('#industryDropDownList').html('');  
-                            var options = '';  
-                            options += '<option value="" disabled>Select Industry</option>';  
-                            for (var i = 0; i < response.data.length; i++) {  
-                                options += '<option value="' + response.data[i].id + '">' + response.data[i].category_name + '</option>';  
-                            }  
-                            $('#industryDropDownList').append(options);  
-                        },
-                        error: function(response) {
-                            console.log('Something went wrong...');
-                        }
-                    })
+                method: "GET",
+                url: "/get-industries",
+                success: function(response) {
+                    $('#industryDropDownList').html('');
+                    var options = '';
+                    options += '<option value="" disabled>Select Industry</option>';
+                    for (var i = 0; i < response.data.length; i++) {
+                        options += '<option value="' + response.data[i].id + '">' + response.data[i].category_name + '</option>';
+                    }
+                    $('#industryDropDownList').append(options);
+                },
+                error: function(response) {
+                    console.log('Something went wrong...');
+                }
+            })
         }
 
         //for employer click menu in footer login form

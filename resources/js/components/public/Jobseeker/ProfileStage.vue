@@ -488,7 +488,6 @@ export default {
           this.source2[key] = { label: i.state, children: children };
         });
         this.source = this.source2;
-        console.log("new", this.source2);
       });
     },
     // adding data in persnol
