@@ -16,6 +16,8 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Resume</label
               >
+              <i class="fa fa-info ml-2 mr-1" aria-hidden="true"></i>
+              <a style="color: red" target="_blank" href="http://blog.naukriyan.com/category/articles/"> How to make Resume ?</a>
               <input
                 type="file"
                 @change="onFileChanged"
@@ -28,6 +30,8 @@
             </div>
             <div class="col-sm-6">
               <label class="col-form-label" for=""> Video Resume Link</label>
+              <i class="fa fa-info ml-2 mr-1" aria-hidden="true"></i>
+              <a style="color: red" target="_blank" href="https://naukriyan.com/#/video-resume/howtomakeresume"> How to make Video Resume ?</a>
               <input
                 type="text"
                 class="form-control"

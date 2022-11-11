@@ -31,6 +31,8 @@ class StageRegistration extends Controller
                         'job_type' => $request->jobtype[$i],
                         'from_date' => $request->fromdate[$i],
                         'to_date' => $request->todate[$i],
+                        'salary' => $request->salary[$i],
+                        'sal_confidential' => $request->sal_confidential[$i],
                         'responsibility' => $request->responsibility[$i]
                     ]);
                 ++$update;
@@ -45,6 +47,8 @@ class StageRegistration extends Controller
                 // $js_professional->functional_role = $request->functional_role;
                 $js_professional->from_date = $request->fromdate[$i];
                 $js_professional->to_date = $request->todate[$i];
+                $js_professional->salary = $request->salary[$i];
+                $js_professional->sal_confidential = $request->sal_confidential[$i];
                 $js_professional->responsibility = $request->responsibility[$i];
                 $js_professional->save();
                 ++$create;
@@ -186,7 +190,7 @@ class StageRegistration extends Controller
                     'skill' => $req->skill[$i]
                 ],
                 [
-                    'expert_level' => ($i < 3) ? $req->expert_level[$i] : ""
+                    'expert_level' => (($i < count($req->expert_level)) && ($req->expert_level[$i] != "")) ? $req->expert_level[$i] : ""
                 ]
             );
         }

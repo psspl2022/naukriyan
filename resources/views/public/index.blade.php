@@ -422,6 +422,10 @@
             height: 32px !important;
             padding: 10px !important;
         }
+
+        .vue-tags-input {
+            max-width: 100% !important;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -1046,7 +1050,7 @@
             }
         });
         //for login without click on footer menu
-        $('#loginSubmit').on('click', function(e) {
+        $('#loginSubmit').on('click', function (e) {
             e.preventDefault();
             let formData = $('#jobseekerLogin').serializeArray();
 
@@ -1058,7 +1062,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     //console.log(response);
                     if (response.status === 'failed') {
                         alert(response.error);
@@ -1090,12 +1094,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         //console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag").append("<div class='alert alert-danger'><li>" +
                                 value + "</li></div>");
                         });
@@ -1110,7 +1114,7 @@
         })
 
         //for candidate click menu in footer login form
-        $('#loginSubmitJobseeker').on('click', function(e) {
+        $('#loginSubmitJobseeker').on('click', function (e) {
             e.preventDefault();
             let formData = $('#footerjobseekerLogin').serializeArray();
 
@@ -1122,7 +1126,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     if (response.status === 'failed') {
                         alert(response.error);
                         $('#loginSubmitJobseeker').text('Login');
@@ -1151,12 +1155,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag_jobseeker").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag_jobseeker").append(
                                 "<div class='alert alert-danger'><li>" + value +
                                 "</li></div>");
@@ -1169,7 +1173,7 @@
         })
 
         //for employer click menu in footer login form
-        $('#loginSubmitEmployer').on('click', function(e) {
+        $('#loginSubmitEmployer').on('click', function (e) {
             e.preventDefault();
             let formData = $('#footeremployerLogin').serializeArray();
 
@@ -1181,7 +1185,7 @@
                 url: "/jobseekerlogin",
                 dataType: "json",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     if (response.status === 'failed') {
                         alert(response.error);
                         $('#loginSubmitEmployer').text('Login');
@@ -1210,12 +1214,12 @@
                     }
                 },
 
-                error: function(data) {
+                error: function (data) {
                     if (data.status === 400) {
                         console.log(data);
                         var response = JSON.parse(data.responseText);
                         $(".error_bag_employer").html("");
-                        $.each(response.errors, function(key, value) {
+                        $.each(response.errors, function (key, value) {
                             $(".error_bag_employer").append(
                                 "<div class='alert alert-danger'><li>" + value +
                                 "</li></div>");
@@ -1247,23 +1251,23 @@
         }
 
         //for employer click menu in footer login form
-        $(document).ready(function() {
+        $(document).ready(function () {
             let timeout;
             let delay = 1000; // 1 seconds
 
             getIndustry();
 
             // LIVE CHECKING CANDIDATE CONTACT NUMBER
-            $('#cand_contact').keyup(function(e) {
+            $('#cand_contact').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let mobileNumber = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-cand-contact/" + mobileNumber,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("c_contact_err").innerHTML =
                                     "Contact no. already exist !";
@@ -1272,7 +1276,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1280,16 +1284,16 @@
             });
 
             // LIVE CHECKING CANDIDATE EMAIL ADDRESS
-            $('#cand_email').keyup(function(e) {
+            $('#cand_email').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let emailAddress = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-cand-email/" + emailAddress,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("c_email_err").innerHTML =
                                     "Email already exist !";
@@ -1298,7 +1302,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1306,16 +1310,16 @@
             });
 
             // LIVE CHECKING EMPLOYER CONTACT NUMBER
-            $('#emp_contact').keyup(function(e) {
+            $('#emp_contact').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let empMobileNumber = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-emp-contact/" + empMobileNumber,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("e_contact_err").innerHTML =
                                     "Contact no. already exist !";
@@ -1324,7 +1328,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1332,16 +1336,16 @@
             });
 
             // LIVE CHECKING EMPLOYER EMAIL ADDRESS
-            $('#emp_email').keyup(function(e) {
+            $('#emp_email').keyup(function (e) {
                 if (timeout) {
                     clearTimeout(timeout);
                 }
                 let empEmailAddress = $(this).val();
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     $.ajax({
                         method: "GET",
                         url: "/check-emp-email/" + empEmailAddress,
-                        success: function(response) {
+                        success: function (response) {
                             if (response.data === 1) {
                                 document.getElementById("e_email_err").innerHTML =
                                     "Email already exist !";
@@ -1350,7 +1354,7 @@
                                     "";
                             }
                         },
-                        error: function(response) {
+                        error: function (response) {
                             console.log('Something went wrong...');
                         }
                     })
@@ -1358,12 +1362,12 @@
             });
         });
 
-        $(".custom-compose").click(function() {
+        $(".custom-compose").click(function () {
             $(".tab-content").hide();
             $(".compose-mail").show();
         });
 
-        $('[data-type="adhaar-number"]').keyup(function() {
+        $('[data-type="adhaar-number"]').keyup(function () {
 
             var value = $(this).val();
 
@@ -1384,7 +1388,7 @@
             }
         }
 
-        $('input[type="file"]').on("change", function(e) {
+        $('input[type="file"]').on("change", function (e) {
             e.preventDefault();
             var fileName = e.target.files[0].name;
             $(this).next('.custom-file-label').html(fileName);
@@ -1392,7 +1396,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             $.ajaxSetup({
                 headers: {
@@ -1402,7 +1406,7 @@
 
             // EMPLOYER REGISTRATION
 
-            $('#submitEmployerReg').submit(function(e) {
+            $('#submitEmployerReg').submit(function (e) {
                 e.preventDefault();
                 var firstname = $("#emp_fname").val();
                 var lastname = $("#emp_lname").val();
@@ -1437,7 +1441,7 @@
                         'other': other,
                     },
 
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         var baseURL = window.location.origin;
 
@@ -1451,10 +1455,10 @@
                         $('#submitEmployerRegBtn').removeAttr('disabled');
                     },
 
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error.responseJSON);
                         $(".error_bag_employer_reg").html("");
-                        $.each(error.responseJSON.errors, function(key, value) {
+                        $.each(error.responseJSON.errors, function (key, value) {
                             $(".error_bag_employer_reg").append("<li>" + value[0] +
                                 "</li></ul>");
                             $('.error_bag_employer_reg').addClass('error_emp_reg');
@@ -1467,7 +1471,7 @@
 
 
             // JOB SEEKER REGISTRATION
-            $('#submitJobseekerReg').submit(function(e) {
+            $('#submitJobseekerReg').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData();
 
@@ -1503,7 +1507,7 @@
                     processData: false, //add this
                     contentType: false,
 
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         var baseURL = window.location.origin;
 
@@ -1517,10 +1521,10 @@
                         $('#submitJobseekerRegBtn').removeAttr('disabled');
                     },
 
-                    error: function(error) {
+                    error: function (error) {
                         console.log(error.responseJSON);
                         $(".error_bag_jobseeker_reg").html("");
-                        $.each(error.responseJSON.errors, function(key, value) {
+                        $.each(error.responseJSON.errors, function (key, value) {
                             $(".error_bag_jobseeker_reg").append("<li>" + value[0] +
                                 "</li></ul>");
                             $('.error_bag_jobseeker_reg').addClass('error_job_reg');
@@ -1539,11 +1543,11 @@
             integrationID: "95be4d61-8b95-4d33-9c35-a8e98d6e9f90", // The ID of this integration.
             region: "eu-gb", // The region your integration is hosted in.
             serviceInstanceID: "dc25712f-732c-46f1-984e-2edd22c155fd", // The ID of your service instance.
-            onLoad: function(instance) {
+            onLoad: function (instance) {
                 instance.render();
             }
         };
-        setTimeout(function() {
+        setTimeout(function () {
             const t = document.createElement('script');
             t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
             document.head.appendChild(t);

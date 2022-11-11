@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12">
 
-      <form class="popupForm" role="form" method="post" @submit.prevent="addSkill()">
+      <form class="popupForm" id="skills" role="form" method="post" @submit.prevent="addSkill()">
         <fieldset class="mb-2">
           <legend>Skills</legend>
           <div class="row ">
@@ -63,11 +63,12 @@
               <has-error :form="form" field="more_skill"></has-error>
             </div>
           </div>
-          <span v-on:click="remove(form.index[i - 1], i - 1)" v-if="x > 1" class="btn btn-primary mt-3">
+          <!-- <span v-on:click="remove(form.index[i - 1], i - 1)" v-if="x > 1" class="btn btn-primary mt-3">
             Remove
-          </span>
+          </span> -->
         </fieldset>
-        <span v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
+        <span v-if="j==0" v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
+        <span v-if="j==1" v-on:click="remove(j)" class="btn btn-primary mt-3">Remove</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -115,33 +116,39 @@ export default {
     addSkill() {
       if (
         this.form.skill.includes("") ||
-        this.form.expert_level.includes("")
+        ((this.form.expert_level.length) < 4 && this.form.expert_level.includes(""))
       ) {
         swal("Please fill all mandatory fields");
-      } else if(this.j == 1 && this.tags.length > 0){
+      } else if(this.j == 1){
+         if(this.tags.length > 0){
           this.tags.map((i) => {
             this.form.skill.push(i.text);
           });
-          this.form.total = this.i;
-        this.form.post("/add-skill-detail").then(() => {
-          toast({
-            type: "success",
-            title: "Skill Detail Added successfully",
+          this.form.post("/add-skill-detail").then(() => {
+            toast({
+              type: "success",
+              title: "Skill Detail Added successfully",
+            });
           });
-        });
         } else{
           swal("Please fill all mandatory fields");
         }
+      }else{
+        this.form.post("/add-skill-detail").then(() => {
+            toast({
+              type: "success",
+              title: "Skill Detail Added successfully",
+            });
+          });
+      }
       
     },
 
     addMore(j) {
       this.j = ++j;
     },
-    remove(i, index) {
-      this.i = --this.i;
-      this.form.skill.splice(index, 1);
-      this.form.expert_level.splice(index, 1);
+    remove(j) {
+      this.j = --this.j;
 
       if (i != "") {
         axios.get(`/delete-skill-detail/${i}`).then((response) => { });
@@ -194,6 +201,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
 
 body {
   box-sizing: border-box;
