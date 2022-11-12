@@ -18,6 +18,7 @@ header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Autho
 // ROute added by suraj 
 Route::get('/check-mobile/{num}', 'vaildationController@getContact');
 Route::get('/check-email/{num}', 'vaildationController@getEmail');
+Route::post('/add-certification-detail2', 'StageRegistration@addCertificate');
 // valdation route 
 Route::get('/getindustry/master2', 'IndustryController@indexdemo');
 Route::get('/getfunctionalrole2', 'FunctionalroleController@index');
@@ -31,6 +32,7 @@ Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalD
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
 Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
+
 Route::post('/persnol-save', 'StageRegistration@addPersnol');
 Route::get('/persnol-get', 'StageRegistration@getPersnol');
 
