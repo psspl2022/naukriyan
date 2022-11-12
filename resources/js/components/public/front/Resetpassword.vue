@@ -6,7 +6,6 @@
                 <form action="" class="form">
                     <center>
                         <img :src="'assets/public/asset/img/naukriyana1.png'" width="40%">
-
                     </center>
                     <h2>Don't Worry!</h2>
                     <h4>
