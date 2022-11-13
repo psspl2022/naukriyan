@@ -178,10 +178,10 @@
                   </li>
                 </ul>
               </div>
-              <h2 class="rit-titl">
+              <h2 v-if="certInfos[0].certificate != 1" class="rit-titl">
                 <i class="fas fa-certificate"></i> Certificates
               </h2>
-              <div class="work-exp">
+              <div class="work-exp" v-if="certInfos[0].certificate != 1">
                 <div class="row">
                   <div class="col-md-12">
                     <table class="table table-bordered">
