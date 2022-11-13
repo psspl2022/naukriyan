@@ -1,18 +1,40 @@
 <template>
   <div class="row">
     <div class="col-sm-12">
-      <div>
-      
-      </div>
       <i class="fa fa-info" aria-hidden="true"></i
       ><span style="color: red"> All Field Required</span>
+      <form
+        class="col-sm-3 ml-auto offset-sm-2"
+        method="post"
+        @submit.prevent="submitNocertificate()"
+      >
+        <div class="form-check" v-on:click="addNocertificate">
+          <input
+            class="form-check-input"
+            v-model="form.certificate"
+            type="checkbox"
+            id="certificate"
+          />
+          <label class="form-check-label" for="certificate">
+            I do not have any Certificate</label
+          >
+        </div>
+        <button
+          type="submit"
+          v-if="form.certificate == true"
+          class="btn btn-primary mt-3"
+        >
+          Save
+        </button>
+      </form>
       <form
         class="popupForm"
         role="form"
         method="post"
         @submit.prevent="addCertification()"
+        v-if="form.certificate == false"
       >
-        <fieldset class="mt-2" v-for="i in i" :key="i">
+        <fieldset class="mt-2" v-for="i in formIndex" :key="i">
           <legend v-if="i == 1">Certification</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
@@ -46,13 +68,13 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Grade/Score</label
+                <span style="color: red"> * </span> Certification Licence</label
               >
               <input
                 type="text"
                 class="form-control"
                 :name="'score' + 1"
-                placeholder="Enter Grade/Score"
+                placeholder="Enter Certification Licence"
                 v-model="form.score[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('score') }"
               />
@@ -71,8 +93,8 @@
                 }"
               >
                 <option value="" selected>Select Job Type</option>
-                <option value="1">Part Time</option>
-                <option value="2">Full Time</option>
+                <option value="1">Offline</option>
+                <option value="2">Online</option>
               </select>
               <has-error :form="form" field="gender"></has-error>
             </div>
@@ -91,7 +113,7 @@
                     class="form-control col-8"
                     v-model="form.fromdate[i - 1]"
                     placeholder="2022-11-01"
-                    value="2022-11-01"
+                    value="11"
                   />
                 </div>
 
@@ -109,7 +131,19 @@
               </div>
               <has-error :form="form" field="gender"></has-error>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-4">
+              <label class="col-form-label" for=""> Certificate Link (Optional)</label>
+              <input
+                type="text"
+                class="form-control"
+                :name="'score' + 1"
+                placeholder="Enter Certificate Link"
+                v-model="form.certificate_link[i - 1]"
+                :class="{ 'is-invalid': form.errors.has('score') }"
+              />
+              <has-error :form="form" field="score"></has-error>
+            </div>
+            <div class="col-sm-8">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Description</label
               >
@@ -125,15 +159,15 @@
             </div>
           </div>
           <span
-            v-on:click="remove(form.index[i - 1], i - 1)"
-            v-if="x > 1"
+            v-on:click="remove(i - 1, form.index[i - 1])"
+            v-if="formIndex > 1"
             class="btn btn-primary mt-3"
           >
             Remove
           </span>
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
-        <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="addMore()" class="btn btn-primary mt-3">Add More</span>
         <span v-on:click="skipStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
     </div>
@@ -141,21 +175,20 @@
 </template>
 
 <script>
-import $ from "jquery";
+const date = new Date();
 export default {
   name: "CertificationStage",
   props: {
     startStage: { type: Function },
   },
+
   data() {
     return {
-      i: 1,
-      x: 1,
+      formIndex: 1,
       stage: 0,
       form: new Form({
         index: [""],
         total: 1,
-        id: "1",
         courseName: [""],
         instituteName: [""],
         certficationtype: [""],
@@ -163,39 +196,39 @@ export default {
         todate: [""],
         score: [""],
         description: [""],
+        certificate_link: [""],
+        certificate: false,
       }),
-      location: [],
-      job_industry_id: [],
-      preferred_loc: [],
-      job_functional_role_id: [],
     };
   },
   created() {
     this.getAllCertification();
   },
-  mounted() {},
-  computed: {
-    // allcourseName() {
-    //   return this.$store.getters.getAllDesignation;
-    // },
-    // experiences() {
-    //   const exp = 20;
-    //   return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
-    // },
-    // allIndustry() {
-    //   return this.$store.getters.getAllData;
-    // },
-    // allLocation() {
-    //   return this.$store.getters.getAllLocation;
-    // },
-  },
   watch: {
-    i: "updatex",
+    formIndex: "updatex",
   },
   methods: {
+    // for update formindex value for previous added form
     updatex() {
-      this.x = this.i;
+      this.formIndex = this.formIndex;
     },
+    addNocertificate() {
+      this.form.post("/add-certification-detail2").then((response) => {
+        // console.log(response.data);
+        this.getAllCertification();
+        this.startStage();
+      });
+    },
+    submitNocertificate() {
+      if (this.form.certificate) {
+        toast({
+          type: "success",
+          title: `Certification Updated successfully`,
+        });
+        this.skipStage();
+      }
+    },
+    /**for add certfication data */
     addCertification() {
       if (
         this.form.courseName.includes("") ||
@@ -208,7 +241,7 @@ export default {
       ) {
         swal("Please fill all mandatory fields");
       } else {
-        this.form.total = this.i;
+        this.form.total = this.formIndex;
         this.form.post("/add-certification-detail-stage").then((response) => {
           this.getAllCertification();
           this.skipStage();
@@ -219,36 +252,43 @@ export default {
         });
       }
     },
+    /** for get data from backend and also set data in model */
     getAllCertification() {
-      // alert("hello");
-      axios.get("/get-certification-detail-stage").then((response) => {
-        // console.log(response.data.length);
+      axios.get("/get-certification-detail").then((response) => {
         const data = response.data;
-        if (data.length > 0) {
-          this.i = data.length;
-          this.form.courseName = [];
-          this.form.instituteName = [];
-          this.form.certficationtype = [];
-          this.form.fromdate = [];
-          this.form.todate = [];
-          this.form.score = [];
-          this.form.description = [];
-          this.form.index = [];
-          data.map((i, x) => {
-            this.form.index.push(i.id);
-            this.form.courseName.push(i.course);
-            this.form.instituteName.push(i.certificate_institute_name);
-            this.form.certficationtype.push(i.certification_type);
-            this.form.fromdate.push(i.cert_from_date);
-            this.form.todate.push(i.cert_to_date);
-            this.form.score.push(i.grade);
-            this.form.description.push(i.description);
-          });
+        console.log(data);
+        if (data == "1") {
+          this.form.certificate = true;
+        } else {
+          if (data.length > 0) {
+            this.formIndex = data.length;
+            this.form.courseName = [];
+            this.form.instituteName = [];
+            this.form.certficationtype = [];
+            this.form.certificate_link = [];
+            this.form.fromdate = [];
+            this.form.todate = [];
+            this.form.score = [];
+            this.form.description = [];
+            this.form.index = [];
+            data.map((i, x) => {
+              this.form.index.push(i.id);
+              this.form.courseName.push(i.course);
+              this.form.instituteName.push(i.certificate_institute_name);
+              this.form.certficationtype.push(i.certification_type);
+              this.form.certificate_link.push(i.certificate_link);
+              this.form.fromdate.push(i.cert_from_date);
+              this.form.todate.push(i.cert_to_date);
+              this.form.score.push(i.grade);
+              this.form.description.push(i.description);
+            });
+          }
         }
       });
     },
-    addMore(i) {
-      this.i = ++i;
+    /** for increase the looping value for adding more form */
+    addMore() {
+      this.formIndex = ++this.formIndex;
       this.form.index.push("");
       this.form.courseName.push("");
       this.form.instituteName.push("");
@@ -257,10 +297,14 @@ export default {
       this.form.todate.push("");
       this.form.score.push("");
       this.form.description.push("");
-      // console.log(this.i);
+      this.form.certificate_link.push("");
     },
-    remove(i, index) {
-      this.i = --this.i;
+    /**
+     * for remove specific form it will take index of form and from tha remove form array value by index
+     * second parameter take id as input for delete the data from backend
+     */
+    remove(index, id) {
+      this.formIndex = --this.formIndex;
       this.form.courseName.splice(index, 1);
       this.form.instituteName.splice(index, 1);
       this.form.certficationtype.splice(index, 1);
@@ -268,14 +312,15 @@ export default {
       this.form.todate.splice(index, 1);
       this.form.score.splice(index, 1);
       this.form.description.splice(index, 1);
+      this.form.certificate_link.splice(index, 1);
       this.form.index.splice(index, 1);
-      if (i != "") {
-        axios.get(`/delete-certification-detail-stage/${i}`).then((response) => {});
+      if (id != "") {
+        axios.get(`/delete-certification-detail-stage/${id}`).then((response) => {});
       }
     },
+    /**for skip the stage it will update savestage without taking data from user*/
     skipStage() {
       this.stage = 5;
-      // console.log("hello");
       axios.get(`/skip-stage/${this.stage}`).then((response) => {
         this.startStage();
       });

@@ -2,34 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Crypt;
-
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth\AuthController;
 use App\Jobseeker;
-use App\Qualification;
 use App\JsEducationalDetail;
 use App\JsProfessionalDetail;
 use App\JsResume;
 use App\JsCertification;
-use App\JsSocialLinks;
 use App\JsSkill;
-use App\JobType;
-use App\JobShift;
-use App\Industry;
-use App\AllUser;
-use App\Jobmanager;
-use App\Follower;
-use App\FunctionalRole;
-use App\Empcompaniesdetail;
 use App\Institute;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\File;
-use Mail;
-use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 class StageRegistration extends Controller
@@ -86,9 +66,11 @@ class StageRegistration extends Controller
         // $uid = Session::get('user')['id'];
         // $data = [];
         // return $request->all();
+
         $uid = 2;
         $update = 0;
         $create = 0;
+
         for ($i = 0; $i < $request->total; $i++) {
 
             if ($request->index[$i] != null) {
@@ -100,9 +82,11 @@ class StageRegistration extends Controller
                         'cert_from_date' => $request->fromdate[$i],
                         'cert_to_date' => $request->todate[$i],
                         'grade' => $request->score[$i],
-                        'description' => $request->description[$i]
+                        'description' => $request->description[$i],
+                        'certificate_link' => $request->certificate_link[$i]
                     ]);
                 ++$update;
+                return $request->all();
             } else {
                 $js_certificate = new JsCertification();
                 $js_certificate->js_userid = $uid;
@@ -113,6 +97,7 @@ class StageRegistration extends Controller
                 $js_certificate->cert_to_date = $request->todate[$i];
                 $js_certificate->grade = $request->score[$i];
                 $js_certificate->description = $request->description[$i];
+                $js_certificate->certificate_link = $request->certificate_link[$i];
                 $js_certificate->save();
                 ++$create;
             }
@@ -122,7 +107,35 @@ class StageRegistration extends Controller
             $updateLastModifiedDate->last_modified = Carbon::now();
             $updateLastModifiedDate->save();
         }
-        return ['created' => $create, 'update' => $update];
+        return $request->all();
+    }
+    public function   addCertificate(Request $request)
+    {
+        $uid = 2;
+        if (!$request->certificate) {
+            $certificate = JsCertification::where('certificate', 1)->where('js_userid', $uid)->get();
+            // return count($certificate);
+            if (count($certificate) == 0) {
+                $js_certificate = new JsCertification();
+                $js_certificate->js_userid = $uid;
+                $js_certificate->certificate = "1";
+                $js_certificate->save();
+                $updateLastModifiedDate = Jobseeker::find($uid);
+                $updateLastModifiedDate->last_modified = Carbon::now();
+                $updateLastModifiedDate->save();
+            }
+            $updateLastModifiedDate = Jobseeker::find($uid);
+            $updateLastModifiedDate->last_modified = Carbon::now();
+            $updateLastModifiedDate->save();
+        } else {
+            $certificate = JsCertification::where('js_userid', $uid)->get();
+            if (count($certificate) == 0) {
+                $data = Jobseeker::select('savestage')->where('id', $uid)->get();
+                $savestage = $data[0]->savestage;
+                Jobseeker::where('id', $uid)->update(['savestage' => ($savestage - 1)]);
+            }
+            JsCertification::where('certificate', 1)->where('js_userid', $uid)->delete();
+        }
     }
     public function getProfessionalDetail()
     {
@@ -132,9 +145,16 @@ class StageRegistration extends Controller
     }
     public function getCertificationDetail()
     {
-
-        $data = JsCertification::where('js_userid', 2)->get();
-        return  $data->all();
+        $uid = 2;
+        $count = JsCertification::where('certificate', 1)->where('js_userid', $uid)->get();
+        // return ;
+        if (count($count) > 0) {
+            $data = JsCertification::select('certificate')->where('js_userid', 2)->where('certificate', 1)->get();
+            return  $data[0]->certificate;
+        } else {
+            $data = JsCertification::where('js_userid', $uid)->get();
+            return  $data->all();
+        }
     }
     public function deleteProfessionalDetail($id)
     {

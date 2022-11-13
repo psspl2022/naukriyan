@@ -319,7 +319,7 @@ import Thankyou from './components/public/Workshop/Thankyou.vue';
 
 //Profile Stage
 import MainStage from './components/public/jobseeker/MainStage.vue';
-
+import resumepdf from './components/public/jobseeker/resumepdf.vue';
 // noinspection JSUnresolvedVariable,JSUnresolvedFunction
 export const routes = [
     {
@@ -1438,6 +1438,10 @@ export const routes = [
     {
         path: '/profile-stage',
         component: MainStage
+    },
+    {
+        path: '/resumepdf',
+        component: resumepdf
     },
 
 

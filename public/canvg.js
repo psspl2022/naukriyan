@@ -1,4 +1,4 @@
-webpackJsonp([16],{
+webpackJsonp([18],{
 
 /***/ "./node_modules/@amcharts/amcharts4/.internal/canvg/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {

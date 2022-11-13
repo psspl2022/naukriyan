@@ -246,9 +246,9 @@ export default {
   },
   
   beforeCreate () {
-    if(!sessionStorage.hasOwnProperty("jobseeker")){
-      this.$router.push("/");
-    }
+    // if(!sessionStorage.hasOwnProperty("jobseeker")){
+    //   this.$router.push("/");
+    // }
   },
 
   methods: {
