@@ -48,7 +48,7 @@ class StageRegistration extends Controller
                 $js_professional->from_date = $request->fromdate[$i];
                 $js_professional->to_date = $request->todate[$i];
                 $js_professional->salary = $request->salary[$i];
-                $js_professional->sal_confidential = $request->sal_confidential[$i];
+                $js_professional->sal_confidential = !empty($request->sal_confidential[$i])?$request->sal_confidential[$i]:'0';
                 $js_professional->responsibility = $request->responsibility[$i];
                 $js_professional->save();
                 ++$create;
@@ -56,6 +56,7 @@ class StageRegistration extends Controller
         }
         if ($create > 0 || $update > 0) {
             $updateLastModifiedDate = Jobseeker::find($uid);
+            $updateLastModifiedDate->professional_stage = $request->professional_experience;
             $updateLastModifiedDate->last_modified = Carbon::now();
             $updateLastModifiedDate->save();
         }
@@ -73,7 +74,7 @@ class StageRegistration extends Controller
 
         for ($i = 0; $i < $request->total; $i++) {
 
-            if ($request->index[$i] != null) {
+            if (!empty($request->index[$i])) {
                 JsCertification::where('id', $request->index[$i])
                     ->update([
                         'course' =>  $request->courseName[$i],
@@ -86,7 +87,7 @@ class StageRegistration extends Controller
                         'certificate_link' => $request->certificate_link[$i]
                     ]);
                 ++$update;
-                return $request->all();
+                // return $request->all();
             } else {
                 $js_certificate = new JsCertification();
                 $js_certificate->js_userid = $uid;
@@ -139,9 +140,10 @@ class StageRegistration extends Controller
     }
     public function getProfessionalDetail()
     {
-
+        $uid = 2;
         $data = JsProfessionalDetail::where('js_userid', 2)->get();
-        return  $data->all();
+        $professional_stage = Jobseeker::select('professional_stage')->where('id', $uid)->first();
+        return  ['data' => $data->all(), 'professional_stage' => $professional_stage];
     }
     public function getCertificationDetail()
     {

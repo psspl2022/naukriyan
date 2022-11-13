@@ -2,14 +2,46 @@
   <div class="row">
     <div class="col-sm-12">
      
-      <!-- <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> /</span> -->
+      <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> All Field Required</span>
       <form
         class="popupForm"
         role="form"
         method="post"
         @submit.prevent="getAllLocation()"
       >
-        <fieldset class="mb-2" v-for="i in i" :key="i">
+        <div class="form-check text-center">
+          
+          <label class="form-check-label">Select One:-  </label>
+          <input
+            class=""
+            v-model="form.professional_experience"
+            type="radio"
+            id="fresher"
+            value="fresher"
+            name="professional_exp"
+          />
+          <label class="form-check-label" for="fresher">Fresher</label>
+          <input
+            class=""
+            v-model="form.professional_experience"
+            type="radio"
+            id="internship"
+            value="internship"
+            name="professional_exp"
+          />
+          <label class="form-check-label" for="internship">Internship</label>
+          <input
+            class=""
+            v-model="form.professional_experience"
+            type="radio"
+            id="experienced"
+            value="experienced"
+            name="professional_exp"
+          />
+          <label class="form-check-label" for="experienced">Experienced</label>
+        </div>
+        <fieldset class="mb-2" v-for="i in i" :key="i" v-if="form.professional_experience!='fresher'">
           <legend v-if="i == 1">Professional</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
@@ -103,7 +135,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="col-form-label w-100" for="">
-                      <span style="color: red"> * </span> Select Salary(in years)<span class="float-right">Confidential <input type="checkbox" :name="'confidential' + i" v-model="form.sal_confidential[i - 1]" id="" true-value="1"
+                      <span style="color: red"> * </span> Select Salary(in lakhs per annum)<span class="float-right">Confidential <input type="checkbox" :name="'confidential' + i" v-model="form.sal_confidential[i - 1]" id="" true-value="1"
   false-value="0"></span></label
                     >
                     <select
@@ -137,7 +169,7 @@
               ></textarea>
               <has-error :form="form" field="name"></has-error>
             </div>
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <label class="col-form-label" for=""> Key Skills</label>
               <textarea
                 type="text"
@@ -148,7 +180,7 @@
                 :class="{ 'is-invalid': form.errors.has('responsibility') }"
               ></textarea>
               <has-error :form="form" field="name"></has-error>
-            </div>
+            </div> -->
           </div>
           <span
             v-on:click="remove(form.index[i - 1], i - 1)"
@@ -159,7 +191,7 @@
           </span>
         </fieldset>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
-        <span v-on:click="addMore(i)" class="btn btn-primary mt-3">Add More</span>
+        <span v-on:click="addMore(i)" v-if="form.professional_experience!='fresher'" class="btn btn-primary mt-3">Add More</span>
         <span v-on:click="updatepStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
     </div>
@@ -192,6 +224,7 @@ export default {
         salary: [""],
         sal_confidential: [""],
         responsibility: [""],
+        professional_experience: "",
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -238,14 +271,14 @@ export default {
       // axios.post("/add-professional-detail", this.form).then((response) => {
       //   console.log(response);
       // });
-      if (
+      if ((this.form.professional_experience!='fresher') && (
         this.form.designation.includes("") ||
         this.form.organization.includes("") ||
         this.form.jobtype.includes("") ||
         this.form.fromdate.includes("") ||
         this.form.todate.includes("") ||
         this.form.salary.includes("")
-      ) {
+      )) {
         swal("Please fill all mandatory fields");
       } else {
         this.form.total = this.i;
@@ -263,7 +296,8 @@ export default {
       // alert("hello");
       axios.get("/get-professional-detail-stage").then((response) => {
         // console.log(response.data.length);
-        const data = response.data;
+        const data = response.data.data;
+        this.form.professional_experience = response.data.professional_stage.professional_stage;
         if (data.length > 0) {
           this.i = data.length;
           this.form.designation = [];
