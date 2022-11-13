@@ -318,6 +318,7 @@ class StageRegistration extends Controller
             'industry_id' => $req->job_industry_id,
             'functionalrole_id' => $req->job_functional_role_id,
             'preferred_location' => $req->preferred_loc,
+            'linkedin' => $req->linkedin,
         ];
 
         $data = Jobseeker::where('id', $userId)->update($personalData);
@@ -334,6 +335,7 @@ class StageRegistration extends Controller
             'lname',
             'email',
             'contact',
+            'linkedin',
             'gender',
             'dob',
             'exp_year',

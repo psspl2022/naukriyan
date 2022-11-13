@@ -151,6 +151,18 @@
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
+                Linkedin</label>
+              <input
+                type="text"
+                class="form-control"
+                name="linkedin"
+                placeholder="Enter Linkedin Link"
+                v-model="form.linkedin"
+              />
+              <has-error :form="form" field="linkedin"></has-error>
+            </div>
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Gender</label
               >
               <select
@@ -349,6 +361,7 @@ export default {
         lname: "",
         email: "",
         contact_no: "",
+        linkedin: "",
         gender: "",
         date: new Date(),
         exp_year: "",
@@ -528,6 +541,7 @@ export default {
             this.form.lname = i.lname;
             this.form.email = i.email;
             this.form.contact_no = i.contact;
+            this.form.linkedin = i.linkedin;
             this.form.exp_year = i.exp_year == null ? "" : i.exp_year;
             this.form.exp_mon = i.exp_month == null ? "" : i.exp_month;
             this.form.job_industry_id = i.industry_id == null ? "" : i.industry_id;
