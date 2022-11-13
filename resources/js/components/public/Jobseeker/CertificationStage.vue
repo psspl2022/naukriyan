@@ -254,7 +254,7 @@ export default {
     },
     /** for get data from backend and also set data in model */
     getAllCertification() {
-      axios.get("/get-certification-detail-stage").then((response) => {
+      axios.get("/get-certification-detail").then((response) => {
         const data = response.data;
         console.log(data);
         if (data == "1") {

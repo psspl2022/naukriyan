@@ -182,15 +182,15 @@
         }
 
         .stage {
-            background-color: gray;
+            background-color: #002654;
             color: white !important;
             border: 1px solid #374151;
             width: auto !important;
-            font-size: 15px !important;
-            font-weight: 400 !important;
+            font-size: 20px !important;
+            font-weight: 700 !important;
             padding: 3px 2px !important;
             text-align: center;
-            border-radius: 20px;
+            border-radius: 100%;
             cursor: pointer;
         }
 
@@ -244,20 +244,21 @@
 
             .unstage,
             .stage {
-                width: 13% !important;
+                width: 5% !important;
             }
 
             .unstage,
             .stage {
-                font-size: 14px !important;
-                font-weight: 400 !important;
-                padding: 3px 4px !important;
-                border-radius: 20px;
+                font-size: 22px !important;
+                font-weight: 600 !important;
+                padding: 10px 10px !important;
+                border-radius: 100%;
+    
             }
 
             .unstage-line,
             .stage-line {
-                width: 4%;
+                width: 14%;
             }
         }
 
@@ -265,7 +266,7 @@
 
             .unstage,
             .stage {
-                width: 13% !important;
+                width: 5% !important;
             }
 
             .unstage,
@@ -286,7 +287,7 @@
 
             .unstage,
             .stage {
-                width: 15% !important;
+                width: 17% !important;
             }
 
             .unstage,

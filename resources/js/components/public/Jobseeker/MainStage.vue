@@ -18,7 +18,7 @@
                   stage >= 1 ? 'stage' : stageSave >= 1 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(1, stageSave)"
-                >Personal Details</span
+                >1</span
               >
               <div :class="[stage >= 1 ? 'stage-line' : 'unstage-line']"></div>
               <span
@@ -26,7 +26,7 @@
                   stage >= 2 ? 'stage' : stageSave >= 2 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(2, stageSave)"
-                >Education</span
+                >2</span
               >
               <div :class="[stage >= 2 ? 'stage-line' : 'unstage-line']"></div>
               <span
@@ -34,7 +34,7 @@
                   stage >= 3 ? 'stage' : stageSave >= 3 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(3, stageSave)"
-                >Professional</span
+                >3</span
               >
               <div :class="[stage >= 3 ? 'stage-line' : 'unstage-line']"></div>
               <span
@@ -42,7 +42,7 @@
                   stage >= 4 ? 'stage' : stageSave >= 4 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(4, stageSave)"
-                >Resume</span
+                >4</span
               >
               <div :class="[stage >= 4 ? 'stage-line' : 'unstage-line']"></div>
               <span
@@ -50,7 +50,7 @@
                   stage >= 5 ? 'stage' : stageSave >= 5 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(5, stageSave)"
-                >Certifications</span
+                >5</span
               >
               <div :class="[stage >= 5 ? 'stage-line' : 'unstage-line']"></div>
               <span
@@ -58,7 +58,7 @@
                   stage >= 6 ? 'stage' : stageSave >= 6 ? 'unstage' : 'unstage unsave',
                 ]"
                 v-on:click="setStage(6, stageSave)"
-                >Skills</span
+                >6</span
               >
             </div>
             <div class="cms-pg-header mt-0" id="unstage">

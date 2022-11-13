@@ -150,7 +150,7 @@ export default {
     },
     getAllProfessinal() {
       // alert("hello");
-      axios.get("/get-resum-stage").then((response) => {
+      axios.get("/get-resume-stage").then((response) => {
         // console.log(response.data.length);
         const data = response.data;
         if (data.length > 0) {

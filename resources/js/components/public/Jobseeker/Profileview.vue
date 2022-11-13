@@ -72,22 +72,23 @@
                   {{ alldata.email }} <i class="fas fa-check-circle"></i><br />
                 </div>
               </div>
-              <div class="contact-box">
+              <div class="contact-box" v-if="alldata.linkedin !==null">
                 <div class="icon">
-                  <i class="fas fa-map-marker-alt"></i>
+                  <!-- <i class="fas fa-map-marker-alt"></i> -->
+                  <i class="fas fa-linkedin-in"></i> 
                 </div>
                 <div class="detail">
-                  {{ alldata.address }}
+                  {{ alldata.linkedin }}
                 </div>
               </div>
 
               <h4 class="ltitle">Job Details</h4>
 
               <div class="refer-cov">
-                <li>
+                <!-- <li>
                   <i class=""></i>Expected Salary-
                   {{ alldata.expected_salary }} / Year
-                </li>
+                </li> -->
                 <li>
                   <i class=""></i>Preferred Location -
                   {{ alldata.preferred_location }}
@@ -126,8 +127,11 @@
                 <h1 class="">{{ alldata.fname }} {{ alldata.lname }}</h1>
                 <small>{{ alldata.designation }}</small>
               </div>
-              <h2 class="rit-titl"><i class="far fa-user"></i> Profile</h2>
-              <div class="about">
+              <h2 v-if="resumeInfos[0].cover_letter!==null" class="rit-titl"><i class="far fa-user"></i> Profile</h2>
+              <div  class="about" id="print_no_buttons">
+                <div v-if="resumeInfos[0].cover_letter!==null">
+                  {{resumeInfos[0].cover_letter}}
+                </div>
                 <div class="btn-ro row no-margin">
                   <ul class="btn-link">
                     <li>
@@ -158,7 +162,7 @@
                 <h6>
                   {{ professional.designations
                   }}<span
-                    >{{ professional.from_date }} -
+                    >{{ professional.from_date }} to
                     {{ professional.to_date }}</span
                   >
                 </h6>
@@ -174,10 +178,10 @@
                   </li>
                 </ul>
               </div>
-              <h2 class="rit-titl">
+              <h2 v-if="certInfos[0].certificate != 1" class="rit-titl">
                 <i class="fas fa-certificate"></i> Certificates
               </h2>
-              <div class="work-exp">
+              <div class="work-exp" v-if="certInfos[0].certificate != 1">
                 <div class="row">
                   <div class="col-md-12">
                     <table class="table table-bordered">
@@ -192,11 +196,12 @@
                       <tbody>
                         <tr v-for="cert in certInfos" :key="'cert' + cert.id">
                           <td>
-                            {{ cert.cert_from_date }} - {{ cert.cert_to_date }}
+                            {{ cert.cert_from_date }}  -  {{ cert.cert_to_date }}
                           </td>
                           <td>{{ cert.course | capitalize }}</td>
                           <td>{{ cert.certificate_institute_name }}</td>
-                          <td>{{ cert.certification_type | capitalize }}</td>
+                          <td v-if="cert.certification_type  == 1"> Offline </td>
+                          <td v-if="cert.certification_type  == 2"> Online </td>
                         </tr>
                       </tbody>
                     </table>
@@ -215,17 +220,19 @@
                         <tr class="table-info">
                           <th width="21%">Year of Completion</th>
                           <th>Qualification</th>
-                          <th width="16%">Degree Name</th>
+                          <!-- <th width="16%">Degree Name</th> -->
                           <th>Institute Name</th>
+                          <th>Education Mode</th>
                         </tr>
                         <tr
                           v-for="educationalDetail in educationalDetails"
                           :key="'edu' + educationalDetail.id"
                         >
                           <td>{{ educationalDetail.passing_year }}</td>
-                          <td>{{ educationalDetail.qualification }}</td>
+                          <!-- <td>{{ educationalDetail.qualification }}</td> -->
                           <td>{{ educationalDetail.degree_name }}</td>
                           <td>{{ educationalDetail.institute_name }}</td>
+                          <td>{{ educationalDetail.course_type }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -243,7 +250,7 @@
                     <div class="col-sm-6">
                       <div
                         class="progress"
-                        v-if="skl.expert_level === 'beginner'"
+                        v-if="skl.expert_level === 'Beginner'"
                       >
                         <div
                           class="progress-bar"
@@ -256,7 +263,7 @@
                       </div>
                       <div
                         class="progress"
-                        v-if="skl.expert_level === 'moderate'"
+                        v-if="skl.expert_level === 'Moderate'"
                       >
                         <div
                           class="progress-bar"
@@ -269,7 +276,7 @@
                       </div>
                       <div
                         class="progress"
-                        v-if="skl.expert_level === 'expert'"
+                        v-if="skl.expert_level === 'Expert'"
                       >
                         <div
                           class="progress-bar"
@@ -304,7 +311,8 @@ export default {
       educationalDetails: [],
       professionalDetails: [],
       form: new Form({}),
-      certInfos: "",
+      certInfos: [],
+      resumeInfos: [],
       skillInfo: "",
     };
   },
@@ -341,8 +349,13 @@ export default {
         .catch(() => {});
     },
     getCertInfo() {
-      axios.get("get-certificate-info").then((response) => {
-        this.certInfos = response.data.userCertInfo;
+      axios.get("get-certification-detail").then((response) => {
+        this.certInfos = response.data;
+      });
+    },
+    getResumeInfo() {
+      axios.get("get-resume-stage").then((response) => {
+        this.resumeInfos = response.data;
       });
     },
     getSkillInformation() {
@@ -351,13 +364,13 @@ export default {
       });
     },
     getEducationalInfo() {
-      axios.get("get-educational-info").then((response) => {
-        this.educationalDetails = response.data.educationalDetails;
+      axios.get("get-education-detail").then((response) => {
+        this.educationalDetails = response.data;
       });
     },
     getProfessionalInfo() {
       axios.get("get-professional-detail").then((response) => {
-        this.professionalDetails = response.data.data;
+        this.professionalDetails = response.data;
       });
     },
   },
@@ -373,6 +386,7 @@ export default {
   created() {
     this.getSkillInformation();
     this.getCertInfo();
+    this.getResumeInfo();
     this.getEducationalInfo();
     this.getProfessionalInfo();
   },
@@ -382,5 +396,10 @@ export default {
 <style>
 .profile-box .left-side .contact-box .icon i {
   line-height: 20px;
+}
+@media print{
+    #print_no_buttons{
+        display:none !important;
+    }
 }
 </style>

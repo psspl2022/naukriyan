@@ -294,7 +294,7 @@ export default {
     },
     getAllProfessinal() {
       // alert("hello");
-      axios.get("/get-professional-detail-stage").then((response) => {
+      axios.get("/get-professional-detail").then((response) => {
         // console.log(response.data.length);
         const data = response.data.data;
         this.form.professional_experience = response.data.professional_stage.professional_stage;

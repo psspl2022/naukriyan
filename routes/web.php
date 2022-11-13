@@ -15,6 +15,10 @@ header('Access-Control-Allow-Origin:  *');
 // header('Access-Control-Allow-Origin:  http://127.0.0.1:8000');
 header('Access-Control-Allow-Methods:   GET');
 header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token, X-Requested-With');
+//Duplicate Rooute
+Route::get('get-user-skill', 'UserprofileController@getUserSkill');
+Route::get('/jobseeker-profile', 'UserprofileController@jobseeker_profile');
+    //getall skill
 // ROute added by suraj 
 Route::get('/check-mobile/{num}', 'vaildationController@getContact');
 Route::get('/check-email/{num}', 'vaildationController@getEmail');
@@ -27,8 +31,8 @@ Route::get('/update-stage-registration/{id}', 'StageRegistration@updateStage');
 Route::post('/add-professional-detail-stage', 'StageRegistration@addProfessionalDetail');
 Route::post('/resume-upload', 'StageRegistration@resumeUpload');
 Route::post('/resume-save', 'StageRegistration@resumeSave');
-Route::get('/get-resum-stage', 'StageRegistration@resumeGet');
-Route::get('/get-professional-detail-stage', 'StageRegistration@getProfessionalDetail');
+Route::get('/get-resume-stage', 'StageRegistration@resumeGet');
+Route::get('/get-professional-detail', 'StageRegistration@getProfessionalDetail');
 Route::get('/delete-professional-detail-stage/{id}', 'StageRegistration@deleteProfessionalDetail');
 Route::get('/delete-certification-detail-stage/{id}', 'StageRegistration@deleteCertificationDetail');
 Route::post('/add-certification-detail-stage', 'StageRegistration@addCertificationDetail');
@@ -51,7 +55,7 @@ Route::get('/skip-stage/{stage}', 'StageRegistration@skipStage');
 
 Route::get('/qualification-get', 'UserprofileController@qualification');
 
-Route::get('/get-certification-detail-stage', 'StageRegistration@getCertificationDetail');
+Route::get('/get-certification-detail', 'StageRegistration@getCertificationDetail');
 
 // end route by suraj
 Route::get('becil-data', 'GetBecilJobsDataController@getBecilData');
@@ -191,7 +195,7 @@ Route::get('/', 'FrontAllUserController@index');
 Route::group(['middleware' => 'jobseeker'], function () {
     Route::post('/add-professional-detail', 'UserprofileController@addProfessionalDetail');
     Route::get('/get-jobseeker-package', 'PackagemanagerController@getpackagejobseeker');
-    Route::get('/jobseeker-profile', 'UserprofileController@jobseeker_profile');
+    // Route::get('/jobseeker-profile', 'UserprofileController@jobseeker_profile');
     //getall skill
 
 
@@ -203,7 +207,7 @@ Route::group(['middleware' => 'jobseeker'], function () {
 
     Route::post('/update-education-detail', 'UserprofileController@update_qualification_detail');
 
-    Route::get('/get-educational-info', 'UserprofileController@getEducationalInfo');
+    // Route::get('/get-educational-info', 'UserprofileController@getEducationalInfo');
 
     Route::get('/educational-info', 'UserprofileController@AllEducationInfo');
 
@@ -220,7 +224,7 @@ Route::group(['middleware' => 'jobseeker'], function () {
     Route::get('/functionalrole-get', 'UserprofileController@functionalrole');
     //   add proffesional route was here 
     Route::post('/update-professional-detail', 'UserprofileController@update_professional_detail');
-    Route::get('/get-professional-detail', 'UserprofileController@getProfessionalDetail');
+    // Route::get('/get-professional-detail', 'UserprofileController@getProfessionalDetail');
     Route::get('/delete-professional-detail/{id}', 'UserprofileController@deleteProfessionalDetail');
     Route::get('/edit-professional-info/{id}', 'UserprofileController@editProfessionalDetail');
     Route::get('/delete-educational-detail/{id}', 'UserprofileController@deleteEducationalDetail');
@@ -236,13 +240,13 @@ Route::group(['middleware' => 'jobseeker'], function () {
     Route::get('/check-user-saved-job', 'SavedJobController@checkUserSavedJob');
     //browse job
     //edit profile
-    Route::get('get-user-skill', 'UserprofileController@getUserSkill');
+    // Route::get('get-user-skill', 'UserprofileController@getUserSkill');
     Route::post('delete-user-skill/{id}', 'UserprofileController@deleteUserSkill');
     Route::get('edit-user-skill/{id}', 'UserprofileController@editUserSkill');
     Route::post('update-user-skill', 'UserprofileController@updateUserSkill');
     Route::post('add-skill-info', 'UserprofileController@update_skills_detail');
 
-    Route::get('get-certificate-info', 'UserprofileController@getUserCertInfo');
+    // Route::get('get-certificate-info', 'UserprofileController@getUserCertInfo');
     Route::get('delete-user-certificate/{id}', 'UserprofileController@deleteUserCertInfo');
     Route::get('edit-certificate-info/{id}', 'UserprofileController@editUserCertInfo');
     Route::post('update-user-cert', 'UserprofileController@updateUserCertInfo');

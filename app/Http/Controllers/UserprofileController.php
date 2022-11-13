@@ -471,8 +471,8 @@ class UserprofileController extends Controller
     }
 
     public function jobseeker_profile()
-    {
-        $id = Session::get('user')['id'];
+    {   $id = 2;
+        // $id = Session::get('user')['id'];
         $data = DB::table('jobseekers')
             ->leftjoin('js_educational_details', 'js_educational_details.js_userid', '=', 'jobseekers.id')
             ->leftjoin('js_professional_details', 'js_professional_details.js_userid', '=', 'jobseekers.id')
@@ -763,7 +763,8 @@ class UserprofileController extends Controller
 
     public function getUserSkill()
     {
-        $uid = Session::get('user')['id'];
+        $uid = 2;
+        // $uid = Session::get('user')['id'];
         $skills = JsSkill::where('js_userid', $uid)->get();
 
         return response()->json(['data' => $skills, 'status' => 'success'], 200);
