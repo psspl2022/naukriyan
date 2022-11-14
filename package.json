@@ -45,6 +45,7 @@
         "v-video-embed": "^1.0.8",
         "vform": "^1.0.0",
         "vue-date-picker": "^2.5.0",
+        "vue-float-label": "^1.6.1",
         "vue-highlight-words": "^3.0.1",
         "vue-html2canvas": "0.0.4",
         "vue-html2pdf": "^1.8.0",

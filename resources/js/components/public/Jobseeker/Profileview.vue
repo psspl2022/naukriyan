@@ -75,7 +75,7 @@
               <div class="contact-box" v-if="alldata.linkedin !==null">
                 <div class="icon">
                   <!-- <i class="fas fa-map-marker-alt"></i> -->
-                  <i class="fas fa-linkedin-in"></i> 
+                  <i class="fab fa-linkedin-in"></i> 
                 </div>
                 <div class="detail">
                   {{ alldata.linkedin }}
