@@ -17,7 +17,7 @@
                 :class="[
                   stage >= 1 ? 'stage' : stageSave >= 1 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(1, stageSave)"
+                v-on:click="setStage(1, stageSave)" title="Profile Details"
                 >1</span
               >
               <div :class="[stage >= 1 ? 'stage-line' : 'unstage-line']"></div>
@@ -25,7 +25,7 @@
                 :class="[
                   stage >= 2 ? 'stage' : stageSave >= 2 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(2, stageSave)"
+                v-on:click="setStage(2, stageSave)" title="Education Details"
                 >2</span
               >
               <div :class="[stage >= 2 ? 'stage-line' : 'unstage-line']"></div>
@@ -33,7 +33,7 @@
                 :class="[
                   stage >= 3 ? 'stage' : stageSave >= 3 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(3, stageSave)"
+                v-on:click="setStage(3, stageSave)" title="Professional Details"
                 >3</span
               >
               <div :class="[stage >= 3 ? 'stage-line' : 'unstage-line']"></div>
@@ -41,7 +41,7 @@
                 :class="[
                   stage >= 4 ? 'stage' : stageSave >= 4 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(4, stageSave)"
+                v-on:click="setStage(4, stageSave)" title="Resume Details"
                 >4</span
               >
               <div :class="[stage >= 4 ? 'stage-line' : 'unstage-line']"></div>
@@ -49,7 +49,7 @@
                 :class="[
                   stage >= 5 ? 'stage' : stageSave >= 5 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(5, stageSave)"
+                v-on:click="setStage(5, stageSave)" title="Certificate Details"
                 >5</span
               >
               <div :class="[stage >= 5 ? 'stage-line' : 'unstage-line']"></div>
@@ -57,7 +57,7 @@
                 :class="[
                   stage >= 6 ? 'stage' : stageSave >= 6 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(6, stageSave)"
+                v-on:click="setStage(6, stageSave)" title="Skills Details"
                 >6</span
               >
             </div>

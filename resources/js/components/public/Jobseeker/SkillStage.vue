@@ -122,23 +122,37 @@ export default {
       } else if(this.j == 1){
          if(this.tags.length > 0){
           this.tags.map((i) => {
+
             this.form.skill.push(i.text);
           });
-          this.form.post("/add-skill-detail").then(() => {
-            toast({
+          this.form.post("/add-skill-detail").then((response) => {
+            if(response.data.stage.stage == 6)
+            {
+              window.location.href='/#/profileview';
+            }
+            else{
+              toast({
               type: "success",
               title: "Skill Detail Added successfully",
             });
+            }
           });
         } else{
           swal("Please fill all mandatory fields");
         }
       }else{
-        this.form.post("/add-skill-detail").then(() => {
-            toast({
+        this.form.post("/add-skill-detail").then((response) => {
+          console.log(response.data.stage.stage);
+            if(response.data.stage.stage == 6)
+            {
+                window.location.href='/#/profileview';
+            }
+            else{
+              toast({
               type: "success",
               title: "Skill Detail Added successfully",
             });
+            }
           });
       }
       

@@ -183,6 +183,7 @@ class StageRegistration extends Controller
     {
 
         // $uid = Session::get('user')['id'];
+        $uid = 2;
 
         for ($i = 0; $i < count($req->skill); $i++) {
 
@@ -196,7 +197,8 @@ class StageRegistration extends Controller
                 ]
             );
         }
-        return $a;
+        $stage = Jobseeker::select('stage')->where('id', $uid)->first();
+        return response()->json(['data' => $a, 'stage' => $stage]);
     }
 
     public function deleteSkillDetail($id)
