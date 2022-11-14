@@ -52,6 +52,7 @@
               <vue-tags-input 
               class="" 
               placeholder="Add Additional Skills" 
+              list="skill_list"
               v-model="tag"
               :tags="tags"
               @tags-changed="newTags => tags = newTags"
@@ -60,6 +61,9 @@
                   placeholder = ' ';
                 }
               " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
+                <datalist id="skill_list" v-for="i in i" :key="i">
+                <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
+              </datalist>
               <has-error :form="form" field="more_skill"></has-error>
             </div>
           </div>
@@ -98,7 +102,6 @@ export default {
         index: [""],
         skill: [""],
         expert_level: ["", "", ""],
-        more_skill: [],
       }),
     };
   },
@@ -122,7 +125,6 @@ export default {
       } else if(this.j == 1){
          if(this.tags.length > 0){
           this.tags.map((i) => {
-
             this.form.skill.push(i.text);
           });
           this.form.post("/add-skill-detail").then((response) => {

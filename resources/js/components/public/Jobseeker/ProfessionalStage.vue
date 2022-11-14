@@ -157,6 +157,25 @@
                 </div>
               </div>
             </div>
+            <div class="col-sm-6 " >
+              <label class="col-form-label" for="" >Add key Skills</label>    
+              <vue-tags-input 
+              class="" 
+              placeholder="Enter key Skills" 
+              list="skill_list"
+              v-model="tag"
+              :tags="tags"
+              @tags-changed="newTags => tags = newTags"
+              @keyup="
+                () => {
+                  placeholder = ' ';
+                }
+              " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
+                <datalist id="skill_list" v-for="i in i" :key="i">
+                <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
+              </datalist>
+              <has-error :form="form" field="key_skill"></has-error>
+            </div>
             <div class="col-sm-6">
               <label class="col-form-label" for=""> Responsibility</label>
               <textarea
@@ -200,10 +219,15 @@
 
 <script>
 import $ from "jquery";
+import VueTagsInput from "@johmun/vue-tags-input";
+
 export default {
   name: "ProfessionalStage",
   props: {
     startStage: { type: Function },
+  },
+  components: {
+    VueTagsInput,
   },
   data() {
     return {
@@ -216,6 +240,10 @@ export default {
         index: [""],
         total: 1,
         id: "1",
+        tag: '',
+        tags: [],
+        handlers: [],
+        autocompleteItems: [],
         designation: [""],
         organization: [""],
         jobtype: [""],
@@ -225,6 +253,7 @@ export default {
         sal_confidential: [""],
         responsibility: [""],
         professional_experience: "",
+        key_skill:"",
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -356,6 +385,29 @@ export default {
       axios.get(`/skip-stage/${this.stage}`).then((response) => {
         this.startStage();
       });
+    },
+    update(newTags) {
+      this.autocompleteItems = [];
+      this.tags = newTags.map((a) => {
+        return a.text;
+      });
+      this.handlers = this.tags.toString();
+      // this.keyword = this.tags.toString();
+      // console.log(this.tags);
+    },
+    initItems(skill) {
+      console.log(skill)
+      // if (this.skill.length < 2) return;
+      const url = `get-allskills/` + skill;
+
+      axios
+        .get(url)
+        .then((response) => {
+          this.skill_list = response.data.data.map((a) => {
+            return a.name;
+          });
+        })
+      console.log(this.skill_list)
     },
   },
 };
