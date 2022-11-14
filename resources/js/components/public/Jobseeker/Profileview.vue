@@ -370,7 +370,7 @@ export default {
     },
     getProfessionalInfo() {
       axios.get("get-professional-detail").then((response) => {
-        this.professionalDetails = response.data;
+        this.professionalDetails = response.data.data;
       });
     },
   },
