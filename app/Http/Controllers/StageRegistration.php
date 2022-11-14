@@ -321,6 +321,8 @@ class StageRegistration extends Controller
             'functionalrole_id' => $req->job_functional_role_id,
             'preferred_location' => $req->preferred_loc,
             'linkedin' => $req->linkedin,
+            'current_salary' => $req->curr_sal,
+            'expected_salary' => $req->exp_sal,
         ];
 
         $data = Jobseeker::where('id', $userId)->update($personalData);
@@ -345,7 +347,9 @@ class StageRegistration extends Controller
             'industry_id',
             'functionalrole_id',
             'profile_pic_thumb',
-            'preferred_location'
+            'preferred_location',
+            'current_salary',
+            'expected_salary',
         )->get();
         return  $data;
     }

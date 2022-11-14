@@ -330,7 +330,50 @@
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span style="color: red"> * </span> -->
+                     Select Current Salary(Annually)</label
+                >
+                <select
+                  class="form-control"
+                  :name="curr_sal"
+                  v-model="form.curr_sal"
+                  :class="{
+                    'is-invalid': form.errors.has('curr_sal'),
+                  }"
+                >
+                  <option value="" selected>Select Current Salary</option>
+                  <option value="2" selected>Less then 3 Lakh</option>
+                  <option v-for="sal in 98" :key="sal" :value="sal+2">
+                    {{ sal + 2 }} Lakh
+                  </option>
+                </select>
+                <has-error :form="form" field="curr_sal"></has-error>
+            </div>
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span style="color: red"> * </span> -->
+                   Select Expected Salary(Annually)</label
+                >
+                <select
+                  class="form-control"
+                  :name="exp_sal"
+                  v-model="form.exp_sal"
+                  :class="{
+                    'is-invalid': form.errors.has('exp_sal'),
+                  }"
+                >
+                  <option value="" selected>Select Expected Salary</option>
+                  <option value="2" selected>Less then 3 Lakh</option>
+                  <option v-for="sal in 98" :key="sal" :value="sal+2">
+                    {{ sal + 2 }} Lakh
+                  </option>
+                </select>
+                <has-error :form="form" field="exp_sal"></has-error>
+            </div>
           </div>
+          
         </fieldset>
 
         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -370,6 +413,8 @@ export default {
         job_functional_role_id: "",
         preferred_loc: [],
         profile_pic_thumb: "",
+        curr_sal:"",
+        exp_sal:"",
       }),
       progress: "",
       selectedImage: null,
@@ -554,6 +599,8 @@ export default {
             this.form.profile_pic_thumb = null ? "" : i.profile_pic_thumb;
             this.form.gender = i.gender;
             this.form.date = i.dob;
+            this.form.curr_sal = i.current_salary  == null ? "" :i.current_salary;
+            this.form.exp_sal = i.expected_salary == null ? "" : i.expected_salary;
           });
         }
       });

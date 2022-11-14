@@ -85,10 +85,18 @@
               <h4 class="ltitle">Job Details</h4>
 
               <div class="refer-cov">
-                <!-- <li>
+                <li>
+                  <i class=""></i>Experience- {{ alldata.exp_year }} Yr-{{
+                    alldata.exp_month
+                  }}
+                  Month
+                <li v-if="alldata.expected_salary!==null">
                   <i class=""></i>Expected Salary-
-                  {{ alldata.expected_salary }} / Year
-                </li> -->
+                  {{ alldata.expected_salary }},00,000 / Annum
+                </li>
+                <li v-if="alldata.current_salary!==null">
+                  <i class=""></i>Current Salary- {{ alldata.current_salary }},00,000 / Annum
+                </li>
                 <li>
                   <i class=""></i>Preferred Location -
                   {{ alldata.preferred_location }}
@@ -96,15 +104,8 @@
                 <li>
                   <i class=""></i>Notice Period - {{ alldata.notice_period }}
                 </li>
-                <li>
-                  <i class=""></i>Current Salary- {{ alldata.current_salary }} /
-                  Year
-                </li>
-                <li>
-                  <i class=""></i>Experience- {{ alldata.exp_year }} Yr-{{
-                    alldata.exp_month
-                  }}
-                  Month
+                
+               
                 </li>
                 <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li>
               </div>
