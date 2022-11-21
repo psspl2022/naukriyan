@@ -67,8 +67,7 @@
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Certification Licence</label
+              <label class="col-form-label" for=""> Certification Licence</label
               >
               <input
                 type="text"
@@ -236,7 +235,6 @@ export default {
         this.form.certficationtype.includes("") ||
         this.form.fromdate.includes("") ||
         this.form.todate.includes("") ||
-        this.form.score.includes("") ||
         this.form.description.includes("")
       ) {
         swal("Please fill all mandatory fields");
@@ -247,7 +245,7 @@ export default {
           this.skipStage();
           toast({
             type: "success",
-            title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,
+            title: `Certification Updated successfully`,
           });
         });
       }

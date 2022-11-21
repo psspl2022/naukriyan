@@ -10,7 +10,7 @@
     <header class="masthead text-center text-white">
       <div class="masthead-content">
         <div class="container">
-          <h1 id="looking" class="masthead-heading mb-0" @click="filterStatus = false">
+          <h1 id="looking" class="masthead-heading mb-0 color-white" @click="filterStatus = false">
             I Am Looking For !!
           </h1>
         </div>

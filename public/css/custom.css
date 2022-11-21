@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Rubik&display=swap');
+
+body{
+    font-family: 'Rubik', sans-serif!important;
+    /* font-family: 'Kanit', sans-serif!important; */
+  }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500;
+  color: #484848;
+}
+
+.color-white{
+    color:#fff!important;
+}
+
+.border-color-red{
+    border-color:red!important;
+}
+  
+.validation-msg{
+color: red;  
+font-weight: 600; 
+font-size: 12px;
+
+}
+
+.remove-validation-msg{
+display:none
+}
+
+.profile-box .left-side .profile-info {    
+    max-width: 300px!important;
+}
+
+  
+  

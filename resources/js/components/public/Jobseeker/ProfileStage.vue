@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-12">
       <!-- <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span> -->
+      ><span class="validation-msg"> Name,Email,Contact No</span> -->
       <form class="popupForm" role="form" method="post" @submit.prevent="addPersnol()">
         <fieldset>
           <legend>Profile Details</legend>
@@ -25,16 +25,15 @@
                     style="width: 150px; height: 150px; border: 1px solid orange"
                     v-else
                   />
-                  <i class="fas fa-camera" id="cam"></i>
+                  <i class="fas fa-camera d-none" id="cam"></i>
                 </label>
                 <input
                   id="file-input"
                   type="file"
                   accept="image/*"
-                  style="display: none"
                   @change="onProfileChanged"
                 />
-                <button @click="onUploadImg" ref="myBtnImg" style="display: none">
+                <button @click="onUploadImg" ref="myBtnImg" class="d-none">
                   Upload!
                 </button>
               </div>
@@ -43,14 +42,14 @@
             <div class="col-sm-9 d-sm-flex m-0 p-0">
               <div class="col-sm-6 m-0 p-0">
                 <div class="col-sm-12">
-                  <label class="col-form-label" for="">
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
                     First Name
-                    <span style="color: red"> *</span
-                    ><span
-                      :style="
+                    <span
+                      :class="
                         valid.fname
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
                       "
                       >{{ errMsg.fname }}</span
                     ></label
@@ -59,7 +58,7 @@
                     type="text"
                     class="form-control"
                     name="fname"
-                    :style="valid.fname ? '' : 'border-color:red !important'"
+                    :class="valid.fname ? '' : 'border-color-red'"
                     v-on:keyup="nameCheck"
                     placeholder="Enter First Name"
                     v-model="form.fname"
@@ -67,14 +66,44 @@
                   <has-error :form="form" field="fname"></has-error>
                 </div>
                 <div class="col-sm-12">
-                  <label class="col-form-label" for="">
-                    Last Name
-                    <span style="color: red"> *</span>
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
+                    Email
                     <span
-                      :style="
+                      :class="
+                        valid.email
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
+                      "
+                    >
+                      {{ errMsg.email }}
+                    </span></label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    :class="[{ 'is-invalid': form.errors.has('email') },valid.email ? '' : 'border-color-red']"
+                    
+                    name="email"
+                    v-on:keyup="emailCheck"
+                    placeholder="Enter Email"
+                    title="Enter Vaild Mail"
+                    v-model="form.email"
+                    
+                  />
+                  <has-error :form="form" field="email"></has-error>
+                </div>
+              </div>
+              <div class="col-sm-6 m-0 p-0">
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
+                    Last Name
+                    <span
+                      :class="
                         valid.lname
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
                       "
                     >
                       {{ errMsg.lname }}
@@ -92,44 +121,17 @@
                   />
                   <has-error :form="form" field="lname"></has-error>
                 </div>
-              </div>
-              <div class="col-sm-6 m-0 p-0">
+                
+               
                 <div class="col-sm-12">
                   <label class="col-form-label" for="">
-                    Email
-                    <span style="color: red"> *</span>
+                    <span class="validation-msg"> * </span>
+                    Contact No.                  
                     <span
-                      :style="
-                        valid.email
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
-                      "
-                    >
-                      {{ errMsg.email }}
-                    </span></label
-                  >
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    :style="valid.email ? '' : 'border-color:red !important'"
-                    v-on:keyup="emailCheck"
-                    placeholder="Enter Email"
-                    title="Enter Vaild Mail"
-                    v-model="form.email"
-                    :class="{ 'is-invalid': form.errors.has('email') }"
-                  />
-                  <has-error :form="form" field="email"></has-error>
-                </div>
-                <div class="col-sm-12">
-                  <label class="col-form-label" for="">
-                    Contact No.
-                    <span style="color: red"> * </span>
-                    <span
-                      :style="
+                      :class="
                         valid.contact
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
                       "
                     >
                       {{ errMsg.contact }}
@@ -149,21 +151,28 @@
                 </div>
               </div>
             </div>
+          
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                Linkedin</label>
-              <input
-                type="text"
-                class="form-control"
-                name="linkedin"
-                placeholder="Enter Linkedin Link"
-                v-model="form.linkedin"
+                <span class="validation-msg"> * </span>
+                Date Of Birth</label
+              >
+              <VueDatePicker
+                v-model="form.date"
+                ref="menu"
+                placeholder="YYYY-MM-DD"
+                :max-date="new Date().toISOString().substr(0, 10)"
+                min-date="1980-01-01"
+                @onOpen="menu = true"
+                @onClose="menu = false"
               />
-              <has-error :form="form" field="linkedin"></has-error>
+
+              <has-error :form="form" field="gender"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Gender</label
+                <span class="validation-msg"> * </span>
+                 Gender</label
               >
               <select
                 class="form-control custom-select"
@@ -180,22 +189,7 @@
               </select>
               <has-error :form="form" field="gender"></has-error>
             </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Date Of Birth</label
-              >
-              <VueDatePicker
-                v-model="form.date"
-                ref="menu"
-                placeholder="YYYY-MM-DD"
-                :max-date="new Date().toISOString().substr(0, 10)"
-                min-date="1980-01-01"
-                @onOpen="menu = true"
-                @onClose="menu = false"
-              />
-
-              <has-error :form="form" field="gender"></has-error>
-            </div>
+         
             <div class="col-sm-4">
               <div class="">
                 <div class="row">
@@ -210,8 +204,11 @@
                       }"
                     >
                       <option value="" disabled>Year</option>
-                      <option v-for="exper in experiences" :key="exper" :value="exper">
+                      <option v-for="exper in experienceYear" :key="exper" :value="exper">
                         {{ exper }}
+                      </option>
+                      <option value="20+">
+                        19+ 
                       </option>
                     </select>
                     <has-error :form="form" field="exp_year"></has-error>
@@ -229,7 +226,7 @@
                       }"
                     >
                       <option value="" disabled>Month</option>
-                      <option v-for="exper in experiences" :key="exper" :value="exper">
+                      <option v-for="exper in experienceMonth" :key="exper" :value="exper">
                         {{ exper }}
                       </option>
                     </select>
@@ -281,15 +278,44 @@
               </select>
               <has-error :form="form" field="job_functional_role_id"></has-error>
             </div>
-
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span class="validation-msg"> * </span> -->
+                    Current Salary(LPA)</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    name="curr_sal"
+                    placeholder="Enter Current Salary"
+                    v-model="form.curr_sal"
+                  />
+                <has-error :form="form" field="curr_sal"></has-error>
+            </div>
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span class="validation-msg"> * </span> -->
+                  Expected Salary(LPA)</label
+                >
+                <input
+                    type="text"
+                    class="form-control"
+                    name="exp_sal"
+                    placeholder="Enter Expected Salary"
+                    v-model="form.exp_sal"
+                  />
+                <has-error :form="form" field="exp_sal"></has-error>
+            </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                Preferred Location <span style="color: red"> * </span>
+                <span class="validation-msg"> * </span>
+                Preferred Location 
+                <span class="validation-msg">(choose maximum five)</span>
                 <span
-                  :style="
+                  :class="
                     valid.location
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
+                      ? 'remove-validation-msg'
+                      : 'validation-msg'
                   "
                 >
                   {{ errMsg.location }}
@@ -330,47 +356,22 @@
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
+          </div>
+          <h4 class="mb-0">Social Bio</h4>
+          <!-- <h4>Social Login</h4> -->
+          <hr class="mt-0">
+          <div class="row">
             <div class="col-sm-4">
-                <label class="col-form-label w-100" for="">
-                  <!-- <span style="color: red"> * </span> -->
-                     Select Current Salary(Annually)</label
-                >
-                <select
-                  class="form-control"
-                  :name="curr_sal"
-                  v-model="form.curr_sal"
-                  :class="{
-                    'is-invalid': form.errors.has('curr_sal'),
-                  }"
-                >
-                  <option value="" selected>Select Current Salary</option>
-                  <option value="2" selected>Less then 3 Lakh</option>
-                  <option v-for="sal in 98" :key="sal" :value="sal+2">
-                    {{ sal + 2 }} Lakh
-                  </option>
-                </select>
-                <has-error :form="form" field="curr_sal"></has-error>
-            </div>
-            <div class="col-sm-4">
-                <label class="col-form-label w-100" for="">
-                  <!-- <span style="color: red"> * </span> -->
-                   Select Expected Salary(Annually)</label
-                >
-                <select
-                  class="form-control"
-                  :name="exp_sal"
-                  v-model="form.exp_sal"
-                  :class="{
-                    'is-invalid': form.errors.has('exp_sal'),
-                  }"
-                >
-                  <option value="" selected>Select Expected Salary</option>
-                  <option value="2" selected>Less then 3 Lakh</option>
-                  <option v-for="sal in 98" :key="sal" :value="sal+2">
-                    {{ sal + 2 }} Lakh
-                  </option>
-                </select>
-                <has-error :form="form" field="exp_sal"></has-error>
+              <label class="col-form-label" for="">
+                Linkedin Profile Link</label>
+              <input
+                type="text"
+                class="form-control"
+                name="linkedin"
+                placeholder="Enter Linkedin Link"
+                v-model="form.linkedin"
+              />
+              <has-error :form="form" field="linkedin"></has-error>
             </div>
           </div>
           
@@ -438,8 +439,12 @@ export default {
     allDesignation() {
       return this.$store.getters.getAllDesignation;
     },
-    experiences() {
-      const exp = 20;
+    experienceYear() {
+      var exp = 20;
+      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
+    },
+    experienceMonth() {
+      var exp = 13;
       return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
     },
     allIndustry() {

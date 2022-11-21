@@ -30,10 +30,13 @@ class StageRegistration extends Controller
                         'organisation' => $request->organization[$i],
                         'job_type' => $request->jobtype[$i],
                         'from_date' => $request->fromdate[$i],
-                        'to_date' => $request->todate[$i],
+                        'to_date' => $request->currentlyWork == $i+1 ? NULL : $request->todate[$i],
                         'salary' => $request->salary[$i],
                         'sal_confidential' => $request->sal_confidential[$i],
-                        'responsibility' => $request->responsibility[$i]
+                        'responsibility' => $request->responsibility[$i],
+                        'key_skill' => $request->key_skill[$i],
+                        'currently_work_here' => $request->currentlyWork == $i+1 ? 1 : NULL
+
                     ]);
                 ++$update;
             } else {
@@ -46,10 +49,12 @@ class StageRegistration extends Controller
                 // $js_professional->industry_name = $request->industry_name;
                 // $js_professional->functional_role = $request->functional_role;
                 $js_professional->from_date = $request->fromdate[$i];
-                $js_professional->to_date = $request->todate[$i];
+                $js_professional->to_date = $request->currentlyWork == $i+1 ? NULL : $request->todate[$i];
                 $js_professional->salary = $request->salary[$i];
                 $js_professional->sal_confidential = !empty($request->sal_confidential[$i])?$request->sal_confidential[$i]:'0';
                 $js_professional->responsibility = $request->responsibility[$i];
+                // $js_professional->key_skill = $request->key_skill[$i];
+                $js_professional->currently_work_here = $request->currentlyWork == $i ? 1 : NULL;
                 $js_professional->save();
                 ++$create;
             }
@@ -236,7 +241,7 @@ class StageRegistration extends Controller
 
                 ]
             );
-            $ins = Institute::firstOrCreate(['name' => $req->ins_name[$i]]);
+            // $ins = Institute::firstOrCreate(['institute_name' => $req->ins_name[$i]]);
         }
         return $a;
     }

@@ -3,7 +3,7 @@
     <div class="col-sm-12">
      
       <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> All Field Required</span>
+      ><span style="color: red"> All Fields are mandatory</span>
       <form
         class="popupForm"
         role="form"
@@ -99,6 +99,12 @@
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span> Time Period</label
               >
+              <span class="float-right mt-1">Currently Working 
+                <input type="checkbox" 
+                v-model="form.currentlyWork" 
+                :true-value= i
+                false-value="0">
+              </span>
               <div
                 class="form-group flex-row text-center"
                 style="margin-top: 2px !important"
@@ -116,8 +122,10 @@
                 </div>
 
                 <div class="col-12 col-lg-6 d-flex flex-row align-items-center">
+                  
                   <div class="col-3">To:</div>
                   <input
+                    :disabled="form.currentlyWork == i ? '' : disabled"
                     type="date"
                     class="form-control col-9"
                     v-model="form.todate[i - 1]"
@@ -135,37 +143,47 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <label class="col-form-label w-100" for="">
-                      <span style="color: red"> * </span> Select Salary(in lakhs per annum)<span class="float-right">Confidential <input type="checkbox" :name="'confidential' + i" v-model="form.sal_confidential[i - 1]" id="" true-value="1"
+                      <span style="color: red"> * </span>  
+                      Salary (LPA)                       
+                      <span
+                      :class="
+                        valid.salary
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
+                      "
+                    >
+                      {{ errMsg.salary }}
+                    </span><span class="float-right">Confidential 
+                      <input type="checkbox" 
+                      :name="'confidential' + i" 
+                      v-model="form.sal_confidential[i - 1]" 
+                      id="" 
+                      true-value="1"
   false-value="0"></span></label
                     >
-                    <select
-                      class="form-control"
-                      :name="'salary' + i"
-                      v-model="form.salary[i - 1]"
-                      :class="{
-                        'is-invalid': form.errors.has('main_exp'),
-                      }"
-                    >
-                      <option value="" selected>Select Salary</option>
-                      <option value="2" selected>Less then 3</option>
-                      <option v-for="sal in 98" :key="sal" :value="sal">
-                        {{ sal + 2 }}
-                      </option>
-                    </select>
+                    <input
+                    type="number"
+                    :style="valid.salary ? '' : 'border-color:red !important'"
+                    v-on:keyup="salaryCheck"
+                    :name="'salary' + i"
+                    v-model="form.salary[i - 1]"
+                    placeholder="Enter Salary"
+                  />
+                   
                     <has-error :form="form" field="main_exp"></has-error>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-sm-6 " >
-              <label class="col-form-label" for="" >Add key Skills</label>    
+              <label class="col-form-label" for="" >key Skills</label>    
               <vue-tags-input 
               class="" 
               placeholder="Enter key Skills" 
               list="skill_list"
-              v-model="tag"
-              :tags="tags"
-              @tags-changed="newTags => tags = newTags"
+              v-model="tag[i-1]"
+              :tags="tags[i-1]"
+              @tags-changed="newTags => tags[i-1] = newTags"
               @keyup="
                 () => {
                   placeholder = ' ';
@@ -188,7 +206,7 @@
               ></textarea>
               <has-error :form="form" field="name"></has-error>
             </div>
-            <!-- <div class="col-sm-6">
+            <div class="col-sm-6">
               <label class="col-form-label" for=""> Key Skills</label>
               <textarea
                 type="text"
@@ -199,7 +217,7 @@
                 :class="{ 'is-invalid': form.errors.has('responsibility') }"
               ></textarea>
               <has-error :form="form" field="name"></has-error>
-            </div> -->
+            </div>
           </div>
           <span
             v-on:click="remove(form.index[i - 1], i - 1)"
@@ -232,18 +250,20 @@ export default {
   data() {
     return {
       i: 1,
-      x: 1,
+      x: 1,      
+      tag: [],
+      tags: [],
+      handlers: [],
+      autocompleteItems: [],
       props: {
         startStage: { type: Function },
       },
+      valid: { salary: true},
+      errMsg: { salary: ""},
       form: new Form({
         index: [""],
         total: 1,
         id: "1",
-        tag: '',
-        tags: [],
-        handlers: [],
-        autocompleteItems: [],
         designation: [""],
         organization: [""],
         jobtype: [""],
@@ -253,7 +273,9 @@ export default {
         sal_confidential: [""],
         responsibility: [""],
         professional_experience: "",
-        key_skill:"",
+        key_skill:[],
+        currently_work:[],
+        currentlyWork:"0",
       }),
       Days: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       year: "",
@@ -262,7 +284,7 @@ export default {
       job_industry_id: [],
       preferred_loc: [],
       job_functional_role_id: [],
-    };
+    };   
   },
   watch: {
     i: "updatex",
@@ -297,6 +319,7 @@ export default {
       });
     },
     getAllLocation() {
+      var error = false;
       // axios.post("/add-professional-detail", this.form).then((response) => {
       //   console.log(response);
       // });
@@ -305,24 +328,45 @@ export default {
         this.form.organization.includes("") ||
         this.form.jobtype.includes("") ||
         this.form.fromdate.includes("") ||
-        this.form.todate.includes("") ||
         this.form.salary.includes("")
       )) {
         swal("Please fill all mandatory fields");
       } else {
-        this.form.total = this.i;
-        this.form.post("/add-professional-detail-stage").then((response) => {
+        for ( let i = 0; i < this.form.todate.length; i++) { 
+          if(this.form.todate[i] != null) {
+            continue;
+          } else{    
+            if( (this.form.currentlyWork != 0) && (i  ==  (this.form.currentlyWork - 1) ) )
+            {  
+              var error = false;
+            }else{
+              var error = true;
+              break;
+            }
+          }
+        }  
+        if(error == true){
+          swal("Please fill all  fields");
+        } else{ 
+          // for(let x of this.form.tags){
+          //   let i= 0;
+          //   keySkill[i] = x.toString();
+          //   i++;
+          // }
+          this.form.total = this.i;
+          this.form.post("/add-professional-detail-stage").then((response) => {
           this.getAllProfessinal();
           this.updatepStage();
           toast({
             type: "success",
-            title: `Professinoal ${response.data.created} Added and ${response.data.update} Updated successfully`,
+            title: `Professinoal Updated successfully`,
           });
         });
+        }
+      
       }
     },
     getAllProfessinal() {
-      // alert("hello");
       axios.get("/get-professional-detail").then((response) => {
         // console.log(response.data.length);
         const data = response.data.data;
@@ -337,6 +381,8 @@ export default {
           this.form.salary = [];
           this.form.sal_confidential = [];
           this.form.responsibility = [];
+          this.form.key_skill = [];
+          this.form.currently_work = [];
           this.form.index = [];
           data.map((i, x) => {
             this.form.designation.push(i.designations);
@@ -348,7 +394,15 @@ export default {
             this.form.sal_confidential.push(i.sal_confidential);
             this.form.index.push(i.id);
             this.form.responsibility.push(i.responsibility);
+            this.form.key_skill.push(i.key_skill);
+            this.form.currently_work.push(i.currently_work_here)
           });
+
+          for (let x = 0; x < this.form.currently_work.length; x++) {
+            if( this.form.currently_work[x] != null){
+              this.form.currentlyWork = x+1 ;
+            }
+          }
         }
       });
     },
@@ -362,6 +416,7 @@ export default {
       this.form.todate.push("");
       this.form.salary.push("");
       this.form.responsibility.push("");
+      this.form.key_skill.push("");
       // console.log(this.i);
     },
     remove(i, index) {
@@ -372,7 +427,8 @@ export default {
       this.form.fromdate.splice(index, 1);
       this.form.todate.splice(index, 1);
       this.form.salary.splice(index, 1);
-      this.form.responsibility.splice(index, 1);
+      this.form.responsibility.splice(index, 1);      
+      this.form.key_skill.splice(index, 1)
       this.form.index.splice(index, 1);
       if (i != "") {
         axios.get(`/delete-professional-detail-stage/${i}`).then((response) => {});
@@ -388,12 +444,11 @@ export default {
     },
     update(newTags) {
       this.autocompleteItems = [];
-      this.tags = newTags.map((a) => {
+      this.tags[this.i-1] = newTags.map((a) => {
+        alert(a)
         return a.text;
       });
-      this.handlers = this.tags.toString();
-      // this.keyword = this.tags.toString();
-      // console.log(this.tags);
+      this.handlers = this.tags[this.i-1].toString();
     },
     initItems(skill) {
       console.log(skill)
@@ -409,8 +464,21 @@ export default {
         })
       console.log(this.skill_list)
     },
+    salaryCheck() {
+      // var pattern = \^(\d{0,3})(\.[0-9]{0,2})?$;
+
+      // var pattern = new RegExp("^(\d{0,3})(\.[0-9]{0,2})?$");
+      // if (!pattern.test(this.form.salary)) {
+      //   this.valid.salary = false;      
+      //   this.errMsg.salary = "Maximum 3 digit allowed";
+      // }else{
+      //   this.valid.salary = true;
+      //   this.errMsg.salary = "";
+      // }
+    },
   },
 };
+
 </script>
 
 <style scoped>
@@ -610,3 +678,4 @@ body {
   }
 }
 </style>
+
