@@ -93,26 +93,28 @@
                     <br>
                   </a>
                 </div>
+                
              
               </div>
 
               <h4 class="ltitle color-white">Job Details</h4>
 
               <div class="refer-cov">
+                <!-- <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li> -->
                 <li>
                   <i class=""></i>Experience- {{ alldata.exp_year }} Yr-{{
                     alldata.exp_month
                   }}
                   Month
+                <li v-if="alldata.current_salary!==null">
+                <i class=""></i>Current Salary- {{ alldata.current_salary }} LPA
+                </li>
                 <li v-if="alldata.expected_salary!==null">
                   <i class=""></i>Expected Salary-
                   {{ alldata.expected_salary }} LPA
                 </li>
-                <li v-if="alldata.current_salary!==null">
-                  <i class=""></i>Current Salary- {{ alldata.current_salary }} LPA
-                </li>
-                <li>
-                  <i class=""></i>Preferred Location -
+              
+                  <li><i class=""></i>Preferred Location -
                   {{ alldata.preferred_location }}
                 </li>
                 <li>
@@ -121,7 +123,7 @@
                 
                
                 </li>
-                <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li>
+                
               </div>
 
               <h4 class="ltitle color-white">Profile</h4>

@@ -233,7 +233,7 @@ class StageRegistration extends Controller
                 ],
                 [
                     'degree_name' => $req->degree[$i],
-                    'course_type' => $req->course_type[$i],
+                    'course_type' => (($i < count($req->course_type)) && ($req->course_type[$i] != "")) ? $req->course_type[$i] : "",
                     'percentage_grade' => $req->percentage[$i],
                     'passing_year' => $req->pass_year[$i],
                     'institute_name' => $req->ins_name[$i],
@@ -302,7 +302,11 @@ class StageRegistration extends Controller
         ];
 
         JsResume::updateOrCreate(['js_userid' => $userId], $addressData);
-        return  $req->all();
+
+        $stage = Jobseeker::select('stage')->where('id', $userId)->first();
+        
+        return response()->json(['data' => $req->all(), 'stage' => $stage]);
+        // return  $req->all();
     }
     public function addPersnol(Request $req)
     {

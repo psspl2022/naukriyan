@@ -17,48 +17,48 @@
                 :class="[
                   stage >= 1 ? 'stage' : stageSave >= 1 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(1, stageSave)" title="Profile Details"
-                >1</span
+                v-on:click="setStage(1, stageSave)"
+                >Profile</span
               >
               <div :class="[stage >= 1 ? 'stage-line' : 'unstage-line']"></div>
               <span
                 :class="[
                   stage >= 2 ? 'stage' : stageSave >= 2 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(2, stageSave)" title="Education Details"
-                >2</span
+                v-on:click="setStage(2, stageSave)"
+                >Education</span
               >
               <div :class="[stage >= 2 ? 'stage-line' : 'unstage-line']"></div>
               <span
                 :class="[
                   stage >= 3 ? 'stage' : stageSave >= 3 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(3, stageSave)" title="Professional Details"
-                >3</span
+                v-on:click="setStage(3, stageSave)"
+                >Professional</span
               >
               <div :class="[stage >= 3 ? 'stage-line' : 'unstage-line']"></div>
               <span
                 :class="[
                   stage >= 4 ? 'stage' : stageSave >= 4 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(4, stageSave)" title="Resume Details"
-                >4</span
+                v-on:click="setStage(4, stageSave)"
+                >Skill</span
               >
-              <div :class="[stage >= 4 ? 'stage-line' : 'unstage-line']"></div>
+              <div :class="[stage >= 4 ? 'stage-line' : 'unstage-line']"></div> 
               <span
                 :class="[
                   stage >= 5 ? 'stage' : stageSave >= 5 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(5, stageSave)" title="Certificate Details"
-                >5</span
+                v-on:click="setStage(5, stageSave)"
+                >Certificate</span
               >
               <div :class="[stage >= 5 ? 'stage-line' : 'unstage-line']"></div>
               <span
                 :class="[
                   stage >= 6 ? 'stage' : stageSave >= 6 ? 'unstage' : 'unstage unsave',
                 ]"
-                v-on:click="setStage(6, stageSave)" title="Skills Details"
-                >6</span
+                v-on:click="setStage(6, stageSave)"
+                >Resume</span
               >
             </div>
             <div class="cms-pg-header mt-0" id="unstage">
@@ -71,9 +71,10 @@
             <ProfileStage :startStage="startStage" v-if="stage == 1" />
             <EducationStage :startStage="startStage" v-if="stage == 2" />
             <ProfessionalStage :startStage="startStage" v-if="stage == 3" />
-            <ResumeStage :startStage="startStage" v-if="stage == 4" />
-            <CertificationStage :startStage="startStage" v-if="stage == 5" />
-            <SkillStage :startStage="startStage" v-if="stage == 6" />
+            <SkillStage :startStage="startStage" v-if="stage == 4" />
+            <CertificationStage :startStage="startStage" v-if="stage == 5" />            
+            <ResumeStage :startStage="startStage" v-if="stage == 6" />
+            
           </div>
         </div>
       </div>

@@ -200,6 +200,8 @@ import Userinfo from "./components/public/Jobseeker/Userinfo.vue";
 import Browsejob from "./components/public/Jobseeker/Browsejob.vue";
 import GuestBrowsejob from "./components/public/Jobseeker/GuestBrowsejob.vue";
 import Profileview from "./components/public/Jobseeker/Profileview.vue";
+import Profileview1 from "./components/public/Jobseeker/Profileview1.vue";
+import Profileview2 from "./components/public/Jobseeker/Profileview2.vue";
 import Appliedjob from "./components/public/Jobseeker/Appliedjob.vue";
 import Savedjob from "./components/public/Jobseeker/Savedjob.vue";
 import Upcominginterview from "./components/public/Jobseeker/Upcominginterview.vue";
@@ -498,6 +500,14 @@ export const routes = [
     {
         path: "/profileview",
         component: Profileview,
+    },
+    {
+        path: "/profileview1",
+        component: Profileview1,
+    },
+    {
+        path: "/profileview2",
+        component: Profileview2,
     },
     {
         path: "/appliedjob",

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
       <!-- <i class="fa fa-info" aria-hidden="true"></i
       ><span class="validation-msg"> Name,Email,Contact No</span> -->
@@ -16,7 +16,7 @@
                   <img
                     id="previewImg"
                     :src="'/jobseeker_profile_image/' + form.profile_pic_thumb"
-                    style="width: 150px; height: 140px; border: 1px solid orange"
+                    style="width: 150px; height: 140px; border: 1px solid #002256"
                     v-if="form.profile_pic_thumb"
                   />
                   <img
@@ -25,9 +25,10 @@
                     style="width: 150px; height: 150px; border: 1px solid orange"
                     v-else
                   />
-                  <i class="fas fa-camera d-none" id="cam"></i>
+                  <i class="fas fa-camera " id="cam"></i>
                 </label>
                 <input
+                  class="d-none"
                   id="file-input"
                   type="file"
                   accept="image/*"
@@ -211,6 +212,7 @@
                         19+ 
                       </option>
                     </select>
+                  <span class="experience-span">year</span>
                     <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
@@ -230,6 +232,7 @@
                         {{ exper }}
                       </option>
                     </select>
+                  <span class="experience-span">month</span>
                     <has-error :form="form" field="exp_mon"></has-error>
                   </div>
                 </div>
@@ -281,28 +284,45 @@
             <div class="col-sm-4">
                 <label class="col-form-label w-100" for="">
                   <!-- <span class="validation-msg"> * </span> -->
-                    Current Salary(LPA)</label
-                >
+                    Current Salary(LPA)
+                <span
+                      :class="
+                        valid.salary.current
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
+                      "
+                      > {{ errMsg.salary.current }}</span></label>
                 <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     name="curr_sal"
                     placeholder="Enter Current Salary"
+                    v-on:keyup="salaryCheck(form.curr_sal, 'current')"
                     v-model="form.curr_sal"
+                      min="0"
+                    step="0.01"
                   />
                 <has-error :form="form" field="curr_sal"></has-error>
             </div>
             <div class="col-sm-4">
                 <label class="col-form-label w-100" for="">
                   <!-- <span class="validation-msg"> * </span> -->
-                  Expected Salary(LPA)</label
-                >
+                  Expected Salary(LPA)<span
+                      :class="
+                        valid.salary.expected
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
+                      "> {{ errMsg.salary.expected }}
+                    </span></label>
                 <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     name="exp_sal"
+                    v-on:keyup="salaryCheck(form.curr_sal, 'expected')"
                     placeholder="Enter Expected Salary"
                     v-model="form.exp_sal"
+                    min="0"
+                    step="0.01"
                   />
                 <has-error :form="form" field="exp_sal"></has-error>
             </div>
@@ -310,7 +330,6 @@
               <label class="col-form-label" for="">
                 <span class="validation-msg"> * </span>
                 Preferred Location 
-                <span class="validation-msg">(choose maximum five)</span>
                 <span
                   :class="
                     valid.location
@@ -325,8 +344,8 @@
                 v-model="locationlist"
                 :multiple="true"
                 :options="source"
-                :limit="5"
                 :flat="true"
+                @input="checkLocation"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
@@ -356,11 +375,6 @@
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
-          </div>
-          <h4 class="mb-0">Social Bio</h4>
-          <!-- <h4>Social Login</h4> -->
-          <hr class="mt-0">
-          <div class="row">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 Linkedin Profile Link</label>
@@ -373,8 +387,7 @@
               />
               <has-error :form="form" field="linkedin"></has-error>
             </div>
-          </div>
-          
+          </div>          
         </fieldset>
 
         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -397,8 +410,8 @@ export default {
       source2: [],
       source: [],
       menu: false,
-      valid: { fname: true, lname: true, email: true, contact: true, location: true },
-      errMsg: { fname: "", lname: "", email: "", contact: "", location: "" },
+      valid: { salary:{current:"", expected:""}, fname: true, lname: true, email: true, contact: true, location: true },
+      errMsg: { salary:{current:"", expected:""}, fname: "", lname: "", email: "", contact: "", location: "" },
       form: new Form({
         id: "",
         fname: "",
@@ -453,7 +466,7 @@ export default {
   },
   watch: {
     source2: "updatesrc",
-    locationlist: "checkLocation",
+    // locationlist: "checkLocation",
     profile1: "updatesrc",
   },
   methods: {
@@ -516,6 +529,18 @@ export default {
         });
       }
     },
+    salaryCheck(salary, index) {
+      let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
+
+      // var pattern = new RegExp("^\d{0,2}\.\d{0,2}$");
+      if (!pattern.test(salary)) {
+        this.valid.salary[index] = false;      
+        this.errMsg.salary[index] = "Salary should be less than 1 Cr.";
+      }else{
+        this.valid.salary[index] = true;
+        this.errMsg.salary[index] = "";
+      }
+    },
     // Contact Validation function
     contactCheck() {
       var pattern = /^[6-9][0-9]{9}$/;
@@ -535,8 +560,13 @@ export default {
     },
     checkLocation() {
       // console.log(e.value());
-      if (this.locationlist.length > 5) {
-        this.locationlist.splice(4, 1);
+      if (this.locationlist.length >= 5) {  
+        this.locationlist = this.locationlist.slice(0,5);  
+        this.valid.location = false;
+        this.errMsg.location = "Only 5 locations are allowed"   
+      } else {
+        this.valid.location = true;
+        this.errMsg.location = ""    
       }
     },
     // getting all location
@@ -562,6 +592,8 @@ export default {
         !this.valid.lname ||
         !this.valid.email ||
         !this.valid.contact ||
+        !this.valid.salary.current ||
+        !this.valid.salary.expected ||
         this.form.job_industry_id == "" ||
         this.form.job_functional_role_id == "" ||
         this.form.preferred_loc.length == 0 ||
@@ -606,6 +638,8 @@ export default {
             this.form.date = i.dob;
             this.form.curr_sal = i.current_salary  == null ? "" :i.current_salary;
             this.form.exp_sal = i.expected_salary == null ? "" : i.expected_salary;
+            this.valid.salary.current = "true";
+            this.valid.salary.expected = "true";
           });
         }
       });
@@ -642,6 +676,8 @@ export default {
           });
       }
     },
+
+  
   },
 };
 </script>
@@ -649,6 +685,12 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
+
+
+.vd-picker__input input{
+    border: none !important;
+    border-bottom: 1px solid #F26F31 !important;
+    }
 body {
   box-sizing: border-box;
   background: #f2f2f2;

@@ -1,9 +1,9 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
      
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> All Fields are mandatory</span>
+      <!-- <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red"> All Fields are mandatory</span> -->
       <form
         class="popupForm"
         role="form"
@@ -41,7 +41,7 @@
           />
           <label class="form-check-label" for="experienced">Experienced</label>
         </div>
-        <fieldset class="mb-2" v-for="i in i" :key="i" v-if="form.professional_experience!='fresher'">
+        <fieldset class="mb-4" v-for="i in i" :key="i" v-if="form.professional_experience!='fresher'">
           <legend v-if="i == 1">Professional</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
@@ -117,7 +117,7 @@
                     v-model="form.fromdate[i - 1]"
                     placeholder="2022-11-01"
                     :max="new Date().toISOString().slice(0, 10)"
-                    value="2022-11-01"
+                    value="dd-mm-yyyy"
                   />
                 </div>
 
@@ -127,12 +127,12 @@
                   <input
                     :disabled="form.currentlyWork == i ? '' : disabled"
                     type="date"
+                    value="dd-mm-yyyy"
                     class="form-control col-9"
                     v-model="form.todate[i - 1]"
-                    value="2022-11-01"
                     :min="form.fromdate[i - 1]"
                     :max="new Date().toISOString().slice(0, 10)"
-                    placeholder="2020-11-01"
+                    placeholder="dd-mm-yyyy"
                   />
                 </div>
               </div>
@@ -151,23 +151,26 @@
                           ? 'reomve-validation-msg'
                           : 'validation-msg'
                       "
-                    >
+                      >
                       {{ errMsg.salary }}
                     </span><span class="float-right">Confidential 
                       <input type="checkbox" 
                       :name="'confidential' + i" 
                       v-model="form.sal_confidential[i - 1]" 
-                      id="" 
+                      id=""                     
                       true-value="1"
-  false-value="0"></span></label
+                      false-value="0"></span></label
                     >
                     <input
+                    class="form-control"
                     type="number"
                     :style="valid.salary ? '' : 'border-color:red !important'"
-                    v-on:keyup="salaryCheck"
+                    v-on:keyup="salaryCheck(form.salary[i - 1])"
                     :name="'salary' + i"
                     v-model="form.salary[i - 1]"
-                    placeholder="Enter Salary"
+                    placeholder="Enter Salary "
+                    step="0.01"
+                      min="0"
                   />
                    
                     <has-error :form="form" field="main_exp"></has-error>
@@ -189,9 +192,9 @@
                   placeholder = ' ';
                 }
               " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
-                <datalist id="skill_list" v-for="i in i" :key="i">
+                <!-- <datalist id="skill_list" v-for="i in i" :key="i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
-              </datalist>
+              </datalist> -->
               <has-error :form="form" field="key_skill"></has-error>
             </div>
             <div class="col-sm-6">
@@ -206,18 +209,7 @@
               ></textarea>
               <has-error :form="form" field="name"></has-error>
             </div>
-            <div class="col-sm-6">
-              <label class="col-form-label" for=""> Key Skills</label>
-              <textarea
-                type="text"
-                class="form-control"
-                :name="'responsibility' + i"
-                placeholder="Enter Responsibility"
-                v-model="form.responsibility[i - 1]"
-                :class="{ 'is-invalid': form.errors.has('responsibility') }"
-              ></textarea>
-              <has-error :form="form" field="name"></has-error>
-            </div>
+           
           </div>
           <span
             v-on:click="remove(form.index[i - 1], i - 1)"
@@ -250,7 +242,8 @@ export default {
   data() {
     return {
       i: 1,
-      x: 1,      
+      x: 1,  
+      tag_new : [],   
       tag: [],
       tags: [],
       handlers: [],
@@ -333,14 +326,14 @@ export default {
         swal("Please fill all mandatory fields");
       } else {
         for ( let i = 0; i < this.form.todate.length; i++) { 
-          if(this.form.todate[i] != null) {
+          if(this.form.todate[i] != null || this.form.todate[i] != "") {
             continue;
           } else{    
             if( (this.form.currentlyWork != 0) && (i  ==  (this.form.currentlyWork - 1) ) )
             {  
-              var error = false;
+              error = false;
             }else{
-              var error = true;
+              error = true;
               break;
             }
           }
@@ -348,11 +341,13 @@ export default {
         if(error == true){
           swal("Please fill all  fields");
         } else{ 
-          // for(let x of this.form.tags){
-          //   let i= 0;
-          //   keySkill[i] = x.toString();
-          //   i++;
-          // }
+          for( let i= 0; i < this.tags.length; i++ ){
+            let sk=[];
+            for(let j of this.tags[i]){
+              sk.push(j.text);
+            }            
+            this.form.key_skill.push(sk.toString());
+          }
           this.form.total = this.i;
           this.form.post("/add-professional-detail-stage").then((response) => {
           this.getAllProfessinal();
@@ -389,7 +384,7 @@ export default {
             this.form.organization.push(i.organisation);
             this.form.jobtype.push(i.job_type);
             this.form.fromdate.push(i.from_date);
-            this.form.todate.push(i.to_date);
+            i.to_date != null ? this.form.todate.push(i.to_date) : this.form.todate.push("");
             this.form.salary.push(i.salary);
             this.form.sal_confidential.push(i.sal_confidential);
             this.form.index.push(i.id);
@@ -397,6 +392,17 @@ export default {
             this.form.key_skill.push(i.key_skill);
             this.form.currently_work.push(i.currently_work_here)
           });
+
+          for( let  x = 0; x < this.form.key_skill.length; x++){  
+            if( this.form.key_skill[x] != null){
+              this.tag_new[x] = this.form.key_skill[x].split(",");
+              for(let  y = 0; y < this.tag_new[x].length; y++){
+                this.tag_new[x][y] = {text: this.tag_new[x][y]};
+              }
+            }
+          }
+          this.tags = this.tag_new;                   
+          this.form.key_skill = [];
 
           for (let x = 0; x < this.form.currently_work.length; x++) {
             if( this.form.currently_work[x] != null){
@@ -446,7 +452,7 @@ export default {
       this.autocompleteItems = [];
       this.tags[this.i-1] = newTags.map((a) => {
         alert(a)
-        return a.text;
+        return "Disha";
       });
       this.handlers = this.tags[this.i-1].toString();
     },
@@ -464,17 +470,17 @@ export default {
         })
       console.log(this.skill_list)
     },
-    salaryCheck() {
-      // var pattern = \^(\d{0,3})(\.[0-9]{0,2})?$;
+    salaryCheck(salary) {
+      let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
 
-      // var pattern = new RegExp("^(\d{0,3})(\.[0-9]{0,2})?$");
-      // if (!pattern.test(this.form.salary)) {
-      //   this.valid.salary = false;      
-      //   this.errMsg.salary = "Maximum 3 digit allowed";
-      // }else{
-      //   this.valid.salary = true;
-      //   this.errMsg.salary = "";
-      // }
+      // var pattern = new RegExp("^\d{0,2}\.\d{0,2}$");
+      if (!pattern.test(salary)) {
+        this.valid.salary = false;      
+        this.errMsg.salary = "LPA should be less than 1 Cr.";
+      }else{
+        this.valid.salary = true;
+        this.errMsg.salary = "";
+      }
     },
   },
 };
