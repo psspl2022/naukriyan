@@ -1,8 +1,8 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
       <!-- <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span> -->
+      ><span class="validation-msg"> Name,Email,Contact No</span> -->
       <form class="popupForm" role="form" method="post" @submit.prevent="addPersnol()">
         <fieldset>
           <legend>Profile Details</legend>
@@ -16,7 +16,7 @@
                   <img
                     id="previewImg"
                     :src="'/jobseeker_profile_image/' + form.profile_pic_thumb"
-                    style="width: 150px; height: 140px; border: 1px solid orange"
+                    style="width: 150px; height: 140px; border: 1px solid #002256"
                     v-if="form.profile_pic_thumb"
                   />
                   <img
@@ -25,16 +25,16 @@
                     style="width: 150px; height: 150px; border: 1px solid orange"
                     v-else
                   />
-                  <i class="fas fa-camera" id="cam"></i>
+                  <i class="fas fa-camera " id="cam"></i>
                 </label>
                 <input
+                  class="d-none"
                   id="file-input"
                   type="file"
                   accept="image/*"
-                  style="display: none"
                   @change="onProfileChanged"
                 />
-                <button @click="onUploadImg" ref="myBtnImg" style="display: none">
+                <button @click="onUploadImg" ref="myBtnImg" class="d-none">
                   Upload!
                 </button>
               </div>
@@ -43,14 +43,14 @@
             <div class="col-sm-9 d-sm-flex m-0 p-0">
               <div class="col-sm-6 m-0 p-0">
                 <div class="col-sm-12">
-                  <label class="col-form-label" for="">
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
                     First Name
-                    <span style="color: red"> *</span
-                    ><span
-                      :style="
+                    <span
+                      :class="
                         valid.fname
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
                       "
                       >{{ errMsg.fname }}</span
                     ></label
@@ -59,7 +59,7 @@
                     type="text"
                     class="form-control"
                     name="fname"
-                    :style="valid.fname ? '' : 'border-color:red !important'"
+                    :class="valid.fname ? '' : 'border-color-red'"
                     v-on:keyup="nameCheck"
                     placeholder="Enter First Name"
                     v-model="form.fname"
@@ -67,14 +67,44 @@
                   <has-error :form="form" field="fname"></has-error>
                 </div>
                 <div class="col-sm-12">
-                  <label class="col-form-label" for="">
-                    Last Name
-                    <span style="color: red"> *</span>
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
+                    Email
                     <span
-                      :style="
+                      :class="
+                        valid.email
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
+                      "
+                    >
+                      {{ errMsg.email }}
+                    </span></label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    :class="[{ 'is-invalid': form.errors.has('email') },valid.email ? '' : 'border-color-red']"
+                    
+                    name="email"
+                    v-on:keyup="emailCheck"
+                    placeholder="Enter Email"
+                    title="Enter Vaild Mail"
+                    v-model="form.email"
+                    
+                  />
+                  <has-error :form="form" field="email"></has-error>
+                </div>
+              </div>
+              <div class="col-sm-6 m-0 p-0">
+                <div class="col-sm-12">
+                  <label class="col-form-label" for="">                    
+                    <span class="validation-msg"> *</span>
+                    Last Name
+                    <span
+                      :class="
                         valid.lname
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'remove-validation-msg'
+                          : 'validation-msg'
                       "
                     >
                       {{ errMsg.lname }}
@@ -92,44 +122,17 @@
                   />
                   <has-error :form="form" field="lname"></has-error>
                 </div>
-              </div>
-              <div class="col-sm-6 m-0 p-0">
+                
+               
                 <div class="col-sm-12">
                   <label class="col-form-label" for="">
-                    Email
-                    <span style="color: red"> *</span>
+                    <span class="validation-msg"> * </span>
+                    Contact No.                  
                     <span
-                      :style="
-                        valid.email
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
-                      "
-                    >
-                      {{ errMsg.email }}
-                    </span></label
-                  >
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    :style="valid.email ? '' : 'border-color:red !important'"
-                    v-on:keyup="emailCheck"
-                    placeholder="Enter Email"
-                    title="Enter Vaild Mail"
-                    v-model="form.email"
-                    :class="{ 'is-invalid': form.errors.has('email') }"
-                  />
-                  <has-error :form="form" field="email"></has-error>
-                </div>
-                <div class="col-sm-12">
-                  <label class="col-form-label" for="">
-                    Contact No.
-                    <span style="color: red"> * </span>
-                    <span
-                      :style="
+                      :class="
                         valid.contact
-                          ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                          : 'color: red; font-weight: 500; font-size: 10px'
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
                       "
                     >
                       {{ errMsg.contact }}
@@ -149,21 +152,28 @@
                 </div>
               </div>
             </div>
+          
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                Linkedin</label>
-              <input
-                type="text"
-                class="form-control"
-                name="linkedin"
-                placeholder="Enter Linkedin Link"
-                v-model="form.linkedin"
+                <span class="validation-msg"> * </span>
+                Date Of Birth</label
+              >
+              <VueDatePicker
+                v-model="form.date"
+                ref="menu"
+                placeholder="YYYY-MM-DD"
+                :max-date="new Date().toISOString().substr(0, 10)"
+                min-date="1980-01-01"
+                @onOpen="menu = true"
+                @onClose="menu = false"
               />
-              <has-error :form="form" field="linkedin"></has-error>
+
+              <has-error :form="form" field="gender"></has-error>
             </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Gender</label
+                <span class="validation-msg"> * </span>
+                 Gender</label
               >
               <select
                 class="form-control custom-select"
@@ -180,22 +190,7 @@
               </select>
               <has-error :form="form" field="gender"></has-error>
             </div>
-            <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Date Of Birth</label
-              >
-              <VueDatePicker
-                v-model="form.date"
-                ref="menu"
-                placeholder="YYYY-MM-DD"
-                :max-date="new Date().toISOString().substr(0, 10)"
-                min-date="1980-01-01"
-                @onOpen="menu = true"
-                @onClose="menu = false"
-              />
-
-              <has-error :form="form" field="gender"></has-error>
-            </div>
+         
             <div class="col-sm-4">
               <div class="">
                 <div class="row">
@@ -210,10 +205,14 @@
                       }"
                     >
                       <option value="" disabled>Year</option>
-                      <option v-for="exper in experiences" :key="exper" :value="exper">
+                      <option v-for="exper in experienceYear" :key="exper" :value="exper">
                         {{ exper }}
                       </option>
+                      <option value="20+">
+                        19+ 
+                      </option>
                     </select>
+                  <span class="experience-span">year</span>
                     <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
@@ -229,10 +228,11 @@
                       }"
                     >
                       <option value="" disabled>Month</option>
-                      <option v-for="exper in experiences" :key="exper" :value="exper">
+                      <option v-for="exper in experienceMonth" :key="exper" :value="exper">
                         {{ exper }}
                       </option>
                     </select>
+                  <span class="experience-span">month</span>
                     <has-error :form="form" field="exp_mon"></has-error>
                   </div>
                 </div>
@@ -281,15 +281,60 @@
               </select>
               <has-error :form="form" field="job_functional_role_id"></has-error>
             </div>
-
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span class="validation-msg"> * </span> -->
+                    Current Salary(LPA)
+                <span
+                      :class="
+                        valid.salary.current
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
+                      "
+                      > {{ errMsg.salary.current }}</span></label>
+                <input
+                    type="number"
+                    class="form-control"
+                    name="curr_sal"
+                    placeholder="Enter Current Salary"
+                    v-on:keyup="salaryCheck(form.curr_sal, 'current')"
+                    v-model="form.curr_sal"
+                      min="0"
+                    step="0.01"
+                  />
+                <has-error :form="form" field="curr_sal"></has-error>
+            </div>
+            <div class="col-sm-4">
+                <label class="col-form-label w-100" for="">
+                  <!-- <span class="validation-msg"> * </span> -->
+                  Expected Salary(LPA)<span
+                      :class="
+                        valid.salary.expected
+                          ? 'reomve-validation-msg'
+                          : 'validation-msg'
+                      "> {{ errMsg.salary.expected }}
+                    </span></label>
+                <input
+                    type="number"
+                    class="form-control"
+                    name="exp_sal"
+                    v-on:keyup="salaryCheck(form.curr_sal, 'expected')"
+                    placeholder="Enter Expected Salary"
+                    v-model="form.exp_sal"
+                    min="0"
+                    step="0.01"
+                  />
+                <has-error :form="form" field="exp_sal"></has-error>
+            </div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                Preferred Location <span style="color: red"> * </span>
+                <span class="validation-msg"> * </span>
+                Preferred Location 
                 <span
-                  :style="
+                  :class="
                     valid.location
-                      ? 'color: red; font-weight: 500; font-size: 10px;display:none'
-                      : 'color: red; font-weight: 500; font-size: 10px'
+                      ? 'remove-validation-msg'
+                      : 'validation-msg'
                   "
                 >
                   {{ errMsg.location }}
@@ -299,8 +344,8 @@
                 v-model="locationlist"
                 :multiple="true"
                 :options="source"
-                :limit="5"
                 :flat="true"
+                @input="checkLocation"
                 :show-count="true"
                 :disable-branch-nodes="true"
                 :max-height="200"
@@ -331,49 +376,18 @@
               <has-error :form="form" field="job_exp"></has-error>
             </div>
             <div class="col-sm-4">
-                <label class="col-form-label w-100" for="">
-                  <!-- <span style="color: red"> * </span> -->
-                     Select Current Salary(Annually)</label
-                >
-                <select
-                  class="form-control"
-                  :name="curr_sal"
-                  v-model="form.curr_sal"
-                  :class="{
-                    'is-invalid': form.errors.has('curr_sal'),
-                  }"
-                >
-                  <option value="" selected>Select Current Salary</option>
-                  <option value="2" selected>Less then 3 Lakh</option>
-                  <option v-for="sal in 98" :key="sal" :value="sal+2">
-                    {{ sal + 2 }} Lakh
-                  </option>
-                </select>
-                <has-error :form="form" field="curr_sal"></has-error>
+              <label class="col-form-label" for="">
+                Linkedin Profile Link</label>
+              <input
+                type="text"
+                class="form-control"
+                name="linkedin"
+                placeholder="Enter Linkedin Link"
+                v-model="form.linkedin"
+              />
+              <has-error :form="form" field="linkedin"></has-error>
             </div>
-            <div class="col-sm-4">
-                <label class="col-form-label w-100" for="">
-                  <!-- <span style="color: red"> * </span> -->
-                   Select Expected Salary(Annually)</label
-                >
-                <select
-                  class="form-control"
-                  :name="exp_sal"
-                  v-model="form.exp_sal"
-                  :class="{
-                    'is-invalid': form.errors.has('exp_sal'),
-                  }"
-                >
-                  <option value="" selected>Select Expected Salary</option>
-                  <option value="2" selected>Less then 3 Lakh</option>
-                  <option v-for="sal in 98" :key="sal" :value="sal+2">
-                    {{ sal + 2 }} Lakh
-                  </option>
-                </select>
-                <has-error :form="form" field="exp_sal"></has-error>
-            </div>
-          </div>
-          
+          </div>          
         </fieldset>
 
         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -396,8 +410,8 @@ export default {
       source2: [],
       source: [],
       menu: false,
-      valid: { fname: true, lname: true, email: true, contact: true, location: true },
-      errMsg: { fname: "", lname: "", email: "", contact: "", location: "" },
+      valid: { salary:{current:"", expected:""}, fname: true, lname: true, email: true, contact: true, location: true },
+      errMsg: { salary:{current:"", expected:""}, fname: "", lname: "", email: "", contact: "", location: "" },
       form: new Form({
         id: "",
         fname: "",
@@ -438,8 +452,12 @@ export default {
     allDesignation() {
       return this.$store.getters.getAllDesignation;
     },
-    experiences() {
-      const exp = 20;
+    experienceYear() {
+      var exp = 20;
+      return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
+    },
+    experienceMonth() {
+      var exp = 13;
       return Array.from({ length: exp - 0 }, (value, index) => 0 + index);
     },
     allIndustry() {
@@ -448,7 +466,7 @@ export default {
   },
   watch: {
     source2: "updatesrc",
-    locationlist: "checkLocation",
+    // locationlist: "checkLocation",
     profile1: "updatesrc",
   },
   methods: {
@@ -511,6 +529,18 @@ export default {
         });
       }
     },
+    salaryCheck(salary, index) {
+      let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
+
+      // var pattern = new RegExp("^\d{0,2}\.\d{0,2}$");
+      if (!pattern.test(salary)) {
+        this.valid.salary[index] = false;      
+        this.errMsg.salary[index] = "Salary should be less than 1 Cr.";
+      }else{
+        this.valid.salary[index] = true;
+        this.errMsg.salary[index] = "";
+      }
+    },
     // Contact Validation function
     contactCheck() {
       var pattern = /^[6-9][0-9]{9}$/;
@@ -530,8 +560,13 @@ export default {
     },
     checkLocation() {
       // console.log(e.value());
-      if (this.locationlist.length > 5) {
-        this.locationlist.splice(4, 1);
+      if (this.locationlist.length >= 5) {  
+        this.locationlist = this.locationlist.slice(0,5);  
+        this.valid.location = false;
+        this.errMsg.location = "Only 5 locations are allowed"   
+      } else {
+        this.valid.location = true;
+        this.errMsg.location = ""    
       }
     },
     // getting all location
@@ -557,6 +592,8 @@ export default {
         !this.valid.lname ||
         !this.valid.email ||
         !this.valid.contact ||
+        !this.valid.salary.current ||
+        !this.valid.salary.expected ||
         this.form.job_industry_id == "" ||
         this.form.job_functional_role_id == "" ||
         this.form.preferred_loc.length == 0 ||
@@ -601,6 +638,8 @@ export default {
             this.form.date = i.dob;
             this.form.curr_sal = i.current_salary  == null ? "" :i.current_salary;
             this.form.exp_sal = i.expected_salary == null ? "" : i.expected_salary;
+            this.valid.salary.current = "true";
+            this.valid.salary.expected = "true";
           });
         }
       });
@@ -637,6 +676,8 @@ export default {
           });
       }
     },
+
+  
   },
 };
 </script>
@@ -644,6 +685,12 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
+
+
+.vd-picker__input input{
+    border: none !important;
+    border-bottom: 1px solid #F26F31 !important;
+    }
 body {
   box-sizing: border-box;
   background: #f2f2f2;

@@ -1,8 +1,6 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> All Field Required</span>
       <form
         class="col-sm-3 ml-auto offset-sm-2"
         method="post"
@@ -67,8 +65,7 @@
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Certification Licence</label
+              <label class="col-form-label" for=""> Certification Licence</label
               >
               <input
                 type="text"
@@ -144,8 +141,7 @@
               <has-error :form="form" field="score"></has-error>
             </div>
             <div class="col-sm-8">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span> Description</label
+              <label class="col-form-label" for=""> Description</label
               >
               <textarea
                 type="text"
@@ -235,9 +231,7 @@ export default {
         this.form.instituteName.includes("") ||
         this.form.certficationtype.includes("") ||
         this.form.fromdate.includes("") ||
-        this.form.todate.includes("") ||
-        this.form.score.includes("") ||
-        this.form.description.includes("")
+        this.form.todate.includes("") 
       ) {
         swal("Please fill all mandatory fields");
       } else {
@@ -247,7 +241,7 @@ export default {
           this.skipStage();
           toast({
             type: "success",
-            title: `Job ${response.data.created} Added and ${response.data.update} Updated successfully`,
+            title: `Certification Updated successfully`,
           });
         });
       }

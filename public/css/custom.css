@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Rubik&display=swap');
+
+body{
+    font-family: 'Rubik', sans-serif!important;
+    /* font-family: 'Kanit', sans-serif!important; */
+    background-color: #fff;
+  }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 500;
+  color: #484848;
+}
+
+.card{
+  border:none!important;
+}
+
+.color-white{
+    color:#fff!important;
+}
+
+.border-color-red{
+    border-color:red!important;
+}
+  
+.validation-msg{
+color: red;  
+font-weight: 600; 
+font-size: 12px;
+
+}
+
+.remove-validation-msg{
+display:none
+}
+
+.profile-box .left-side .profile-info {    
+    max-width: 300px!important;
+}
+
+.stage-main-div .experience-span{
+  font-size: 13px;
+  border-radius: 2px;
+  color: #002256;
+  /* background: #f8f8f8; */
+  padding: 6px 8px;
+  position: absolute;
+  top: 60px;;
+  right: 15px;
+  font-weight: 600;
+}
+
+
+
+.stage-main-div legend{
+    background: #fff;
+    border: 3px solid #002256;
+    font-weight: 600!important;
+    color: #002256!important;
+}
+.stage-main-div fieldset{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  margin-bottom: 30px;
+}
+
+.stage-main-div .col-form-label{
+  color: #002256;
+  line-height: 1.7;
+  margin-top:15px;
+}
+
+.stage-main-div .popupForm input.form-control {
+  background: #f8f8f8;
+font-size: 14px!important;
+border: none!important;
+border-bottom: 2px solid #002256!important;
+padding: 0px 10px 1px 10px !important;
+height: 35px !important;
+}
+
+.stage-main-div .custom-select{
+  border: none!important;
+  border-bottom: 2px solid #002256!important;
+  background: #f8f8f8!important;
+  height: 35px!important;
+  padding: 0px 10px 1px 10px !important;
+  
+}   
+.stage-main-div .ti-input{
+  border: none!important;
+  border-bottom: 2px solid #002256!important;
+  background: #f8f8f8!important;
+  height: 50px!important;
+  padding: 0px 10px 1px 10px !important;
+}
+
+.stage-main-div .form-control::-webkit-input-placeholder, .ti-new-tag-input-wrapper input{
+  background: #f8f8f8;
+}
+
+.stage-main-div textarea.form-control{
+  border: none!important;
+  border-bottom: 2px solid #002256!important;
+  background: #f8f8f8!important;
+  height: 50px!important;
+  padding: 0px 10px 1px 10px !important;
+}
+
+.stage-main-div .ti-tag{
+  height: 25px;
+  background-color: #002256!important;
+}
+
+.stage-main-div .vue-treeselect__control {
+  border: none!important;
+  border-bottom: 2px solid #002256!important;
+  background: #f8f8f8!important;
+  height: 50px!important;
+  padding: 0px 10px 1px 10px !important;
+  border-radius: 0px !important;
+}
+
+.stage-main-div .vue-treeselect__multi-value-item{
+  background-color: #002256 !important;
+  color:#fff !important;
+}
+
+.stage-main-div .vue-treeselect__value{
+  color:#fff !important;
+}
+
+.stage-main-div .vd-picker__input input{
+  border: none!important;
+  background: #f8f8f8!important;
+}
+
+.stage-main-div  .form-control{
+    border: none!important;
+    border-bottom: 2px solid #002256!important;
+    background: #f8f8f8!important;
+    height: 35px!important;
+    padding: 0px 10px 1px 10px !important;
+  }
+.stage-main-div  .vd-wrapper{
+    border: none!important;
+    border-bottom: 2px solid #002256!important;
+    background: #f8f8f8!important;
+    height: 35px!important;
+    padding: 0px 10px 1px 10px !important;
+  }
+
+.stage-main-div #datepicker__gn28yl5g4{
+    border: none!important;
+  }
+
+.stage-main-div  .vue-treeselect__value-remove {
+    color: white!important;
+  }
+.stage-main-div  .vd-picker__input input {
+    background-color: transparent!important;
+    border: none!important;
+  }
+
+  #cam{
+    color:#f95602;
+  }
+
+
+
+  /* profile view */
+  
+  /* .profileview-skill-span{
+    padding: 5px 8px;
+    background: #002256;
+    color: white;
+    border-radius: 5px;
+    margin-left: 8px;
+    font-size: 24px;
+  }
+
+
+  .bold-500{
+    font-weight: 500!important;
+  }
+
+  .bold-600{
+    font-weight: 600!important;
+  }
+  .bold-700{
+    font-weight: 700!important;
+  }
+  .bold-800{
+    font-weight: 800!important;
+  }
+
+  .font-24{
+    font-size: 24px!important;
+  }
+  .font-22{
+    font-size: 22px!important;
+  }
+  .font-20{
+    font-size: 20px!important;
+  }
+
+  .color-black{
+    color: #000!important;
+  }
+  .color-grey{
+    color:grey;
+  }
+  .color-blue{
+    color:#002256;
+  }
+
+  li{
+    list-style-type: none!important;
+  }
+
+  hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 2.5px solid #002256;
+  } */
+
+
+
+
+
+
+
+  
+  

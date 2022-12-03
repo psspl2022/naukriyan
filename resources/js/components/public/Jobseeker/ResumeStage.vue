@@ -1,7 +1,6 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
-      <i class="fa fa-info" aria-hidden="true"></i><span style="color: red"> Resume</span>
       <form
         class="popupForm"
         enctype="multipart/form-data"
@@ -43,16 +42,25 @@
               <has-error :form="form" field="video"></has-error>
             </div>
             <div class="col-sm-12">
-              <label class="col-form-label" for="">Cover Letter</label>
+              <label class="col-form-label" for="">Cover Letter
+                <span
+                  :class="valid.cover ? 'remove-validation-msg' : 'validation-msg'"
+                >{{ errMsg.cover }}
+                </span>
+              </label>
               <textarea
                 type="text"
                 class="form-control"
-                :name="cover"
+                v-on:change="checkCover"
                 placeholder="Enter Cover Letter"
                 v-model="form.cover"
                 :class="{ 'is-invalid': form.errors.has('cover') }"
               ></textarea>
               <has-error :form="form" field="cover"></has-error>
+              <div  class="text-right">
+                <span style="color:red" v-if="form.cover !=  null && form.cover !=  '' ">{{ 500 -  form.cover.match(/(\w+)/g).length }} words left.</span>
+              </div>
+             
             </div>
           </div>
         </fieldset>
@@ -77,6 +85,8 @@ export default {
       props: {
         startStage: { type: Function },
       },
+      valid: { cover: true},
+      errMsg: { cover: ""},
       form: new Form({
         id: "",
         video: "",
@@ -90,6 +100,20 @@ export default {
   },
   computed: {},
   methods: {
+    checkCover(){
+      let count = this.form.cover.match(/(\w+)/g).length;
+      if(count > 10){
+        this.valid.cover = false;
+        this.errMsg.cover = "Only 500 words are allowed";
+        let index = this.form.cover.lastIndexOf(" ");
+        // console.log(index);
+        this.form.cover = this.form.cover.substring(0, index);
+      
+      } else{
+        this.valid.cover = true;
+        this.errMsg.cover = "";
+      }
+    }, 
     onFileChanged(event) {
       //const file = event.target.files[0]
       this.selectedFile = event.target.files[0];
@@ -141,10 +165,17 @@ export default {
         this.form.post("/resume-save").then((response) => {
           this.getAllProfessinal();
           this.updatepStage();
-          toast({
-            type: "success",
-            title: `Resume added successfully`,
-          });
+          console.log(response.data.stage.stage);
+          if(response.data.stage.stage == 6)
+            {
+                window.location.href='/#/profileview';
+            }
+            else{
+              toast({
+                type: "success",
+                title: `Resume added successfully`,
+              });
+            }
         });
       }
     },

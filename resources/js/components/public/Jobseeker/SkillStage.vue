@@ -1,30 +1,33 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
 
       <form class="popupForm" id="skills" role="form" method="post" @submit.prevent="addSkill()">
         <fieldset class="mb-2">
           <legend>Skills</legend>
           <div class="row ">
-            <div class="col-sm-6">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4">
+              <div></div>
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Skill</label>
-              <input v-for="i in i" :key="i" type="text" class="form-control mb-3" :name="'skill' + i"
+              <input v-for="i in i" :key="'skill' + i" type="text" class="form-control mb-3" :name="'skill' + i"
                 placeholder="Enter Skill" list="skill_list" v-model="form.skill[i - 1]" @keyup="
                   () => {
                     initItems(form.skill[i - 1]);
                   }
                 " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems" @tags-changed="update"
                 :class="{ 'is-invalid': form.errors.has('skill') }" />
-              <datalist id="skill_list" v-for="i in i" :key="i">
+              <datalist id="skill_list" v-for="i in i" :key="'d' + i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
               </datalist>
-              <has-error :form="form" field="skill" v-for="i in i" :key="i"></has-error>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Expert Level</label>
-              <select v-for="i in i" :key="i" placeholder="Select Expert Level" class="form-control custom-select mb-3"
+              <select v-for="i in i" :key="'expert'.i" placeholder="Select Expert Level" class="form-control custom-select mb-3"
                 :name="'expert_level' + i" v-model="form.expert_level[i - 1]" :class="{
                   'is-invalid': form.errors.has('expert_level'),
                 }">
@@ -33,8 +36,8 @@
                 <option value="Moderate">Moderate</option>
                 <option value="Expert">Expert</option>
               </select>
-              <has-error :form="form" field="expert_level" v-for="i in i" :key="i"></has-error>
             </div>
+            <div class="col-sm-1"></div>
           </div>
           <div class="row mt-0 mb-2" v-if="j == 1">
             <div class="col-sm-12 mt-0" v-if="j == 1">
@@ -52,6 +55,7 @@
               <vue-tags-input 
               class="" 
               placeholder="Add Additional Skills" 
+              list="skill_list"
               v-model="tag"
               :tags="tags"
               @tags-changed="newTags => tags = newTags"
@@ -60,6 +64,9 @@
                   placeholder = ' ';
                 }
               " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
+                <datalist id="skill_list" v-for="i in i" :key="i">
+                <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
+              </datalist>
               <has-error :form="form" field="more_skill"></has-error>
             </div>
           </div>
@@ -80,6 +87,9 @@ import $ from "jquery";
 import VueTagsInput from "@johmun/vue-tags-input";
 export default {
   name: "SkillstartStage",
+  props: {
+    startStage: { type: Function },
+  },
   components: {
     VueTagsInput,
   },
@@ -98,7 +108,6 @@ export default {
         index: [""],
         skill: [""],
         expert_level: ["", "", ""],
-        more_skill: [],
       }),
     };
   },
@@ -112,6 +121,13 @@ export default {
     updatex() {
       this.x = this.i;
     },
+    updatepStage() {
+      let stage = 4;
+      // console.log("hello");
+      axios.get(`/skip-stage/${stage}`).then((response) => {
+        this.startStage();
+      });
+    },
 
     addSkill() {
       if (
@@ -122,37 +138,36 @@ export default {
       } else if(this.j == 1){
          if(this.tags.length > 0){
           this.tags.map((i) => {
-
             this.form.skill.push(i.text);
           });
           this.form.post("/add-skill-detail").then((response) => {
-            if(response.data.stage.stage == 6)
-            {
-              window.location.href='/#/profileview';
-            }
-            else{
+            this.updatepStage();
               toast({
               type: "success",
               title: "Skill Detail Added successfully",
-            });
-            }
+            })
+            // if(response.data.stage.stage == 6)
+            // {
+            //   window.location.href='/#/profileview';
+            // }
+            // else{
+            //   toast({
+            //   type: "success",
+            //   title: "Skill Detail Added successfully",
+            // });
+            // }
           });
         } else{
           swal("Please fill all mandatory fields");
         }
       }else{
         this.form.post("/add-skill-detail").then((response) => {
-          console.log(response.data.stage.stage);
-            if(response.data.stage.stage == 6)
-            {
-                window.location.href='/#/profileview';
-            }
-            else{
+          // console.log(response.data.stage.stage);
+            this.updatepStage();
               toast({
               type: "success",
               title: "Skill Detail Added successfully",
-            });
-            }
+            })
           });
       }
       

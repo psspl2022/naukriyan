@@ -1,15 +1,15 @@
 <template>
-  <div class="row">
+  <div class="row stage-main-div">
     <div class="col-sm-12">
-      <!-- <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red"> Name,Email,Contact No</span> -->
+      <i class="fa fa-info" aria-hidden="true"></i
+      ><span style="color: red">  Qualification should be in higher to lower order</span>
       <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
-        <fieldset class="mt-2" v-for="i in i" :key="i">
+        <fieldset class="mt-2" v-for="(i,index) in i" :key="index">
           <legend v-if="i == 1">Education</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Degree</label
+                <span style="color: red"> * </span>Qualification</label
               >
 
               <select
@@ -20,11 +20,11 @@
                   'is-invalid': form.errors.has('degree'),
                 }"
               >
-                <option value="" disabled>Select Degree</option>
+                <option value="" disabled>Select Qualification</option>
                 <option
                   :value="education.qualification"
-                  v-for="education in allQualification"
-                  :key="education"
+                  v-for="(education, index) in allQualification"
+                  :key="index"
                 >
                   {{ education.qualification }}
                 </option>
@@ -32,8 +32,7 @@
               <has-error :form="form" field="degree"></has-error>
             </div>
             <div class="col-sm-4">
-              <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Course Type</label
+              <label class="col-form-label" for="">Course Type</label
               >
               <select
                 class="form-control custom-select"
@@ -56,14 +55,23 @@
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 Percentage(%)</label
-              >
+              >                      
+                    <!-- <span
+                    :class="valid_per[i] ? 'validation-msg' : 'reomve-validation-msg'"
+                  >
+                    {{ valid_msg[i] }} -->
+                  </span>
               <input
                 type="number"
                 class="form-control"
                 :name="'percentage' + i"
-                placeholder="EnterPercentage"
+                min="0"
                 step="0.01"
+                :style="valid.percentage ? '' : 'border-color:red !important'"
+                :key="'percentage'+i"
                 v-model="form.percentage[i - 1]"
+                placeholder="Enter Percentage"
+                v-on:keyup="percentageCheck(form.percentage[i - 1],i)"
                 :class="{ 'is-invalid': form.errors.has('percentage') }"
               />
               <has-error :form="form" field="percentage"></has-error>
@@ -94,7 +102,7 @@
                 
               >
               <option value="">Select Year</option>
-              <option v-for="year in years" :value="year">{{year}}</option>
+              <option v-for="year in years" key: year :value="year">{{year}}</option>
               </select>
 
               <!-- <VueDatePicker
@@ -108,13 +116,13 @@
 
             <div class="col-sm-4">
               <label class="col-form-label" for="">
-                <span style="color: red"> * </span>Institute Name</label
+                <span style="color: red"> * </span>Board / University / College / Institute </label
               >
               <input
                 type="text"
                 class="form-control"
                 :name="'ins_name' + i"
-                placeholder="Enter Institute Name"
+                placeholder="Enter Board / University / College / Institute Name"
                 v-model="form.ins_name[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('ins_name') }"
                 list="institute_list"
@@ -124,7 +132,7 @@
                   }"
               />
               <datalist id="institute_list">
-                <option v-for="institute in institute_list" :key="institute" :value="institute">{{ institute }}</option>
+                <option v-for="(institute, index) in institute_list" :key="index" :value="institute">{{ institute }}</option>
               </datalist>
               <has-error :form="form" field="ins_name"></has-error>
             </div>
@@ -168,6 +176,7 @@ export default {
   props: {
     startStage: { type: Function },
   },
+  
   data() {
     return {
       i: 1,
@@ -175,6 +184,10 @@ export default {
       props: {
         startStage: { type: Function },
       },
+      valid_per:[""],
+      valid_msg:[""],
+      valid: { percentage: [""]},
+      errMsg: { percentage: [""]},
       form: new Form({
         id: "",
         index: [""],
@@ -203,6 +216,7 @@ export default {
     allQualification() {
       return this.$store.getters.getAllQualification;
     },
+    
     // allD
   },
   methods: {
@@ -241,10 +255,9 @@ export default {
     addEducation() {
       if (
         this.form.ins_name.includes("") ||
-        this.form.course_type.includes("") ||
+        this.valid.percentage.includes(false) ||
         this.form.pass_year.includes(this.date) ||
         this.form.degree.includes("") ||
-        this.form.ins_loc.includes("") ||
         this.form.percentage.includes("")
       ) {
         swal("Please fill all mandatory fields");
@@ -282,6 +295,8 @@ export default {
             this.form.percentage.push(i.percentage_grade);
             // this.form.degree.push(3);
             this.form.index.push(i.id);
+            this.valid_per.push(true);
+            this.valid_msg.push("");
           });
         }
       });
@@ -295,7 +310,11 @@ export default {
       this.form.course_type.push("");
       this.form.ins_loc.push("");
       this.form.degree.push("");
-      this.form.percentage.push("");
+      this.form.percentage.push("");      
+      // this.valid.percentage.push(true);
+      // this.errMsg.percentage.push("");
+      this.valid.percentage.push(true);
+      this.errMsg.percentage.push("");
     },
     remove(i, index) {
       this.i = --this.i;
@@ -305,9 +324,26 @@ export default {
       this.form.ins_loc.splice(index, 1);
       this.form.degree.splice(index, 1);
       this.form.percentage.splice(index, 1);
+      this.valid.percentage.splice(index+1 , 1);
+      this.errMsg.percentage.splice(index+1 , 1);
 
       if (i != "") {
         axios.get(`/delete-education-detail/${i}`).then((response) => {});
+      }
+    },
+
+    percentageCheck(percentage, i) {
+      let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
+      if (!pattern.test(percentage)) {
+        // this.valid.percentage[i] = false;      
+        // this.errMsg.percentage[i]  = percentage+"Percentage should be less than 100";
+        this.valid_per[i] = false;      
+        this.valid_msg[i]  = percentage+"Percentage should be less than 100";
+      }else{
+        // this.valid.percentage[i]  = true;
+        // this.errMsg.percentage[i]  = "";
+        this.valid_per[i] = true;      
+        this.valid_msg[i]= " ";
       }
     },
   },

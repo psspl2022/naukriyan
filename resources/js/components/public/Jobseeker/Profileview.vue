@@ -35,15 +35,23 @@
         <div class="row" id="printProfile">
           <div class="col-md-4 pl-0">
             <div class="left-side">
-              <div class="profile-info">
+              <!-- <div class="text-center">
                 <img
                   class="mini-photo rounded-circle"
                   :src="'/jobseeker_profile_image/' + alldata.profile_pic_thumb"
-                  width="36"
-                  height="36"
+                  width="100"
+                  height="100"
                   v-if="alldata.profile_pic_thumb"
                 />
-
+              </div> -->
+              <div class="profile-info">
+                  <img
+                  class="mini-photo rounded-circle"
+                  :src="'/jobseeker_profile_image/' + alldata.profile_pic_thumb"
+                  width="150"
+                  height="150"
+                  v-if="alldata.profile_pic_thumb"
+                />
                 <img
                   class="mini-photo rounded-circle"
                   src="default_images/no_image_available.png"
@@ -54,7 +62,7 @@
                 <h3>{{ alldata.fname }} {{ alldata.lname }}</h3>
                 <span>{{ alldata.designation }}</span>
               </div>
-              <h4 class="ltitle">Contact</h4>
+              <h4 class="ltitle color-white">Contact</h4>
               <div class="contact-box pb0">
                 <div class="icon">
                   <i class="fas fa-phone"></i>
@@ -77,28 +85,36 @@
                   <!-- <i class="fas fa-map-marker-alt"></i> -->
                   <i class="fab fa-linkedin-in"></i> 
                 </div>
+              
                 <div class="detail">
-                  {{ alldata.linkedin }}
+                  <a :href="alldata.linkedin" class="color-white" target="_blank">
+                    {{ alldata.linkedin }}
+                    <i class="fas fa-check-circle"></i>
+                    <br>
+                  </a>
                 </div>
+                
+             
               </div>
 
-              <h4 class="ltitle">Job Details</h4>
+              <h4 class="ltitle color-white">Job Details</h4>
 
               <div class="refer-cov">
+                <!-- <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li> -->
                 <li>
                   <i class=""></i>Experience- {{ alldata.exp_year }} Yr-{{
                     alldata.exp_month
                   }}
                   Month
+                <li v-if="alldata.current_salary!==null">
+                <i class=""></i>Current Salary- {{ alldata.current_salary }} LPA
+                </li>
                 <li v-if="alldata.expected_salary!==null">
                   <i class=""></i>Expected Salary-
-                  {{ alldata.expected_salary }},00,000 / Annum
+                  {{ alldata.expected_salary }} LPA
                 </li>
-                <li v-if="alldata.current_salary!==null">
-                  <i class=""></i>Current Salary- {{ alldata.current_salary }},00,000 / Annum
-                </li>
-                <li>
-                  <i class=""></i>Preferred Location -
+              
+                  <li><i class=""></i>Preferred Location -
                   {{ alldata.preferred_location }}
                 </li>
                 <li>
@@ -107,10 +123,10 @@
                 
                
                 </li>
-                <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li>
+                
               </div>
 
-              <h4 class="ltitle">Profile</h4>
+              <h4 class="ltitle color-white">Profile</h4>
 
               <div class="refer-cov">
                 <li>Personal <i class="fas fa-check-circle"></i></li>
@@ -162,18 +178,26 @@
               >
                 <h6>
                   {{ professional.designations
-                  }}<span
+                  }}
+                  <span v-if="professional.currently_work_here != 1"
                     >{{ professional.from_date }} to
-                    {{ professional.to_date }}</span
+                    {{ professional.to_date }}
+                  </span
                   >
+                  <span v-else>Currently working since {{ professional.from_date }} 
+                  </span>
                 </h6>
                 <i>{{ professional.organisation }}</i>
                 <ul>
-                  <li>
+                  <li  v-if="professional.key_skill !==null">
+                    <i class="far fa-hand-point-right"></i>
+                    {{ professional.key_skill }}
+                  </li>
+                  <li  v-if="professional.functional_role !==null">
                     <i class="far fa-hand-point-right"></i>
                     {{ professional.functional_role }}
                   </li>
-                  <li>
+                  <li v-if="professional.responsibility !==null">
                     <i class="far fa-hand-point-right"></i>
                     {{ professional.responsibility }}
                   </li>
