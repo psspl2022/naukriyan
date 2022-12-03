@@ -318,7 +318,7 @@
                     type="number"
                     class="form-control"
                     name="exp_sal"
-                    v-on:keyup="salaryCheck(form.curr_sal, 'expected')"
+                    v-on:keyup="salaryCheck(form.exp_sal, 'expected')"
                     placeholder="Enter Expected Salary"
                     v-model="form.exp_sal"
                     min="0"
@@ -412,6 +412,7 @@ export default {
       menu: false,
       valid: { salary:{current:"", expected:""}, fname: true, lname: true, email: true, contact: true, location: true },
       errMsg: { salary:{current:"", expected:""}, fname: "", lname: "", email: "", contact: "", location: "" },
+      validation_msg: { salary:{current:false, expected:false}, fname: true, lname: true, email: true, contact: true, location: true },
       form: new Form({
         id: "",
         fname: "",
@@ -488,12 +489,15 @@ export default {
       if (this.form.fname.length < 2) {
         this.valid.fname = false;
         this.errMsg.fname = "First Name Should be Min 2 Letter";
+        this.validation_msg.fname = false;
       } else {
         if (rgx.test(this.form.fname)) {
           this.valid.fname = true;
+          this.validation_msg.fname = true;
         } else {
           this.valid.fname = false;
           this.errMsg.fname = "First Name only contain Alphabet and Space";
+          this.validation_msg.fname = false;
         }
       }
     },
@@ -503,12 +507,15 @@ export default {
       if (this.form.lname.length < 2) {
         this.valid.lname = false;
         this.errMsg.lname = "Last Name Should be Min 2 Letter";
+        this.validation_msg.lname = false;
       } else {
         if (rgx.test(this.form.lname)) {
           this.valid.lname = true;
+          this.validation_msg.lname = true;
         } else {
           this.valid.lname = false;
           this.errMsg.lname = "Last Name only contain Alphabet and Space";
+          this.validation_msg.lname = false;
         }
       }
     },
@@ -518,27 +525,33 @@ export default {
       if (!pattern.test(this.form.email)) {
         this.valid.email = false;
         this.errMsg.email = "Email is not vaild";
+        this.validation_msg.email = false;
       } else {
         axios.get(`/check-email/${this.form.email}`).then((response) => {
           if (response.data > 0) {
             this.valid.email = false;
             this.errMsg.email = "Email already exist";
+            this.validation_msg.email = false;
           } else {
             this.valid.email = true;
+            this.validation_msg.email = true;
           }
         });
       }
     },
     salaryCheck(salary, index) {
-      let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
+      // let pattern = /^\d(\d(\.(\d\d?|0))?)?$/;
+      let pattern = /^\d{0,2}(\.\d{1,2})?$/;
 
       // var pattern = new RegExp("^\d{0,2}\.\d{0,2}$");
       if (!pattern.test(salary)) {
         this.valid.salary[index] = false;      
         this.errMsg.salary[index] = "Salary should be less than 1 Cr.";
+        this.validation_msg.salary[index] = false;
       }else{
         this.valid.salary[index] = true;
         this.errMsg.salary[index] = "";
+        this.validation_msg.salary[index] = true;
       }
     },
     // Contact Validation function
@@ -547,13 +560,16 @@ export default {
       if (!pattern.test(this.form.contact_no)) {
         this.valid.contact = false;
         this.errMsg.contact = "Number is not vaild";
+        this.validation_msg.contact = true;
       } else {
         axios.get(`/check-mobile/${this.form.contact_no}`).then((response) => {
           if (response.data > 0) {
             this.valid.contact = false;
             this.errMsg.contact = "Number already exist";
+            this.validation_msg.contact = false;
           } else {
             this.valid.contact = true;
+            this.validation_msg.contact = true;
           }
         });
       }
@@ -563,10 +579,12 @@ export default {
       if (this.locationlist.length >= 5) {  
         this.locationlist = this.locationlist.slice(0,5);  
         this.valid.location = false;
-        this.errMsg.location = "Only 5 locations are allowed"   
+        this.errMsg.location = "Only 5 locations are allowed";
+        this.validation_msg.location = false;   
       } else {
         this.valid.location = true;
-        this.errMsg.location = ""    
+        this.errMsg.location = "";    
+        this.validation_msg.location = true;
       }
     },
     // getting all location
@@ -587,7 +605,15 @@ export default {
     addPersnol() {
       let date = new Date();
       this.form.preferred_loc = this.locationlist;
-      if (
+      if(!this.validation_msg.fname ||
+        !this.validation_msg.lname ||
+        !this.validation_msg.email ||
+        !this.validation_msg.contact ||
+        !this.validation_msg.salary.current ||
+        !this.validation_msg.salary.expected ){
+        swal("Please check all the fields validation");
+      }
+      else if (
         !this.valid.fname ||
         !this.valid.lname ||
         !this.valid.email ||

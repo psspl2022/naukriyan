@@ -25,6 +25,11 @@
                 id="file"
                 class="custom-file-input-re"
               />
+              <span v-if="form.resume">
+                <a :href="'/resume/' + form.resume" target="blank" class="btn btn-primary"
+                  ><i class="fas fa-download"></i> Download Resume</a
+                >
+              </span>
               <has-error :form="form" field="resume"></has-error>
             </div>
             <div class="col-sm-6">
@@ -102,7 +107,7 @@ export default {
   methods: {
     checkCover(){
       let count = this.form.cover.match(/(\w+)/g).length;
-      if(count > 10){
+      if(count > 500){
         this.valid.cover = false;
         this.errMsg.cover = "Only 500 words are allowed";
         let index = this.form.cover.lastIndexOf(" ");

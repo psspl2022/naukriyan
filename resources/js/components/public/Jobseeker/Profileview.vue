@@ -191,15 +191,15 @@
                 <ul>
                   <li  v-if="professional.key_skill !==null">
                     <i class="far fa-hand-point-right"></i>
-                    {{ professional.key_skill }}
+                    <span class="font-weight-bold">Key Skill: </span>{{ professional.key_skill }}
                   </li>
                   <li  v-if="professional.functional_role !==null">
                     <i class="far fa-hand-point-right"></i>
-                    {{ professional.functional_role }}
+                    <span class="font-weight-bold">Functional Role: </span>{{ professional.functional_role }}
                   </li>
                   <li v-if="professional.responsibility !==null">
                     <i class="far fa-hand-point-right"></i>
-                    {{ professional.responsibility }}
+                    <span class="font-weight-bold">Responsibility: </span>{{ professional.responsibility }}
                   </li>
                 </ul>
               </div>

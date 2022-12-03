@@ -119,16 +119,16 @@
                                 <span class="bold-600 font-20 color-blue" v-if="professional.currently_work_here != 1"
                                 ><i>{{ professional.from_date }} to {{ professional.to_date }}</i>
                                 </span>
-                                <span class="bold-600 font-20 color-blue" v-else><i>{{ professional.from_date }} to Current</i>
+                                <span class="bold-600 font-20 color-blue" v-else><i>{{ professional.from_date }} to Currently Working</i>
                                 </span>
                                 <ul>
                                     <li class="font-22 bold-500 color-black" v-if="professional.key_skill !==null">
                                     <i class="font-20 color-blue fa fa-circle"></i>
-                                    {{ professional.key_skill }}
+                                    <span class="font-weight-bold">Skills: </span>{{ professional.key_skill }}
                                     </li>
                                     <li class="font-22 bold-500 color-black" v-if="professional.responsibility !==null">
                                     <i class="font-20 color-blue fa fa-circle"></i>
-                                    {{ professional.responsibility }}
+                                    <span class="font-weight-bold">Responsibility: </span>{{ professional.responsibility }}
                                     </li>
                                 </ul>
                             </div>
@@ -178,12 +178,12 @@
                                 <div>
                                     <!-- <span class="font-24 bold-600">{{ cert.course | capitalize }}</span><br>
                                     <span class="color-grey font-20 bold-600"><i>{{ cert.certificate_institute_name }} ({{ cert.cert_from_date }}  -  {{ cert.cert_to_date }})</i></span> -->
-                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Experince :  <span class="bold-600 font-22 color-blue">{{ alldata.exp_year }} Yr-{{
-                                      alldata.exp_month}} </span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Experince :  <span class="bold-600 font-22 color-blue">{{ alldata.exp_year }} Yr {{
+                                      alldata.exp_month}} Month </span></span><br>
                                     <span class="mt-2 mb-1 font-24 bold-600 color-black">Current Salary :  <span class="bold-600 font-22 color-blue">{{ alldata.current_salary }} LPA</span></span><br>
-                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Expected Salary :  <span class="bold-600 font-22 color-blue">{{ alldata.expected_salary }}</span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Expected Salary :  <span class="bold-600 font-22 color-blue">{{ alldata.expected_salary }} LPA</span></span><br>
                                     <span class="mt-2 mb-1 font-24 bold-600 color-black">Preferred Location :  <span class="bold-600 font-22 color-blue">{{ alldata.preferred_location }}</span></span><br>
-                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Notice Period :  <span class="bold-600 font-22 color-blue">{{ alldata.notice_period }}</span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Notice Period :  <span class="bold-600 font-22 color-blue">{{ alldata.notice_period ? alldata.notice_period : "Not Specified" }}</span></span><br>
                                   </div>
                             </div>                        
                         </div>
