@@ -351,7 +351,7 @@ class StageRegistration extends Controller
             'profile_pic_thumb',
             'preferred_location',
             'current_salary',
-            'expected_salary',
+            'expected_salary'
         )->get();
         return  $data;
     }

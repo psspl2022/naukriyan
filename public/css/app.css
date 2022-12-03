@@ -1,9 +1,7 @@
-@import url(https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap);
-/* @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Rubik&display=swap');
- */
- @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Rubik&display=swap');
-/*!
-* Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
+@import url(https://fonts.googleapis.com/css2?family=Raleway:wght@300;
+
+400;500;600;700&display=swap);/*!
+ * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 .fa,
@@ -9440,7 +9438,7 @@ ul.dropdown-menu.user-menu {
   height: auto;
   padding: 11px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   background-clip: inherit;
 }
@@ -9809,7 +9807,7 @@ a {
 .popupForm input.form-control {
   border-radius: 0px !important;
   padding: 11px 10px 11px 10px !important;
-  font-size: 14px !important;
+  font-size: 12px !important;
   border-width: 2px !important;
   height: 40px !important;
 }
@@ -18271,7 +18269,7 @@ pre code {
   height: 45px;
   padding: .375rem .75rem;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
@@ -41133,10 +41131,5 @@ a.text-dark:focus {
 
 .far-eye {
   color: #2dd42d;
-}
-
-body{
-  font-family: 'Rubik', sans-serif!important;
-  /* font-family: 'Kanit', sans-serif!important; */
 }
 
