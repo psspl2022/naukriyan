@@ -40,7 +40,7 @@
                         <h2 style="color: #002256;">{{ alldata.designation }}</h2>
                     </div>
                     <div>
-                        <div class=" font-800 color-black;" style="font-size: 16px;"v-if="resumeInfos[0].cover_letter!==null">
+                        <div class=" font-800 color-black;" style="font-size: 16px;" v-if="resumeInfos[0].cover_letter!==null">
                             {{resumeInfos[0].cover_letter}}
                         </div>
                     </div>
@@ -123,11 +123,11 @@
                                 </span>
                                 <ul>
                                     <li class="font-22 bold-500 color-black" v-if="professional.key_skill !==null">
-                                    <i class="color-blue fa fa-circle"></i>
+                                    <i class="font-20 color-blue fa fa-circle"></i>
                                     {{ professional.key_skill }}
                                     </li>
                                     <li class="font-22 bold-500 color-black" v-if="professional.responsibility !==null">
-                                    <i class="color-blue fa fa-circle"></i>
+                                    <i class="font-20 color-blue fa fa-circle"></i>
                                     {{ professional.responsibility }}
                                     </li>
                                 </ul>
@@ -158,7 +158,7 @@
                             <div class="mt-5">
                                 <h2 class="bold-800 color-black" >SKILLS</h2>     
                                 <div>
-                                    <span v-for="skl in skillInfo" :key="skl.id" class="profileview-skill-span"> {{ skl.skill }} </span>
+                                    <span v-for="skl in skillInfo" :key="skl.id" class="profileview-skill-span mb-3"> {{ skl.skill }} </span>
                                     <!-- <span> <li v-for="skl in skillInfo" :key="skl.id">  {{ skl.skill }} <span v-if="skl.expert_level != ''">-</span> {{ skl.expert_level }}</li></span> -->
                                 </div>
                             </div>                        
@@ -170,6 +170,21 @@
                                     <span class="font-24 bold-600">{{ cert.course | capitalize }}</span><br>
                                     <span class="color-grey font-20 bold-600"><i>{{ cert.certificate_institute_name }} ({{ cert.cert_from_date }}  -  {{ cert.cert_to_date }})</i></span>
                                 </div>
+                            </div>                        
+                        </div>
+                        <div class="row " >
+                            <div class="mt-5">
+                                <h2 class="bold-800 color-black" >ADDITIONAL DETAILS</h2>     
+                                <div>
+                                    <!-- <span class="font-24 bold-600">{{ cert.course | capitalize }}</span><br>
+                                    <span class="color-grey font-20 bold-600"><i>{{ cert.certificate_institute_name }} ({{ cert.cert_from_date }}  -  {{ cert.cert_to_date }})</i></span> -->
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Experince :  <span class="bold-600 font-22 color-blue">{{ alldata.exp_year }} Yr-{{
+                                      alldata.exp_month}} </span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Current Salary :  <span class="bold-600 font-22 color-blue">{{ alldata.current_salary }} LPA</span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Expected Salary :  <span class="bold-600 font-22 color-blue">{{ alldata.expected_salary }}</span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Preferred Location :  <span class="bold-600 font-22 color-blue">{{ alldata.preferred_location }}</span></span><br>
+                                    <span class="mt-2 mb-1 font-24 bold-600 color-black">Notice Period :  <span class="bold-600 font-22 color-blue">{{ alldata.notice_period }}</span></span><br>
+                                  </div>
                             </div>                        
                         </div>
                     </div>

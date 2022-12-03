@@ -11,24 +11,23 @@
               <div></div>
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Skill</label>
-              <input v-for="i in i" :key="i" type="text" class="form-control mb-3" :name="'skill' + i"
+              <input v-for="i in i" :key="'skill' + i" type="text" class="form-control mb-3" :name="'skill' + i"
                 placeholder="Enter Skill" list="skill_list" v-model="form.skill[i - 1]" @keyup="
                   () => {
                     initItems(form.skill[i - 1]);
                   }
                 " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems" @tags-changed="update"
                 :class="{ 'is-invalid': form.errors.has('skill') }" />
-              <datalist id="skill_list" v-for="i in i" :key="i">
+              <datalist id="skill_list" v-for="i in i" :key="'d' + i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
               </datalist>
-              <has-error :form="form" field="skill" v-for="i in i" :key="i"></has-error>
             </div>
             <div class="col-sm-1"></div>
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Expert Level</label>
-              <select v-for="i in i" :key="i" placeholder="Select Expert Level" class="form-control custom-select mb-3"
+              <select v-for="i in i" :key="'expert'.i" placeholder="Select Expert Level" class="form-control custom-select mb-3"
                 :name="'expert_level' + i" v-model="form.expert_level[i - 1]" :class="{
                   'is-invalid': form.errors.has('expert_level'),
                 }">
@@ -37,7 +36,6 @@
                 <option value="Moderate">Moderate</option>
                 <option value="Expert">Expert</option>
               </select>
-              <has-error :form="form" field="expert_level" v-for="i in i" :key="i"></has-error>
             </div>
             <div class="col-sm-1"></div>
           </div>
@@ -143,6 +141,11 @@ export default {
             this.form.skill.push(i.text);
           });
           this.form.post("/add-skill-detail").then((response) => {
+            this.updatepStage();
+              toast({
+              type: "success",
+              title: "Skill Detail Added successfully",
+            })
             // if(response.data.stage.stage == 6)
             // {
             //   window.location.href='/#/profileview';
