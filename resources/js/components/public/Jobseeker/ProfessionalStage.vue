@@ -390,7 +390,7 @@ export default {
             this.form.index.push(i.id);
             this.form.responsibility.push(i.responsibility);
             this.form.key_skill.push(i.key_skill);
-            this.form.currently_work.push(i.currently_work_here)
+            this.form.currently_work.push(i.currently_work_here);
           });
 
           for( let  x = 0; x < this.form.key_skill.length; x++){  
