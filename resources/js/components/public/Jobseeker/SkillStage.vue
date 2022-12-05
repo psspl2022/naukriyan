@@ -8,9 +8,10 @@
           <div class="row ">
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
-              <div></div>
+              <div>
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Skill</label>
+              <input type="hidden" v-for="i in i" :key="'skill' + i" v-model="form.index[i - 1]" />
               <input v-for="i in i" :key="'skill' + i" type="text" class="form-control mb-3" :name="'skill' + i"
                 placeholder="Enter Skill" list="skill_list" v-model="form.skill[i - 1]" @keyup="
                   () => {
@@ -21,8 +22,8 @@
               <datalist id="skill_list" v-for="i in i" :key="'d' + i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
               </datalist>
+              </div>
             </div>
-            <div class="col-sm-1"></div>
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
               <label class="col-form-label" for="">
@@ -36,6 +37,16 @@
                 <option value="Moderate">Moderate</option>
                 <option value="Expert">Expert</option>
               </select>
+            </div>            
+            <div class="col-sm-1">
+              <div style="marginTop: 12rem; lineHeight: 3.5 ;">
+                <div v-for="i in i" :key="'skill' + i">
+                  <span title="Delete" style="cursor:pointer" v-on:click="deleteSkill(form.index[i - 1], i - 1)">
+                    <!-- <i style="color: #f95602;" class="fa fa-trash font-18 "  v-if="i > 3"></i> -->
+                    <i style="color: #f95602;" class="fa fa-times-circle font-20"  v-if="i > 3"></i>
+                  </span>
+                </div>
+              </div>
             </div>
             <div class="col-sm-1"></div>
           </div>
@@ -75,7 +86,7 @@
           </span> -->
         </fieldset>
         <span v-if="j==0" v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="j==1" v-on:click="remove(j)" class="btn btn-primary mt-3">Remove</span>
+        <span v-if="j==1"  class="btn btn-primary mt-3">Remove</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
       </form>
     </div>
@@ -173,17 +184,27 @@ export default {
       
     },
 
+    deleteSkill(i, index) {
+      this.i = --this.i;
+      this.form.skill.splice(index, 1);
+      this.form.expert_level.splice(index, 1);
+      this.form.index.splice(index, 1);
+
+      if (i != "") {
+        axios.get(`/delete-skill-detail/${i}`).then((response) => {});
+      }
+    },
     addMore(j) {
       this.j = ++j;
     },
-    remove(j) {
-      this.j = --this.j;
+    // remove(j) {
+    //   this.j = --this.j;
 
-      if (i != "") {
-        axios.get(`/delete-skill-detail/${i}`).then((response) => { });
-      }
+    //   if (i != "") {
+    //     axios.get(`/delete-skill-detail/${i}`).then((response) => { });
+    //   }
 
-    },
+    // },
     getAllSkill() {
       axios.get("/get-skill-detail").then((response) => {
         // console.log(response.data.length);

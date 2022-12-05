@@ -170,7 +170,7 @@ height: 35px !important;
   #cam{
     color:#f95602;
   }
-
+ 
 
 
   /* profile view */
@@ -183,6 +183,15 @@ height: 35px !important;
     margin-left: 8px;
     font-size: 24px;
   }
+
+   hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 2.5px solid #002256;
+  } 
+  
+   */
 
 
   .bold-500{
@@ -208,6 +217,9 @@ height: 35px !important;
   .font-20{
     font-size: 20px!important;
   }
+  .font-18{
+    font-size: 18px!important;
+  }
 
   .color-black{
     color: #000!important;
@@ -223,12 +235,7 @@ height: 35px !important;
     list-style-type: none!important;
   }
 
-  hr{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 2.5px solid #002256;
-  } */
+ 
 
 
 

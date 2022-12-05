@@ -8,6 +8,7 @@
           <legend v-if="i == 1">Education</legend>
           <div class="row mb-2">
             <div class="col-sm-4">
+              <input type="hidden"  :name="'index' + i"  v-model="form.index[i-1]" />
               <label class="col-form-label" for="">
                 <span style="color: red"> * </span>Qualification</label
               >
@@ -60,7 +61,7 @@
                     :class="valid_per[i] ? 'validation-msg' : 'reomve-validation-msg'"
                   >
                     {{ valid_msg[i] }} -->
-                  </span>
+                  <!-- </span> -->
               <input
                 type="number"
                 class="form-control"

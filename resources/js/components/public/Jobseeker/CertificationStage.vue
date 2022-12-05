@@ -6,6 +6,7 @@
         method="post"
         @submit.prevent="submitNocertificate()"
       >
+
         <div class="form-check" v-on:click="addNocertificate">
           <input
             class="form-check-input"
@@ -34,6 +35,7 @@
       >
         <fieldset class="mt-2" v-for="i in formIndex" :key="i">
           <legend v-if="i == 1">Certification</legend>
+          <input type="hidden" v-model="form.index[i - 1]" />
           <div class="row mb-2">
             <div class="col-sm-4">
               <label class="col-form-label" for="">

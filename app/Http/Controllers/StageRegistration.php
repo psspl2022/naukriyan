@@ -195,9 +195,10 @@ class StageRegistration extends Controller
             $a = JsSkill::updateOrCreate(
                 [
                     'js_userid' => 2,
-                    'skill' => $req->skill[$i]
+                    'id' => $req->index[$i]
                 ],
                 [
+                    'skill' => $req->skill[$i],
                     'expert_level' => (($i < count($req->expert_level)) && ($req->expert_level[$i] != "")) ? $req->expert_level[$i] : ""
                 ]
             );
@@ -228,8 +229,7 @@ class StageRegistration extends Controller
             $a = JsEducationalDetail::updateOrCreate(
                 [
                     'js_userid' => 2,
-                    'degree_name' => $req->degree[$i],
-                    'course_type' => $req->course_type[$i]
+                    'id' => $req->index[$i],
                 ],
                 [
                     'degree_name' => $req->degree[$i],
@@ -360,7 +360,7 @@ class StageRegistration extends Controller
             'profile_pic_thumb',
             'preferred_location',
             'current_salary',
-            'expected_salary'
+            'expected_salary',
         )->get();
         return  $data;
     }

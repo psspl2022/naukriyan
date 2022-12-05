@@ -11,7 +11,7 @@
         @submit.prevent="getAllLocation()"
       >
         <div class="form-check text-center">
-          
+          <input type="hidden" v-model="form.index[i - 1]" />
           <label class="form-check-label">Select One:-  </label>
           <input
             class=""
@@ -56,7 +56,7 @@
                 v-model="form.designation[i - 1]"
                 :class="{ 'is-invalid': form.errors.has('designation') }"
               />
-              <input type="hidden" v-model="form.index[i - 1]" />
+            
               <has-error :form="form" field="name"></has-error>
             </div>
             <div class="col-sm-4">
