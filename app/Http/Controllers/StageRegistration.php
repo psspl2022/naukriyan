@@ -195,7 +195,7 @@ class StageRegistration extends Controller
             $a = JsSkill::updateOrCreate(
                 [
                     'js_userid' => 2,
-                    'id' => $req->index[$i]
+                    'id' => (isset($req->index[$i])) ? $req->index[$i] : "",
                 ],
                 [
                     'skill' => $req->skill[$i],
@@ -229,7 +229,7 @@ class StageRegistration extends Controller
             $a = JsEducationalDetail::updateOrCreate(
                 [
                     'js_userid' => 2,
-                    'id' => $req->index[$i],
+                    'id' => (isset($req->index[$i])) ? $req->index[$i] : "",
                 ],
                 [
                     'degree_name' => $req->degree[$i],
