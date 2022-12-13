@@ -21,15 +21,6 @@
             value="fresher"
             name="professional_exp"
           />
-          <label class="form-check-label" for="fresher">Fresher</label>
-          <input
-            class=""
-            v-model="form.professional_experience"
-            type="radio"
-            id="internship"
-            value="internship"
-            name="professional_exp"
-          />
           <label class="form-check-label" for="internship">Internship</label>
           <input
             class=""
@@ -37,6 +28,15 @@
             type="radio"
             id="experienced"
             value="experienced"
+            name="professional_exp"
+          />
+          <label class="form-check-label" for="fresher">Fresher</label>
+          <input
+            class=""
+            v-model="form.professional_experience"
+            type="radio"
+            id="internship"
+            value="internship"
             name="professional_exp"
           />
           <label class="form-check-label" for="experienced">Experienced</label>

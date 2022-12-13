@@ -2,7 +2,7 @@
   <div class="row stage-main-div">
     <div class="col-sm-12">
       <i class="fa fa-info" aria-hidden="true"></i
-      ><span style="color: red">  Qualification should be in higher to lower order</span>
+      ><span style="color: red">  Higher to Lower</span>
       <form class="popupForm" role="form" method="post" @submit.prevent="addEducation()">
         <fieldset class="mt-2" v-for="(i,index) in i" :key="index">
           <legend v-if="i == 1">Education</legend>

@@ -88,6 +88,7 @@
         <span v-if="j==0" v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
         <span v-if="j==1"  class="btn btn-primary mt-3">Remove</span>
         <button type="submit" class="btn btn-primary mt-3">Save</button>
+        <span v-on:click="updatepStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
     </div>
   </div>
@@ -232,7 +233,7 @@ export default {
       // console.log(this.tags);
     },
     initItems(skill) {
-      console.log(skill)
+      // console.log(skill)
       // if (this.skill.length < 2) return;
       const url = `get-allskills/` + skill;
 
@@ -243,7 +244,7 @@ export default {
             return a.name;
           });
         })
-      console.log(this.skill_list)
+      // console.log(this.skill_list)
     },
   },
 };
