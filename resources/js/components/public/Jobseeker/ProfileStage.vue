@@ -154,6 +154,18 @@
             </div>
           
             <div class="col-sm-4">
+              <label class="col-form-label" for="">Designation</label>
+              <input
+                    type="text"
+                    class="form-control"
+                    name="designation"
+                    placeholder="Enter Designation"
+                    v-model="form.designation"
+                  />
+              <has-error :form="form" field="designation"></has-error>
+            </div>
+
+            <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span class="validation-msg"> * </span>
                 Date Of Birth</label
@@ -212,7 +224,7 @@
                         19+ 
                       </option>
                     </select>
-                  <span class="experience-span">year</span>
+                  <span class="experience-span">year(s)</span>
                     <has-error :form="form" field="exp_year"></has-error>
                   </div>
                   <div class="col-sm-6">
@@ -232,7 +244,7 @@
                         {{ exper }}
                       </option>
                     </select>
-                  <span class="experience-span">month</span>
+                  <span class="experience-span">month(s)</span>
                     <has-error :form="form" field="exp_mon"></has-error>
                   </div>
                 </div>
@@ -281,7 +293,7 @@
               </select>
               <has-error :form="form" field="job_functional_role_id"></has-error>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <label class="col-form-label w-100" for="">
                   <!-- <span class="validation-msg"> * </span> -->
                     Current Salary(LPA)
@@ -304,7 +316,7 @@
                   />
                 <has-error :form="form" field="curr_sal"></has-error>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <label class="col-form-label w-100" for="">
                   <!-- <span class="validation-msg"> * </span> -->
                   Expected Salary(LPA)<span
@@ -326,6 +338,27 @@
                   />
                 <has-error :form="form" field="exp_sal"></has-error>
             </div>
+
+            <div class="col-sm-4">
+              <label class="col-form-label" for="">Select Notice Period</label>
+              <select
+                class="form-control custom-select"
+                name="notice_period"
+                v-model="form.notice_period"
+                :class="{
+                  'is-invalid': form.errors.has('notice_period'),
+                }"
+              >
+                <option disabled value="">Select Notice Period</option>
+                <option value="Currently Serving">Currently Serving</option>
+                <option value="1-15 Days">1-15 Days</option>
+                <option value="1 Month">1 Month</option>
+                <option value="2 Months">2 Months</option>
+                <option value="3 Months">3 Months</option>
+              </select>
+              <has-error :form="form" field="notice_period"></has-error>
+            </div>
+            
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 <span class="validation-msg"> * </span>
@@ -375,6 +408,7 @@
 
               <has-error :form="form" field="job_exp"></has-error>
             </div>
+
             <div class="col-sm-4">
               <label class="col-form-label" for="">
                 Linkedin Profile Link</label>
@@ -387,6 +421,7 @@
               />
               <has-error :form="form" field="linkedin"></has-error>
             </div>
+            
           </div>          
         </fieldset>
 
@@ -430,6 +465,8 @@ export default {
         profile_pic_thumb: "",
         curr_sal:"",
         exp_sal:"",
+        notice_period: "",
+        designation: ""
       }),
       progress: "",
       selectedImage: null,
@@ -579,12 +616,12 @@ export default {
       if (this.locationlist.length >= 5) {  
         this.locationlist = this.locationlist.slice(0,5);  
         this.valid.location = false;
-        this.errMsg.location = "Only 5 locations are allowed";
-        this.validation_msg.location = false;   
+        this.errMsg.location = "(Select Max 5 locations)";
+        // this.validation_msg.location = false;   
       } else {
         this.valid.location = true;
         this.errMsg.location = "";    
-        this.validation_msg.location = true;
+        // this.validation_msg.location = true;
       }
     },
     // getting all location
@@ -664,8 +701,12 @@ export default {
             this.form.date = i.dob;
             this.form.curr_sal = i.current_salary  == null ? "" :i.current_salary;
             this.form.exp_sal = i.expected_salary == null ? "" : i.expected_salary;
+            this.form.notice_period = i.notice_period  == null ? "" :i.notice_period;
+            this.form.designation = i.designation  == null ? "" :i.designation;
             this.valid.salary.current = "true";
             this.valid.salary.expected = "true";
+            this.validation_msg.salary.current = "true";
+            this.validation_msg.salary.expected = "true";
           });
         }
       });

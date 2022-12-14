@@ -68,8 +68,9 @@
                   <i class="fas fa-phone"></i>
                 </div>
                 <div class="detail">
-                  {{ alldata.contact }} <i class="fas fa-check-circle"></i
-                  ><br />
+                  {{ alldata.contact }} 
+                  <!-- <i class="fas fa-check-circle"></i> -->
+                  <br />
                 </div>
               </div>
               <div class="contact-box pb0">
@@ -77,7 +78,9 @@
                   <i class="fas fa-globe-americas"></i>
                 </div>
                 <div class="detail">
-                  {{ alldata.email }} <i class="fas fa-check-circle"></i><br />
+                  {{ alldata.email }} 
+                  <!-- <i class="fas fa-check-circle"></i> -->
+                  <br />
                 </div>
               </div>
               <div class="contact-box" v-if="alldata.linkedin !==null">
@@ -89,7 +92,7 @@
                 <div class="detail">
                   <a :href="alldata.linkedin" class="color-white" target="_blank">
                     {{ alldata.linkedin }}
-                    <i class="fas fa-check-circle"></i>
+                    <!-- <i class="fas fa-check-circle"></i> -->
                     <br>
                   </a>
                 </div>
@@ -115,18 +118,23 @@
                 </li>
               
                   <li><i class=""></i>Preferred Location -
-                  {{ alldata.preferred_location }}
+                  {{ (alldata.preferred_location).replace(/[,]+/g, ", ") }}
                 </li>
                 <li>
+                  <i class=""></i>DOB - {{ alldata.dob | DOBformat }}
+                </li>
+                <li v-if="alldata.notice_period!==null">
                   <i class=""></i>Notice Period - {{ alldata.notice_period }}
                 </li>
-                
+                <li v-else>
+                  <i class=""></i>Notice Period - Not Mentioned
+                </li>
                
                 </li>
                 
               </div>
 
-              <h4 class="ltitle color-white">Profile</h4>
+              <!-- <h4 class="ltitle color-white">Profile</h4>
 
               <div class="refer-cov">
                 <li>Personal <i class="fas fa-check-circle"></i></li>
@@ -135,14 +143,14 @@
                 <li>Certification <i class="fas fa-check-circle"></i></li>
                 <li>Education <i class="fas fa-check-circle"></i></li>
                 <li>Resume <i class="fas fa-check-circle"></i></li>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-md-8 rt-div">
             <div class="rit-cover">
               <div class="hotkey">
                 <h1 class="">{{ alldata.fname }} {{ alldata.lname }}</h1>
-                <small>{{ alldata.designation }}</small>
+                <!-- <small>{{ alldata.designation }}</small> -->
               </div>
               <h2 v-if="resumeInfos[0].cover_letter!==null" class="rit-titl"><i class="far fa-user"></i> Profile</h2>
               <div  class="about" id="print_no_buttons">
@@ -180,11 +188,11 @@
                   {{ professional.designations
                   }}
                   <span v-if="professional.currently_work_here != 1"
-                    >{{ professional.from_date }} to
-                    {{ professional.to_date }}
+                    >{{ professional.from_date | DOBformat }} to
+                    {{ professional.to_date | DOBformat }}
                   </span
                   >
-                  <span v-else>Currently working since {{ professional.from_date }} 
+                  <span v-else>Currently working since {{ professional.from_date | DOBformat }} 
                   </span>
                 </h6>
                 <i>{{ professional.organisation }}</i>

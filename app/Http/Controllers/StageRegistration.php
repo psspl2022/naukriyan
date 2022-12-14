@@ -334,6 +334,8 @@ class StageRegistration extends Controller
             'linkedin' => $req->linkedin,
             'current_salary' => $req->curr_sal,
             'expected_salary' => $req->exp_sal,
+            'notice_period' => $req->notice_period,
+            'designation' => $req->designation,
         ];
 
         $data = Jobseeker::where('id', $userId)->update($personalData);
@@ -361,6 +363,8 @@ class StageRegistration extends Controller
             'preferred_location',
             'current_salary',
             'expected_salary',
+            'notice_period',
+            'designation'
         )->get();
         return  $data;
     }
