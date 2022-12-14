@@ -913,6 +913,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //Self-Registration
     Route::get('candidate_self_registration_list', 'SelfRegisterController@candidateSelfRegistrationList');
 
+    //feedback
+    Route::get('feedback-list', 'FeedbackController@feedbackList');
+
     //Becil User Data Export
     Route::get('becildata-exportuser', 'BecilUserProfileController@exportuserdetails');
 
@@ -947,6 +950,11 @@ Route::prefix('admin')->group(function () {
     Route::get('forget-password/{token}', 'Auth\AdminLoginController@forgetPasswordForm')->name('forget-password.form');
     Route::post('forget-password/reset', 'Auth\AdminLoginController@forgetPasswordStore')->name('reset-password-store');
 });
+
+
+//Feedbac-Form
+Route::get('/feedback', 'FeedbackController@feedback')->name('feedback');
+Route::post('/post-feedback', 'FeedbackController@postFeedback')->name('post-feedback');
 
 //Self Register
 Route::get('/online-registration', 'SelfRegisterController@candidateSelfRegistration')->name('online-registration');

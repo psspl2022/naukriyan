@@ -117,8 +117,12 @@
                         </div>       
                         <div class="row">  
                           <div class="col-md-4">
+                            <label for="" class="m-2 fw-bold">Date of Birth <span style="font-size: 14px;font-weight: 600;color: #ee1201;">*</span></label><br>
+                            <input type="date" class="form-control " required name="dob" id="" placeholder="Select DOB" >
+                          </div> 
+                          <div class="col-md-4">
                             <label for="" class="m-2 fw-bold">Gender <span style="font-size: 14px;font-weight: 600;color: #ee1201;">*</span></label><br>
-                            <select id="" name="gender" class="form-control" style="background-color:white;" required>
+                            <select id="" name="gender" class="form-control"  style="background-color:white;" required>
                                 <option value="">Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -133,6 +137,9 @@
                                   <option value="Skill Development">Skill Development</option>
                               </select>    
                           </div> 
+                        
+                        </div>
+                        <div class="row">  
                           <div class="col-md-4">
                             <label for="" class="m-2 fw-bold">Qualification <span style="font-size: 14px;font-weight: 600;color: #ee1201;">*</span></span></label><br>
                               <select name="qualification" id="qualification" class="form-control" style="background-color:white;" required>
@@ -142,8 +149,6 @@
                                     @endforeach 
                               </select>    
                           </div>   
-                        </div>
-                        <div class="row">  
                           <div class="col-md-4">
                             <label for="" class="m-2 fw-bold">Resume</label><br>
                             <input type="file" class="form-control" name="resume_file" accept=".doc, .docx, .pdf" placeholder="Enter Contact" >
@@ -158,6 +163,9 @@
                                 @endforeach 
                             </select> 
                           </div> 
+                        
+                        </div>
+                        <div class="row">
                           <div class="col-md-4">
                             <label for="" class="m-2 fw-bold">District <span style="font-size: 14px;font-weight: 600;color: #ee1201;">*</span></label><br>
                             <select name="district" id="district_id" class="form-control"
@@ -165,8 +173,6 @@
                                 <option value="">Select District Name</option> 
                             </select>   
                           </div>     
-                        </div>
-                        <div class="row">
                           <div class="col-md-4">
                             <label for="" class="m-2 fw-bold">City/Village</label><br>
                             <input type="text" class="form-control" name="city" id="" placeholder="Enter City" >
@@ -175,7 +181,7 @@
                             <label for="" class="m-2 fw-bold">Pincode</label><br>
                             <input type="text" class="form-control number_validation" maxlength="6" name="pincode" id="" placeholder="Enter Pincode" >
                           </div> 
-                          <div class="col-md-8">
+                          <div class="col-md-12">
                             <label for="" class="m-2 fw-bold">Address</label><br>
                             <textarea name="address" class="form-control" placeholder="Enter complete address here"></textarea>
                           </div>

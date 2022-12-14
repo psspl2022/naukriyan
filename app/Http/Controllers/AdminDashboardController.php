@@ -16,6 +16,7 @@ use App\SelfRegister;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\ConsolidateData;
+use App\Feedback;
 use App\Tracker;
 use DB;
 
@@ -66,7 +67,10 @@ class AdminDashboardController extends Controller
         ->where('js_resumes.resume_video_link', '<>', null)
         ->count();
 
-        $data['total_online_registration']=SelfRegister::select('id')
+        $data['total_online_registration'] = SelfRegister::select('id')
+        ->count();
+
+        $data['total_feedback']=Feedback::select('id')
         ->count();
 
         return response()->json(['data' => $data], 200);

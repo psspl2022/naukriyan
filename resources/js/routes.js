@@ -311,6 +311,9 @@ import TestPage from "./components/public/Employer/TestPage.vue";
 //Candidate Self Registration
 import selfRegistration from "./components/admin/self_registration/List.vue";
 
+//Feedback
+import feedback from "./components/admin/feedback/List.vue";
+
 //Becil Candidate User
 import BecilCandidateList from './components/admin/reports/BecilCandidateList.vue';
 
@@ -1428,6 +1431,13 @@ export const routes = [
         path: "/self-registration-list",
         component: selfRegistration,
     },
+
+     //feedback
+     {
+        path: "/feedback-list",
+        component: feedback,
+    },
+
     //Becil Candidate list
     {
         path: '/becil-candidate-list',

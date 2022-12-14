@@ -284,6 +284,22 @@
             </router-link>
           </div>
 
+          <div class="col-lg-3 col-6">
+            <router-link :to="`/feedback-list`">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3>{{ countAll.total_feedback }}</h3>
+
+                  <p>Feedbacks</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+              </div>
+            </router-link>
+          </div>
+
         </div>
       </div>
       <!-- /.container-fluid -->

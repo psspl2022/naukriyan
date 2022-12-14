@@ -60,6 +60,7 @@ class SelfRegisterController extends Controller
        $self->state = $req->state;
        $self->district = $req->district;
        $self->city = $req->city;
+       $self->dob = $req->dob;
        $self->gender = $req->gender;
        $self->pincode = $req->pincode;
        $self->category = $req->category;
