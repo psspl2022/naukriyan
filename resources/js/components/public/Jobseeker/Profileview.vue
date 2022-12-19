@@ -105,29 +105,29 @@
               <div class="refer-cov">
                 <!-- <li><i class=""></i>Date of Birth - {{ alldata.dob }}</li> -->
                 <li>
-                  <i class=""></i>Experience- {{ alldata.exp_year }} Yr-{{
+                  <i class=""></i><span class="font-weight-bold">Experience -</span> {{ alldata.exp_year }} Yr-{{
                     alldata.exp_month
                   }}
                   Month
                 <li v-if="alldata.current_salary!==null">
-                <i class=""></i>Current Salary- {{ alldata.current_salary }} LPA
+                <i class=""></i><span class="font-weight-bold">Current Salary -</span> {{ alldata.current_salary }} LPA
                 </li>
                 <li v-if="alldata.expected_salary!==null">
-                  <i class=""></i>Expected Salary-
+                  <i class=""></i><span class="font-weight-bold">Expected Salary -</span>
                   {{ alldata.expected_salary }} LPA
                 </li>
               
-                  <li><i class=""></i>Preferred Location -
+                  <li><i class=""></i><span class="font-weight-bold">Preferred Location -</span>
                   {{ (alldata.preferred_location).replace(/[,]+/g, ", ") }}
                 </li>
                 <li>
-                  <i class=""></i>DOB - {{ alldata.dob | DOBformat }}
+                  <i class=""></i><span class="font-weight-bold">DOB -</span> {{ alldata.dob | DOBformat }}
                 </li>
                 <li v-if="alldata.notice_period!==null">
-                  <i class=""></i>Notice Period - {{ alldata.notice_period }}
+                  <i class=""></i><span class="font-weight-bold">Notice Period -</span> {{ alldata.notice_period }}
                 </li>
                 <li v-else>
-                  <i class=""></i>Notice Period - Not Mentioned
+                  <i class=""></i><span class="font-weight-bold">Notice Period -</span> Not Mentioned
                 </li>
                
                 </li>
@@ -275,12 +275,12 @@
 
               <h2 class="rit-titl"><i class="fas fa-users-cog"></i> Skills</h2>
               <div class="profess-cover row no-margin">
-                <div class="col-md-6" v-for="skl in skillInfo" :key="skl.id">
-                  <div class="prog-row row">
-                    <div class="col-sm-6">
-                      {{ skl.skill }}
-                    </div>
-                    <div class="col-sm-6">
+                <div class="" v-for="skl in skillInfo" :key="skl.id">
+                  <!-- <div class="prog-row row"> -->
+                    <!-- <div class="col-sm-6"> -->
+                      <span class="skills-btn">{{ skl.skill }}</span>
+                    <!-- </div> -->
+                    <!-- <div class="col-sm-6">
                       <div
                         class="progress"
                         v-if="skl.expert_level === 'Beginner'"
@@ -320,8 +320,8 @@
                           aria-valuemax="100"
                         ></div>
                       </div>
-                    </div>
-                  </div>
+                    </div> -->
+                  <!-- </div> -->
                 </div>
               </div>
             </div>
@@ -429,6 +429,13 @@ export default {
 <style>
 .profile-box .left-side .contact-box .icon i {
   line-height: 20px;
+}
+.skills-btn{
+  border-radius: 27px;
+  padding: 10px;
+  background: #ee0979;
+  color: white;
+  margin: 10px;
 }
 @media print{
     #print_no_buttons{

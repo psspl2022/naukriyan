@@ -5,7 +5,7 @@
       <form class="popupForm" id="skills" role="form" method="post" @submit.prevent="addSkill()">
         <fieldset class="mb-2">
           <legend>Skills</legend>
-          <div class="row ">
+          <!-- <div class="row ">
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
               <div>
@@ -42,17 +42,16 @@
               <div style="marginTop: 12rem; lineHeight: 3.5 ;">
                 <div v-for="i in i" :key="'skill' + i">
                   <span title="Delete" style="cursor:pointer" v-on:click="deleteSkill(form.index[i - 1], i - 1)">
-                    <!-- <i style="color: #f95602;" class="fa fa-trash font-18 "  v-if="i > 3"></i> -->
                     <i style="color: #f95602;" class="fa fa-times-circle font-20"  v-if="i > 3"></i>
                   </span>
                 </div>
               </div>
             </div>
             <div class="col-sm-1"></div>
-          </div>
-          <div class="row mt-0 mb-2" v-if="j == 1">
-            <div class="col-sm-12 mt-0" v-if="j == 1">
-              <label class="col-form-label" for="" v-if="j == 1">Add More Skill</label>
+          </div> -->
+          <div class="row mt-0 mb-2" v-if="j==1">
+            <div class="col-sm-12 mt-0">
+              <label class="col-form-label" for="">Add Skills</label>
               <!-- <textarea
                 v-if="j == 1"
                 type="text"
@@ -65,7 +64,7 @@
 
               <vue-tags-input 
               class="" 
-              placeholder="Add Additional Skills" 
+              placeholder="Add Skills" 
               list="skill_list"
               v-model="tag"
               :tags="tags"
@@ -142,15 +141,10 @@ export default {
     },
 
     addSkill() {
-      if (
-        this.form.skill.includes("") ||
-        ((this.form.expert_level.length) < 4 && this.form.expert_level.includes(""))
-      ) {
-        swal("Please fill all mandatory fields");
-      } else if(this.j == 1){
+      if(this.j == 1){
          if(this.tags.length > 0){
-          this.tags.map((i) => {
-            this.form.skill.push(i.text);
+          this.tags.map((i,x) => {
+            this.form.skill[x] = (i.text);
           });
           this.form.post("/add-skill-detail").then((response) => {
             this.updatepStage();
@@ -219,7 +213,9 @@ export default {
             this.form.skill.push(i.skill);
             this.form.expert_level.push(i.expert_level);
             this.form.index.push(i.id);
+            this.tags[x] = ({text: i.skill});
           });
+          
         }
       });
     },
