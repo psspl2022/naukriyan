@@ -144,7 +144,7 @@ export default {
       // if(this.j == 1){
          if(this.tags.length > 0){
           this.tags.map((i,x) => {
-            this.form.skill[x] = (i.text);
+            this.form.skill.push(i.text);
           });
           this.form.post("/add-skill-detail").then((response) => {
             this.updatepStage();
@@ -210,7 +210,7 @@ export default {
           this.form.expert_level = [];
           this.form.index = [];
           data.map((i, x) => {
-            this.form.skill.push(i.skill);
+            // this.form.skill.push(i.skill);
             this.form.expert_level.push(i.expert_level);
             this.form.index.push(i.id);
             this.tags.push({text: i.skill});

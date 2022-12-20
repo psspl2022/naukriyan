@@ -95,9 +95,19 @@
                     <!-- <i class="fas fa-check-circle"></i> -->
                     <br>
                   </a>
-                </div>
-                
+                </div>               
              
+              </div>
+
+              <div class="contact-box pb0">
+                <div class="icon">
+                  <i class="fas fa-birthday-cake "></i>
+                </div>
+                <div class="detail">
+                  {{ alldata.dob | DOBformat  }} 
+                  <!-- <i class="fas fa-check-circle"></i> -->
+                  <br />
+                </div>
               </div>
 
               <h4 class="ltitle color-white">Job Details</h4>
@@ -120,9 +130,9 @@
                   <li><i class=""></i><span class="font-weight-bold">Preferred Location -</span>
                   {{ (alldata.preferred_location).replace(/[,]+/g, ", ") }}
                 </li>
-                <li>
+                <!-- <li>
                   <i class=""></i><span class="font-weight-bold">DOB -</span> {{ alldata.dob | DOBformat }}
-                </li>
+                </li> -->
                 <li v-if="alldata.notice_period!==null">
                   <i class=""></i><span class="font-weight-bold">Notice Period -</span> {{ alldata.notice_period }}
                 </li>

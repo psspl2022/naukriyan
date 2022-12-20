@@ -190,14 +190,13 @@ class StageRegistration extends Controller
         // $uid = Session::get('user')['id'];
         $uid = 2;
 
+        $data = JsSkill::where('js_userid', 2)->delete();
+
         for ($i = 0; $i < count($req->skill); $i++) {
 
-            $a = JsSkill::updateOrCreate(
+            $a = JsSkill::create(
                 [
-                    'js_userid' => 2,
-                    'id' => (isset($req->index[$i])) ? $req->index[$i] : "",
-                ],
-                [
+                    'js_userid'=> 2,
                     'skill' => $req->skill[$i],
                     'expert_level' => (($i < count($req->expert_level)) && ($req->expert_level[$i] != "")) ? $req->expert_level[$i] : ""
                 ]
