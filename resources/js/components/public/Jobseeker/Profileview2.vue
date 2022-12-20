@@ -47,8 +47,7 @@
                 </div>
                 <div class="col-md-2 ">
                     <div>
-                        <img
-                      
+                        <img                      
                         class="mini-photo rounded-circle"
                         :src="'/jobseeker_profile_image/' + alldata.profile_pic_thumb"
                         width="150"
@@ -79,7 +78,7 @@
                         </div>
                     </div>
                     </div>
-                </div>
+                </div> 
                 </div>
                 <div  class="about" id="print_no_buttons">
                   <div class="btn-ro row no-margin">
