@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-1"></div>
           </div> -->
-          <div class="row mt-0 mb-2" v-if="j==1">
+          <div class="row mt-0 mb-2" >
             <div class="col-sm-12 mt-0">
               <label class="col-form-label" for="">Add Skills</label>
               <!-- <textarea
@@ -73,7 +73,8 @@
                 () => {
                   placeholder = ' ';
                 }
-              " :add-on-key="[13, ',', ';']" :autocomplete-items="autocompleteItems"  />
+              " :add-on-key="[13, ',', ';']" 
+              :autocomplete-items="autocompleteItems"  />
                 <datalist id="skill_list" v-for="i in i" :key="i">
                 <option v-for="skill in skill_list" :key="skill" :value="skill">{{ skill }}</option>
               </datalist>
@@ -84,8 +85,7 @@
             Remove
           </span> -->
         </fieldset>
-        <span v-if="j==0" v-on:click="addMore(j)" class="btn btn-primary mt-3">Add More</span>
-        <span v-if="j==1"  class="btn btn-primary mt-3">Remove</span>
+        <!-- <span v-if="j==0" v-on:click="addMo -->
         <button type="submit" class="btn btn-primary mt-3">Save</button>
         <span v-on:click="updatepStage()" class="btn btn-primary mt-3">Skip</span>
       </form>
@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       i: 3,
-      j: 0,
+      // j: 0,
       x: 1,
       tag: '',
       tags: [],
@@ -141,7 +141,7 @@ export default {
     },
 
     addSkill() {
-      if(this.j == 1){
+      // if(this.j == 1){
          if(this.tags.length > 0){
           this.tags.map((i,x) => {
             this.form.skill[x] = (i.text);
@@ -166,16 +166,16 @@ export default {
         } else{
           swal("Please fill all mandatory fields");
         }
-      }else{
-        this.form.post("/add-skill-detail").then((response) => {
-          // console.log(response.data.stage.stage);
-            this.updatepStage();
-              toast({
-              type: "success",
-              title: "Skill Detail Added successfully",
-            })
-          });
-      }
+      // }else{
+      //   this.form.post("/add-skill-detail").then((response) => {
+      //     // console.log(response.data.stage.stage);
+      //       this.updatepStage();
+      //         toast({
+      //         type: "success",
+      //         title: "Skill Detail Added successfully",
+      //       })
+      //     });
+      // }
       
     },
 
@@ -189,9 +189,9 @@ export default {
         axios.get(`/delete-skill-detail/${i}`).then((response) => {});
       }
     },
-    addMore(j) {
-      this.j = ++j;
-    },
+    // addMore(j) {
+    //   this.j = ++j;
+    // },
     // remove(j) {
     //   this.j = --this.j;
 
@@ -213,7 +213,7 @@ export default {
             this.form.skill.push(i.skill);
             this.form.expert_level.push(i.expert_level);
             this.form.index.push(i.id);
-            this.tags[x] = ({text: i.skill});
+            this.tags.push({text: i.skill});
           });
           
         }

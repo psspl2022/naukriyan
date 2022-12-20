@@ -451,8 +451,7 @@ export default {
     update(newTags) {
       this.autocompleteItems = [];
       this.tags[this.i-1] = newTags.map((a) => {
-        alert(a)
-        return "Disha";
+     
       });
       this.handlers = this.tags[this.i-1].toString();
     },
